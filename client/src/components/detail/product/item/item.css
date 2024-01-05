@@ -1,0 +1,326 @@
+/*** 이미지 관련 ***/
+
+.KJH_item_section {
+    width: 1024px;    /* 지울거임 */
+    display: flex;
+    padding: 30px 0px;
+}
+
+.KJH_item_image_section {
+    margin-right: 40px;
+    flex-shrink: 0;
+    width: 430px;
+    height: 430px;
+}
+
+.KJH_item_image_info {
+    border: 1px solid rgb(238, 238, 238);
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.KJH_item_images {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.KJH_item_images > img {
+    width: 100%;
+    position: absolute;
+    transition: opacity 0.2s ease-in-out 0s;
+    opacity: 1;
+    object-fit: cover;
+}
+
+.KJH_item_next_image_btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(33, 33, 33, 0.35);
+    display: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    right: 20px;
+}
+
+.KJH_item_next_image_btn > img {
+    width: 12px;
+    height: 22px;
+    vertical-align: bottom;
+}
+
+/*** 상품정보 ***/
+
+.KJH_item_info_section {
+    flex-grow: 1;
+}
+
+.KJH_item_info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.KJH_item_info_top {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.KJH_item_title_section {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    width: 100%;
+}
+
+.KJH_item_title_name {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.KJH_item_title_price_section {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.KJH_item_title_price_info {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.KJH_item_info_detail_section {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.KJH_item_info_detail_info {
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.KJH_item_info_detail_status {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.KJH_item_info_detail_status_icon {
+    display: flex;
+    align-items: center;
+    color: rgb(204, 204, 204);
+    font-size: 16px;
+    height: 100%;
+}
+
+.KJH_item_info_detail_status_icon > img {
+    margin-right: 5px;
+    vertical-align: bottom;
+    border-style: none;
+}
+
+.KJH_item_info_detail_status_num {
+    margin: 0 10px 0 0;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+    display: flex;
+    align-items: center;
+    color: rgb(204, 204, 204);
+    height: 100%;
+}
+
+.KJH_item_info_detail_info > button {
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    outline: 0px;
+    border: 0px;
+}
+
+.KJH_item_info_report, .KJH_item_info_report_text {
+    color: rgb(204, 204, 204);
+    font-size: 16px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.KJH_item_info_report img {
+    margin-right: 5px;
+    vertical-align: bottom;
+    border-style: none;
+}
+
+.KJH_item_info_status_section {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.KJH_item_info_status_info {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.KJH_item_info_item_status_title {
+    position: relative;
+    width: 90px;
+    padding-left: 15px;
+    color: rgb(153, 153, 153);
+}
+
+.KJH_item_info_item_status {
+    position: relative;
+    display: flex;
+    font-synthesis: none;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    outline: 0px;
+}
+
+.KJH_item_btn_section {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.KJH_item_btn_section > button {
+    cursor: pointer;
+    outline: none;
+}
+
+.KJH_item_btn_select_section {
+    position: relative;
+    flex: 1 1 0%;
+    font-weight: 600;
+    margin-right: 10px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 56px;
+    font-size: 18px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.KJH_item_btn_select_status, .KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    appearance: none;
+    padding: 0px;
+    border: 0px;
+    font-synthesis: none;
+    direction: ltr;
+    text-align: left;
+    overflow: visible;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.KJH_item_btn_select_status {
+    background: #ababab;
+    color: rgb(255, 255, 255);
+}
+
+.KJH_item_btn_select_status > img, .KJH_item_btn_select_talk > img {
+    margin-right: 5px;
+}
+
+.KJH_item_btn_select_talk {
+    background: rgb(255, 164, 37);
+    border: 1px solid rgb(243, 150, 20);
+}
+
+.KJH_item_btn_select_buy {
+    background: rgb(247, 0, 0);
+    border: 1px solid rgb(223, 0, 0);
+}
+
+/*** 공유 ***/
+
+.KJH_item_share_section {
+    /* 삭제예정 */
+    width: 1024px;
+    height: 50px;
+    border-bottom: 1px solid rgb(33, 33, 33);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.KJH_item_share_btn_naverblog,
+.KJH_item_share_btn_facebook,
+.KJH_item_share_btn_x,
+.KJH_item_share_btn_url {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-right: 10px;
+    border: none;
+}
+
+.KJH_item_share_btn_naverblog {
+    background: rgb(0, 203, 47);
+}
+
+.KJH_item_share_btn_facebook {
+    background: rgb(59, 89, 152);
+}
+
+.KJH_item_share_btn_x {
+    background-color: black;
+}
+
+.KJH_item_share_btn_url {
+    background: rgb(126, 110, 108);
+}
+
+.KJH_item_share_section > button > img {
+    vertical-align: bottom;
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+}
