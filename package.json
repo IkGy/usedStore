@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "axios": "^1.6.2",
