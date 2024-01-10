@@ -1,19 +1,74 @@
-.main_header{
-  width: 100%;
+.main_header{  
+  /* border: 1px solid #000; */
+  margin-top: 1%;
   height: 80px;
   display: flex;
-  float: left;
+  float: left; 
   text-align: center;
+  flex-direction: column;
+}
+.main_title{
+  display: flex;
+  align-items: center;
+}
+
+.header_contents{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.main_logoIcon{
+  /* color: white; */
+  /* background-color: blue; */
+  /* border: 1px solid #000; */
+  border-radius: 20%;
+  font-size: 3em;
+}
+
+.main_titleName{
+  font-size: 1.5em;
+  /* border: 1px solid #000; */
+}
+
+.main_searchBar{
+  border: 0.19em red solid;
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar_input{
+  font-size: 1.4em;
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.main_searchIcon{
+  color: red;
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
+.main_login{
+  border: 1px solid;
+  display: flex;
+  align-items: center;
 }
 
 .main_login ul{
   list-style-type: none;
   display: inline-flex;
-  
 }
 
 .main_login ul li{
   padding: 5px;
+}
+
+.main_login ul li a {
+  text-decoration: none;
 }
 
 .main_logo{
@@ -23,3 +78,11 @@
   height: 50px;
 }
 
+.header_list ol{
+  list-style-type: none;
+  display: inline-flex;
+}
+
+.header_list ol li{
+  padding: 5px;
+}

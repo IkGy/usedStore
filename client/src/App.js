@@ -7,7 +7,7 @@ import Detail from './components/detail/intex';
 
 function App() {
   return (
-    <div>
+    <div className='total_display'>
       <Header />
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
