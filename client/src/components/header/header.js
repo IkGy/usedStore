@@ -10,11 +10,10 @@ function Header(){
   return(
     <div className="main_header">
       <div className="header_contents">
-        <div className="main_title">
+        <Link to={'/'} className="main_title">
           <FaCloud className="main_logoIcon"/>
-          
           <span className="main_titleName">홈페이지 이름</span>
-        </div>
+        </Link>
         <div className="main_searchBar">
           <input className="searchBar_input" placeholder="상품명, 지역명, @상점명 입력" />
           <FaSearch className="main_searchIcon"/>
@@ -22,8 +21,9 @@ function Header(){
         <div className="main_login">
           {getCookie("login") ? 
           <ul>
-            <li><span><CiLogin /></span><Link to={'/login'}>로그인</Link></li>
-            <li><span><LuUserPlus2 /></span><Link to={'/join'}>회원가입</Link></li>
+            <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
+            <li><span></span><Link to={'/mypage'}>내정보</Link></li>
+            <li><span></span><Link to={'/chat'}>채팅</Link></li>
           </ul>
           :
           <ul>

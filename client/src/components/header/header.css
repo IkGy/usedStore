@@ -3,7 +3,6 @@
   margin-top: 1%;
   height: 80px;
   display: flex;
-  float: left; 
   text-align: center;
   flex-direction: column;
 }
@@ -53,14 +52,18 @@
 }
 
 .main_login{
+  width: 30%;
   border: 1px solid;
   display: flex;
   align-items: center;
 }
 
+
 .main_login ul{
   list-style-type: none;
-  display: inline-flex;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .main_login ul li{
