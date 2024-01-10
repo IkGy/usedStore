@@ -9,7 +9,7 @@ import Regi from './components/sale/regi';
 
 function App() {
   return (
-    <div>
+    <div className='total_display'>
       <Header />
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
