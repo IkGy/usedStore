@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import Logo from "./image/logo.png"
 import { FaSearch } from 'react-icons/fa'
 import './header.css'
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Header(){
+
+useEffect(() => {
+  axios.get('/header').then((result) => {
+    console.log(result.data);
+  })
+},[])
+
   return(
     <div className="main_header">
       <div className="main_tItle"> 
