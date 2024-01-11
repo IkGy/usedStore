@@ -64,7 +64,7 @@ function Login() {
             로그인
           </Button>
           <Button 
-            Link href="./kakaotalk"
+            Link href="./kakaotalk/kakaotalk"
             fullWidth
             sx={{ 
               mb: 2,

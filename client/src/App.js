@@ -5,7 +5,7 @@ import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
 import Detail from './components/detail/intex';
 import Login from './components/login/login';
-import Kakaotalk from './components/login/kakaotalk';
+import Kakaotalk from './components/login/kakaotalk/kakaotalk';
 import Sign_Up from './components/sign_up/sign_up';
 
 function App() {
