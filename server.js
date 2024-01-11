@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.get('/header', async (req,res) => {
   let result = await db.collection("product").find().toArray()
   console.log(result);
-  res.status(201).send(result)
+  res.status(201).send(result) 
 })
 
 
