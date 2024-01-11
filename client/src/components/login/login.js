@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.css";
 import TextField from '@mui/material/TextField';
 import Checkbox from "@mui/material/Checkbox";
@@ -12,9 +12,40 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
-
-
 function Login() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
+      console.log("Kakao 계정으로 성공적으로 로그인 하였습니다")
+    };
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  function KakaoLogin() {
+    window.Kakao.Auth.login({
+      scope:'profile_nickname, profile_image',
+      success: function(authObj) {
+        console.log(authObj);
+        window.Kakao.API.request({
+          url:'/v2/user/me',
+          success: res => {
+            const kakao_account = res.kakao_account;
+            console.log(kakao_account);
+          }
+        })
+      }
+    });
+  };
+
+
   return(
     <div>
       <Container component="main" maxWidth="xs">
@@ -34,18 +65,20 @@ function Login() {
           </Typography>
           <TextField
             margin="normal"
-            label="Email Address"
+            label="이메일 주소"
             name="email"
             required               //반드시 들어가야 할 것
             fullWidth              //전체 화면으로
             autoComplete="email"   //이메일 자동완성
-            autoFocus              //페이지 이동시 자동 커서이동
+            autoFocus
+            id="email"              //페이지 이동시 자동 커서이동
           />
           <TextField 
             margin="normal"
-            label="Password" 
+            label="비밀번호" 
             type="password"  
             name="password"
+            id="password"  
             required
             fullWidth 
             autoComplete="current-password"
@@ -63,8 +96,8 @@ function Login() {
           >
             로그인
           </Button>
-          <Button 
-            Link href="./kakaotalk/kakaotalk"
+          <Button
+            onClick={KakaoLogin}
             fullWidth
             sx={{ 
               mb: 2,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,13 +13,43 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [selectedAddress, setSelectedAddress] = useState('');
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      Name: data.get('firstName'),
+      id: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
+      address: selectedAddress,
+      phone_number: data.get('phone_number'),
     });
+  };
+
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ''}`;
+        setSelectedAddress(fullAddress);
+
+        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
+        console.log(data);
+      },
+    }).open();
   };
 
   return (
@@ -35,14 +65,14 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5" sx={{ mt:5 }}>
-            회원가입
+            벙개장터에 오신 여러분 환영합니다.
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="Name"
                   required
                   fullWidth
                   id="real_name"
@@ -54,9 +84,9 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="id"
                   label="아이디"
-                  name="lastName"
+                  name="id"
                   autoComplete="family-name"
                 />
               </Grid>
@@ -67,6 +97,7 @@ export default function SignUp() {
                   id="email"
                   label="이메일 주소"
                   name="email"
+                  type="email"
                   autoComplete="email"
                 />
               </Grid>
@@ -79,6 +110,28 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="address"
+                  label="주소"
+                  type="text"
+                  id="address"
+                  value={selectedAddress}
+                  onClick={handleAddressClick}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="전화번호"
+                  type="tel"
+                  id="phone_number"
                 />
               </Grid>
             </Grid>
