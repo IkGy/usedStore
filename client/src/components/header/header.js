@@ -4,9 +4,18 @@ import { LuUserPlus2 } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
 import { FaCloud } from "react-icons/fa";
 import './header.css'
+import { useEffect } from 'react';
+import axios from 'axios';
 import { getCookie } from "../../useCookies";
 
 function Header(){
+
+useEffect(() => {
+  axios.get('http://localhost:8080/header').then((result) => {
+    console.log(result.data);
+  })
+},[])
+
   return(
     <div className="main_header">
       <div className="header_contents">
@@ -28,7 +37,7 @@ function Header(){
           :
           <ul>
             <li><span><CiLogin /></span><Link to={'/login'}>로그인</Link></li>
-            <li><span><LuUserPlus2 /></span><Link to={'/join'}>회원가입</Link></li>
+            <li><span><LuUserPlus2 /></span><Link to={'/sign_up'}>회원가입</Link></li>
           </ul>
           }
         </div>
