@@ -28,7 +28,7 @@ function Header(){
           :
           <ul>
             <li><span><CiLogin /></span><Link to={'/login'}>로그인</Link></li>
-            <li><span><LuUserPlus2 /></span><Link to={'/join'}>회원가입</Link></li>
+            <li><span><LuUserPlus2 /></span><Link to={'/sign_up'}>회원가입</Link></li>
           </ul>
           }
         </div>
