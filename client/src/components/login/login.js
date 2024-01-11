@@ -34,18 +34,20 @@ function Login() {
           </Typography>
           <TextField
             margin="normal"
-            label="Email Address"
+            label="이메일 주소"
             name="email"
             required               //반드시 들어가야 할 것
             fullWidth              //전체 화면으로
             autoComplete="email"   //이메일 자동완성
-            autoFocus              //페이지 이동시 자동 커서이동
+            autoFocus
+            id="email"              //페이지 이동시 자동 커서이동
           />
           <TextField 
             margin="normal"
-            label="Password" 
+            label="비밀번호" 
             type="password"  
             name="password"
+            id="password"  
             required
             fullWidth 
             autoComplete="current-password"
