@@ -49,13 +49,43 @@ app.get("/", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
-app.post('/register', async (req,res) => {
-  console.log('req: ', req);
-  console.log('res: ', res);
-  let result = req.body  // sign up 의 데이테를 불러오는 값
-  console.log('result: ', result);
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  console.log(req.body);
   
-}) 
+  const Findemail = await db.collection("user").findOne({
+    email: req.body.email
+  });
+  if(Findemail){
+    if(req.body.password === Findemail.password){
+      res.status(201).send("성공");
+    } else {
+      res.status(400).send("비번 틀림");
+    }
+   }
+  }
+);
+
+app.post('/register', async (req,res) => {
+  let result = req.body  // sign up 의 데이테를 불러오는 값
+  await db.collection("user").insertOne({
+    real_name: result.name,
+    id: result.id,
+    email: result.email,
+    password: result.password,
+    address: result.address,
+    phone_number: result.phone_number,
+    role: "user",
+    user_name: "user",
+    about: " ",
+    create_at: new Date()
+  })
+
+  res.status(201).send(
+    "전송 성공"
+    )
+  }
+);
 
 
 
