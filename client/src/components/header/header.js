@@ -7,11 +7,12 @@ import './header.css'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { getCookie } from "../../useCookies";
+import { API_URL } from "../config/contansts";
 
 function Header(){
 
 useEffect(() => {
-  axios.get('http://localhost:8080/header').then((result) => {
+  axios.get(`${API_URL}/header`).then((result) => {
     console.log(result.data);
   })
 },[])
