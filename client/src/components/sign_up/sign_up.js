@@ -30,8 +30,8 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
+      Name: data.get('firstName'),
+      id: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
       address: selectedAddress,
@@ -97,6 +97,7 @@ export default function SignUp() {
                   id="email"
                   label="이메일 주소"
                   name="email"
+                  type="email"
                   autoComplete="email"
                 />
               </Grid>

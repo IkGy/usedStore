@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./login.css";
 import TextField from '@mui/material/TextField';
 import Checkbox from "@mui/material/Checkbox";
@@ -12,9 +12,40 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
-
-
 function Login() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
+      console.log("Kakao 계정으로 성공적으로 로그인 하였습니다")
+    };
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  function KakaoLogin() {
+    window.Kakao.Auth.login({
+      scope:'profile_nickname, profile_image',
+      success: function(authObj) {
+        console.log(authObj);
+        window.Kakao.API.request({
+          url:'/v2/user/me',
+          success: res => {
+            const kakao_account = res.kakao_account;
+            console.log(kakao_account);
+          }
+        })
+      }
+    });
+  };
+
+
   return(
     <div>
       <Container component="main" maxWidth="xs">
@@ -65,8 +96,8 @@ function Login() {
           >
             로그인
           </Button>
-          <Button 
-            Link href="./kakaotalk"
+          <Button
+            onClick={KakaoLogin}
             fullWidth
             sx={{ 
               mb: 2,
