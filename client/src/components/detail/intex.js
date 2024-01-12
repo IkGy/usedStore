@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import { API_URL } from '../config/contansts';
+import axios from 'axios';
 
 import Category from './product/category';
 import Info from './product/info';
 import Item from './product/item';
 
 function Detail() {
-    const [product, setProduct] = useState(null);
     const { id } = useParams();
 
-    const fetchProduct = async () => {
+    const fectchProduct = async () => {
         try {
-            const res = await axios.get(`${API_URL}/product/${id}`);
-            setProduct(res.data)
-        } catch (err) {
-            console.error('해당 상품 정보를 불러오지 못했습니다.')
+            const res = await axios.get(`${API_URL}/detail/${id}`);
+            console.log('조회 완료');
+            console.log(res.data)
+        } catch (error) {
+            console.log(error);
         }
     };
     useEffect(() => {
-        fetchProduct();
-    }, [id]);
+        fectchProduct();
+    }, []);
 
     return (
         <>

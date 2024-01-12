@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
-        <Route path='/detail' element={<Detail />}></Route>
+        <Route path='/detail/:id' element={<Detail />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/sign_up' element={<Sign_Up />}></Route>
         <Route path='/kakaotalk' element={<Kakaotalk />}></Route>

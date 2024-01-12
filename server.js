@@ -18,7 +18,7 @@ new MongoClient(url)
   .connect()
   .then((client) => {
     const db = client.db("popol5");
-    setDB(db); // db.js에 DB 연결 설정
+    setDB(db);
     console.log("DB연결성공");
     app.listen(process.env.PORT, function () {
       console.log("listening on 8080");

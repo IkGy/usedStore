@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const { getDB } = require('../db');
+const { ObjectId } = require('mongodb');
 
 router.get('/', async (req, res) => {
     try {
         const db = getDB();
         let result = await db.collection("product").find().toArray();
-        console.log(result);
+        console.log('result:', result);
         res.status(201).send(result);
     } catch (error) {
         console.error(error);
@@ -15,6 +16,19 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/detail/:id', async (req, res) => {
+    try {
+        const db = getDB();
+        let result = await db.collection("product").findOne({_id:new ObjectId(req.params.id)});
+        console.log(result);
+        res.status(201).send(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('조회 오류')
+    }
+});
+
+// /detail/:id > product > _id 
 
 // router.get('/:id', async (req, res) => {
 //     try {
