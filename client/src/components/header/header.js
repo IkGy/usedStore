@@ -11,11 +11,11 @@ import { API_URL } from "../config/contansts";
 
 function Header(){
 
-useEffect(() => {
-  axios.get(`${API_URL}/header`).then((result) => {
-    console.log(result.data);
-  })
-},[])
+// useEffect(() => {
+//   axios.get(`${API_URL}/header`).then((result) => {
+//     console.log(result.data);
+//   })
+// },[])
 
   return(
     <div className="main_header">

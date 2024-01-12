@@ -1,0 +1,12 @@
+.KJH_product_1 {
+    font-size: 32px;
+    padding: 30px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}
+
+.KJH_product_1:hover {
+    background-color: brown;
+    color: black;
+}
