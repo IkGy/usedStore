@@ -1,4 +1,5 @@
 import './item.css';
+
 import NextBTN from './images/next_btn.png';
 import Heart from './images/heart.png';
 import Check from './images/check.png';
@@ -15,7 +16,50 @@ import One from './images/1.png';
 import Two from './images/2.png';
 import Three from './images/3.png';
 
-function Item() {
+// 가격 형식화
+function formatPrice(price) {
+    return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', currencyDisplay: 'code' })
+    .format(price)
+    .replace('KRW', ''); // 'KRW' 문자열 제거
+    }
+
+// 시간 계산
+function formatTimeAgo(createdDate) {
+    const created = new Date(createdDate);
+    const now = new Date();
+    const diff = now - created;
+
+    const diffDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const diffHours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const diffMinutes = Math.floor((diff / (1000 * 60)) % 60);
+
+    let formattedTime = '';
+
+    if (diffDays > 0) {
+        formattedTime += `${diffDays}일 `;
+    }
+    if (diffHours > 0 || diffDays > 0) { // 일이 있으면 시간도 표시
+        formattedTime += `${diffHours}시간 `;
+    }
+    formattedTime += `${diffMinutes}분`;
+
+    return formattedTime.trim();
+}
+
+function Item(props) {
+    // console.log(props.info)
+    const Info = props.info
+    const Like = props.heart
+    
+    // 생성 날짜 형식화
+    const formattedCreatedAt = formatTimeAgo(Info.created_at);
+
+    console.log(Info);
+    console.log(Like);
+
+    // 가격 형식화 적용
+    const formattedPrice = Info.price ? formatPrice(Info.price) : '가격 정보 없음';
+
     return (
         <>
             <div className='KJH_item_section'>
@@ -30,9 +74,6 @@ function Item() {
                         <button direction="next" className='KJH_item_next_image_btn'>
                             <img src={NextBTN} alt='next-btn'/>
                         </button>
-                        <div>
-
-                        </div>
                     </div>
                 </div>
                 {/* 상품 정보 */}
@@ -41,12 +82,12 @@ function Item() {
                         <div className='KJH_item_info_top'>
                             <div className='KJH_item_title_section'>
                                 <div className='KJH_item_title_name'>
-                                    상품명 공간
+                                    {Info.title}
                                 </div>
                                 <div className='KJH_item_title_price_section'>
                                     <div className='KJH_item_title_price_info'>
                                         {/* 가격 데이터 */}
-                                        000,000
+                                        {formattedPrice}
                                         <span>원</span>
                                     </div>
                                 </div>
@@ -59,7 +100,7 @@ function Item() {
                                         </div>
                                         <div className='KJH_item_info_detail_status_num'>
                                             {/* 찜 데이터 */}
-                                            25
+                                            {Like.length}
                                         </div>
                                         <div className='KJH_item_info_detail_status_icon'>
                                             <img src={Check} alt='heart' width='21px' height='13px' />
@@ -73,7 +114,7 @@ function Item() {
                                         </div>
                                         <div className='KJH_item_info_detail_status_num'>
                                             {/* 시간 데이터 */}
-                                            55분전
+                                            {formattedCreatedAt}전
                                         </div>
                                     </div>
                                     <button className='KJH_item_info_report'>
@@ -127,7 +168,7 @@ function Item() {
                                         <img src={HeartIcon} alt='heart' width='18px' height='18px'/>
                                         <span>찜</span>
                                         {/* 해당 상품 찜 개수 데이터 */}
-                                        <span>13</span>
+                                        <span>{Like.length}</span>
                                     </button>
                                 </div>
                                 <div className='KJH_item_btn_select_section'>

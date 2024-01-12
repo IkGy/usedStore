@@ -24,9 +24,7 @@ function Main(){
     fectchProduct();
   }, []);
 
-  
-
-  console.log(product[1]);
+  // console.log(product[1]);
 
   return(
     <div>
