@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
@@ -10,11 +10,18 @@ import Item from './product/item';
 function Detail() {
     const { id } = useParams();
 
-    const fectchProduct = async () => {
+    const [item, setItem] = useState([]);
+    const [like, setLike] = useState([]);
+
+
+    const fectchProduct = async () => {   
         try {
             const res = await axios.get(`${API_URL}/detail/${id}`);
             console.log('조회 완료');
-            console.log(res.data)
+            setItem(res.data.product);
+            setLike(res.data.likes);
+            console.log(item);
+            console.log(like);
         } catch (error) {
             console.log(error);
         }
@@ -25,9 +32,9 @@ function Detail() {
 
     return (
         <>
-            <Category />
-            <Item />
-            <Info />
+            <Category info={item} />
+            <Item info={item} heart={like} />
+            <Info info={item} />
         </>
     );
 }
