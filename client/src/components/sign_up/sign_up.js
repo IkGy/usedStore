@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'; 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -26,16 +27,25 @@ export default function SignUp() {
     };
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log(data);
     console.log({
-      Name: data.get('firstName'),
-      id: data.get('lastName'),
+      name: data.get('name'),
+      id: data.get('id'),
       email: data.get('email'),
       password: data.get('password'),
       address: selectedAddress,
       phone_number: data.get('phone_number'),
+    });
+
+    await axios.post(`http://localhost:8080/register`, data)
+    .then((result) => {
+      console.log('result.data: ', result.data);
+      }
+    ).catch((error) => { 
+      console.log(error); 
     });
   };
 
@@ -72,7 +82,7 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="Name"
+                  name="name"
                   required
                   fullWidth
                   id="real_name"
@@ -128,7 +138,7 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
+                  name="phone_number"
                   label="전화번호"
                   type="tel"
                   id="phone_number"

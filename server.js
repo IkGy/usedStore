@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get('/header', async (req,res) => {
   let result = await db.collection("product").find().toArray()
-  console.log(result);
+  // console.log(result);
   res.status(201).send(result) 
 })
 
@@ -36,6 +36,15 @@ app.get('/header', async (req,res) => {
 app.get("/", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
+
+app.post('/register', async (req,res) => {
+  console.log('req: ', req);
+  console.log('res: ', res);
+  let result = req.body  // sign up 의 데이테를 불러오는 값
+  console.log('result: ', result);
+  
+}) 
+
 
 
 app.get("*", function (요청, 응답) {
