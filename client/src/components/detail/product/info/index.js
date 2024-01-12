@@ -9,7 +9,10 @@ import Profile from './images/profile_image.svg';
 import Follow from './images/follow.png';
 import TalkBtn from './images/talkbtn.png';
 
-function Info() {
+function Info(props) {
+
+    const Info = props.info
+
     return (
         <>
             <div className='KJH_if_section'>
@@ -23,7 +26,7 @@ function Info() {
                                 <div className='KJH_if_left_content_top'>
                                     <p style={{ width: '663px' }}>
                                         {/* 판매자 상품 정보 설명 내용 데이터 */}
-                                        판매자 상품 정보 설명 내용 칸
+                                        {Info.comment}
                                     </p>
                                 </div>
                                 <div className='KJH_if_left_content_bottom'>
@@ -34,7 +37,7 @@ function Info() {
                                         </div>
                                         <div className='KJH_if_left_content_div_center'>
                                             {/* 거래 지역 데이터 */}
-                                            <span>전국</span>
+                                            <span>{Info.location}</span>
                                         </div>
                                     </div>
                                     <div className='KJH_if_left_content_div'>
@@ -56,10 +59,14 @@ function Info() {
                                             상품태그
                                         </div>
                                         <div className='KJH_if_left_content_div_bottom_tag_section'>
-                                            <Link to='/'>#태그1번</Link>
-                                            <Link to='/'>#태그2번</Link>
-                                            <Link to='/'>#태그3번</Link>
-                                            <Link to='/'>#태그4번</Link>
+                                        {Info.tags && typeof Info.tags === 'string' && Info.tags.split(' ').map((tag) => {
+                                            const tagName = tag.replace('#', '');
+                                                return (
+                                                    <Link key={tagName} to={`/search/${tagName}`}>
+                                                        {tag}
+                                                    </Link>
+                                            );
+                                        })}
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +125,7 @@ function Info() {
                     <div className='KJH_if_right_info'>
                         <div className='KJH_if_right_top_section'>
                             <div className='KJH_if_right_top_title'>
-                                상품정보
+                                상점정보
                             </div>
                             <div className='KJH_if_right_top_content_section'>
                                 <div className='KJH_if_right_top_content_top'>

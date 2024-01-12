@@ -17,11 +17,15 @@ import Two from './images/2.png';
 import Three from './images/3.png';
 
 // 가격 형식화
-function formatPrice(price) {
-    return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', currencyDisplay: 'code' })
-    .format(price)
-    .replace('KRW', ''); // 'KRW' 문자열 제거
-    }
+function formatPrices(data) {
+    const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', currencyDisplay: 'code' });
+
+    return {
+        ...data, // 기존 데이터를 그대로 유지
+        price: formatter.format(data.price).replace('KRW', ''), // 가격 형식화
+        delivery_price: formatter.format(data.delivery_price).replace('KRW', '') // 배송비 형식화
+    };
+}
 
 // 시간 계산
 function formatTimeAgo(createdDate) {
@@ -58,7 +62,7 @@ function Item(props) {
     console.log(Like);
 
     // 가격 형식화 적용
-    const formattedPrice = Info.price ? formatPrice(Info.price) : '가격 정보 없음';
+    const formattedInfo = formatPrices(Info);
 
     return (
         <>
@@ -87,8 +91,7 @@ function Item(props) {
                                 <div className='KJH_item_title_price_section'>
                                     <div className='KJH_item_title_price_info'>
                                         {/* 가격 데이터 */}
-                                        {formattedPrice}
-                                        <span>원</span>
+                                        {formattedInfo.price}<span>원</span>
                                     </div>
                                 </div>
                             </div>
@@ -129,16 +132,16 @@ function Item(props) {
                                         </div>
                                         <div className='KJH_item_info_item_status'>
                                             {/* 상품상태 데이터 */}
-                                            사용감 적음
+                                            {Info.product_status}
                                         </div>
                                     </div>
                                     <div className='KJH_item_info_status_info'>
                                         <div className='KJH_item_info_item_status_title'>
-                                            - 교환여부
+                                            - 환불 여부
                                         </div>
                                         <div className='KJH_item_info_item_status'>
                                             {/* 교환여부 데이터 */}
-                                            교환불가능
+                                            {Info.refund ? '환불 불가능' : '환불 가능'}
                                         </div>
                                     </div>
                                     <div className='KJH_item_info_status_info'>
@@ -147,7 +150,7 @@ function Item(props) {
                                         </div>
                                         <div className='KJH_item_info_item_status'>
                                             {/* 배송비 데이터 */}
-                                            배송비 별도
+                                            {formattedInfo.delivery_price}원
                                         </div>
                                     </div>
                                     <div className='KJH_item_info_status_info'>
@@ -156,7 +159,7 @@ function Item(props) {
                                         </div>
                                         <div className='KJH_item_info_item_status'>
                                             {/* 거래지역 데이터 */}
-                                            경기 평택시 장안웃길 56 국제대학교
+                                            {Info.location}
                                         </div>
                                     </div>
                                 </div>
