@@ -31,7 +31,7 @@ function Login() {
 
   function KakaoLogin() {
     window.Kakao.Auth.login({
-      scope:'profile_nickname, profile_image',
+      scope:'profile_nickname',
       success: function(authObj) {
         console.log(authObj);
         window.Kakao.API.request({
@@ -44,7 +44,6 @@ function Login() {
       }
     });
   };
-
 
   return(
     <div>
