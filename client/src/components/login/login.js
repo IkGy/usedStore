@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'; 
 import "./login.css";
 import TextField from '@mui/material/TextField';
 import Checkbox from "@mui/material/Checkbox";
@@ -13,6 +14,21 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/login", {
+        email: email,
+        password: password,
+      });
+      console.log("로그인 성공:", response.data);
+    } catch (error) {
+      console.error("로그인 실패:", error.response.data);
+    }
+  };
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
@@ -70,7 +86,9 @@ function Login() {
             fullWidth              //전체 화면으로
             autoComplete="email"   //이메일 자동완성
             autoFocus
-            id="email"              //페이지 이동시 자동 커서이동
+            id="email"
+            value={email}    
+            onChange={(e) => setEmail(e.target.value)}          //페이지 이동시 자동 커서이동
           />
           <TextField 
             margin="normal"
@@ -78,6 +96,8 @@ function Login() {
             type="password"  
             name="password"
             id="password"  
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             fullWidth 
             autoComplete="current-password"
@@ -88,6 +108,7 @@ function Login() {
             label="비밀번호 저장"
           />
           <Button 
+            onClick={handleLogin}
             type="submit"  
             fullWidth 
             variant="contained"

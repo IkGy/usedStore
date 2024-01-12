@@ -27,18 +27,23 @@ export default function SignUp() {
     };
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log(data);
-    console.log({
-      name: data.get('name'),
-      id: data.get('id'),
-      email: data.get('email'),
-      password: data.get('password'),
-      address: selectedAddress,
-      phone_number: data.get('phone_number'),
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const id = e.target.id.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const address = e.target.address.value;
+    const phone_number = e.target.phone_number.value;
+    
+    const data = {
+      name: name,
+      id: id,
+      email: email,
+      password: password,
+      address: address,
+      phone_number: phone_number
+    }; console.log(data);
 
     await axios.post(`http://localhost:8080/register`, data)
     .then((result) => {
