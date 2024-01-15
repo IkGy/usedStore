@@ -1,7 +1,6 @@
 /*** 이미지 관련 ***/
 
 .KJH_item_section {
-    width: 1024px;    /* 지울거임 */
     display: flex;
     padding: 30px 0px;
 }
@@ -43,9 +42,7 @@
     transform: translateY(-50%);
     background: rgba(33, 33, 33, 0.35);
     display: none;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
     right: 20px;
 }
@@ -79,15 +76,15 @@
 }
 
 .KJH_item_title_section {
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     border-bottom: 1px solid rgb(238, 238, 238);
     width: 100%;
 }
 
 .KJH_item_title_name {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 25px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.4;
 }
 
@@ -99,7 +96,12 @@
 
 .KJH_item_title_price_info {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.KJH_item_title_price_info > span {
+    padding-left: 5px;
+    font-size: 18px;
 }
 
 .KJH_item_info_detail_section {
@@ -113,10 +115,11 @@
 .KJH_item_info_detail_info {
     height: 30px;
     margin-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     display: flex;
-    -webkit-box-pack: justify;
     justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #999999;
 }
 
 .KJH_item_info_detail_status {
@@ -143,11 +146,11 @@
     margin: 0 10px 0 0;
     padding: 0px;
     border: 0px;
-    font: inherit;
-    vertical-align: baseline;
+    font-size: 16px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    color: rgb(204, 204, 204);
+    color: #666666;
     height: 100%;
 }
 
@@ -167,8 +170,9 @@
 }
 
 .KJH_item_info_report, .KJH_item_info_report_text {
-    color: rgb(204, 204, 204);
+    color: #777777;
     font-size: 16px;
+    font-weight: 700;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -195,18 +199,19 @@
 
 .KJH_item_info_item_status_title {
     position: relative;
-    width: 90px;
+    width: 100px;
     padding-left: 15px;
-    color: rgb(153, 153, 153);
+    color: #888888;
+    margin-right: 10px;
 }
 
 .KJH_item_info_item_status {
     position: relative;
     display: flex;
-    font-synthesis: none;
     direction: ltr;
     text-align: left;
-    color: rgb(33, 33, 33);
+    font-weight: 700;
+    color: #333333;
     outline: 0px;
 }
 

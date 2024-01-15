@@ -4,7 +4,7 @@
 }
 
 .total_display{
-  width: 60%;
+  width: 1024px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;

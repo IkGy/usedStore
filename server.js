@@ -20,7 +20,7 @@ new MongoClient(url)
     const db = client.db("popol5");
     setDB(db);
     console.log("DB연결성공");
-    app.listen(process.env.PORT, function () {
+    app.listen(process.env.PORT, function() {
       console.log("listening on 8080");
     });
   })
@@ -62,7 +62,7 @@ app.post("/login", async (req, res) => {
     } else {
       res.status(400).send("비번 틀림");
     }
-   }
+  }
   }
 );
 
