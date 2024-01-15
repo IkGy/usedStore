@@ -21,11 +21,12 @@
 
 .JSW_menubar {
   margin: 0 auto;
-  margin: 0 auto;
 
   width: 90%;
   height: 90%;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+  box-shadow: 0px 0px 5px 1px;
+  background-color: #CCF4DC;
   border-radius: 25px;
 
   
@@ -38,11 +39,11 @@
 
 .JSW_nav1 > ul {
   position: absolute;
-  left: -20px;
+  /* left: -20px; */
 }
 
 .JSW_nav1 > ul > li {
-  padding-top: 5px;
+  padding-top: 10%;
   list-style: none;
   
 }
@@ -50,6 +51,13 @@
 .JSW_nav1 > ul > li > a {
   text-decoration: none;
   color: black;
+  font-size: 100%;
+}
+
+@media (max-width: 1024px) {
+  .JSW_menubar {
+    font-size: 80%; /* 원하는 크기로 조절하세요 */
+  }
 }
 
 .JSW_Sec2 {
@@ -102,7 +110,7 @@
 
 .JSW_Cristal {  
   padding: 2%;
-  background-color: aqua;
+  background-color: lightgray;
   border-radius: 10px;
   position: absolute;
   right: 5px;
@@ -111,6 +119,9 @@
   cursor: pointer;
   
 }
+
+
+
   
 
 .JSW_Sec2-2 {

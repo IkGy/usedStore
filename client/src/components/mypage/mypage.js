@@ -102,16 +102,17 @@ function Mypage() {
               </div>
               <div className="JSW_Sec2-1_Right">
                 내 정보
-                <div className="JSW_userinfo"> 
+                <div className="JSW_userinfo"  style={{ fontSize: '100%' }}> 
                   {data.map((a, i)=> {
                     return(
                       <div
-                      key={a.id}>
+                      key={a.id}
+                      >
                         
-                        <div className="JSW_username">{a.uname}</div>
-                        <div className="JSW_usernum">{a.unum}</div>
-                        <div className="JSW_userage">{a.uage}세</div>
-                        <div className="JSW_userarea">{a.uarea}</div>
+                        <div className="JSW_username">이름 : {a.uname}</div>
+                        <div className="JSW_usernum">전화번호 : {a.unum}</div>
+                        <div className="JSW_userage">나이 : {a.uage}세</div>
+                        <div className="JSW_userarea">주소지 : {a.uarea}</div>
                       </div>
                     )
                   })}

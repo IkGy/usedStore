@@ -24,13 +24,18 @@
   width: 10vw;
   
 
-  border: 1px solid #000;
+  border: 1px solid #CCC;
   border-radius: 15px;
   position: relative;
   cursor: pointer;
   
   
 }
+
+.JSW_liststart:hover {
+  box-shadow: 0px 0px 5px 1px ;
+}
+
 .JSW_contentGridBox_img {
   width: 100%;
   height: 10vw;
@@ -43,7 +48,11 @@
   font-weight: 700;
   text-align: center;
   
-  border-top: 1px solid #000;
+  /* border-top: 1px solid #000; */
+}
+
+.JSW_Kname {
+  color: white;
 }
 
 .JSW_contentGridBox_img > img {
