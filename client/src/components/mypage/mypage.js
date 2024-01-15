@@ -21,7 +21,7 @@ function Mypage() {
     },
   ]);
 
-  const [menu, setMenu] = useState("찜 목록");
+  const [menu, setMenu] = useState("구매 목록");
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
@@ -45,7 +45,7 @@ function Mypage() {
     <div>
       <div className='JSW_container'>
         <div className="JSW_mypage_title">
-          마이페이지
+          {/* 마이페이지 */}
         </div>
         <div className="JSW_Main">
           <div className='JSW_Sec1'>
@@ -53,10 +53,13 @@ function Mypage() {
               <nav className="JSW_nav1">
                     <ul>
                       <li>
+                        
+                      </li>
+                      <li>
                         <a
                           href="#"
-                          className={menu === "구매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 내역")}
+                          className={menu === "구매 목록" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 목록")}
                         >
                           구매 내역
                         </a>
@@ -64,8 +67,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "판매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 내역")}
+                          className={menu === "판매 목록" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 목록")}
                         >
                           판매 내역
                         </a>
@@ -95,9 +98,10 @@ function Mypage() {
           <div className='JSW_Sec2'>
             <div className="JSW_Sec2-1">
               <div className="JSW_Sec2-1_left">
-             
+                <img src={EK}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
+                내 정보
                 <div className="JSW_userinfo"> 
                   {data.map((a, i)=> {
                     return(
@@ -118,13 +122,13 @@ function Mypage() {
               </div>
             </div>
             <div className="JSW_Sec2-2">
-              {menu === "구매 내역" && (
+              {menu === "구매 목록" && (
                 <div className={"start " + end}>
                   <Buylist menu={menu} userInfo={userInfo}></Buylist>
                 </div>
               )}
 
-              {menu === "판매 내역" && (
+              {menu === "판매 목록" && (
                 <div className={"start " + end}>
                   <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
                 </div>
