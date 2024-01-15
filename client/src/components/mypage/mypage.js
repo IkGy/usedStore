@@ -11,7 +11,17 @@ import EK from "./image/이크.png"
 
 function Mypage() {
 
-  const [menu, setMenu] = useState("구매 내역");
+  const [data, setData] = useState([
+    {
+      uname: "정선우",
+      unum: "010-9386-4594",
+      uarea: "장안웃길 56 국제대학교",
+      uage: "25",
+
+    },
+  ]);
+
+  const [menu, setMenu] = useState("찜 목록");
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
@@ -85,12 +95,26 @@ function Mypage() {
           <div className='JSW_Sec2'>
             <div className="JSW_Sec2-1">
               <div className="JSW_Sec2-1_left">
+             
+              </div>
+              <div className="JSW_Sec2-1_Right">
+                <div className="JSW_userinfo"> 
+                  {data.map((a, i)=> {
+                    return(
+                      <div
+                      key={a.id}>
+                        
+                        <div className="JSW_username">{a.uname}</div>
+                        <div className="JSW_usernum">{a.unum}</div>
+                        <div className="JSW_userage">{a.uage}세</div>
+                        <div className="JSW_userarea">{a.uarea}</div>
+                      </div>
+                    )
+                  })}
+                </div>
                 <label className="JSW_Cristal">
                   프로필 수정
                 </label>
-              </div>
-              <div className="JSW_Sec2-1_Right">
-
               </div>
             </div>
             <div className="JSW_Sec2-2">
