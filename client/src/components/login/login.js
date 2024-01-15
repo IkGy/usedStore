@@ -61,6 +61,7 @@ function Login() {
           success: res => {
             const kakao_account = res.kakao_account;
             console.log(kakao_account);
+            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
           }
         })
       }
@@ -102,7 +103,7 @@ function Login() {
             value={email}    
             onChange={(e) => setEmail(e.target.value)}          //페이지 이동시 자동 커서이동
           />
-          <TextField 
+          <TextField
             margin="normal"
             label="비밀번호" 
             type="password"  

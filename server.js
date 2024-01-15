@@ -75,8 +75,8 @@ app.post('/register', async (req,res) => {
   let result = req.body  // sign up 의 데이테를 불러오는 값
   const db = getDB();
   await db.collection("user").insertOne({
-    real_name: result.name,
     id: result.id,
+    real_name: result.name,
     email: result.email,
     password: result.password,
     address: result.address,

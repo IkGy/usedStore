@@ -28,23 +28,35 @@ export default function SignUp() {
     };
   }, []);
 
+  const [kakaoAccount, setKakaoAccount] = useState(null);
+
+  useEffect(() => {
+    const storedKakaoAccount = localStorage.getItem('kakao_account');
+  
+    if (storedKakaoAccount) {
+      const parsedKakaoAccount = JSON.parse(storedKakaoAccount);
+      setKakaoAccount(parsedKakaoAccount);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
     const id = e.target.id.value;
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
     
     const data = {
-      name: name,
       id: id,
+      name: name,
       email: email,
       password: password,
       address: address,
       phone_number: phone_number
-    }; console.log(data);
+    }; 
+    console.log(data);
 
     await axios.post(`http://localhost:8080/register`, data)
     .then((result) => {
@@ -86,23 +98,23 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  name="id"
+                  required
+                  fullWidth
+                  id="id"
+                  label="(카카오 로그인시 아이디를 불러올 수 있습니다) 아이디"
+                  autoFocus
+                  value={kakaoAccount && kakaoAccount.nickname ? kakaoAccount.nickname : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
                   autoComplete="given-name"
                   name="name"
                   required
                   fullWidth
                   id="real_name"
                   label="성명"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="id"
-                  label="아이디"
-                  name="id"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
