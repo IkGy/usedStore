@@ -29,18 +29,18 @@ function Header(){
           <FaSearch className="main_searchIcon"/>
         </div>
         <div className="main_login">
-          {getCookie("login") ? 
+          {getCookie("login") ? (
           <ul>
             <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
             <li><span></span><Link to={'/mypage'}>내정보</Link></li>
             <li><span></span><Link to={'/chat'}>채팅</Link></li>
           </ul>
-          :
+          ) : (
           <ul>
             <li><span><CiLogin /></span><Link to={'/login'}>로그인</Link></li>
             <li><span><LuUserPlus2 /></span><Link to={'/sign_up'}>회원가입</Link></li>
           </ul>
-          }
+          )}
         </div>
       </div>
       <div className="header_list">
