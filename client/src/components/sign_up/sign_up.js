@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,10 +11,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const  navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export default function SignUp() {
     await axios.post(`http://localhost:8080/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
+      navigate("/login");
       }
     ).catch((error) => { 
       console.log(error); 
@@ -60,8 +62,6 @@ export default function SignUp() {
         // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ''}`;
         setSelectedAddress(fullAddress);
-
-        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
         console.log(data);
       },
     }).open();

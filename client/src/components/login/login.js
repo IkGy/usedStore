@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'; 
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
@@ -17,6 +18,8 @@ import { setCookie } from "../../useCookies";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -24,21 +27,13 @@ function Login() {
         email: email,
         password: password,
       });
-         // 로그인 성공 시 로컬 스토리지에 사용자 정보 저장
-      // localStorage.setItem("user", JSON.stringify(response.data));
-      setCookie('login',JSON.stringify(response.data))
-
+      setCookie('login', JSON.stringify(response.data));
+      setLoggedIn(true);
       console.log("로그인 성공!:", response.data);
     } catch (error) {
       console.error("로그인 실패:", error);
     }
   };
-
-  // const handleLogout = () => {
-  //   // 로그아웃 시 로컬 스토리지에서 사용자 정보 삭제
-  //   localStorage.removeItem("user");
-  //   console.log("로그아웃 성공!");
-  // };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -71,6 +66,12 @@ function Login() {
       }
     });
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   return(
     <div>

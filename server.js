@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const { MongoClient } = require('mongodb');
 const { db, setDB, getDB } = require('./db');
-
+const { API_URL } = require("./client/src/components/config/contansts");
 const productRouter = require('./routes/product');
 
 app.use(express.json());
@@ -30,7 +30,6 @@ new MongoClient(url)
   app.use('/', productRouter);
 
 app.use(express.static(path.join(__dirname, "client/build")));
-
 
 // app.get('/', async (req,res) => {
 //   let result = await db.collection("product").find().toArray()
