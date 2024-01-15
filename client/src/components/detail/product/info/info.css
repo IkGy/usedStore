@@ -310,6 +310,10 @@
     padding: 16px;
 }
 
+.KJH_if_right_bottom_section > button {
+    border-radius: 10px;
+}
+
 .KJH_if_right_bottom_talk {
     display: flex;
     background: rgb(255, 164, 37);

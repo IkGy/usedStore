@@ -4,6 +4,19 @@ const router = express.Router();
 const { getDB } = require('../db');
 const { ObjectId } = require('mongodb');
 
+router.get('/test', async (req, res) => {
+    try {
+        const db = getDB();
+        let list = await db.collection("product").find().toArray();
+        console.log("---list---")
+        console.log(list);
+        res.status(201).send(list);
+    } catch(error) {
+        console.error(error);
+        res.status(500).send('list 조회오류')
+    }
+});
+
 router.get('/', async (req, res) => {
     try {
         const db = getDB();
@@ -21,7 +34,7 @@ router.get('/detail/:id', async (req, res) => {
         const db = getDB();
         let result = await db.collection("product").findOne({_id:new ObjectId(req.params.id)});
         let LikeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
-        let UserInfo = await db.collection("user").find({"user_id" : req.params.id}).toArray();
+        let UserInfo = await db.collection("user").find({_id : req.params.id}).toArray();
         console.log("------------result------------");
         console.log(result);
         console.log("------------LikeCount------------");
@@ -31,7 +44,7 @@ router.get('/detail/:id', async (req, res) => {
         res.status(201).send({ product: result, likes: LikeCount, user: UserInfo });
     } catch (error) {
         console.error(error);
-        res.status(500).send('조회 오류')
+        res.status(500).send('조회 오류');
     }
 });
 
