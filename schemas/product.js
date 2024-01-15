@@ -49,11 +49,6 @@ price: {
   type: Int32,
   require: true
 },
-// 배송비
-delivery_price: {
-  type: Int32,
-  require: true
-},
 // 거래 지역
 location: {
   type: String,
