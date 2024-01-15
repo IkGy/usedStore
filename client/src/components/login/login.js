@@ -23,11 +23,20 @@ function Login() {
         email: email,
         password: password,
       });
-      console.log("로그인 성공:", response.data);
+         // 로그인 성공 시 로컬 스토리지에 사용자 정보 저장
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      console.log("로그인 성공!:", response.data);
     } catch (error) {
-      console.error("로그인 실패:", error.response.data);
+      console.error("로그인 실패:", error);
     }
   };
+
+  // const handleLogout = () => {
+  //   // 로그아웃 시 로컬 스토리지에서 사용자 정보 삭제
+  //   localStorage.removeItem("user");
+  //   console.log("로그아웃 성공!");
+  // };
 
   useEffect(() => {
     const script = document.createElement("script");
