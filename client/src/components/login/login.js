@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { setCookie } from "../../useCookies";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -24,7 +25,8 @@ function Login() {
         password: password,
       });
          // 로그인 성공 시 로컬 스토리지에 사용자 정보 저장
-      localStorage.setItem("user", JSON.stringify(response.data));
+      // localStorage.setItem("user", JSON.stringify(response.data));
+      setCookie('login',JSON.stringify(response.data))
 
       console.log("로그인 성공!:", response.data);
     } catch (error) {
