@@ -8,6 +8,8 @@ import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
 
+import Test from './components/test';
+
 function App() {
   return (
     <div className='total_display'>
@@ -18,6 +20,8 @@ function App() {
         <Route path='/mypage' element={<Mypage/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/sign_up' element={<Sign_Up />}></Route>
+
+        <Route path='/test' element={<Test />}></Route>
       </Routes>
       <Footer />
     </div>

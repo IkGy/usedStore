@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    // 아이디
+    // 계정 아이디
     id: {
         type: String,
         required: true, // null 여부
         unique: true, // 유니크 여부
     },
-    // 비밀번호
+    // 계정 비밀번호
     password: {
         type: String,
         required: true,
     },
-    // 실제이름
+    // 실명
     real_name: {
         type: String,
         required: true,
@@ -26,11 +26,6 @@ const userSchema = new Schema({
     // 닉네임
     user_name: {
         type: String,
-        required: true,
-    },
-    // 생성 날짜
-    created_at: {
-        type: Date,
         required: true,
     },
     // 소개
@@ -48,6 +43,11 @@ const userSchema = new Schema({
     // 전화번호
     phone_number: {
         type: Number,
+        required: true,
+    },
+    // 생성 날짜
+    created_at: {
+        type: Date,
         required: true,
     },
 });

@@ -21,7 +21,7 @@ function Detail() {
             console.log('조회 완료');
             setItem(res.data.product);
             setLike(res.data.likes);
-            setUserInfo(res.data.user);
+            setUserInfo(res.data);
             console.log(item);
             console.log(like);
             console.log(userInfo);
