@@ -7,6 +7,8 @@ import Detail from './components/detail/intex';
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
+import Sale from './components/sale/sale'
+import Regi from './components/sale/regi';
 
 import Test from './components/test';
 
@@ -20,7 +22,8 @@ function App() {
         <Route path='/mypage' element={<Mypage/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/sign_up' element={<Sign_Up />}></Route>
-
+        <Route path='/sale' element={<Sale />}></Route>
+        <Route path='/regi' element={<Regi />}></Route>
         <Route path='/test' element={<Test />}></Route>
       </Routes>
       <Footer />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./regi.css";
+import { FaCamera } from "react-icons/fa";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -55,6 +56,9 @@ function Regi() {
       </div>
       <div className="regi_select">
         <div>
+          <div className="ymj_content">
+            <FaCamera />
+          </div>
           상품이미지<span style={{ color: "red" }}>*</span>
         </div>
         <div>
