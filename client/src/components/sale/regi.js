@@ -1,5 +1,6 @@
 import React from "react";
 import "./regi.css";
+import { FaCamera } from "react-icons/fa";
 
 function Regi() {
   return (
@@ -22,7 +23,7 @@ function Regi() {
 
         <div>
           <div className="ymj_content">
-            {/* <img src="" class="uploadImage"> */}
+            <FaCamera />
           </div>
         </div>
 

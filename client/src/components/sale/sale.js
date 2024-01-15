@@ -7,12 +7,13 @@ function Sale() {
       
     <div>
       <div>
-        <Link to={'./regi'}>상품등록</Link>
+        <Link to={'/regi'}>상품등록</Link>
       </div>
       <div>
         <button>상품관리</button>
       </div>
       <div>
+        <button>구매/판매 내역</button>
         <button>구매/판매 내역</button>
       </div>
     </div>
