@@ -1,211 +1,190 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./regi.css";
 import { FaCamera } from "react-icons/fa";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 
 function Regi() {
+  const [selectedAddress, setSelectedAddress] = useState("");
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ""}`;
+        setSelectedAddress(fullAddress);
+
+        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
+        console.log(data);
+      },
+    }).open();
+  };
+
+  const handleAddressFocus = (event) => {
+    event.target.blur();
+  };
+
+  const radioStyle = {
+    color: "gray", // 라디오 버튼의 기본 색상
+    "&.Mui-checked": {
+      color: "red", // 클릭 시 라디오 버튼의 색상 변경
+    },
+    "&:hover": {
+      color: "red", // 호버 시 라디오 버튼의 색상 변경
+    },
+  };
+
   return (
-
-    <div className="ymj_all">
-    
-      <div >
-        <div className="ymj_title">
-          <h2>기본정보</h2>
-        </div>
-        <div className="ymj_content">
-          <li>*필수항목</li>
-        </div>
+    <div className="regi">
+      <div className="regi_start">
+        <span>기본정보</span>
+        <span>*필수항목</span>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>상품이미지* (0/12)</h3>
-        </div>
-
+      <div className="regi_select">
         <div>
           <div className="ymj_content">
             <FaCamera />
           </div>
+          상품이미지<span style={{ color: "red" }}>*</span>
         </div>
-
-        <div className="ymj_content">
-          <li>상품 이미지는 PC에서는 1:1, 모바일에서는 1:1.23 비율로 보여져요.</li>
-        </div>
-      </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>상품명*</h3>
-        </div>
-        <div className="ymj_content"> 
-        채팅치는칸 만들기 
+        <div>
+          <button className="regi_image">
+            <i class="fa-solid fa-camera"></i>
+            <div>이미지 등록</div>
+          </button>
         </div>
       </div>
-    
-      <div>
-        <div className="ymj_subtitle">
-          <h3>카테고리*</h3>
+      <div className="regi_select">
+        <div>
+          상품명<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <div>
-            대분류
-          </div>
-
-          <div>
-            중분류
-          </div>
-
-          <div>
-            소분류
-          </div>
-        </div>
-        <div className="ymj_content">
-          <li>선택한 카테고리:</li>
+        <div className="regi_title">
+          <input placeholder="상품명을 입력해 주세요."></input>
         </div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>거래지역*</h3>
+      <div className="regi_select">
+        <div>
+          카테고리<span style={{ color: "red" }}>*</span>
         </div>
-
-        <div className="ymj_content">
-          <div>
-            <button>내 위치</button>
-            <button>최근 지역</button>
-            <button>주소 검색</button>
-            <button>지역설정안함</button>
+        <div className="regi_category">
+          <div className="regi_category1">
+            <div>여성의류1</div>
+            <div>여성의류2</div>
+            <div>여성의류3</div>
+            <div>여성의류4</div>
           </div>
-          <div>
-            상세주소 넣는칸
+          <div className="regi_category2">
+            <div>여성의류1</div>
+            <div>여성의류2</div>
+            <div>여성의류3</div>
+            <div>여성의류4</div>
           </div>
         </div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>상품상태*</h3>
+      <div className="regi_select">
+        <div>
+          거래지역<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <input type='radio' name='Quality' value='very good' /> 새 상품(미사용) 사용하지 않은 새 상품 <br />
-          <input type='radio' name='Quality' value='good' />사용감 없음 사용은 했지만 눈에 띄는 흔적이나 얼룩이 없음 <br />
-          <input type='radio' name='Quality' value='useful' />사용감 적음 눈에 띄는 흔적이나 얼룩이 약간 있음 <br />
-          <input type='radio' name='Quality' value='bad' />시영감 많음 눈에 띄는 흔적이나 얼룩이 많이 있음 <br />
-          <input type='radio' name='Quality' value='Very bad' />고장/파손 상품 기능 이상이나 외관 손상등으로 수리/수선필요 <br />
-        </div>
-      </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>교환*</h3>
-        </div>
-        <div className="ymj_content">
-          <input type='radio' name='whether' value='no' />불가
-          <input type='radio' name='whether' value='yes' />가능
+        <div className="regi_address">
+          <button>기본 위치</button>
+          <button onClick={handleAddressClick}>새 위치</button>
+          <input
+            readonly
+            onFocus={handleAddressFocus}
+            value={selectedAddress}
+          ></input>
         </div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>가격*</h3>
+      <div className="regi_select">
+        <div>
+          상품상태<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <div>
-            가격입력
-          </div>
-          <div>
-            <input type='checkbox' name='propose.' value='yes2' />가격제안 받기
-          </div>
-        </div>
+        <FormControl>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="female"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel
+              value="새상품 (미사용)"
+              control={<Radio style={radioStyle} />} // 스타일을 적용한 라디오 버튼
+              label="새상품 (미사용)"
+            />
+            <FormControlLabel
+              value="사용감 없음"
+              control={<Radio style={radioStyle} />} // 스타일을 적용한 라디오 버튼
+              label="사용감 없음"
+            />
+            <FormControlLabel
+              value="사용감 적음"
+              control={<Radio style={radioStyle} />} // 스타일을 적용한 라디오 버튼
+              label="사용감 적음"
+            />
+            <FormControlLabel
+              value="사용감 많음"
+              control={<Radio style={radioStyle} />} // 스타일을 적용한 라디오 버튼
+              label="사용감 많음"
+            />
+            <FormControlLabel
+              value="고장/파손 상품"
+              control={<Radio style={radioStyle} />} // 스타일을 적용한 라디오 버튼
+              label="고장/파손 상품"
+            />
+          </RadioGroup>
+        </FormControl>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>배송비*</h3>
+      <div className="regi_select">
+        <div>
+          교환<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <input type='radio' name='shipping_price' value='including' />배송비 포함
-          <input type='radio' name='shipping_price' value='separate' />배송비 별도
-        </div>
+        <div>이미지등록</div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>설명</h3>
+      <div className="regi_select">
+        <div>
+          가격<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <div>
-            설명 네모칸
-          </div>
-          <li>혹시 카카오톡ID를 적으셨나요?</li>
-        </div>
+        <div>이미지등록</div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>태그</h3>
+      <div className="regi_select">
+        <div>
+          배송비<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <div>
-            태그 넣는칸 만들기
-          </div>
-          <div>
-            <li>- 태그를 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있어요.</li>
-            <li>- 내 상품을 다양한 태그로 표현해 보세요.</li>
-            <li>- 사람들이 내 상품을 더 잘 찾을 수 있어요.</li>
-            <li>- 상품과 관련 없는 태그를 입력할 경우, 판매에 제재를 받을 수 있어요.</li>
-          </div>
-        </div>
+        <div>이미지등록</div>
       </div>
-
-      <div>
-        <div className="ymj_subtitle">
-          <h3>수량</h3>
+      <div className="regi_select">
+        <div>
+          설명<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          객수 넣는 칸 제작
-        </div>
+        <div>이미지등록</div>
       </div>
-
-      <div>
-        <div className="ymj_title">
-          <h2>빠른 판매</h2>
+      <div className="regi_select">
+        <div>
+          태그<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="ymj_content">
-          <li>내 상품에 안전결제 배지가 표시돼요</li>
-          <button>자세히</button>
+        <div>이미지등록</div>
+      </div>
+      <div className="regi_select">
+        <div>
+          수량<span style={{ color: "red" }}>*</span>
         </div>
+        <div>이미지등록</div>
       </div>
-      
-      <div >
-        <div className="ymj_subtitle">
-          <h3>옵션</h3>
-        </div>
-        <div className="ymj_content">
-          <div>
-            <input type='checkbox' name='propose.' value='yes2' />안전결제 환영
-          </div>
-          <div>
-            <li>안전결제(번개페이) 요청을 거절하지 않는 대신 혜택을 받을 수 있어요.</li>
-            <li>내 상품을 먼저 보여주는 전용 필터로 더 빠르게 판매할 수 있어요.</li>
-            <li>번개페이 배지로 더 많은 관심을 받을 수 있어요.</li>
-          </div>
-          <div>
-            <li> 거절 시, 이용 제재가 있을 수 있으니 주의해 주세요.</li>
-            <li>번개페이 배지와 전용 필터 기능은 앱 또는 모바일 웹에서만 볼 수 있어요.</li>
-          </div>
-        </div>  
-      </div>
-
-      <div>
-        <button>임시저장</button>
-        <button>등록하기</button>
-      </div>
-
     </div>
+  );
+}
 
-
-
-    );
-  }
-  
-  export default Regi;
+export default Regi;

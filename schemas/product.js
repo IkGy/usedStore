@@ -46,7 +46,7 @@ refund: {
 },
 // 가격 
 price: {
-  type: INTEGER,
+  type: Int32,
   require: true
 },
 // 거래 지역
@@ -55,13 +55,10 @@ location: {
   require: true
 },
 // 태그
-tags: {
-  type: String,
-  require: true
-},
+tags: {type: String},
 // 수량
 count: {
-  type: Number,
+  type: Int32,
   require: true
 },
 // 이미지

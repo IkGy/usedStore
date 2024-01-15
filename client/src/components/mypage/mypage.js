@@ -11,7 +11,17 @@ import EK from "./image/이크.png"
 
 function Mypage() {
 
-  const [menu, setMenu] = useState("구매 내역");
+  const [data, setData] = useState([
+    {
+      uname: "정선우",
+      unum: "010-9386-4594",
+      uarea: "장안웃길 56 국제대학교",
+      uage: "25",
+
+    },
+  ]);
+
+  const [menu, setMenu] = useState("구매 목록");
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
@@ -35,7 +45,7 @@ function Mypage() {
     <div>
       <div className='JSW_container'>
         <div className="JSW_mypage_title">
-          마이페이지
+          {/* 마이페이지 */}
         </div>
         <div className="JSW_Main">
           <div className='JSW_Sec1'>
@@ -43,10 +53,13 @@ function Mypage() {
               <nav className="JSW_nav1">
                     <ul>
                       <li>
+                        
+                      </li>
+                      <li>
                         <a
                           href="#"
-                          className={menu === "구매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 내역")}
+                          className={menu === "구매 목록" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 목록")}
                         >
                           구매 내역
                         </a>
@@ -54,8 +67,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "판매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 내역")}
+                          className={menu === "판매 목록" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 목록")}
                         >
                           판매 내역
                         </a>
@@ -85,22 +98,37 @@ function Mypage() {
           <div className='JSW_Sec2'>
             <div className="JSW_Sec2-1">
               <div className="JSW_Sec2-1_left">
+                <img src={EK}></img>
+              </div>
+              <div className="JSW_Sec2-1_Right">
+                내 정보
+                <div className="JSW_userinfo"> 
+                  {data.map((a, i)=> {
+                    return(
+                      <div
+                      key={a.id}>
+                        
+                        <div className="JSW_username">{a.uname}</div>
+                        <div className="JSW_usernum">{a.unum}</div>
+                        <div className="JSW_userage">{a.uage}세</div>
+                        <div className="JSW_userarea">{a.uarea}</div>
+                      </div>
+                    )
+                  })}
+                </div>
                 <label className="JSW_Cristal">
                   프로필 수정
                 </label>
               </div>
-              <div className="JSW_Sec2-1_Right">
-
-              </div>
             </div>
             <div className="JSW_Sec2-2">
-              {menu === "구매 내역" && (
+              {menu === "구매 목록" && (
                 <div className={"start " + end}>
                   <Buylist menu={menu} userInfo={userInfo}></Buylist>
                 </div>
               )}
 
-              {menu === "판매 내역" && (
+              {menu === "판매 목록" && (
                 <div className={"start " + end}>
                   <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
                 </div>

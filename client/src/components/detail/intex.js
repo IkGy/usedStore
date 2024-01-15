@@ -12,7 +12,8 @@ function Detail() {
 
     const [item, setItem] = useState([]);
     const [like, setLike] = useState([]);
-
+    const [userInfo, setUserInfo] = useState([]);
+    
 
     const fectchProduct = async () => {   
         try {
@@ -20,8 +21,10 @@ function Detail() {
             console.log('조회 완료');
             setItem(res.data.product);
             setLike(res.data.likes);
+            setUserInfo(res.data);
             console.log(item);
             console.log(like);
+            console.log(userInfo);
         } catch (error) {
             console.log(error);
         }

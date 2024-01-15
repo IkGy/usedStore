@@ -1,7 +1,8 @@
 import './category.css';
-import Home from './images/home.png';
-import R_Arrow from './images/right_arrow.png';
-import D_Arrow from './images/down_arrow.png';
+import { AiOutlineHome } from "react-icons/ai";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+
 import { Link } from 'react-router-dom';
 
 function Category() {
@@ -10,23 +11,21 @@ function Category() {
             <div className='KJH_cg_container'>
                 <div className='KJH_cg_home_section'>
                     <div className='KJH_cg_home'>
-                        <Link to='/'>
-                            <img src={Home} alt='home'/>
+                        <Link to='/' className='KJH_cg_home_section'>
+                            <AiOutlineHome />
+                            <div>
+                                홈
+                            </div>
                         </Link>
-                        <div>
-                            홈
-                        </div>
+                        
                     </div>
                 </div>
                 <div className='KJH_cg_filter_section'>
-                    <div className='KJH_cg_r-arrow'>
-                        <img src={R_Arrow} alt='right-arrow'/>
-                    </div>
+                    <IoIosArrowForward />
                     <div className='KJH_cg_filter_menu'>
                         <div className='KJH_cg_filter'>
                             <div className='KJH_cg_dropdown_section'>
                                 1차 분류
-                                <img src={D_Arrow} alt='down-arrow'/>
                             </div>
                             <div className='KJH_cg_dropdown'>
                                 <Link to='/'>여성의류</Link>
@@ -60,18 +59,18 @@ function Category() {
                                 <Link to='/'>재능</Link>
                                 <Link to='/'>커뮤니티</Link>
                             </div>
+                            <IoIosArrowDown />
                         </div>
                     </div>
                 </div>
                 <div className='KJH_cg_filter_section'>
                     <div className='KJH_cg_r-arrow'>
-                        <img src={R_Arrow} alt='right-arrow'/>
+                        <IoIosArrowForward />
                     </div>
                     <div className='KJH_cg_filter_menu'>
                         <div className='KJH_cg_filter'>
                             <div className='KJH_cg_dropdown_section'>
                                 2차 분류
-                                <img src={D_Arrow} alt='down-arrow'/>
                             </div>
                             <div className='KJH_cg_dropdown'>
                                 <Link to='/'>아우터</Link>
@@ -82,18 +81,18 @@ function Category() {
                                 <Link to='/'>언더웨어/홈웨어</Link>
                                 <Link to='/'>테마/이벤트</Link>
                             </div>
+                            <IoIosArrowDown />
                         </div>
                     </div>
                 </div>
                 <div className='KJH_cg_filter_section'>
                     <div className='KJH_cg_r-arrow'>
-                        <img src={R_Arrow} alt='right-arrow'/>
+                        <IoIosArrowForward />
                     </div>
                     <div className='KJH_cg_filter_menu'>
                         <div className='KJH_cg_filter'>
                             <div className='KJH_cg_dropdown_section'>
                                 3차 분류
-                                <img src={D_Arrow} alt='down-arrow'/>
                             </div>
                             <div className='KJH_cg_dropdown'>
                                 <Link to='/'>후드티/후드집업</Link>
@@ -104,6 +103,7 @@ function Category() {
                                 <Link to='/'>긴팔 티셔츠</Link>
                                 <Link to='/'>민소매 티셔츠</Link>
                             </div>
+                            <IoIosArrowDown />
                         </div>
                     </div>
                 </div>

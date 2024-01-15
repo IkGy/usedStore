@@ -1,60 +1,27 @@
-/*** 이미지 관련 ***/
+/*** 전체 설정 ***/
 
 .KJH_item_section {
-    width: 1024px;    /* 지울거임 */
     display: flex;
-    padding: 30px 0px;
+    padding: 20px 0px;
+    border-bottom: 2px solid #666666;
 }
 
-.KJH_item_image_section {
-    margin-right: 40px;
-    flex-shrink: 0;
+/*** 이미지 관련 ***/
+
+.KJH_item_slide-container {
+    position: relative;
+    display: flex;
+    transition: all 0.8s;
+    transform: translateX(-430px);
+    float: left;
     width: 430px;
-    height: 430px;
 }
 
-.KJH_item_image_info {
-    border: 1px solid rgb(238, 238, 238);
-    position: relative;
+.KJH_item_slide-container > img {
     width: 100%;
-    height: 100%;
+    height: 280px;
 }
 
-.KJH_item_images {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.KJH_item_images > img {
-    width: 100%;
-    position: absolute;
-    transition: opacity 0.2s ease-in-out 0s;
-    opacity: 1;
-    object-fit: cover;
-}
-
-.KJH_item_next_image_btn {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(33, 33, 33, 0.35);
-    display: none;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    right: 20px;
-}
-
-.KJH_item_next_image_btn > img {
-    width: 12px;
-    height: 22px;
-    vertical-align: bottom;
-}
 
 /*** 상품정보 ***/
 
@@ -71,7 +38,7 @@
 }
 
 .KJH_item_info_top {
-    margin: 0px;
+    margin: 0 0 0 40px;
     padding: 0px;
     border: 0px;
     font: inherit;
@@ -79,15 +46,15 @@
 }
 
 .KJH_item_title_section {
-    padding-bottom: 30px;
+    padding-bottom: 25px;
     border-bottom: 1px solid rgb(238, 238, 238);
     width: 100%;
 }
 
 .KJH_item_title_name {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 25px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.4;
 }
 
@@ -99,7 +66,12 @@
 
 .KJH_item_title_price_info {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.KJH_item_title_price_info > span {
+    padding-left: 5px;
+    font-size: 18px;
 }
 
 .KJH_item_info_detail_section {
@@ -113,10 +85,11 @@
 .KJH_item_info_detail_info {
     height: 30px;
     margin-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     display: flex;
-    -webkit-box-pack: justify;
     justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #999999;
 }
 
 .KJH_item_info_detail_status {
@@ -133,21 +106,21 @@
     height: 100%;
 }
 
-.KJH_item_info_detail_status_icon > img {
+.KJH_item_info_detail_status_icon > svg {
+    width: 1.2em;
+    height: 1.2em;
     margin-right: 5px;
-    vertical-align: bottom;
-    border-style: none;
 }
 
 .KJH_item_info_detail_status_num {
+    display: flex;
     margin: 0 10px 0 0;
     padding: 0px;
     border: 0px;
-    font: inherit;
-    vertical-align: baseline;
-    display: flex;
+    font-size: 16px;
+    font-weight: 600;
     align-items: center;
-    color: rgb(204, 204, 204);
+    color: #666666;
     height: 100%;
 }
 
@@ -157,7 +130,6 @@
     outline: none;
     appearance: none;
     font-synthesis: none;
-    -webkit-font-smoothing: antialiased;
     direction: ltr;
     text-align: left;
     color: rgb(33, 33, 33);
@@ -167,15 +139,18 @@
 }
 
 .KJH_item_info_report, .KJH_item_info_report_text {
-    color: rgb(204, 204, 204);
+    color: #777777;
     font-size: 16px;
+    font-weight: 700;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
 }
 
-.KJH_item_info_report img {
-    margin-right: 5px;
+.KJH_item_info_report svg {
+    margin-right: 3px;
+    width: 1.3em;
+    height: 1.3em;
     vertical-align: bottom;
     border-style: none;
 }
@@ -195,18 +170,19 @@
 
 .KJH_item_info_item_status_title {
     position: relative;
-    width: 90px;
+    width: 100px;
     padding-left: 15px;
-    color: rgb(153, 153, 153);
+    color: #888888;
+    margin-right: 10px;
 }
 
 .KJH_item_info_item_status {
     position: relative;
     display: flex;
-    font-synthesis: none;
     direction: ltr;
     text-align: left;
-    color: rgb(33, 33, 33);
+    font-weight: 700;
+    color: #333333;
     outline: 0px;
 }
 
@@ -227,12 +203,20 @@
     font-weight: 600;
     margin-right: 10px;
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
     height: 56px;
     font-size: 18px;
-    -webkit-box-align: center;
     align-items: center;
+}
+
+.KJH_item_btn_select_section > button {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.KJH_item_btn_select_section > button:hover {
+    background-color: transparent;
+    color: #333333;
 }
 
 .KJH_item_btn_select_status, .KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
@@ -258,69 +242,16 @@
 .KJH_item_btn_select_status {
     background: #ababab;
     color: rgb(255, 255, 255);
-}
-
-.KJH_item_btn_select_status > img, .KJH_item_btn_select_talk > img {
-    margin-right: 5px;
+    border: 3px solid #999999;
 }
 
 .KJH_item_btn_select_talk {
     background: rgb(255, 164, 37);
     border: 1px solid rgb(243, 150, 20);
+    border: 3px solid #da9940;
 }
 
 .KJH_item_btn_select_buy {
-    background: rgb(247, 0, 0);
-    border: 1px solid rgb(223, 0, 0);
-}
-
-/*** 공유 ***/
-
-.KJH_item_share_section {
-    /* 삭제예정 */
-    width: 1024px;
-    height: 50px;
-    border-bottom: 1px solid rgb(33, 33, 33);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.KJH_item_share_btn_naverblog,
-.KJH_item_share_btn_facebook,
-.KJH_item_share_btn_x,
-.KJH_item_share_btn_url {
-    position: relative;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    margin-right: 10px;
-    border: none;
-}
-
-.KJH_item_share_btn_naverblog {
-    background: rgb(0, 203, 47);
-}
-
-.KJH_item_share_btn_facebook {
-    background: rgb(59, 89, 152);
-}
-
-.KJH_item_share_btn_x {
-    background-color: black;
-}
-
-.KJH_item_share_btn_url {
-    background: rgb(126, 110, 108);
-}
-
-.KJH_item_share_section > button > img {
-    vertical-align: bottom;
-    border-style: none;
-    background-color: transparent;
-    cursor: pointer;
+    background: #ff4c4c;
+    border: 3px solid #ff3c3c;
 }

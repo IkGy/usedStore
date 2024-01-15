@@ -9,4 +9,4 @@ function getDB() {
     return db;
 }
 
-module.exports = { setDB, getDB };
+module.exports = {db , setDB, getDB };
