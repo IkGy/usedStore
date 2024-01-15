@@ -26,7 +26,6 @@ function Main(){
 
   // console.log(product[1]);
 
-  
   return(
     <div>
       <Link to="/test"><h2 className='KJH_testpage'>테스트 페이지</h2></Link>
