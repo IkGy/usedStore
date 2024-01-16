@@ -7,9 +7,12 @@ import Picklist from "./picklist";
 import "./mypage.css";
 
 import EK from "./image/이크.png"
+import { getCookie } from "../../useCookies";
 
 
 function Mypage() {
+
+  console.log(getCookie("login"));
 
   const [data, setData] = useState([
     {
