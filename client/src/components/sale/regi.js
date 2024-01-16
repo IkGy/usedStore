@@ -52,32 +52,32 @@ function Regi() {
     <div className="regi">
       <div className="regi_start">
         <span>기본정보</span>
-        <span>*필수항목</span>
+        <span style={{ color: "red" }}>*필수항목</span>
       </div>
       <div className="regi_select">
         <div>
-          <div className="ymj_content">
-            <FaCamera />
-          </div>
+          <div className="regi_title">
           상품이미지<span style={{ color: "red" }}>*</span>
+          </div>
         </div>
         <div>
           <button className="regi_image">
+            <FaCamera />
             <i class="fa-solid fa-camera"></i>
             <div>이미지 등록</div>
           </button>
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           상품명<span style={{ color: "red" }}>*</span>
         </div>
-        <div className="regi_title">
+        <div className="regi_content">
           <input placeholder="상품명을 입력해 주세요."></input>
         </div>
       </div>
-      <div className="regi_select">
-        <div>
+      <div className="">
+        <div className="regi_title">
           카테고리<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_category">
@@ -96,7 +96,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           거래지역<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_address">
@@ -110,7 +110,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           상품상태<span style={{ color: "red" }}>*</span>
         </div>
         <FormControl>
@@ -148,37 +148,37 @@ function Regi() {
         </FormControl>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           교환<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           가격<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           배송비<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           설명<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           태그<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           수량<span style={{ color: "red" }}>*</span>
         </div>
         <div>이미지등록</div>

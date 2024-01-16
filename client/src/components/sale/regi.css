@@ -1,7 +1,14 @@
-.ymj_content{
-  background-color: aqua;
-  /* text-align: right; */
-  
+.regi {
+  margin-right: auto;
+}
+
+.regi_start{
+font-size: 25px;
+}
+
+.regi_image{
+  width: 160px;
+  height: 160px;
 }
 
 .ymj_subtitle > h3{
@@ -10,7 +17,5 @@
   float: left;
 }
 
-/* .ymj_content > {
 
-} */
 

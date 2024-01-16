@@ -21,9 +21,9 @@ function Main(){
       </div>
       
       
-      {product.length > 0 && product.map((item, index) => (
+      {Products.length > 0 && Products.map((item, index) => (
         <div key={index}>
-          <Link to={`/detail/${product[index]._id}`}>
+          <Link to={`/detail/${Products[index]._id}`}>
             <div className='KJH_mainpage_list'>
               {item.title}
             </div>
@@ -32,8 +32,8 @@ function Main(){
       ))}
 
       <div className='KJH_product_1'>
-        {product.length > 0 && ( // 조건부 렌더링
-          <Link to={`/detail/${product[1]._id}`}>첫 번째 상품</Link>
+        {Products.length > 0 && ( // 조건부 렌더링
+          <Link to={`/detail/${Products[1]._id}`}>첫 번째 상품</Link>
         )}
       </div>
     </div>
