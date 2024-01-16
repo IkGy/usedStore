@@ -1,4 +1,4 @@
-import './chat_room.scss';
+import './chat_room.css';
 
 function chat_room(){
   return(

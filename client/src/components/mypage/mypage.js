@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
-
-
 import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
 import "./mypage.css";
-
 import EK from "./image/이크.png"
 import { getCookie } from "../../useCookies";
 
 
 function Mypage() {
-  console.log(getCookie("login"));
+  const [data, setData] = useState({})
+  const [menu, setMenu] = useState("구매 목록");
+  const [end, setEnd] = useState("");
 
-  const [data, setData] = useState([
-    {
-      uname: "정선우",
-      unum: "010-9386-4594",
-      uarea: "장안웃길 56 국제대학교",
-      uage: "25",
+  const MenuClick = (selectMenu) => {
+    setMenu(selectMenu);
+  };
 
   useEffect(() => {
     axios.get(`${API_URL}/mypage`,{params:{id:getCookie('login')}})
@@ -35,14 +31,6 @@ function Mypage() {
       console.log("실패");
     });
   }, []);
-
-  const [menu, setMenu] = useState("구매 목록");
-
-  const MenuClick = (selectMenu) => {
-    setMenu(selectMenu);
-  };
-  const [end, setEnd] = useState("");
-
   useEffect(() => {
     setTimeout(() => {
       setEnd("end");

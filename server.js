@@ -18,8 +18,6 @@ var cors = require("cors");
 app.use(cors());
 
 require("dotenv").config();
-
-let db;
 const url = process.env.DB_URL;
 
 new MongoClient(url)
@@ -120,7 +118,7 @@ app.get("/", function (요청, 응답) {
 
 
 
-app.get("/m ypage", async (요청, 응답) => {
+app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});

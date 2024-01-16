@@ -1,4 +1,4 @@
-import './room_list.scss';
+import './room_list.css';
 
 function room_list(){
   return(

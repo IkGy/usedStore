@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
 
         const user = await db.collection("user").findOne({ email: email });
         if (user && password === user.password) {
-            res.status(201).send("로그인 성공");
+            res.status(201).send(user._id);
         } else {
             res.status(400).send("이메일 또는 비밀번호가 잘못되었습니다");
         }
