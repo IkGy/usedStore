@@ -14,7 +14,6 @@ function Detail() {
     const [like, setLike] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
     const [review, setReview] = useState([]);
-    
 
     const fectchProduct = async () => {   
         try {

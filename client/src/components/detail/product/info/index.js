@@ -138,6 +138,7 @@ function Info(props) {
                                     <Link to='/'>
                                         <img src={Profile} alt='프로필이미지' width='48px' height='48px' />
                                     </Link>
+                                    
                                     <div className='KJH_if_right_top_content_user_name'>
                                         {/* 해당 판매자 닉네임 데이터 + 판매자 정보로 가는 링크 데이터 */}
                                         <Link to='/'>{review.id}</Link>
@@ -161,9 +162,9 @@ function Info(props) {
                                 </div>
                                 {/* 후기가 없으면 나오는 div */}
                                 <div className='KJH_if_right_top_content_user_review_list_section'>
-                                    <div className='KJH_if_right_top_content_user_no_review'>
-                                        {review[0].writer} : {review[0].comment}
-                                    </div>
+                                <div className='KJH_if_right_top_content_user_no_review'>
+                                    {review.length > 0 && `${review[0].writer} : ${review[0].comment}`}
+                                </div>
 
                                 </div>
                             </div>
