@@ -25,7 +25,6 @@ function Regi() {
   const [content, setContent] = useState("");
   const [tag, setTag] = useState([]);
   const [count, setCount] = useState("");
-  console.log("-------------------------------------");
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -42,12 +41,8 @@ function Regi() {
   const handleAddressClick = () => {
     new window.daum.Postcode({
       oncomplete: function (data) {
-        // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ""}`;
         setSelectedAddress(fullAddress);
-
-        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
-        console.log(data);
       },
     }).open();
   };
@@ -116,7 +111,6 @@ function Regi() {
     copy.splice(index, 1);
     setTag(copy);
   };
-  console.log(tag);
 
   let productpost = (e) => {
     e.preventDefault();
@@ -124,21 +118,17 @@ function Regi() {
     let formDataWithImage = new FormData();
     formDataWithImage.append("img", imageFile);
     formDataWithImage.append("title", title);
-    formDataWithImage.append("category", category);
+    formDataWithImage.append("category", JSON.stringify(category));
     formDataWithImage.append("selectedAddress", selectedAddress);
     formDataWithImage.append("status", status);
     formDataWithImage.append("change", change);
     formDataWithImage.append("price", price);
     formDataWithImage.append("postprice", postprice);
     formDataWithImage.append("content", content);
-    formDataWithImage.append("tag", tag);
+    formDataWithImage.append("tag", JSON.stringify(tag));
     formDataWithImage.append("count", count);
   
-    axios.post("http://localhost:8080/product", formDataWithImage, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    axios.post("http://localhost:8080/product", formDataWithImage)
     .then((result) => {
       console.log(result.data);
     });
@@ -153,7 +143,6 @@ function Regi() {
       <div className="regi_select">
         <div>
           <div className="ymj_content">
-            <FaCamera />
           </div>
           상품이미지<span style={{ color: "red" }}>*</span>
         </div>

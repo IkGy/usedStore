@@ -10,7 +10,7 @@ function Main(){
   const [product, setProduct] = useState([]);
   const fectchProduct = async () => {
     try {
-      const res = await axios.get(`${API_URL}`);
+      const res = await axios.get(`${API_URL}/prod`);
       console.log('상품 데이터 조회 완료');
       setProduct(res.data);
 

@@ -1,23 +1,42 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { MongoClient,ObjectId } = require('mongodb');
-const { db, setDB, getDB } = require('./db');
+const { MongoClient, ObjectId } = require("mongodb");
+const { db, setDB, getDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
 
-const { S3Client } = require('@aws-sdk/client-s3')
-const multer = require('multer')
-const multerS3 = require('multer-s3')
+require("dotenv").config();
 
-const productRouter = require('./routes/product');
-const userRouter = require('./routes/user');
+const { S3Client } = require("@aws-sdk/client-s3");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const s3 = new S3Client({
+  region: "ap-northeast-2",
+  credentials: {
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+  },
+});
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "popol5",
+    key: function (요청, file, cb) {
+      cb(null, Date.now().toString()); //업로드시 파일명 변경가능
+    },
+  }),
+});
+
+const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
 
 app.use(express.json());
 
 var cors = require("cors");
 app.use(cors());
 
-require("dotenv").config();
+
 const url = process.env.DB_URL;
 
 new MongoClient(url)
@@ -26,7 +45,7 @@ new MongoClient(url)
     const db = client.db("popol5");
     setDB(db);
     console.log("DB연결성공");
-    app.listen(process.env.PORT, function() {
+    app.listen(process.env.PORT, function () {
       console.log(`서버주소 : ${process.env.PORT}`);
     });
   })
@@ -34,44 +53,25 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.use('/', productRouter);
-app.use('/', userRouter);
-
-const s3 = new S3Client({
-  region : 'ap-northeast-2',
-  credentials : {
-      accessKeyId : 'AKIAZEIXXJWXC7GFDDLA',
-      secretAccessKey : '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'
-  }
-})
-
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'devhunforum1',
-    key: function (요청, file, cb) {
-      cb(null, Date.now().toString()) //업로드시 파일명 변경가능
-    }
-  })
-})
+app.use("/prod", productRouter);
+app.use("/user", userRouter);
 
 // app.post('/product/new', upload.single('image'), (요청, 응답) => {
 //   console.log(요청.file)
-// }) 
+// })
 
 app.use(express.static(path.join(__dirname, "client/build")));
-
 
 // app.get('/', async (req,res) => {
 //   let result = await db.collection("product").find().toArray()
 //   console.log(result);
-//   res.status(201).send(result) 
+//   res.status(201).send(result)
 // })
 
 // app.get('/header', async (req,res) => {
 //   let result = await db.collection("product").find().toArray()
 //   console.log(result);
-//   res.status(201).send(result) 
+//   res.status(201).send(result)
 // })
 
 app.get("/", function (요청, 응답) {
@@ -81,7 +81,7 @@ app.get("/", function (요청, 응답) {
 // app.post("/login", async (req, res) => {
 //   const { email, password } = req.body;
 //   console.log(req.body);
-  
+
 //   const Findemail = await db.collection("user").findOne({
 //     email: req.body.email
 //   });
@@ -116,15 +116,40 @@ app.get("/", function (요청, 응답) {
 //   }
 // );
 
-
+app.post("/product", upload.single("img"), async (req, res) => {
+  const db = getDB();
+  const tag = JSON.parse(req.body.tag);
+  const category = JSON.parse(req.body.category); 
+  await db.collection("product").insertOne({
+    seller: "임시데이터",
+    buyer: "",
+    category: category,
+    title: req.body.title,
+    comment: req.body.content,
+    product_status: req.body.status,
+    refund: req.body.change,
+    price: req.body.price,
+    loaction: req.body.selectedAddress,
+    tags: tag,
+    count: req.body.count,
+    images: req.file.location,
+    status: "판매중",
+    created_at: new Date(),
+    updated_at: "",
+    postprice: req.body.postprice
+  })
+  res.status(201).send("상품등록성공")
+});
 
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
-  let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
-  console.log('test',list);
-  응답.send(list)
-})
+  let list = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(요청.query.id) });
+  console.log("test", list);
+  응답.send(list);
+});
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
