@@ -4,13 +4,7 @@ const app = express();
 const { MongoClient,ObjectId } = require('mongodb');
 const { db, setDB, getDB } = require('./db');
 const { API_URL } = require("./client/src/components/config/contansts");
-
-const { S3Client } = require('@aws-sdk/client-s3')
-const multer = require('multer')
-const multerS3 = require('multer-s3')
-
 const productRouter = require('./routes/product');
-const userRouter = require('./routes/user');
 
 app.use(express.json());
 
@@ -34,16 +28,8 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.use('/', productRouter);
+app.use('/prod', productRouter);
 // app.use('/', userRouter);
-
-const s3 = new S3Client({
-  region : 'ap-northeast-2',
-  credentials : {
-      accessKeyId : 'AKIAZEIXXJWXC7GFDDLA',
-      secretAccessKey : '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'
-  }
-})
 
 app.use(express.static(path.join(__dirname, "client/build")));
 

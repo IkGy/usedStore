@@ -12,11 +12,12 @@ import { API_URL } from "../config/contansts";
 function Header(){
   const [userInfo,setUserInfo] = useState();
   const navigate = useNavigate()
-  useEffect(() => {
-    axios.get(`${API_URL}/header`).then((result) => {
-    console.log(result.data);
-  })
-  },[])
+  
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/header`).then((result) => {
+  //   console.log(result.data);
+  // })
+  // },[])
 
   const logOut = () => {
     removeCookie('login')
