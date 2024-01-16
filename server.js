@@ -23,13 +23,13 @@ let db;
 const url = process.env.DB_URL;
 
 new MongoClient(url)
-  .connect()
+  .connect({ useUnifiedTopology: true })
   .then((client) => {
     const db = client.db("popol5");
     setDB(db);
     console.log("DB연결성공");
     app.listen(process.env.PORT, function() {
-      console.log(`서버주소 : ${API_URL}`);
+      console.log(`서버주소 : ${process.env.PORT}`);
     });
   })
   .catch((err) => {
