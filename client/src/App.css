@@ -9,3 +9,7 @@
   flex-direction: column;
   margin: 0 auto;
 }
+
+.display_section {
+  margin: 0 40px;
+}

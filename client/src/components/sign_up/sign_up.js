@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { API_URL } from '../config/contansts';
 
 
 const defaultTheme = createTheme();
@@ -45,7 +46,7 @@ export default function SignUp() {
       phone_number: phone_number
     }; console.log(data);
 
-    await axios.post(`http://localhost:8080/register`, data)
+    await axios.post(`${API_URL}/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
       }

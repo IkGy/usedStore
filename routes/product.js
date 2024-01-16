@@ -48,4 +48,35 @@ router.get('/detail/:id', async (req, res) => {
     }
 });
 
+// router.post('/product/new'.upload.single('image'), (요청, 응답) => {
+//         console.log(요청.file)
+// })
+
+// router.post('/product/new', upload.single('image'), async (요청, 응답) => {
+
+//     console.log(요청.file)
+
+//     // try {
+//     //     if (
+//     //         요청.body.title == '',
+//     //         요청.body.comment == ''
+//     //         ) {
+//     //         응답.send('데이터를 모두 넣어주세요')
+//     //     } else {
+//     //         await db.collection('product').insertOne (
+//     //             {
+//     //                 title : 요청.body.title,
+//     //                 comment : 요청.body.comment
+//     //             }
+//     //         )
+//     //         응답.redirect('/product/new')
+//     //     }
+//     // } catch(error) {
+//     //     console.log(error)
+//     //     응답.status(500).send('서버에러')
+//     // }
+// })
+
+
+
 module.exports = router;

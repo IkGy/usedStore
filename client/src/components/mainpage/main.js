@@ -28,11 +28,19 @@ function Main(){
 
   return(
     <div>
-      <Link to="/test"><h2 className='KJH_testpage'>테스트 페이지</h2></Link>
-      {/* <div><Link to='/detail'>상세페이지</Link></div> */}
+      <div>
+        <Link to="/test"><h2 className='KJH_testpage'>상품 목록 테스트</h2></Link>
+      </div>
+      <div>
+        <Link to="/product/new"><h2 className='KJH_testpage'>등록 테스트</h2></Link>
+      </div>
+      <div>
+        <Link to="/mypage"><h2 className='KJH_testpage'>마이페이지</h2></Link>
+      </div>
+      
       
       {product.length > 0 && product.map((item, index) => (
-        <div key={item.id}>
+        <div key={index}>
           <Link to={`/detail/${product[index]._id}`}>
             <div className='KJH_mainpage_list'>
               {item.title}
