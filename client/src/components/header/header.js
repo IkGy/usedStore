@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'
 import { LuUserPlus2 } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
@@ -6,41 +6,52 @@ import { FaCloud } from "react-icons/fa";
 import './header.css'
 import { useEffect } from 'react';
 import axios from 'axios';
-import { getCookie } from "../../useCookies";
+import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
 
 function Header(){
+const navigate = useNavigate()
+useEffect(() => {
+  axios.get(`${API_URL}/header`).then((result) => {
+    console.log(result.data);
+  })
+  },[])
 
-// useEffect(() => {
-//   axios.get(`${API_URL}/header`).then((result) => {
-//     console.log(result.data);
-//   })
-// },[])
+  const logOut = () => {
+    removeCookie('login')
+    navigate('/')
+  }
 
   return(
     <div className="main_header">
       <div className="header_contents">
         <Link to={'/'} className="main_title">
           <FaCloud className="main_logoIcon"/>
-          <span className="main_titleName">홈페이지 이름</span>
+          <span className="main_titleName">리셀 마켓</span>
         </Link>
         <div className="main_searchBar">
           <input className="searchBar_input" placeholder="상품명, 지역명, @상점명 입력" />
           <FaSearch className="main_searchIcon"/>
         </div>
         <div className="main_login">
-          {getCookie("login") ? (
-          <ul>
-            <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
-            <li><span></span><Link to={'/mypage'}>내정보</Link></li>
-            <li><span></span><Link to={'/chat'}>채팅</Link></li>
+          {getCookie("login") ?
+          <nav>
+            <ul>
+              <li><p></p></li>
+              <li><Link onClick={logOut}>로그아웃</Link></li>
+            </ul>
+            <ul>
+              <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
+              <li><span></span><Link to={'/mypage'}>내정보</Link></li>
+              <li><span></span><Link to={'/chat'}>채팅</Link></li>
+            </ul>
+          </nav>
+          :
+          <ul className="header_login">
+            <li><CiLogin className="main_loginIcon"/><Link to={'/login'}>로그인</Link></li>
+            <li><LuUserPlus2 className="main_singUpIcon"/><Link to={'/sign_up'}>회원가입</Link></li>
           </ul>
-          ) : (
-          <ul>
-            <li><span><CiLogin /></span><Link to={'/login'}>로그인</Link></li>
-            <li><span><LuUserPlus2 /></span><Link to={'/sign_up'}>회원가입</Link></li>
-          </ul>
-          )}
+          }
         </div>
       </div>
       <div className="header_list">
