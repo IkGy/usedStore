@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { API_URL } from '../config/contansts';
 import "./picklist.css"
 
 import img1 from "./image/img_mouse.jpg"
