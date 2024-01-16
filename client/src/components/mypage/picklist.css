@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 1vw;
 
+
 }
 
 .JSW_conentGridBox {
@@ -13,7 +14,7 @@
   
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   
   gap: 2vw;
   padding: 1vw 0 0;
