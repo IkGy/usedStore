@@ -157,13 +157,6 @@ function Regi() {
           </div>
         </div>
         <div>
-<<<<<<< HEAD
-          <button className="regi_image">
-            <FaCamera />
-            <i class="fa-solid fa-camera"></i>
-            <div>이미지 등록</div>
-          </button>
-=======
           <input
             ref={imageInputRef}
             style={{ display: "none" }}
@@ -190,24 +183,18 @@ function Regi() {
               <div>이미지 등록</div>
             </button>
           )}
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="regi_select">
         <div className="regi_title">
           상품명<span style={{ color: "red" }}>*</span>
         </div>
-<<<<<<< HEAD
-        <div className="regi_content">
-          <input placeholder="상품명을 입력해 주세요."></input>
-=======
         <div className="regi_title">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="상품명을 입력해 주세요."
           ></input>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="">
@@ -770,13 +757,6 @@ function Regi() {
         <div className="regi_title">
           설명<span style={{ color: "red" }}>*</span>
         </div>
-<<<<<<< HEAD
-        <div>이미지등록</div>
-      </div>
-      <div className="regi_select">
-        <div className="regi_title">
-          태그<span style={{ color: "red" }}>*</span>
-=======
         <div className="regi_content">
           <textarea
             spellcheck="false"
@@ -792,13 +772,9 @@ function Regi() {
             placeholder="상품 내용을 입력해주세요"
           />
           <div className="regi_contentlength">{content.length}/2000</div>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="regi_select">
-<<<<<<< HEAD
-        <div className="regi_title">
-=======
         <div>태그 ({tag.length}/5)</div>
         <div className="regi_tag">
           <input
@@ -866,7 +842,6 @@ function Regi() {
       </div>
       <div className="regi_select" style={{ borderBottom: "none" }}>
         <div>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
           수량<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_price">

@@ -1,21 +1,7 @@
-<<<<<<< HEAD
-.regi {
-  margin-right: auto;
-}
-
-.regi_start{
-font-size: 25px;
-}
-
-.regi_image{
-  width: 160px;
-  height: 160px;
-=======
 
 .sale_select {
   display: flex;
   column-gap: 3vw;
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
 }
 
 .sale_select button {
@@ -27,9 +13,6 @@ font-size: 25px;
   font-size: 1vw;
 }
 
-<<<<<<< HEAD
-
-=======
 .regi {
   font-family: 'seolleimcool-SemiBold';
   padding: 1vw;
@@ -41,7 +24,6 @@ font-size: 25px;
 .regi button{
   font-family: 'seolleimcool-SemiBold';
 }
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
 
 .regi_start {
   border-bottom: 0.2vw solid black;

@@ -39,7 +39,7 @@ function Main(){
       
       {product.length > 0 && product.map((item, index) => (
         <div key={index}>
-          <Link to={`/detail/${Products[index]._id}`}>
+          <Link to={`/detail/${item._id}`}>
             <div className='KJH_mainpage_list'>
               {item.title}
             </div>
