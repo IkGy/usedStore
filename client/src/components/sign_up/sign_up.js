@@ -10,12 +10,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { API_URL } from '../config/contansts';
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const  navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
+  const [kakaoAccount, setKakaoAccount] = useState(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -27,8 +29,6 @@ export default function SignUp() {
       document.body.removeChild(script);
     };
   }, []);
-
-  const [kakaoAccount, setKakaoAccount] = useState(null);
 
   useEffect(() => {
     const storedKakaoAccount = localStorage.getItem('kakao_account');
@@ -58,7 +58,7 @@ export default function SignUp() {
     }; 
     console.log(data);
 
-    await axios.post(`http://localhost:8080/register`, data)
+    await axios.post(`${API_URL}/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
       navigate("/login");
@@ -92,19 +92,23 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5" sx={{ mt:5 }}>
-            벙개장터에 오신 여러분 환영합니다.
+            리셀마켓에 오신 여러분 환영합니다!
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   name="id"
-                  required
+                  required // 반드시 작성
                   fullWidth
                   id="id"
-                  label="(카카오 로그인시 아이디를 불러올 수 있습니다) 아이디"
+                  label="(카카오톡 계정으로 회원가입한 아이디"
                   autoFocus
-                  value={kakaoAccount && kakaoAccount.nickname ? kakaoAccount.nickname : ''}
+                  value={kakaoAccount ? kakaoAccount.nickname : ''}
+                  // 만약 kakaoAccount가 없다면 (로컬 스토리지에 값이 없다면) onChange를 사용하여 수정 가능하게 함
+                  onChange={(e) => setKakaoAccount((prev) => ({ ...prev, nickname: e.target.value }))}
+                  // 만약 kakaoAccount가 있다면 (로컬 스토리지에 값이 있다면) 입력란을 읽기 전용으로 설정
+                  InputProps={{ readOnly: !kakaoAccount }}
                 />
               </Grid>
               <Grid item xs={12}>

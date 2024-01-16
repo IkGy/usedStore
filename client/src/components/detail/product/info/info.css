@@ -287,19 +287,6 @@
     line-height: 1.3;
 }
 
-.KJH_if_right_top_content_user_write_link {
-    height: 32px;
-    width: 80px;
-    background: rgb(178, 178, 178);
-    color: rgb(255, 255, 255);
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .KJH_if_right_bottom_section {
     position: absolute;

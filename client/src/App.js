@@ -11,22 +11,25 @@ import Sale from './components/sale/sale'
 import Regi from './components/sale/regi';
 
 import Test from './components/test';
+import Test2 from './components/test2';
 
 function App() {
   return (
     <div className='total_display'>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Main></Main>}></Route>
-        <Route path='/detail/:id' element={<Detail />}></Route>
-        <Route path='/mypage' element={<Mypage/>}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/sign_up' element={<Sign_Up />}></Route>
-        <Route path='/sale' element={<Sale />}></Route>
-        <Route path='/regi' element={<Regi />}></Route>
-        <Route path='/test' element={<Test />}></Route>
-      </Routes>
-      <Footer />
+      <div className='display_section'>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Main></Main>}></Route>
+          <Route path='/detail/:id' element={<Detail />}></Route>
+          <Route path='/mypage' element={<Mypage/>}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/sign_up' element={<Sign_Up />}></Route>
+
+          <Route path='/test' element={<Test />}></Route>
+          <Route path='/product/new' element={<Test2 />}></Route>
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

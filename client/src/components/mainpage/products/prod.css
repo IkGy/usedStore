@@ -1,0 +1,43 @@
+.main_prod_grid{
+  /* border: 1px solid; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5vw;
+  justify-content: center;
+}
+
+.main_prod_detail{
+  margin: 0 auto;
+  
+  border: 1px solid darkgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.main_prod_img{
+  text-align: center;
+}
+
+.main_prod_image{
+  width: 9vw;
+}
+
+.main_prod_info{
+
+}
+
+.main_prod_title{
+  width: 8vw;
+  font-size: 1.3vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.main_prod_price{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9vw;
+}

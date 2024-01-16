@@ -14,8 +14,14 @@ import { getCookie } from "../../useCookies";
 
 
 function Mypage() {
+  console.log(getCookie("login"));
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState([
+    {
+      uname: "정선우",
+      unum: "010-9386-4594",
+      uarea: "장안웃길 56 국제대학교",
+      uage: "25",
 
   useEffect(() => {
     axios.get(`${API_URL}/mypage`,{params:{id:getCookie('login')}})

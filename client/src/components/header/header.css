@@ -9,6 +9,8 @@
 .main_title{
   display: flex;
   align-items: center;
+  font-family: 'seolleimcool-SemiBold';
+  
 }
 
 .header_contents{
@@ -18,15 +20,16 @@
 }
 
 .main_logoIcon{
+  width: 3.5vw;
   /* color: white; */
   /* background-color: blue; */
   /* border: 1px solid #000; */
   border-radius: 20%;
-  font-size: 3em;
 }
 
 .main_titleName{
   font-size: 1.5em;
+  padding: 0 1vw;
   /* border: 1px solid #000; */
 }
 
@@ -53,7 +56,8 @@
 
 .main_login{
   width: 30%;
-  border: 1px solid;
+  /* border: 1px solid; */
+  font-size: 1.2em;
   display: flex;
   align-items: center;
 }
@@ -63,7 +67,7 @@
   list-style-type: none;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
 }
 
 .main_login ul li{
@@ -80,6 +84,19 @@
   width: 50px;
   height: 50px;
 }
+
+.header_login li{
+  display: flex;
+  align-items: center;
+  padding: 4em;
+}
+
+.main_loginIcon, .main_singUpIcon{
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+
 
 .header_list ol{
   list-style-type: none;

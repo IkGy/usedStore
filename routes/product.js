@@ -31,21 +31,57 @@ router.get('/', async (req, res) => {
 
 router.get('/detail/:id', async (req, res) => {
     try {
+        console.log(req.params.id);
         const db = getDB();
         let result = await db.collection("product").findOne({_id:new ObjectId(req.params.id)});
-        let LikeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
-        let UserInfo = await db.collection("user").find({_id : req.params.id}).toArray();
+        console.log(result.seller);
+        let likeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
+        let userInfo = await db.collection("user").findOne({_id:new ObjectId(result.seller)});
+        let review = await db.collection("review").find({"resiver": result.seller}).toArray();
         console.log("------------result------------");
         console.log(result);
-        console.log("------------LikeCount------------");
-        console.log(LikeCount);
-        console.log("------------UserInfo------------");
-        console.log(UserInfo);
-        res.status(201).send({ product: result, likes: LikeCount, user: UserInfo });
+        console.log("------------likeCount------------");
+        console.log(likeCount);
+        console.log("------------userInfo------------");
+        console.log(userInfo);
+        console.log("------------Review------------");
+        console.log(review);
+        res.status(201).send({ product: result, likes: likeCount, user: userInfo, review: review });
     } catch (error) {
         console.error(error);
         res.status(500).send('조회 오류');
     }
 });
+
+// router.post('/product/new'.upload.single('image'), (요청, 응답) => {
+//         console.log(요청.file)
+// })
+
+// router.post('/product/new', upload.single('image'), async (요청, 응답) => {
+
+//     console.log(요청.file)
+
+//     // try {
+//     //     if (
+//     //         요청.body.title == '',
+//     //         요청.body.comment == ''
+//     //         ) {
+//     //         응답.send('데이터를 모두 넣어주세요')
+//     //     } else {
+//     //         await db.collection('product').insertOne (
+//     //             {
+//     //                 title : 요청.body.title,
+//     //                 comment : 요청.body.comment
+//     //             }
+//     //         )
+//     //         응답.redirect('/product/new')
+//     //     }
+//     // } catch(error) {
+//     //     console.log(error)
+//     //     응답.status(500).send('서버에러')
+//     // }
+// })
+
+
 
 module.exports = router;
