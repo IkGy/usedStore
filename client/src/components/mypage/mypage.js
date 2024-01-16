@@ -20,7 +20,7 @@ function Mypage() {
   };
 
   useEffect(() => {
-    axios.get(`${API_URL}/mypage`,{params:{id:getCookie('login')}})
+    axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
     .then((res) => {
       console.log("DB 조회 완료");
       console.log(res.data);
