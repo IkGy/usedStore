@@ -13,6 +13,7 @@ function Detail() {
     const [item, setItem] = useState([]);
     const [like, setLike] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
+    const [review, setReview] = useState([]);
     
 
     const fectchProduct = async () => {   
@@ -21,10 +22,11 @@ function Detail() {
             console.log('조회 완료');
             setItem(res.data.product);
             setLike(res.data.likes);
-            setUserInfo(res.data);
-            console.log(item);
-            console.log(like);
-            console.log(userInfo);
+            setUserInfo(res.data.user);
+            setReview(res.data.review);
+            // console.log(res.data.product);
+            // console.log(res.data.likes);
+            // console.log(res.data.user);
         } catch (error) {
             console.log(error);
         }
@@ -37,7 +39,7 @@ function Detail() {
         <>
             <Category info={item} />
             <Item info={item} heart={like} />
-            <Info info={item} />
+            <Info info={item} seller={userInfo} review={review} />
         </>
     );
 }

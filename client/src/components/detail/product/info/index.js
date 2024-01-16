@@ -11,7 +11,12 @@ import TalkBtn from './images/talkbtn.png';
 
 function Info(props) {
 
-    const Info = props.info
+    const info = props.info;
+    const seller = props.seller;
+    // console.log(seller);
+    const review = props.review;
+    console.log(review);
+    
 
     return (
         <>
@@ -26,7 +31,7 @@ function Info(props) {
                                 <div className='KJH_if_left_content_top'>
                                     <p style={{ width: '663px' }}>
                                         {/* 판매자 상품 정보 설명 내용 데이터 */}
-                                        {Info.comment}
+                                        {info.comment}
                                     </p>
                                 </div>
                                 <div className='KJH_if_left_content_bottom'>
@@ -37,7 +42,7 @@ function Info(props) {
                                         </div>
                                         <div className='KJH_if_left_content_div_center'>
                                             {/* 거래 지역 데이터 */}
-                                            <span>{Info.location}</span>
+                                            <span>{info.location}</span>
                                         </div>
                                     </div>
                                     <div className='KJH_if_left_content_div'>
@@ -59,7 +64,7 @@ function Info(props) {
                                             상품태그
                                         </div>
                                         <div className='KJH_if_left_content_div_bottom_tag_section'>
-                                        {Info.tags && typeof Info.tags === 'string' && Info.tags.split(' ').map((tag) => {
+                                        {info.tags && typeof info.tags === 'string' && info.tags.split(' ').map((tag) => {
                                             const tagName = tag.replace('#', '');
                                                 return (
                                                     <Link key={tagName} to={`/search/${tagName}`}>
@@ -135,7 +140,7 @@ function Info(props) {
                                     </Link>
                                     <div className='KJH_if_right_top_content_user_name'>
                                         {/* 해당 판매자 닉네임 데이터 + 판매자 정보로 가는 링크 데이터 */}
-                                        <Link to='/'>닉네임</Link>
+                                        <Link to='/'>{review.id}</Link>
                                         <div className='KJH_if_right_top_content_user_info'>
                                             {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                             <Link to='/' className='KJH_if_right_top_content_user_product_link'>
@@ -157,13 +162,9 @@ function Info(props) {
                                 {/* 후기가 없으면 나오는 div */}
                                 <div className='KJH_if_right_top_content_user_review_list_section'>
                                     <div className='KJH_if_right_top_content_user_no_review'>
-                                        등록된 후기가 없습니다
-                                        <br />
-                                        첫 후기를 등록해보세요!
+                                        {review[0].writer} : {review[0].comment}
                                     </div>
-                                    <Link to='' className='KJH_if_right_top_content_user_write_link'>
-                                        후기작성
-                                    </Link>
+
                                 </div>
                             </div>
                             <div className='KJH_if_right_bottom_section'>
