@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 
+import img2 from "./image/g102.jpg"
+
 function Buylist() {
 
   const [data, setData] = useState([
- 
+    {
+      id: 1,
+      img: img2,
+      Aname: "로지텍 G102판매 사용감X",
+      Kname: "."
+    }
   ])
 
 
@@ -34,7 +41,9 @@ function Buylist() {
               <div className="JSW_contentGridBox_img">
                 <img src={a.img} width="100%"></img>
               </div>
+              <div className="JSW_Kname">{a.Kname}</div>
               <div className="JSW_Aname">{a.Aname}</div>
+              <div className="JSW_Kname">{a.Kname}</div>
             </div>
           )
         })}
