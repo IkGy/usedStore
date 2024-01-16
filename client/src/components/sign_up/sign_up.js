@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,10 +12,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { API_URL } from '../config/contansts';
 
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const  navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
 
   useEffect(() => {
@@ -28,27 +29,40 @@ export default function SignUp() {
     };
   }, []);
 
+  const [kakaoAccount, setKakaoAccount] = useState(null);
+
+  useEffect(() => {
+    const storedKakaoAccount = localStorage.getItem('kakao_account');
+  
+    if (storedKakaoAccount) {
+      const parsedKakaoAccount = JSON.parse(storedKakaoAccount);
+      setKakaoAccount(parsedKakaoAccount);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
     const id = e.target.id.value;
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
     
     const data = {
-      name: name,
       id: id,
+      name: name,
       email: email,
       password: password,
       address: address,
       phone_number: phone_number
-    }; console.log(data);
+    }; 
+    console.log(data);
 
     await axios.post(`${API_URL}/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
+      navigate("/login");
       }
     ).catch((error) => { 
       console.log(error); 
@@ -61,8 +75,6 @@ export default function SignUp() {
         // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ''}`;
         setSelectedAddress(fullAddress);
-
-        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
         console.log(data);
       },
     }).open();
@@ -87,23 +99,23 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  name="id"
+                  required
+                  fullWidth
+                  id="id"
+                  label="(카카오 로그인시 아이디를 불러올 수 있습니다) 아이디"
+                  autoFocus
+                  value={kakaoAccount && kakaoAccount.nickname ? kakaoAccount.nickname : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
                   autoComplete="given-name"
                   name="name"
                   required
                   fullWidth
                   id="real_name"
                   label="성명"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="id"
-                  label="아이디"
-                  name="id"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>

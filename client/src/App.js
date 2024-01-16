@@ -7,6 +7,8 @@ import Detail from './components/detail/intex';
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
+import Sale from './components/sale/sale'
+import Regi from './components/sale/regi';
 
 import Test from './components/test';
 import Test2 from './components/test2';

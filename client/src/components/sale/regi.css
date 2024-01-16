@@ -1,4 +1,16 @@
 .ymj_content{
   background-color: aqua;
-  text-align: right;
+  /* text-align: right; */
+  
 }
+
+.ymj_subtitle > h3{
+  border: 1px solid black;
+  width: 100px;
+  float: left;
+}
+
+/* .ymj_content > {
+
+} */
+

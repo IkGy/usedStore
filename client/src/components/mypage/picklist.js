@@ -10,26 +10,31 @@ function Picklist() {
     {
       id: 1,
       Aname : "레이저 게이밍 마우스",
+      Kname : ".",
       img: img1,
     },
     {
       id: 1,
       Aname : "레이저 게이밍 마우스2",
+      Kname : ".",
       img: img2,
     },
     {
       id: 1,
       Aname : "레이저 게이밍 마우스3",
+      Kname : ".",
       img: img2,
     },
     {
       id: 1,
       Aname : "레이저 게이밍 마우스4",
+      Kname : ".",
       img: img2,
     },
     {
       id: 1,
       Aname : "레이저 게이밍 마우스4",
+      Kname : ".",
       img: img2,
     },
   ])
@@ -57,11 +62,13 @@ function Picklist() {
         {data.map((a, i)=> {
           return(
             <div className="JSW_liststart"
-            key={a.id}>
+              key={a.id}>
               <div className="JSW_contentGridBox_img">
                 <img src={a.img} width="100%"></img>
               </div>
+              <div className="JSW_Kname">{a.Kname}</div>
               <div className="JSW_Aname">{a.Aname}</div>
+              <div className="JSW_Kname">{a.Kname}</div>
             </div>
           )
         })}

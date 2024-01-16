@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'; 
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
@@ -12,10 +13,13 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import { setCookie } from "../../useCookies";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -23,20 +27,13 @@ function Login() {
         email: email,
         password: password,
       });
-         // 로그인 성공 시 로컬 스토리지에 사용자 정보 저장
-      localStorage.setItem("user", JSON.stringify(response.data));
-
+      setCookie('login', JSON.stringify(response.data));
+      setLoggedIn(true);
       console.log("로그인 성공!:", response.data);
     } catch (error) {
       console.error("로그인 실패:", error);
     }
   };
-
-  // const handleLogout = () => {
-  //   // 로그아웃 시 로컬 스토리지에서 사용자 정보 삭제
-  //   localStorage.removeItem("user");
-  //   console.log("로그아웃 성공!");
-  // };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -64,11 +61,18 @@ function Login() {
           success: res => {
             const kakao_account = res.kakao_account;
             console.log(kakao_account);
+            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
           }
         })
       }
     });
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   return(
     <div>
@@ -99,7 +103,7 @@ function Login() {
             value={email}    
             onChange={(e) => setEmail(e.target.value)}          //페이지 이동시 자동 커서이동
           />
-          <TextField 
+          <TextField
             margin="normal"
             label="비밀번호" 
             type="password"  
