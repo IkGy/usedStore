@@ -53,7 +53,8 @@
 
 .main_login{
   width: 30%;
-  border: 1px solid;
+  /* border: 1px solid; */
+  font-size: 1.2em;
   display: flex;
   align-items: center;
 }
@@ -63,7 +64,7 @@
   list-style-type: none;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
 }
 
 .main_login ul li{
@@ -80,6 +81,19 @@
   width: 50px;
   height: 50px;
 }
+
+.header_login li{
+  display: flex;
+  align-items: center;
+  padding: 4em;
+}
+
+.main_loginIcon, .main_singUpIcon{
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+
 
 .header_list ol{
   list-style-type: none;

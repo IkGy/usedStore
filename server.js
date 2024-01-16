@@ -13,8 +13,10 @@ const productRouter = require('./routes/product');
 const userRouter = require('./routes/user');
 
 app.use(express.json());
+
 var cors = require("cors");
 app.use(cors());
+
 require("dotenv").config();
 
 let db;

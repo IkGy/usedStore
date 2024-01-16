@@ -1,33 +1,15 @@
-import './main.css'
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { API_URL } from '../config/contansts';
-
+import ImageSlide from "./imageSlide";
+import AdComponent from "./advertCom";
+import Products from "./products";
 
 function Main(){
-
-  const [product, setProduct] = useState([]);
-
-  const fectchProduct = async () => {
-    try {
-      const res = await axios.get(`${API_URL}`);
-      console.log('상품 데이터 조회 완료');
-      setProduct(res.data);
-      
-    } catch (error) {
-      console.log('데이터 조회 실패');
-      console.log(error) 
-    }
-  };
-  useEffect(() => {
-    fectchProduct();
-  }, []);
-
-  // console.log(product[1]);
-
   return(
     <div>
+      <ImageSlide />
+      <AdComponent />
+      <Products />
+      <div><Link to='/detail'>상세페이지</Link></div>
       <div>
         <Link to="/test"><h2 className='KJH_testpage'>상품 목록 테스트</h2></Link>
       </div>
