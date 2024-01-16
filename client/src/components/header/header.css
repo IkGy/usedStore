@@ -9,6 +9,8 @@
 .main_title{
   display: flex;
   align-items: center;
+  font-family: 'seolleimcool-SemiBold';
+  
 }
 
 .header_contents{
@@ -27,6 +29,7 @@
 
 .main_titleName{
   font-size: 1.5em;
+  padding: 0 1vw;
   /* border: 1px solid #000; */
 }
 
