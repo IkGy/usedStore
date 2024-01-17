@@ -46,7 +46,7 @@ new MongoClient(url)
     setDB(db);
     console.log("DB연결성공");
     app.listen(process.env.PORT, function () {
-      console.log(`서버주소 : ${process.env.PORT}`);
+      console.log(`연결포트 : ${process.env.PORT}`);
     });
   })
   .catch((err) => {
@@ -161,6 +161,7 @@ app.post("/productuser", async (req, res) => {
   }
 });
 
+
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -170,6 +171,7 @@ app.get("/mypage", async (요청, 응답) => {
   console.log("test", list);
   응답.send(list);
 });
+
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));

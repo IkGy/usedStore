@@ -29,7 +29,15 @@
   background-color: #CCF4DC;
   border-radius: 25px;
 
+  padding-left: 15px;
+
   
+}
+
+#JSW_Mypage_tag {
+  text-align: center;
+  font-size: 120%;
+  font-weight: 900;
 }
 
 .JSW_nav1 {
@@ -54,11 +62,7 @@
   font-size: 100%;
 }
 
-@media (max-width: 1024px) {
-  .JSW_menubar {
-    font-size: 80%; /* 원하는 크기로 조절하세요 */
-  }
-}
+
 
 .JSW_Sec2 {
   height: 70vh;
@@ -132,6 +136,7 @@
   height: 40vh;
   overflow-y: scroll;
 
+  z-index: 5;
 
 }
 
@@ -143,3 +148,163 @@
   border: 1px solid #000;
 }
 
+
+
+@media (max-width: 1024px) {
+
+
+.JSW_Main {
+  max-width: 100%;
+  max-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  
+
+}
+
+
+.JSW_menubar {
+  margin: 0 auto;
+
+  width: 90%;
+  height: 90%;
+  box-shadow: 0px 0px 5px 1px;
+  background-color: #CCF4DC;
+  border-radius: 25px;
+
+  padding-left: 15px;
+  
+}
+
+.JSW_nav1 {
+  text-align: left;
+  position: relative;
+}
+
+.JSW_nav1 > ul {
+  position: absolute;
+  left: -30px;
+}
+
+.JSW_nav1 > ul > li {
+  padding-top: 10%;
+  list-style: none;
+  
+}
+
+.JSW_nav1 > ul > li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 100%;
+}
+
+
+  .JSW_menubar {
+    font-size: 80%; /* 원하는 크기로 조절하세요 */
+  }
+
+
+.JSW_Sec2 {
+  height: 70vh;
+  border: 1px solid #000;
+}
+
+.JSW_Sec2-1 {
+  width: 100%;
+  height: 30vh;
+
+  display: grid;
+  grid-template-columns: 1.5fr 3fr;
+
+  border-bottom: 1px solid #000;
+}
+
+.JSW_Sec2-1_left {
+  width: 100%;
+  height: 100%;
+  
+  overflow: hidden;  
+  border-right: 1px solid #000;
+}
+
+.JSW_Sec2-1_left > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+.JSW_Sec2-1_Right {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 1%;
+
+  font-size: 80%;
+}
+
+.JSW_userinfo {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.JSW_Cristal {  
+  padding: 2%;
+  background-color: lightgray;
+  border-radius: 10px;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+
+  cursor: pointer;
+
+  font-size: 70%;
+  
+}
+
+.JSW_Cristal:hover {
+  box-shadow: 0px 0px 2px 1px;
+}
+
+
+
+  
+
+.JSW_Sec2-2 {
+  width: 100%;
+  height: 40vh;
+  overflow-y: scroll;
+
+
+}
+
+.JSW_Sec2-2_Left {
+  border: 1px solid #000;
+}
+
+.JSW_Sec2-2_Right {
+  border: 1px solid #000;
+}
+  
+}
+
+
+@media (max-width: 500px) {
+
+ 
+  .JSW_menubar {
+    font-size: 70%;
+    padding-left: 0px;
+  }
+  
+  .JSW_Sec2-1_Right {
+    font-size: 70%;
+  }
+
+}

@@ -45,5 +45,12 @@ router.post("/register", async (req, res) => {
     res.status(500).send("서버 오류");
   }
 });
+router.get("/mypage", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
+  console.log('test',list);
+  응답.send(list)
+})
 
 module.exports = router;

@@ -10,6 +10,7 @@
 
 .KJH_item-image_section {
     position: relative;
+    min-width: 430px;
     height: 370px;
 }
 
@@ -223,6 +224,10 @@
     width: 100%;
 }
 
+.KJH_item_info_status_title_section {
+    display: flex;
+}
+
 .KJH_item_info_item_status_title {
     position: relative;
     width: 100px;
@@ -239,6 +244,7 @@
     font-weight: 700;
     color: #333333;
     outline: 0px;
+    min-width: 310px;
 }
 
 .KJH_item_info_share_section {
