@@ -43,7 +43,7 @@ function Mypage() {
     // nickName: "??",
     // userName: "KDT",
     // phoneNumber: "010-1234-5678",
-    
+
   });
 
   return(

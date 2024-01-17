@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch } from 'react-icons/fa'
-import { LuUserPlus2 } from "react-icons/lu";
+import { FaSearch, FaWonSign } from 'react-icons/fa'
+import { LuUserPlus2, LuUserCircle2 } from "react-icons/lu";
+import { AiOutlineAliwangwang } from "react-icons/ai";
 import { CiLogin } from "react-icons/ci";
 import Logo from "./image/logo.png"
 import './header.css'
@@ -13,15 +14,48 @@ function Header(){
   const [userInfo,setUserInfo] = useState();
   const navigate = useNavigate()
   
-  // useEffect(() => {
-  //   axios.get(`${API_URL}/header`).then((result) => {
-  //   console.log(result.data);
-  // })
-  // },[])
+  useEffect(() => {
+    axios.get(`${API_URL}/user/header`, {params:{id:getCookie("login")}})
+    .then((result) => {
+    console.log(result.data);
+  })
+  },[])
+
+  useEffect(() => {
+    // 카카오 SDK 초기화
+    const kakaoScript = document.createElement("script");
+    kakaoScript.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js";
+    kakaoScript.integrity = "sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8";
+    kakaoScript.crossOrigin = "anonymous";
+    document.body.appendChild(kakaoScript);
+
+    kakaoScript.onload = () => {
+      // 카카오 SDK 초기화
+      window.Kakao.init('90b9cec28ae877d95b8c171eabad92f5');
+    };
+  }, []);
+
+  const deleteCookie = () => {
+    document.cookie = 'authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
 
   const logOut = () => {
-    removeCookie('login');
-    window.localStorage.removeItem('kakao_account');
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+      const [name] = cookie.split("=");
+      removeCookie(name);
+    }
+    window.localStorage.clear();
+    if (getCookie("login")) {
+      window.Kakao.Auth.logout()
+      .then(function () {
+        alert('logout ok\naccess token -> ' + window.Kakao.Auth.getAccessToken());
+        deleteCookie();
+      })
+      .catch(function () {
+        alert('Not logged in');
+      });
+    }
     navigate('/');
   }
 
@@ -40,19 +74,19 @@ function Header(){
           {getCookie("login") ?
           <nav>
             <ul className="header_login">
+              <li><span ><FaWonSign className="main_loginIcon"/></span><Link to={'/sellitem'}>판매하기</Link></li>
+              <li><span><LuUserCircle2 className="main_loginIcon"/></span><Link to={'/mypage'}>내정보</Link></li>
+              <li><span><AiOutlineAliwangwang className="main_loginIcon"/></span><Link to={'/chat'}>채팅</Link></li>
+            </ul>
+            <ul className="header_login">
               <li></li>
               <li><Link onClick={logOut}>로그아웃</Link></li>
-            </ul>
-            <ul>
-              <li><span></span><Link to={'/sale'}>판매하기</Link></li>
-              <li><span></span><Link to={'/mypage'}>내정보</Link></li>
-              <li><span></span><Link to={'/chat'}>채팅</Link></li>
             </ul>
           </nav>
           :
           <ul className="header_login">
-            <li><CiLogin className="main_loginIcon"/><Link to={'/login'}>로그인</Link></li>
-            <li><LuUserPlus2 className="main_singUpIcon"/><Link to={'/sign_up'}>회원가입</Link></li>
+            <li><CiLogin className="main_mainIcon"/><Link to={'/login'}>로그인</Link></li>
+            <li><LuUserPlus2 className="main_mainIcon"/><Link to={'/sign_up'}>회원가입</Link></li>
           </ul>
           }
         </div>
