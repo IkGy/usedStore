@@ -16,7 +16,7 @@ router.get('/test', async (req, res) => {
     }
 });
 
-router.get('/prod', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const db = getDB();
         let result = await db.collection("product").find().toArray();
