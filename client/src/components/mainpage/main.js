@@ -3,30 +3,8 @@ import { Link } from "react-router-dom";
 import ImageSlide from "./imageSlide";
 import AdComponent from "./advertCom";
 import Products from "./products";
-import { API_URL } from "../config/contansts";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 function Main(){
-  const [product, setProduct] = useState([]);
-  const fectchProduct = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/prod`);
-      console.log('상품 데이터 조회 완료');
-      console.log(res.data);
-      setProduct(res.data);
-
-    } catch (error) {
-      console.log('데이터 조회 실패');
-      console.log(error) 
-    }
-  };
-  useEffect(() => {
-    fectchProduct();
-  }, []);
-
-  console.log(product);
-  
   return(
     <div>
       <div>
@@ -38,21 +16,9 @@ function Main(){
       <div>
         <Link to="/mypage"><h2 className='KJH_testpage'>마이페이지</h2></Link>
       </div>
-      
-      {product.length > 0 && product.map((item, index) => (
-        <div key={index}>
-          <Link to={`/detail/${item._id}`}>
-            <div className='KJH_mainpage_list'>
-              {item.title}
-            </div>
-          </Link>
-        </div>
-      ))}
-      
-      <ImageSlide />
-      <AdComponent />
+      {/* <ImageSlide />
+      <AdComponent /> */}
       <Products />
-      <div><Link to='/detail'>상세페이지</Link></div>
     </div>
   )
 };

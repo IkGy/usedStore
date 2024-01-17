@@ -1,6 +1,6 @@
 .main_header{  
   /* border: 1px solid #000; */
-  margin-top: 1%;
+  margin-top: 4vh;
   height: 80px;
   display: flex;
   text-align: center;
@@ -34,15 +34,16 @@
 }
 
 .main_searchBar{
-  border: 0.19em red solid;
-  width: 40%;
+  border: 0.2vw red solid;
+  width: 20vw;
   display: flex;
   align-items: center;
+  padding: 0.5vw;
 }
 
 .searchBar_input{
-  font-size: 1.4em;
-  width: 90%;
+  font-size: 1vw;
+  width: 40vh;
   height: 100%;
   border: none;
   outline: none;
@@ -52,6 +53,9 @@
   color: red;
   font-size: 1.5em;
   margin-left: 10px;
+}
+.main_searchIcon:hover{
+  cursor: pointer;
 }
 
 .main_login{
@@ -105,4 +109,59 @@
 
 .header_list ol li{
   padding: 5px;
+}
+
+@media (max-width: 1024px) {
+  .header_login > li > a{
+    font-size: 1.3vw;
+  }
+  .main_loginIcon, .main_singUpIcon{
+    font-size: 2.5vw;
+  }
+  .main_searchBar{
+    border: 0.25vw #ff0000 solid;
+    width: 30vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .searchBar_input{
+    font-size: 1.5vw;
+    width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .main_logoIcon{
+    width: 7vw;
+  }
+  .main_titleName{
+    font-size: 4vw;
+  }
+
+  .searchBar_input{
+    font-size: 2vw;
+    width: 40vw;
+  }
+
+  .main_searchBar{
+    border: 0.5vw #ff0000 solid;
+    width: 40vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .header_login{
+    padding: 0;
+  }
+
+  .header_login > li{
+    display: flex;
+    flex-direction: column;
+  }
+  .main_loginIcon, .main_singUpIcon{
+    font-size: 3.5vw;
+  }
+  .header_login > li > a{
+    font-size: 2.4vw;
+  }
 }

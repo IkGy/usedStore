@@ -19,3 +19,18 @@
 .display_section {
   margin: 0 40px;
 }
+
+@media (max-width: 1024px) {
+  .total_display{
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .total_display{
+    width: 100%;
+  }
+  .display_section {
+    margin: 0 10px;
+  }
+}
