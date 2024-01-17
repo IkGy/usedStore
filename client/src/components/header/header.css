@@ -15,6 +15,7 @@
 .header_contents {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -35,6 +36,7 @@
 .main_searchBar {
   border: 0.2vw red solid;
   width: 20vw;
+  height: 2.5vw;
   display: flex;
   align-items: center;
   padding: 0.5vw;
@@ -42,15 +44,14 @@
 
 .searchBar_input {
   font-size: 1vw;
-  width: 40vh;
-  height: 100%;
+  width: 40vw;
   border: none;
   outline: none;
 }
 
 .main_searchIcon {
   color: red;
-  font-size: 1.5em;
+  width: 2vw;
   margin-left: 10px;
 }
 .main_searchIcon:hover {
@@ -93,8 +94,7 @@
   padding: 4em;
 }
 
-.main_loginIcon,
-.main_singUpIcon {
+.main_mainIcon, .main_singUpIcon{
   font-weight: bolder;
   font-size: 1.5em;
 }
@@ -109,11 +109,18 @@
 }
 
 @media (max-width: 1024px) {
-  .header_login > li > a {
+
+  .header_login{
+    padding: 0;
+  }
+  .header_login > li{
+    width: 9vw;
+  }
+
+  .header_login > li > a{
     font-size: 1.3vw;
   }
-  .main_loginIcon,
-  .main_singUpIcon {
+  .main_mainIcon, .main_singUpIcon{
     font-size: 2.5vw;
   }
 
@@ -139,33 +146,34 @@
 
   .main_searchBar {
     font-size: 2vw;
+  }
+  .searchBar_input {
+    font-size: 2vw;
+    width: 40vw;
+  }
 
-    .searchBar_input {
-      font-size: 2vw;
-      width: 40vw;
-    }
+  .main_searchBar{
+    border: 0.5vw #ff0000 solid;
+    width: 40vw;
+    height: 5vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
 
-    .main_searchBar {
-      border: 0.5vw #ff0000 solid;
-      width: 40vw;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .header_login {
+    padding: 0;
+  }
 
-    .header_login {
-      padding: 0;
-    }
-
-    .header_login > li {
-      display: flex;
-      flex-direction: column;
-    }
-    .main_loginIcon,
-    .main_singUpIcon {
-      font-size: 3.5vw;
-    }
-    .header_login > li > a {
-      font-size: 2.4vw;
-    }
+  .header_login > li{
+    display: flex;
+    flex-direction: column;
+    width: auto; 
+  }
+  
+  .main_mainIcon, .main_singUpIcon{
+    font-size: 3.5vw;
+  }
+  .header_login > li > a{
+    font-size: 2.4vw;
   }
 }
