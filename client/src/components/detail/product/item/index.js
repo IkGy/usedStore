@@ -11,8 +11,11 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
+// 이전, 다음 이미지
+import { FaArrowAltCircleLeft } from "react-icons/fa"; // 이전 이미지
+import { FaArrowAltCircleRight } from "react-icons/fa"; // 다음 이미지
+
 // 임시 이미지
-import First from './images/first.png';
 import Car1 from './images/car1.png';
 import Car2 from './images/car2.png';
 import Car3 from './images/car3.png';
@@ -55,6 +58,21 @@ function formatTimeAgo(createdDate) {
 
 
 function Item(props) {
+    
+    const [showCopyMessage, setShowCopyMessage] = useState(false);
+    const handleCopyClipBoard = async () => {
+        try {
+            const urlToCopy = decodeURIComponent(window.location.href);
+            await navigator.clipboard.writeText(urlToCopy);
+            setShowCopyMessage(true);
+            setTimeout(() => {
+                setShowCopyMessage(false);
+            }, 600);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     // console.log(props.info)
     const Info = props.info
     const Like = props.heart
@@ -62,24 +80,32 @@ function Item(props) {
     // 생성 날짜 형식화
     const formattedCreatedAt = formatTimeAgo(Info.created_at);
 
-    console.log(Info);
-    console.log(Like);
+    // console.log(Info);
+    // console.log(Like);
 
     // 가격 형식화 적용
     const formattedInfo = formatPrices(Info);
 
     // 슬라이더의 위치를 저장하는 state
-    const [slidePosition, setSlidePosition] = useState(1);
+    const [slidePosition, setSlidePosition] = useState('');
 
     // 슬라이더 위치를 변경하는 함수
-    const handleSlideChange = (position) => {
-        setSlidePosition(position);
-    }
+    const handleSlideChange = (newPosition) => {
+        const totalSlides = 4; // 전체 슬라이드 수 (추가된 이미지 포함)
+        const slideWidth = 430; // 슬라이드 너비
     
-
-    // $('.KJH_item_slide-btn-1').on('click', function() {
-    //     $('.KJH_item_slide-container').css('transform', 'translateX(0)');
-    // })
+        // 마지막 슬라이드에서 다음 버튼 클릭
+        if (newPosition < -(totalSlides - 1) * slideWidth) {
+            setSlidePosition(-slideWidth); // 첫 번째 실제 슬라이드로 이동
+        } 
+        // 첫 번째 슬라이드에서 이전 버튼 클릭
+        else if (newPosition > -slideWidth) {
+            setSlidePosition(-(totalSlides - 2) * slideWidth); // 마지막 실제 슬라이드로 이동
+        } 
+        else {
+            setSlidePosition(newPosition);
+        }
+    };
 
     return (
         <>
@@ -88,22 +114,29 @@ function Item(props) {
                 <div style={{ overflow: 'hidden' }} className='KJH_item-image_section'>
                     <div className='KJH_item_slide-container' style={{ transform: `translateX(${slidePosition}px)` }}>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={First} alt='first'/>
+                            <img src={Car3} alt='car3'/>
                         <div className='KJH_item_slide-box'></div>
                             <img src={Car1} alt='car1'/>
                         <div className='KJH_item_slide-box'></div>
                             <img src={Car2} alt='car2'/>
                         <div className='KJH_item_slide-box'></div>
                             <img src={Car3} alt='car3'/>
+                        <div className='KJH_item_slide-box'></div>
+                            <img src={Car1} alt='car1'/>
                     </div>
-
-                    <div></div>
+                    <div className='KJH_item_slide_arrow_section'>
+                        <button className='KJH_item_slide_left' onClick={() => handleSlideChange(slidePosition + 430)}>
+                            <FaArrowAltCircleLeft />
+                        </button>
+                        <button className='KJH_item_slide_right' onClick={() => handleSlideChange(slidePosition - 430)}>
+                            <FaArrowAltCircleRight />
+                        </button>
+                    </div>
                     
                     <div className='KJH_item_slide_images_section'>
-                        <button onClick={() => handleSlideChange(0)}>0</button>
-                        <button onClick={() => handleSlideChange(-430)}>1</button>
-                        <button onClick={() => handleSlideChange(-860)}>2</button>
-                        <button onClick={() => handleSlideChange(-1290)}>3</button>
+                        <img src={Car1} alt='car1'/>
+                        <img src={Car2} alt='car2'/>
+                        <img src={Car3} alt='car3'/>
                     </div>
                 </div>
                 
@@ -184,8 +217,10 @@ function Item(props) {
                                         </div>
                                         <div>
                                             <div className='KJH_item_info_share_section'>
-                                                <FaArrowUpRightFromSquare />
-                                                <div className='KJH_item_info_shear_link'>주소복사!</div>
+                                                <FaArrowUpRightFromSquare onClick={() => handleCopyClipBoard(window.location.href)} />
+                                                <div className={`KJH_item_info_shear_link fadeInOut ${showCopyMessage ? 'show' : ''}`}>
+                                                    주소복사완료
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
