@@ -1,8 +1,6 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-
-
 const { MongoClient, ObjectId } = require('mongodb');
 const { getDB, setDB } = require('./db');
 const { API_URL } = require("./client/src/components/config/contansts");
@@ -37,7 +35,6 @@ app.use(express.json());
 
 var cors = require("cors");
 app.use(cors());
-
 let db;
 const url = process.env.DB_URL;
 
@@ -54,7 +51,6 @@ new MongoClient(url)
   .catch((err) => {
     console.log(err);
   });
-
 
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
@@ -165,12 +161,10 @@ app.post("/productuser", async (req, res) => {
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
-  let list = await db
-    .collection("user")
-    .findOne({ _id: new ObjectId(요청.query.id) });
-  console.log("test", list);
-  응답.send(list);
-});
+  let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
+  console.log('test',list);
+  응답.send(list)
+})
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
