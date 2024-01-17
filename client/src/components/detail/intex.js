@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
-import { API_URL } from '../config/contansts';
+import { useParams, Navigate } from "react-router-dom";
 import axios from 'axios';
+import { API_URL } from '../config/contansts';
 
 import Category from './product/category';
 import Info from './product/info';
@@ -9,30 +9,34 @@ import Item from './product/item';
 
 function Detail() {
     const { id } = useParams();
-
     const [item, setItem] = useState([]);
     const [like, setLike] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
     const [review, setReview] = useState([]);
+    const [error, setError] = useState(false);  // 에러 상태 추가
 
-    const fectchProduct = async () => {   
+    const fetchProduct = async () => {   
         try {
             const res = await axios.get(`${API_URL}/detail/${id}`);
-            console.log('조회 완료');
-            setItem(res.data.product);
-            setLike(res.data.likes);
-            setUserInfo(res.data.user);
-            setReview(res.data.review);
-            // console.log(res.data.product);
-            // console.log(res.data.likes);
-            // console.log(res.data.user);
+            if (res.data.product) {
+                setItem(res.data.product);
+                setLike(res.data.likes);
+                setUserInfo(res.data.user);
+                setReview(res.data.review);
+            } else {
+                setError(true);  // 유효하지 않은 id에 대한 처리
+            }
         } catch (error) {
-            console.log(error);
+            setError(true);  // 에러 처리
         }
     };
     useEffect(() => {
-        fectchProduct();
-    }, []);
+        fetchProduct();
+    }, [id]);
+
+    // if (error) {
+    //     return <Navigate to="/detail/error" />;  // 에러 시 리디렉션
+    // }
 
     return (
         <>

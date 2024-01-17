@@ -71,12 +71,12 @@ function Header(){
         <div className="main_login">
           {getCookie("login") ?
           <nav>
-            <ul>
-              <li><p></p></li>
+            <ul className="header_login">
+              <li></li>
               <li><Link onClick={logOut}>로그아웃</Link></li>
             </ul>
             <ul>
-              <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
+              <li><span></span><Link to={'/sale'}>판매하기</Link></li>
               <li><span></span><Link to={'/mypage'}>내정보</Link></li>
               <li><span></span><Link to={'/chat'}>채팅</Link></li>
             </ul>
@@ -89,7 +89,7 @@ function Header(){
           }
         </div>
       </div>
-      <div className="header_list">
+      {/* <div className="header_list">
         <nav>
           <ol>
             <li>1</li>
@@ -99,7 +99,7 @@ function Header(){
             <li>5</li>
           </ol>
         </nav>
-      </div>
+      </div> */}
     </div>
   )
 }
