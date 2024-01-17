@@ -56,7 +56,6 @@ function formatTimeAgo(createdDate) {
 }
 
 
-
 function Item(props) {
     
     const [showCopyMessage, setShowCopyMessage] = useState(false);
@@ -152,7 +151,7 @@ function Item(props) {
                                 <div className='KJH_item_title_price_section'>
                                     <div className='KJH_item_title_price_info'>
                                         {/* 상품 가격 */}
-                                        {formattedInfo.price}<span>원</span>
+                                        {Info.price}<span>원</span>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +205,7 @@ function Item(props) {
                                         </div>
                                     </div>
                                     <div className='KJH_item_info_status_info_share'>
-                                        <div>
+                                        <div className='KJH_item_info_status_title_section'>
                                             <div className='KJH_item_info_item_status_title'>
                                                 - 거래지역
                                             </div>

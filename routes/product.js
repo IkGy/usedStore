@@ -31,16 +31,28 @@ router.get('/', async (req, res) => {
 router.get('/detail/:id', async (req, res) => {
     try {
         const db = getDB();
-        let result = await db.collection("product").findOne({_id:new ObjectId(req.params.id)});
-        let LikeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
-        let UserInfo = await db.collection("user").find({_id : req.params.id}).toArray();
-        console.log("------------result------------");
+        let result = await db.collection("product").findOne({_id: new ObjectId(req.params.id)});
+        let LikeCount = await db.collection("like").find({product_id : req.params.id}).toArray();
+        let UserInfo = await db.collection("user").findOne({_id : new ObjectId(result.seller)});
+        let Review = await db.collection("review").find({resiver : result.seller}).toArray();
+        let products = await db.collection("product").find({seller: (result.seller) }).toArray();
+        console.log("------------ 상품정보 : (product) ------------");
         console.log(result);
-        console.log("------------LikeCount------------");
+        console.log("------------ 찜한정보 : (LikeCount) ------------");
         console.log(LikeCount);
-        console.log("------------UserInfo------------");
+        console.log("------------ 사용자정보 : (UserInfo) ------------");
         console.log(UserInfo);
-        res.status(201).send({ product: result, likes: LikeCount, user: UserInfo });
+        console.log("------------ 리뷰정보 : (Review) ------------");
+        console.log(Review);
+        console.log("------------ 판매자의 다른상품목록 : (products) ------------");
+        console.log(products);
+        res.status(201).send({
+            product: result,
+            likes: LikeCount, 
+            user: UserInfo,
+            review: Review,
+            products: products
+        });
     } catch (error) {
         console.error(error);
         res.status(500).send('조회 오류');

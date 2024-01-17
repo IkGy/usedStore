@@ -13,9 +13,9 @@ function Info(props) {
 
     const info = props.info;
     const seller = props.seller;
-    // console.log(seller);
+    console.log(props.seller);
     const review = props.review;
-    console.log(review);
+    const products = props.products;
     
 
     return (
@@ -53,8 +53,9 @@ function Info(props) {
                                         <div className='KJH_if_left_content_div_center'>
                                             {/* 카테고리 데이터 */}
                                             <Link to='/'>
-                                                <span className='KJH_if_left_content_div_link_span'>카테고리</span>
-                                                <span>&gt;</span>
+                                                <span className='KJH_if_left_content_div_link_span'>
+                                                    
+                                                </span>
                                             </Link>
                                         </div>
                                     </div>
@@ -64,14 +65,9 @@ function Info(props) {
                                             상품태그
                                         </div>
                                         <div className='KJH_if_left_content_div_bottom_tag_section'>
-                                        {info.tags && typeof info.tags === 'string' && info.tags.split(' ').map((tag) => {
-                                            const tagName = tag.replace('#', '');
-                                                return (
-                                                    <Link key={tagName} to={`/search/${tagName}`}>
-                                                        {tag}
-                                                    </Link>
-                                            );
-                                        })}
+                                            {info.tags && info.tags.map((item) => (
+                                                <div key={item}>#{item}&nbsp;</div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +140,7 @@ function Info(props) {
                                         <div className='KJH_if_right_top_content_user_info'>
                                             {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                             <Link to='/' className='KJH_if_right_top_content_user_product_link'>
-                                                상품1&emsp;|
+                                                상품{products.length}&emsp;|
                                             </Link>
                                             <Link to='/' className='KJH_if_right_top_content_user_follow_link'>
                                                 &emsp;팔로워1

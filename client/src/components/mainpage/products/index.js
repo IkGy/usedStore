@@ -3,6 +3,7 @@ import testImg from './245041282_1_1704816568_w856.jpg'
 import './prod.css'
 import { API_URL } from "../../config/contansts";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 function Products() {
   const [prod, setProd] = useState([]);
@@ -24,7 +25,8 @@ function Products() {
 
   return(
     <div className="main_prod_grid">
-      {prod.map((data)=>(
+      {prod.length > 0 && prod.map((data) => (
+        <Link to={`/detail/${data._id}`}>
           <div className="main_prod_detail">
             <div className="main_prod_img">
               <img className="main_prod_image" src={data.images}></img>
@@ -34,6 +36,7 @@ function Products() {
               <p className="main_prod_price">{data.price} 원<span>{data.date}</span></p>
             </div>
           </div>
+        </Link>
       ))}
     </div>
   )

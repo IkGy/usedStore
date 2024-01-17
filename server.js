@@ -45,7 +45,7 @@ new MongoClient(url)
     setDB(db);
     console.log("DB연결성공");
     app.listen(process.env.PORT, function () {
-      console.log(`서버주소 : ${process.env.PORT}`);
+      console.log(`연결포트 : ${process.env.PORT}`);
     });
   })
   .catch((err) => {
