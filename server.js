@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+
 const { MongoClient, ObjectId } = require('mongodb');
 const { getDB, setDB } = require('./db');
 const { API_URL } = require("./client/src/components/config/contansts");
@@ -54,8 +55,10 @@ new MongoClient(url)
     console.log(err);
   });
 
+
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
+
 
 
 // app.post('/product/new', upload.single('image'), (요청, 응답) => {
@@ -157,6 +160,7 @@ app.post("/productuser", async (req, res) => {
   }
   
 });
+
 
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();

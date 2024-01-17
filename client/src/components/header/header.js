@@ -43,7 +43,6 @@ function Header(){
               <li></li>
               <li><Link onClick={logOut}>로그아웃</Link></li>
             </ul>
-
             <ul>
               <li><span></span><Link to={'/sale'}>판매하기</Link></li>
               <li><span></span><Link to={'/mypage'}>내정보</Link></li>
