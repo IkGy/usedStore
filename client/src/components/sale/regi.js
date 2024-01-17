@@ -8,6 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import { grey } from "@mui/material/colors";
 import { green } from "@mui/material/colors";
 import axios from "axios";
+import { getCookie } from "../../useCookies";
+import { useNavigate } from "react-router-dom";
 
 function Regi() {
   const [imageFile, setImageFile] = useState(null);
@@ -25,29 +27,45 @@ function Regi() {
   const [content, setContent] = useState("");
   const [tag, setTag] = useState([]);
   const [count, setCount] = useState("");
-  console.log("-------------------------------------");
+  const [cookie, setCookie] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-    script.async = true;
-    document.body.appendChild(script);
+    const fetchData = async () => {
+      const script = document.createElement("script");
+      script.src =
+        "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+      script.async = true;
+      document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
+      const loginCookie = getCookie("login");
+      await setCookie(loginCookie);
+
+      // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
+      axios
+        .post("http://localhost:8080/productuser", { cookie: loginCookie })
+        .then((result) => {
+            setSelectedAddress(result.data);
+        })
+        .catch((error) => {
+          if (error.response.status === 404) {
+            navigate('/login')
+          }
+        });
+
+      return () => {
+        document.body.removeChild(script);
+      };
     };
+
+    fetchData();
   }, []);
 
   const handleAddressClick = () => {
     new window.daum.Postcode({
       oncomplete: function (data) {
-        // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ""}`;
         setSelectedAddress(fullAddress);
-
-        // 여기에 주소 선택 후 처리할 코드를 작성할 수도 있습니다.
-        console.log(data);
       },
     }).open();
   };
@@ -116,32 +134,29 @@ function Regi() {
     copy.splice(index, 1);
     setTag(copy);
   };
-  console.log(tag);
 
   let productpost = (e) => {
     e.preventDefault();
-  
+
     let formDataWithImage = new FormData();
     formDataWithImage.append("img", imageFile);
     formDataWithImage.append("title", title);
-    formDataWithImage.append("category", category);
+    formDataWithImage.append("category", JSON.stringify(category));
     formDataWithImage.append("selectedAddress", selectedAddress);
     formDataWithImage.append("status", status);
     formDataWithImage.append("change", change);
     formDataWithImage.append("price", price);
     formDataWithImage.append("postprice", postprice);
     formDataWithImage.append("content", content);
-    formDataWithImage.append("tag", tag);
+    formDataWithImage.append("tag", JSON.stringify(tag));
     formDataWithImage.append("count", count);
-  
-    axios.post("http://localhost:8080/product", formDataWithImage, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then((result) => {
-      console.log(result.data);
-    });
+    formDataWithImage.append("seller", getCookie("login"));
+
+    axios
+      .post("http://localhost:8080/product", formDataWithImage)
+      .then((result) => {
+        console.log(result.data);
+      });
   };
 
   return (
@@ -153,7 +168,7 @@ function Regi() {
       <div className="regi_select">
         <div>
           <div className="regi_title">
-          상품이미지<span style={{ color: "red" }}>*</span>
+            상품이미지<span style={{ color: "red" }}>*</span>
           </div>
         </div>
         <div>
@@ -197,7 +212,7 @@ function Regi() {
           ></input>
         </div>
       </div>
-      <div className="">
+      <div className="regi_select">
         <div className="regi_title">
           카테고리<span style={{ color: "red" }}>*</span>
         </div>

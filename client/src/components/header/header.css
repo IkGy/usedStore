@@ -118,6 +118,7 @@
   .main_loginIcon, .main_singUpIcon{
     font-size: 2.5vw;
   }
+
   .main_searchBar{
     border: 0.25vw #ff0000 solid;
     width: 30vw;
@@ -128,6 +129,7 @@
     font-size: 1.5vw;
     width: 30vw;
   }
+
 }
 
 @media (max-width: 500px) {
@@ -137,6 +139,10 @@
   .main_titleName{
     font-size: 4vw;
   }
+
+
+  .main_searchBar{
+    font-size: 2vw;
 
   .searchBar_input{
     font-size: 2vw;
@@ -163,5 +169,4 @@
   }
   .header_login > li > a{
     font-size: 2.4vw;
-  }
-}
+  }}

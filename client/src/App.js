@@ -27,6 +27,7 @@ function App() {
           <Route path='/sign_up' element={<Sign_Up />}></Route>
           <Route path='/chatroom/:id' element={<Chat_room />}></Route>
           <Route path='/room_list' element={<Room_list />}></Route>
+          <Route path='/sale' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
           <Route path='/sale' element={<Sale />}></Route>
