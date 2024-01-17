@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { API_URL } from '../config/contansts';
 
@@ -34,6 +34,7 @@ function Detail() {
         fetchProduct();
     }, [id]);
 
+    // 나중에 주석풀거임
     // if (error) {
     //     return <Navigate to="/detail/error" />;  // 에러 시 리디렉션
     // }

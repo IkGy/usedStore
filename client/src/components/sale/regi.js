@@ -16,7 +16,7 @@ import Regi_tag from "./regi_tag";
 import Regi_count from "./regi_count";
 
 function Regi() {
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
   const [title, setTitle] = useState("");
   const [category1, setCategory1] = useState("");
@@ -57,23 +57,9 @@ function Regi() {
 
   let productpost = (e) => {
     e.preventDefault();
-
-    let formDataWithImage = new FormData();
-    formDataWithImage.append("img", imageFile);
-    formDataWithImage.append("title", title);
-    formDataWithImage.append("category", JSON.stringify(category));
-    formDataWithImage.append("selectedAddress", selectedAddress);
-    formDataWithImage.append("status", status);
-    formDataWithImage.append("change", change);
-    formDataWithImage.append("price", price);
-    formDataWithImage.append("postprice", postprice);
-    formDataWithImage.append("content", content);
-    formDataWithImage.append("tag", JSON.stringify(tag));
-    formDataWithImage.append("count", count);
-    formDataWithImage.append("seller", getCookie("login"));
-
+  
     if (
-      imageFile === null ||
+      imageFile.length === 0 ||
       title === "" ||
       category1 === "" ||
       selectedAddress === "" ||
@@ -86,6 +72,22 @@ function Regi() {
     ) {
       alert("필수입력칸을 채워주세요.");
     } else {
+      let formDataWithImage = new FormData();
+      imageFile.forEach((file, index) => {
+        formDataWithImage.append(`img`, file);
+      });
+      formDataWithImage.append("title", title);
+      formDataWithImage.append("category", JSON.stringify(category));
+      formDataWithImage.append("selectedAddress", selectedAddress);
+      formDataWithImage.append("status", status);
+      formDataWithImage.append("change", change);
+      formDataWithImage.append("price", price);
+      formDataWithImage.append("postprice", postprice);
+      formDataWithImage.append("content", content);
+      formDataWithImage.append("tag", JSON.stringify(tag));
+      formDataWithImage.append("count", count);
+      formDataWithImage.append("seller", getCookie("login"));
+  
       axios
         .post("http://localhost:8080/product", formDataWithImage)
         .then((result) => {
@@ -95,6 +97,7 @@ function Regi() {
     }
   };
 
+  console.log("aaaaa", imageFile);
   return (
     <div className="regi">
       <div className="regi_start">
@@ -107,7 +110,7 @@ function Regi() {
         setImageFile={setImageFile}
         imagePreview={imagePreview}
         setImagePreview={setImagePreview}
-      ></Regi_image>
+      />
       <Regi_title title={title} setTitle={setTitle}></Regi_title>
 
       <Regi_category

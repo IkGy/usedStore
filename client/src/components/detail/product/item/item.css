@@ -10,6 +10,19 @@
 
 .KJH_item-image_section {
     position: relative;
+    height: 370px;
+}
+
+.KJH_item_slide_arrow_section > button {
+    background-color: transparent;
+    border: transparent;
+}
+
+.KJH_item_slide_arrow_section > button > svg {
+    width: 2.5em;
+    height: 2.5em;
+    background-color: transparent;
+    color: #c8c8c8;
 }
 
 .KJH_item_slide-container {
@@ -26,12 +39,38 @@
     height: 280px;
 }
 
+.KJH_item_slide_left, .KJH_item_slide_right {
+    position: absolute;
+    top: 140px;
+    cursor: pointer;
+}
+
+.KJH_item_slide_left {
+    left: 10px;
+}
+
+.KJH_item_slide_right{
+    right: 10px;
+}
+
 .KJH_item_slide_images_section {
     position: absolute;
     bottom: 0;
-    
+    display: flex;
+    justify-content: space-between;
 }
 
+.KJH_item_slide_images_section > img {
+    border-radius: 5px;
+    width: 31%;
+    height: auto;
+    opacity: 0.7;
+    margin-right: 10px;
+}
+
+.KJH_item_slide_images_section > img:last-child {
+    margin-right: 0;
+}
 
 /*** 상품정보 ***/
 
@@ -174,6 +213,7 @@
 }
 
 .KJH_item_info_status_info_share {
+    position: relative;
     justify-content: space-between;
 }
 
@@ -219,6 +259,27 @@
 .KJH_item_info_share_section > svg:hover {
     background-color: black;
     color: white;
+}
+
+.KJH_item_info_shear_link {
+    position: absolute;
+    width: 120px;
+    top: -45px;
+    right: 0;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s linear 0.5s, opacity 0.5s linear;
+}
+
+.KJH_item_info_shear_link.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s linear;
 }
 
 .KJH_item_btn_section {
