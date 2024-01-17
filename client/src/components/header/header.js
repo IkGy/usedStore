@@ -19,9 +19,42 @@ function Header(){
   // })
   // },[])
 
+  useEffect(() => {
+    // 카카오 SDK 초기화
+    const kakaoScript = document.createElement("script");
+    kakaoScript.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js";
+    kakaoScript.integrity = "sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8";
+    kakaoScript.crossOrigin = "anonymous";
+    document.body.appendChild(kakaoScript);
+
+    kakaoScript.onload = () => {
+      // 카카오 SDK 초기화
+      window.Kakao.init('90b9cec28ae877d95b8c171eabad92f5');
+    };
+  }, []);
+
+  const deleteCookie = () => {
+    document.cookie = 'authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
   const logOut = () => {
-    removeCookie('login')
-    navigate('/')
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+      const [name] = cookie.split("=");
+      removeCookie(name);
+    }
+    window.localStorage.clear();
+    navigate('/');
+    if (getCookie("login")) {
+      window.Kakao.Auth.logout()
+        .then(function () {
+          alert('logout ok\naccess token -> ' + window.Kakao.Auth.getAccessToken());
+          deleteCookie();
+        })
+        .catch(function () {
+          alert('Not logged in');
+        });
+    }
   }
 
   return(

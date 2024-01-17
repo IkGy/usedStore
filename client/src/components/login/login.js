@@ -140,6 +140,26 @@ function Login() {
           >
             카카오톡 계정으로 로그인
           </Button>
+          <Button
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "#40FF00",
+              color: "black",
+            }}
+          >
+            네이버 계정으로 로그인
+          </Button>
+          <Button
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "#A9E2F3",
+              color: "black",
+            }}
+          >
+            구글 계정으로 로그인
+          </Button>
           <Grid container>
             <Grid item xs>
               <Link>비밀번호 찾기</Link>
