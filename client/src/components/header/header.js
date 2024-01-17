@@ -44,7 +44,6 @@ function Header(){
       removeCookie(name);
     }
     window.localStorage.clear();
-    navigate('/');
     if (getCookie("login")) {
       window.Kakao.Auth.logout()
         .then(function () {
@@ -55,6 +54,7 @@ function Header(){
           alert('Not logged in');
         });
     }
+    navigate('/');
   }
 
   return(
