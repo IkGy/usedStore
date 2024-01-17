@@ -11,15 +11,8 @@ import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
 
 function Header(){
+  const navigate = useNavigate();
   const [userInfo,setUserInfo] = useState();
-  const navigate = useNavigate()
-  
-  useEffect(() => {
-    axios.get(`${API_URL}/user/header`, {params:{id:getCookie("login")}})
-    .then((result) => {
-    console.log(result.data);
-  })
-  },[])
 
   useEffect(() => {
     // 카카오 SDK 초기화
@@ -33,13 +26,19 @@ function Header(){
       // 카카오 SDK 초기화
       window.Kakao.init('90b9cec28ae877d95b8c171eabad92f5');
     };
+    
+    axios.get(`${API_URL}/user/header`, {params:{id:getCookie("login")}})
+    .then((result) => {
+    console.log(result.data);
+  })
   }, []);
 
   const deleteCookie = () => {
     document.cookie = 'authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
-
-  const logOut = () => {
+  
+  const logOut = (e) => {
+    e.preventDefault()
     const cookies = document.cookie.split("; ");
     for (const cookie of cookies) {
       const [name] = cookie.split("=");
@@ -57,6 +56,7 @@ function Header(){
       });
     }
     navigate('/');
+    // window.location.href = '/'
   }
 
   return(
