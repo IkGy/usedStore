@@ -1,3 +1,4 @@
+import './main.css';
 import { Link } from "react-router-dom";
 import ImageSlide from "./imageSlide";
 import AdComponent from "./advertCom";
@@ -25,6 +26,7 @@ function Main(){
   }, []);
 
   console.log(product);
+  
   return(
     <div>
       <div>
@@ -46,12 +48,7 @@ function Main(){
           </Link>
         </div>
       ))}
-
-      <div className='KJH_product_1'>
-        {Products.length > 0 && ( // 조건부 렌더링
-          <Link to={`/detail/${Products[1]._id}`}>첫 번째 상품</Link>
-        )}
-      </div>
+      
       <ImageSlide />
       <AdComponent />
       <Products />
