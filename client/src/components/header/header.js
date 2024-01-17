@@ -12,7 +12,12 @@ import { API_URL } from "../config/contansts";
 function Header(){
   const [userInfo,setUserInfo] = useState();
   const navigate = useNavigate()
-
+  
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/header`).then((result) => {
+  //   console.log(result.data);
+  // })
+  // },[])
 
   const logOut = () => {
     removeCookie('login')
@@ -38,7 +43,7 @@ function Header(){
               <li><Link onClick={logOut}>로그아웃</Link></li>
             </ul>
             <ul>
-              <li><span></span><Link to={'/sellitem'}>판매하기</Link></li>
+              <li><span></span><Link to={'/sale'}>판매하기</Link></li>
               <li><span></span><Link to={'/mypage'}>내정보</Link></li>
               <li><span></span><Link to={'/chat'}>채팅</Link></li>
             </ul>

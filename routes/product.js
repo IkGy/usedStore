@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const { getDB } = require('../db');
 const { ObjectId } = require('mongodb');
 
@@ -31,22 +30,17 @@ router.get('/', async (req, res) => {
 
 router.get('/detail/:id', async (req, res) => {
     try {
-        console.log(req.params.id);
         const db = getDB();
         let result = await db.collection("product").findOne({_id:new ObjectId(req.params.id)});
-        console.log(result.seller);
-        let likeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
-        let userInfo = await db.collection("user").findOne({_id:new ObjectId(result.seller)});
-        let review = await db.collection("review").find({"resiver": result.seller}).toArray();
+        let LikeCount = await db.collection("like").find({"product_id" : req.params.id}).toArray();
+        let UserInfo = await db.collection("user").find({_id : req.params.id}).toArray();
         console.log("------------result------------");
         console.log(result);
-        console.log("------------likeCount------------");
-        console.log(likeCount);
-        console.log("------------userInfo------------");
-        console.log(userInfo);
-        console.log("------------Review------------");
-        console.log(review);
-        res.status(201).send({ product: result, likes: likeCount, user: userInfo, review: review });
+        console.log("------------LikeCount------------");
+        console.log(LikeCount);
+        console.log("------------UserInfo------------");
+        console.log(UserInfo);
+        res.status(201).send({ product: result, likes: LikeCount, user: UserInfo });
     } catch (error) {
         console.error(error);
         res.status(500).send('조회 오류');

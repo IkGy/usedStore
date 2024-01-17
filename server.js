@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { MongoClient, ObjectId } = require("mongodb");
-const { db, setDB, getDB } = require("./db");
+
+const { MongoClient, ObjectId } = require('mongodb');
+const { getDB, setDB } = require('./db');
 const { API_URL } = require("./client/src/components/config/contansts");
 
 require("dotenv").config();
@@ -37,6 +38,7 @@ var cors = require("cors");
 app.use(cors());
 
 
+let db;
 const url = process.env.DB_URL;
 
 new MongoClient(url)
@@ -116,12 +118,15 @@ app.get("/", function (요청, 응답) {
 //   }
 // );
 
+
+
 app.post("/product", upload.single("img"), async (req, res) => {
-  const db = getDB();
   const tag = JSON.parse(req.body.tag);
   const category = JSON.parse(req.body.category); 
+  const db = getDB();
+  console.log(req.body);
   await db.collection("product").insertOne({
-    seller: "임시데이터",
+    seller: req.body.seller,
     buyer: "",
     category: category,
     title: req.body.title,
@@ -139,6 +144,20 @@ app.post("/product", upload.single("img"), async (req, res) => {
     postprice: req.body.postprice
   })
   res.status(201).send("상품등록성공")
+});
+
+app.post("/productuser", async (req, res) => {
+  console.log(req.body.cookie);
+  if(req.body.cookie){
+    const db = getDB();
+    console.log("/productuser: ", req.body);
+    let result = await db.collection("user").findOne({_id: new ObjectId(req.body.cookie)})
+    console.log(result);
+    res.status(201).send(result.address)
+  } else {
+    res.status(404).send("")
+  }
+  
 });
 
 app.get("/mypage", async (요청, 응답) => {

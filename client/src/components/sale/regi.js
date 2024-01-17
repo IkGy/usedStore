@@ -8,6 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import { grey } from "@mui/material/colors";
 import { green } from "@mui/material/colors";
 import axios from "axios";
+import { getCookie } from "../../useCookies";
+import { useNavigate } from "react-router-dom";
 
 function Regi() {
   const [imageFile, setImageFile] = useState(null);
@@ -25,17 +27,38 @@ function Regi() {
   const [content, setContent] = useState("");
   const [tag, setTag] = useState([]);
   const [count, setCount] = useState("");
+  const [cookie, setCookie] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-    script.async = true;
-    document.body.appendChild(script);
+    const fetchData = async () => {
+      const script = document.createElement("script");
+      script.src =
+        "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+      script.async = true;
+      document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
+      const loginCookie = getCookie("login");
+      await setCookie(loginCookie);
+
+      // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
+      axios
+        .post("http://localhost:8080/productuser", { cookie: loginCookie })
+        .then((result) => {
+            setSelectedAddress(result.data);
+        })
+        .catch((error) => {
+          if (error.response.status === 404) {
+            navigate('/login')
+          }
+        });
+
+      return () => {
+        document.body.removeChild(script);
+      };
     };
+
+    fetchData();
   }, []);
 
   const handleAddressClick = () => {
@@ -114,7 +137,7 @@ function Regi() {
 
   let productpost = (e) => {
     e.preventDefault();
-  
+
     let formDataWithImage = new FormData();
     formDataWithImage.append("img", imageFile);
     formDataWithImage.append("title", title);
@@ -127,24 +150,26 @@ function Regi() {
     formDataWithImage.append("content", content);
     formDataWithImage.append("tag", JSON.stringify(tag));
     formDataWithImage.append("count", count);
-  
-    axios.post("http://localhost:8080/product", formDataWithImage)
-    .then((result) => {
-      console.log(result.data);
-    });
+    formDataWithImage.append("seller", getCookie("login"));
+
+    axios
+      .post("http://localhost:8080/product", formDataWithImage)
+      .then((result) => {
+        console.log(result.data);
+      });
   };
 
   return (
     <div className="regi">
       <div className="regi_start">
         <span>기본정보</span>
-        <span>*필수항목</span>
+        <span style={{ color: "red" }}>*필수항목</span>
       </div>
       <div className="regi_select">
         <div>
-          <div className="ymj_content">
+          <div className="regi_title">
+            상품이미지<span style={{ color: "red" }}>*</span>
           </div>
-          상품이미지<span style={{ color: "red" }}>*</span>
         </div>
         <div>
           <input
@@ -176,7 +201,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           상품명<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_title">
@@ -188,7 +213,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           카테고리<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_category">
@@ -507,7 +532,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           거래지역<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_address">
@@ -523,7 +548,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           상품상태<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_status">
@@ -628,7 +653,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           교환<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_change">
@@ -679,7 +704,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           가격<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_price">
@@ -693,7 +718,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           배송비<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_postprice">
@@ -744,7 +769,7 @@ function Regi() {
         </div>
       </div>
       <div className="regi_select">
-        <div>
+        <div className="regi_title">
           설명<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_content">

@@ -30,6 +30,7 @@ function App() {
           <Route path='/sale' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
+          <Route path='/sale' element={<Sale />}></Route>
         </Routes>
         <Footer />
       </div>
