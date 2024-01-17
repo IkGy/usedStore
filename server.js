@@ -162,6 +162,7 @@ app.post("/productuser", async (req, res) => {
 });
 
 
+
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -171,6 +172,7 @@ app.get("/mypage", async (요청, 응답) => {
   console.log("test", list);
   응답.send(list);
 });
+
 
 
 app.get("*", function (요청, 응답) {
