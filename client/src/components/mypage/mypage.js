@@ -31,6 +31,7 @@ function Mypage() {
       console.log("실패");
     });
   }, []);
+
   useEffect(() => {
     setTimeout(() => {
       setEnd("end");
@@ -42,6 +43,7 @@ function Mypage() {
     // nickName: "??",
     // userName: "KDT",
     // phoneNumber: "010-1234-5678",
+
   });
 
   return(
@@ -54,10 +56,10 @@ function Mypage() {
           <div className='JSW_Sec1'>
             <div className="JSW_menubar">
               <nav className="JSW_nav1">
+                      <span id="JSW_Mypage_tag">
+                        마이 페이지
+                      </span>
                     <ul>
-                      <li>
-                        
-                      </li>
                       <li>
                         <a
                           href="#"

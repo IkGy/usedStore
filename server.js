@@ -158,13 +158,7 @@ app.post("/productuser", async (req, res) => {
 });
 
 
-app.get("/mypage", async (요청, 응답) => {
-  const db = getDB();
-  console.log(요청.query);
-  let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
-  console.log('test',list);
-  응답.send(list)
-})
+
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
