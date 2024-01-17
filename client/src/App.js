@@ -4,6 +4,8 @@ import Header from './components/header/header';
 import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
 import Detail from './components/detail/intex';
+import Detail_Error from './components/detail/error';
+
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Main></Main>}></Route>
           <Route path='/detail/:id' element={<Detail />}></Route>
+          <Route path='/detail/error' element={<Detail_Error />}></Route>
           <Route path='/mypage' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>
