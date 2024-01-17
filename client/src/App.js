@@ -9,7 +9,7 @@ import Detail_Error from './components/detail/error';
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
-import Sale from './components/sale/sale'
+import Sale from './components/sale/regi'
 import Chat_room from './components/chat/chat_room';
 import Room_list from './components/chat/room_list';
 
