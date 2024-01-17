@@ -37,7 +37,6 @@ app.use(express.json());
 var cors = require("cors");
 app.use(cors());
 
-
 let db;
 const url = process.env.DB_URL;
 
@@ -57,6 +56,7 @@ new MongoClient(url)
 
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
+
 
 // app.post('/product/new', upload.single('image'), (요청, 응답) => {
 //   console.log(요청.file)
@@ -117,8 +117,6 @@ app.get("/", function (요청, 응답) {
 //     )
 //   }
 // );
-
-
 
 app.post("/product", upload.single("img"), async (req, res) => {
   const tag = JSON.parse(req.body.tag);
