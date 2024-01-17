@@ -29,7 +29,7 @@ new MongoClient(url)
     setDB(db);
     console.log("DB연결성공");
     app.listen(process.env.PORT, function() {
-      console.log(`서버주소 : ${API_URL}`);
+      console.log(`서버주소 : ${process.env.PORT}`);
     });
   })
   .catch((err) => {
