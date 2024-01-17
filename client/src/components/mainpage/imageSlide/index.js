@@ -37,7 +37,7 @@ return (
     <AliceCarousel
       mouseTracking
       infinite={1000}
-      animationDuration={1000}
+      animationDuration={5000}
       disableDotsControls
       disableButtonsControls
       responsive={responsive}

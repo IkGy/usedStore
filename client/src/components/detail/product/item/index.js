@@ -5,12 +5,14 @@ import { IoIosEye } from "react-icons/io";
 import { FaClock } from "react-icons/fa6";
 
 import { MdReport } from "react-icons/md";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 // 임시 이미지
+import First from './images/first.png';
 import Car1 from './images/car1.png';
 import Car2 from './images/car2.png';
 import Car3 from './images/car3.png';
@@ -67,7 +69,7 @@ function Item(props) {
     const formattedInfo = formatPrices(Info);
 
     // 슬라이더의 위치를 저장하는 state
-    const [slidePosition, setSlidePosition] = useState(0);
+    const [slidePosition, setSlidePosition] = useState(1);
 
     // 슬라이더 위치를 변경하는 함수
     const handleSlideChange = (position) => {
@@ -83,8 +85,10 @@ function Item(props) {
         <>
             <div className='KJH_item_section'>
                 {/* 이미지 관련 */}
-                <div style={{ overflow: 'hidden' }}>
+                <div style={{ overflow: 'hidden' }} className='KJH_item-image_section'>
                     <div className='KJH_item_slide-container' style={{ transform: `translateX(${slidePosition}px)` }}>
+                        <div className='KJH_item_slide-box'></div>
+                            <img src={First} alt='first'/>
                         <div className='KJH_item_slide-box'></div>
                             <img src={Car1} alt='car1'/>
                         <div className='KJH_item_slide-box'></div>
@@ -92,11 +96,14 @@ function Item(props) {
                         <div className='KJH_item_slide-box'></div>
                             <img src={Car3} alt='car3'/>
                     </div>
+
+                    <div></div>
                     
-                    <div>
-                        <button onClick={() => handleSlideChange(0)}>1</button>
-                        <button onClick={() => handleSlideChange(-430)}>2</button>
-                        <button onClick={() => handleSlideChange(-860)}>3</button>
+                    <div className='KJH_item_slide_images_section'>
+                        <button onClick={() => handleSlideChange(0)}>0</button>
+                        <button onClick={() => handleSlideChange(-430)}>1</button>
+                        <button onClick={() => handleSlideChange(-860)}>2</button>
+                        <button onClick={() => handleSlideChange(-1290)}>3</button>
                     </div>
                 </div>
                 
@@ -165,26 +172,29 @@ function Item(props) {
                                             {Info.refund ? '환불 불가능' : '환불 가능'}
                                         </div>
                                     </div>
-                                    <div className='KJH_item_info_status_info'>
-                                        <div className='KJH_item_info_item_status_title'>
-                                            - 거래지역
+                                    <div className='KJH_item_info_status_info_share'>
+                                        <div>
+                                            <div className='KJH_item_info_item_status_title'>
+                                                - 거래지역
+                                            </div>
+                                            <div className='KJH_item_info_item_status'>
+                                                {/* 거래지역 데이터 */}
+                                                {Info.location}
+                                            </div>
                                         </div>
-                                        <div className='KJH_item_info_item_status'>
-                                            {/* 거래지역 데이터 */}
-                                            {Info.location}
+                                        <div>
+                                            <div className='KJH_item_info_share_section'>
+                                                <FaArrowUpRightFromSquare />
+                                                <div className='KJH_item_info_shear_link'>주소복사!</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {/* 찜 / 실시간 메세지 / 바로구매 버튼 */}
                             <div className='KJH_item_btn_section'>
-                                <div className='KJH_item_btn_select_section'>
-                                    <button className='KJH_item_btn_select_status'>
-                                        <FaRegHeart />
-                                        <span>찜</span>
-                                        {/* 해당 상품 찜 개수 데이터 */}
-                                        <span>{Like.length}</span>
-                                    </button>
+                                <div className='KJH_item_like_section'>
+                                    <FaHeart />
                                 </div>
                                 <div className='KJH_item_btn_select_section'>
                                     <button className='KJH_item_btn_select_talk'>

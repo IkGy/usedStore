@@ -224,11 +224,17 @@
 .regi_register button {
   padding: 0.7vw 1vw;
   border: none;
-  background-color: rgba(0, 171, 0, 0.795);
+  background-color: rgba(1, 148, 1, 0.795);
   color: white;
   cursor: pointer;
   font-size: 1.5vw;
+  transition: 0.3s
 }
+
+.regi_register button:hover{
+  background-color: rgba(0, 164, 0, 0.795);
+}
+
 
 .regi_selecttags{
   margin-Top: 1vw;
