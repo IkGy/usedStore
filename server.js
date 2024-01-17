@@ -23,7 +23,7 @@ let db;
 const url = process.env.DB_URL;
 
 new MongoClient(url)
-  .connect()
+  .connect({ useUnifiedTopology: true })
   .then((client) => {
     const db = client.db("popol5");
     setDB(db);
@@ -36,8 +36,8 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.use('/', productRouter);
-app.use('/', userRouter);
+app.use('/prod', productRouter);
+app.use('/user', userRouter);
 
 const s3 = new S3Client({
   region : 'ap-northeast-2',

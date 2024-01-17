@@ -38,7 +38,9 @@ function Registered() {
               <div className="JSW_contentGridBox_img">
                 <img src={a.img} width="100%"></img>
               </div>
+              <div className="JSW_Kname">{a.Kname}</div>
               <div className="JSW_Aname">{a.Aname}</div>
+              <div className="JSW_Kname">{a.Kname}</div>
             </div>
           )
         })}

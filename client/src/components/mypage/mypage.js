@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from "react";
-
+import { API_URL } from '../config/contansts';
+import axios from 'axios';
 import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
 import "./mypage.css";
-
 import EK from "./image/이크.png"
 import { getCookie } from "../../useCookies";
 
 
 function Mypage() {
-
-  console.log(getCookie("login"));
-
-  const [data, setData] = useState([
-    {
-      uname: "정선우",
-      unum: "010-9386-4594",
-      uarea: "장안웃길 56 국제대학교",
-      uage: "25",
-
-    },
-  ]);
-
+  const [data, setData] = useState({})
   const [menu, setMenu] = useState("구매 목록");
+  const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
   };
-  const [end, setEnd] = useState("");
 
+  useEffect(() => {
+    axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
+    .then((res) => {
+      console.log("DB 조회 완료");
+      console.log(res.data);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+      console.log("실패");
+    });
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       setEnd("end");
@@ -106,19 +106,14 @@ function Mypage() {
               <div className="JSW_Sec2-1_Right">
                 내 정보
                 <div className="JSW_userinfo"  style={{ fontSize: '100%' }}> 
-                  {data.map((a, i)=> {
-                    return(
                       <div
-                      key={a.id}
+                      key={data.id}
                       >
-                        
-                        <div className="JSW_username">이름 : {a.uname}</div>
-                        <div className="JSW_usernum">전화번호 : {a.unum}</div>
-                        <div className="JSW_userage">나이 : {a.uage}세</div>
-                        <div className="JSW_userarea">주소지 : {a.uarea}</div>
+                        <div className="JSW_username">이름 : {data.real_name}</div>
+                        <div className="JSW_usernum">전화번호 : {data.phone_number}</div>
+                        <div className="JSW_userage">이메일 : {data.email}</div>
+                        <div className="JSW_userarea">주소지 : {data.address}</div>
                       </div>
-                    )
-                  })}
                 </div>
                 <label className="JSW_Cristal">
                   프로필 수정

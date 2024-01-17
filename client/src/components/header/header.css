@@ -20,11 +20,11 @@
 }
 
 .main_logoIcon{
+  width: 3.5vw;
   /* color: white; */
   /* background-color: blue; */
   /* border: 1px solid #000; */
   border-radius: 20%;
-  font-size: 3em;
 }
 
 .main_titleName{

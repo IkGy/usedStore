@@ -2,20 +2,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'
 import { LuUserPlus2 } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
-import { FaCloud } from "react-icons/fa";
+import Logo from "./image/logo.png"
 import './header.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
 
 function Header(){
-const navigate = useNavigate()
-useEffect(() => {
-  axios.get(`${API_URL}/header`).then((result) => {
-    console.log(result.data);
-  })
-  },[])
+  const [userInfo,setUserInfo] = useState();
+  const navigate = useNavigate()
+  
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/header`).then((result) => {
+  //   console.log(result.data);
+  // })
+  // },[])
 
   const logOut = () => {
     removeCookie('login')
@@ -26,7 +28,7 @@ useEffect(() => {
     <div className="main_header">
       <div className="header_contents">
         <Link to={'/'} className="main_title">
-          <FaCloud className="main_logoIcon"/>
+          <img src={Logo} className="main_logoIcon"/>
           <span className="main_titleName">리셀 마켓</span>
         </Link>
         <div className="main_searchBar">
