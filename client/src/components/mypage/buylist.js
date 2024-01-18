@@ -1,17 +1,27 @@
-import { useEffect, useState } from "react";
+import { getCookie } from "../../useCookies";
+import React, { useEffect, useState } from "react";
+import { API_URL } from '../config/contansts';
+import axios from 'axios';
 
 import img2 from "./image/g102.jpg"
+import img1 from "./image/img_mouse.jpg"
 
 function Buylist() {
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      img: img2,
-      Aname: "로지텍 G102판매 사용감X",
-      Kname: "."
-    }
-  ])
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    axios.get(`${API_URL}/product/buylist`,{params:{id:getCookie('login')}})
+    .then((res) => {
+      console.log("DB 조회 완료");
+      console.log(res.data);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+      console.log("실패");
+    });
+  }, []);
 
 
   const [end ,setEnd] = useState("");
@@ -34,16 +44,16 @@ function Buylist() {
     <div className="JSW_picklist">
       <div className="JSW_picklistname">구매 내역</div>
       <div className="JSW_conentGridBox">
-        {data.map((a, i)=> {
+        {data.map((data, i)=> {
           return(
             <div className="JSW_liststart"
-            key={a.id}>
+            key={data.id}>
               <div className="JSW_contentGridBox_img">
-                <img src={a.img} width="100%"></img>
+                <img src={data.images} width="100%"></img>
               </div>
-              <div className="JSW_Kname">{a.Kname}</div>
-              <div className="JSW_Aname">{a.Aname}</div>
-              <div className="JSW_Kname">{a.Kname}</div>
+              <div className="JSW_Aname">{data.title}</div>
+              <div className="JSW_Aname">{data.comment}</div>
+              <div className="JSW_Aname">{data.price}</div>
             </div>
           )
         })}
