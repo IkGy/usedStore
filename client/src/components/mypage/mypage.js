@@ -12,7 +12,7 @@ import { getCookie } from "../../useCookies";
 
 function Mypage() {
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("구매 목록");
+  const [menu, setMenu] = useState("찜 목록");
   const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {
@@ -85,7 +85,7 @@ function Mypage() {
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
-                          등록된 상품
+                          등록된 상품 
                         </a>
                       </li>
                       <li>
