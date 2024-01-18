@@ -28,7 +28,7 @@ function Soldlist() {
 
   return(
     <div className="JSW_picklist">
-      판매 목록
+      <div className="JSW_picklistname">판매 내역</div>
       <div className="JSW_conentGridBox">
         {data.map((a, i)=> {
           return(

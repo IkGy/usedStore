@@ -39,6 +39,8 @@ function Mypage() {
     return setEnd("");
   }, [menu]);
 
+  
+
   let [userInfo, setUSerInfo] = useState({
     // nickName: "??",
     // userName: "KDT",
@@ -50,14 +52,13 @@ function Mypage() {
     <div>
       <div className='JSW_container'>
         <div className="JSW_mypage_title">
-          {/* 마이페이지 */}
+          마이페이지
         </div>
         <div className="JSW_Main">
           <div className='JSW_Sec1'>
             <div className="JSW_menubar">
               <nav className="JSW_nav1">
                       <span id="JSW_Mypage_tag">
-                        마이 페이지
                       </span>
                     <ul>
                       <li>
@@ -106,20 +107,20 @@ function Mypage() {
                 <img src={EK}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
-                내 정보
+                <div className="JSW_myname">내 정보 </div>
                 <div className="JSW_userinfo"  style={{ fontSize: '100%' }}> 
                       <div
                       key={data.id}
                       >
-                        <div className="JSW_username">이름 : {data.real_name}</div>
-                        <div className="JSW_usernum">전화번호 : {data.phone_number}</div>
-                        <div className="JSW_userage">이메일 : {data.email}</div>
-                        <div className="JSW_userarea">주소지 : {data.address}</div>
+                        <div className="JSW_userlist">이름 : {data.real_name}</div>
+                        <div className="JSW_userlist">전화번호 : {data.phone_number}</div>
+                        <div className="JSW_userlist">이메일 : {data.email}</div>
+                        <div className="JSW_userlist">주소지 : {data.address}</div>
                       </div>
                 </div>
-                <label className="JSW_Cristal">
+                {/* <label className="JSW_Cristal">
                   프로필 수정
-                </label>
+                </label> */}
               </div>
             </div>
             <div className="JSW_Sec2-2">
