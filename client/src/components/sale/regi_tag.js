@@ -31,7 +31,7 @@ function Regi_tag(props) {
       <div>태그 ({props.tag.length}/5)</div>
       <div className="regi_tag">
         <input
-          placeholder="태그을 입력해 주세요.(최대 5개)"
+          placeholder="태그을 입력해 주세요.(ex 태그명 + Enter)"
           onKeyDown={handleKeyPress}
         ></input>
         <div className="regi_selecttags">

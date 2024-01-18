@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { MongoClient, ObjectId } = require('mongodb');
-const { getDB, setDB } = require('./db');
+const { MongoClient, ObjectId } = require("mongodb");
+const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
 
 require("dotenv").config();
@@ -23,7 +23,8 @@ const upload = multer({
     s3: s3,
     bucket: "popol5",
     key: function (요청, file, cb) {
-      cb(null, Date.now().toString()); //업로드시 파일명 변경가능
+      const ext = path.extname(file.originalname);
+      cb(null, Date.now().toString() + ext);
     },
   }),
 });
@@ -54,8 +55,6 @@ new MongoClient(url)
 
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
-
-
 
 // app.post('/product/new', upload.single('image'), (요청, 응답) => {
 //   console.log(요청.file)
@@ -117,11 +116,15 @@ app.get("/", function (요청, 응답) {
 //   }
 // );
 
-app.post("/product", upload.single("img"), async (req, res) => {
+app.post("/product", upload.array("img", 3), async (req, res) => {
   const tag = JSON.parse(req.body.tag);
-  const category = JSON.parse(req.body.category); 
+  const category = JSON.parse(req.body.category);
   const db = getDB();
+
   console.log(req.body);
+  console.log("img", req.files);
+
+  const images = req.files.map((file) => file.location);
   await db.collection("product").insertOne({
     seller: req.body.seller,
     buyer: "",
@@ -131,32 +134,44 @@ app.post("/product", upload.single("img"), async (req, res) => {
     product_status: req.body.status,
     refund: req.body.change,
     price: req.body.price,
-    loaction: req.body.selectedAddress,
+    location: req.body.selectedAddress,
     tags: tag,
     count: req.body.count,
-    images: req.file.location,
+    images: images,
     status: "판매중",
     created_at: new Date(),
     updated_at: "",
-    postprice: req.body.postprice
-  })
-  res.status(201).send("상품등록성공")
+    postprice: req.body.postprice,
+  });
+  res.status(201).send("상품등록성공");
 });
 
 app.post("/productuser", async (req, res) => {
   console.log(req.body.cookie);
-  if(req.body.cookie){
+  if (req.body.cookie) {
     const db = getDB();
     console.log("/productuser: ", req.body);
-    let result = await db.collection("user").findOne({_id: new ObjectId(req.body.cookie)})
+    let result = await db
+      .collection("user")
+      .findOne({ _id: new ObjectId(req.body.cookie) });
     console.log(result);
-    res.status(201).send(result.address)
+    res.status(201).send(result.address);
   } else {
-    res.status(404).send("")
+    res.status(404).send("");
   }
-  
 });
 
+
+
+app.get("/mypage", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let list = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(요청.query.id) });
+  console.log("test", list);
+  응답.send(list);
+});
 
 
 
