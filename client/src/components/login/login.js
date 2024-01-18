@@ -114,6 +114,11 @@ function Login() {
             required
             fullWidth 
             autoComplete="current-password"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleLogin();
+              }
+            }}
           />
           <FormControlLabel 
             control={<Checkbox value="remember" 
