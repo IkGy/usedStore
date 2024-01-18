@@ -14,7 +14,6 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { setCookie } from "../../useCookies";
-import GoogleLoginButton from "./goolge";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -37,54 +36,10 @@ function Login() {
   };
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
-    script.async = true;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
-      console.log("Kakao 계정으로 성공적으로 로그인 하였습니다")
-    };
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  function KakaoLogin() {
-    window.Kakao.Auth.login({
-      scope:'profile_nickname',
-      success: function(authObj) {
-        console.log(authObj);
-        window.Kakao.API.request({
-          url:'/v2/user/me',
-          success: res => {
-            const kakao_account = res.kakao_account;
-            console.log(kakao_account);
-            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
-          }
-        })
-      }
-    });
-  };
-
-  useEffect(() => {
     if (isLoggedIn) {
       navigate("/");
     }
   }, [isLoggedIn, navigate]);
-
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); 
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); 
-
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-  }
 
   return(
     <div>
@@ -145,39 +100,6 @@ function Login() {
             sx={{ mt: 3, mb: 2}} //margin-top: 3px, margin-bottom: 2px;
           >
             로그인
-          </Button>
-          <Button
-            onClick={KakaoLogin}
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "yellow",
-              color: "black",
-            }}
-          >
-            카카오톡 계정으로 로그인
-          </Button>
-          <Button
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "#40FF00",
-              color: "black",
-            }}
-          >
-            네이버 계정으로 로그인
-          </Button>
-          <Button>
-            <GoogleLoginButton
-              fullWidth
-              sx={{ 
-                mb: 2,
-                backgroundColor: "#A9E2F3",
-                color: "black",
-              }}
-            >
-              구글 계정으로 로그인
-            </GoogleLoginButton>
           </Button>
           <Grid container>
             <Grid item xs>
