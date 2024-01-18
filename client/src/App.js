@@ -4,16 +4,17 @@ import Header from './components/header/header';
 import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
 import Detail from './components/detail/intex';
+import Detail_Error from './components/detail/error';
+
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
-import Sale from './components/sale/sale'
-import Regi from './components/sale/regi';
+import Sale from './components/sale/regi'
 import Chat_room from './components/chat/chat_room';
 import Room_list from './components/chat/room_list';
 import Rules from './components/guide/rules';
 import Rro from './components/guide/pro';
-
+import Searchpage from './components/searchpage/searchpage';
 import Test from './components/test';
 import Test2 from './components/test2';
 
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Main></Main>}></Route>
           <Route path='/detail/:id' element={<Detail />}></Route>
+          <Route path='/detail/error' element={<Detail_Error />}></Route>
           <Route path='/mypage' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>
@@ -32,9 +34,10 @@ function App() {
           <Route path='/room_list' element={<Room_list />}></Route>
           <Route path='/rules' element={<Rules />}></Route>
           <Route path='/pro' element={<Rro />}></Route>
-
+          <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
+          <Route path='/main/:search' element={<Searchpage />}></Route>
         </Routes>
         <Footer />
       </div>

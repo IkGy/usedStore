@@ -32,7 +32,7 @@ function Buylist() {
   }, [isInitialLoad]);
   return(
     <div className="JSW_picklist">
-      구매 목록
+      <div className="JSW_picklistname">구매 내역</div>
       <div className="JSW_conentGridBox">
         {data.map((a, i)=> {
           return(

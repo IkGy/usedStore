@@ -1,25 +1,25 @@
-.main_header{  
+.main_header {
   /* border: 1px solid #000; */
-  margin-top: 1%;
+  margin-top: 4vh;
   height: 80px;
   display: flex;
   text-align: center;
   flex-direction: column;
 }
-.main_title{
+.main_title {
   display: flex;
   align-items: center;
-  font-family: 'seolleimcool-SemiBold';
-  
+  font-family: "seolleimcool-SemiBold";
 }
 
-.header_contents{
+.header_contents {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
-.main_logoIcon{
+.main_logoIcon {
   width: 3.5vw;
   /* color: white; */
   /* background-color: blue; */
@@ -27,34 +27,38 @@
   border-radius: 20%;
 }
 
-.main_titleName{
+.main_titleName {
   font-size: 1.5em;
   padding: 0 1vw;
   /* border: 1px solid #000; */
 }
 
-.main_searchBar{
-  border: 0.19em red solid;
-  width: 40%;
+.main_searchBar {
+  border: 0.2vw red solid;
+  width: 20vw;
+  height: 2.5vw;
   display: flex;
   align-items: center;
+  padding: 0.5vw;
 }
 
-.searchBar_input{
-  font-size: 1.4em;
-  width: 90%;
-  height: 100%;
+.searchBar_input {
+  font-size: 1vw;
+  width: 40vw;
   border: none;
   outline: none;
 }
 
-.main_searchIcon{
+.main_searchIcon {
   color: red;
-  font-size: 1.5em;
+  width: 2vw;
   margin-left: 10px;
 }
+.main_searchIcon:hover {
+  cursor: pointer;
+}
 
-.main_login{
+.main_login {
   width: 30%;
   /* border: 1px solid; */
   font-size: 1.2em;
@@ -62,15 +66,14 @@
   align-items: center;
 }
 
-
-.main_login ul{
+.main_login ul {
   list-style-type: none;
   width: 100%;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 
-.main_login ul li{
+.main_login ul li {
   padding: 5px;
 }
 
@@ -78,31 +81,99 @@
   text-decoration: none;
 }
 
-.main_logo{
+.main_logo {
   min-width: 30px;
   min-height: 30px;
   width: 50px;
   height: 50px;
 }
 
-.header_login li{
+.header_login li {
   display: flex;
   align-items: center;
   padding: 4em;
 }
 
-.main_loginIcon, .main_singUpIcon{
+.main_mainIcon, .main_singUpIcon{
   font-weight: bolder;
   font-size: 1.5em;
 }
 
-
-
-.header_list ol{
+.header_list ol {
   list-style-type: none;
   display: inline-flex;
 }
 
-.header_list ol li{
+.header_list ol li {
   padding: 5px;
+}
+
+@media (max-width: 1024px) {
+
+  .header_login{
+    padding: 0;
+  }
+  .header_login > li{
+    width: 9vw;
+  }
+
+  .header_login > li > a{
+    font-size: 1.3vw;
+  }
+  .main_mainIcon, .main_singUpIcon{
+    font-size: 2.5vw;
+  }
+
+  .main_searchBar {
+    border: 0.25vw #ff0000 solid;
+    width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .searchBar_input {
+    font-size: 1.5vw;
+    width: 30vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .main_logoIcon {
+    width: 7vw;
+  }
+  .main_titleName {
+    font-size: 4vw;
+  }
+
+  .main_searchBar {
+    font-size: 2vw;
+  }
+  .searchBar_input {
+    font-size: 2vw;
+    width: 40vw;
+  }
+
+  .main_searchBar{
+    border: 0.5vw #ff0000 solid;
+    width: 40vw;
+    height: 5vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .header_login {
+    padding: 0;
+  }
+
+  .header_login > li{
+    display: flex;
+    flex-direction: column;
+    width: auto; 
+  }
+  
+  .main_mainIcon, .main_singUpIcon{
+    font-size: 3.5vw;
+  }
+  .header_login > li > a{
+    font-size: 2.4vw;
+  }
 }

@@ -1,14 +1,7 @@
-.regi {
-  margin-right: auto;
-}
 
-.regi_start{
-font-size: 25px;
-}
-
-.regi_image{
-  width: 160px;
-  height: 160px;
+.sale_select {
+  display: flex;
+  column-gap: 3vw;
 }
 
 .sale_select button {
@@ -20,6 +13,17 @@ font-size: 25px;
   font-size: 1vw;
 }
 
+.regi {
+  font-family: 'seolleimcool-SemiBold';
+  padding: 1vw;
+  padding-bottom: 7vw;
+}
+
+.regi input,
+.regi span,
+.regi button{
+  font-family: 'seolleimcool-SemiBold';
+}
 
 .regi_start {
   border-bottom: 0.2vw solid black;
@@ -47,8 +51,8 @@ font-size: 25px;
 }
 
 .regi_image {
-  width: 15vw;
-  height: 15vw;
+  width: 100%;
+  height: 12vw;
   border: 0.1vw solid rgba(0, 0, 0, 0.264);
   display: flex;
   flex-direction: column;
@@ -220,11 +224,17 @@ font-size: 25px;
 .regi_register button {
   padding: 0.7vw 1vw;
   border: none;
-  background-color: rgba(0, 171, 0, 0.795);
+  background-color: rgba(1, 148, 1, 0.795);
   color: white;
   cursor: pointer;
   font-size: 1.5vw;
+  transition: 0.3s
 }
+
+.regi_register button:hover{
+  background-color: rgba(0, 164, 0, 0.795);
+}
+
 
 .regi_selecttags{
   margin-Top: 1vw;
@@ -260,4 +270,41 @@ font-size: 25px;
   justify-content: end;
   margin-top: 0.5vw;
   font-size: 1vw;
+}
+
+.regi_imageform{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1vw;
+}
+
+.regi_imageform img{
+  width: 100%;
+  height: 12vw;
+}
+
+.regi_image-container{
+  position: relative;
+}
+
+.regi_image-container button{
+  position: absolute;
+  top: 0.3vw;
+  right: 0.3vw;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: white;
+}
+
+.regi_selecttag div{
+  display: flex;
+  align-items: center;
 }

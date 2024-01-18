@@ -58,7 +58,7 @@ export default function SignUp() {
     }; 
     console.log(data);
 
-    await axios.post(`${API_URL}/register`, data)
+    await axios.post(`${API_URL}/user/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
       navigate("/login");

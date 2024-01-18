@@ -23,7 +23,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("http://localhost:8080/user/login", {
         email: email,
         password: password,
       });
@@ -79,7 +79,7 @@ function Login() {
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -114,6 +114,11 @@ function Login() {
             required
             fullWidth 
             autoComplete="current-password"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleLogin();
+              }
+            }}
           />
           <FormControlLabel 
             control={<Checkbox value="remember" 
@@ -139,6 +144,26 @@ function Login() {
             }}
           >
             카카오톡 계정으로 로그인
+          </Button>
+          <Button
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "#40FF00",
+              color: "black",
+            }}
+          >
+            네이버 계정으로 로그인
+          </Button>
+          <Button
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "#A9E2F3",
+              color: "black",
+            }}
+          >
+            구글 계정으로 로그인
           </Button>
           <Grid container>
             <Grid item xs>
