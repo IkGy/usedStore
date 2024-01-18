@@ -53,7 +53,7 @@
 
 .regi_select {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 5fr;
   border-bottom: 0.1vw solid rgba(128, 128, 128, 0.196);
   padding: 2vw 0;
 }
@@ -196,7 +196,8 @@
   border: 0.1vw solid rgba(0, 0, 0, 0.264);
   width: 19vw;
   padding: 0.5vw;
-  display: flex;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
   justify-content: center;
   align-items: center;
 }
@@ -236,6 +237,7 @@
 }
 
 .regi_tag input {
+  display: block;
   width: 90%;
   font-size: 1.2vw;
   padding: 0.7vw;
@@ -359,7 +361,7 @@
   }
 
   .regi_select {
-    grid-template-columns: 1fr 3.5fr;
+    grid-template-columns: 1fr 5fr;
   }
 
   .regi_select > div:first-child {
@@ -499,4 +501,9 @@
     padding-left: 0.8vw;
     font-size: 2.2vw;
   }
+
+  .regi_register button {
+    padding: 1.5vw 1.5vw;
+    font-size: 2vw;
+}
 }

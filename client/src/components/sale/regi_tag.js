@@ -34,7 +34,7 @@ function Regi_tag(props) {
 
   return (
     <div className="regi_select">
-      <div >태그 ({props.tag.length}/5)</div>
+      <div style={{marginTop: "0.7vw"}}>태그 ({props.tag.length}/5)</div>
       <div className="regi_tag">
         <input
           placeholder="태그을 입력해 주세요.(ex 태그명 + Enter)"
