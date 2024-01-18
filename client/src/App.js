@@ -12,8 +12,9 @@ import Sign_Up from './components/sign_up/sign_up';
 import Sale from './components/sale/regi'
 import Chat_room from './components/chat/chat_room';
 import Room_list from './components/chat/room_list';
+import Rules from './components/guide/rules';
+import Rro from './components/guide/pro';
 import Searchpage from './components/searchpage/searchpage';
-
 import Test from './components/test';
 import Test2 from './components/test2';
 
@@ -31,6 +32,8 @@ function App() {
           <Route path='/sign_up' element={<Sign_Up />}></Route>
           <Route path='/chatroom/:id' element={<Chat_room />}></Route>
           <Route path='/room_list' element={<Room_list />}></Route>
+          <Route path='/rules' element={<Rules />}></Route>
+          <Route path='/pro' element={<Rro />}></Route>
           <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
