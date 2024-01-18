@@ -96,7 +96,7 @@ function Header() {
         <div className="main_searchBar">
           <input
             className="searchBar_input"
-            placeholder="상품명, 지역명, @상점명 입력"
+            placeholder="상품명, 태그 입력"
             value={search}
             onChange={(e)=>setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
