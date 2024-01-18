@@ -20,7 +20,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   
-  gap: 2vw;
+  gap: 1vw;
   padding: 1vw 0 0;
   
 }
@@ -115,24 +115,25 @@
   }
 
   .JSW_conentGridBox {
-    grid-template-columns: repeat(2, 2fr);
+    gap: 5vw;
+    grid-template-columns: 1fr;
     z-index: 5;
     
   }
 
   .JSW_picklistname {
-    font-size: 3vw;
+    padding-left: 10%;
+    font-size: 4vw;
   }
   
   .JSW_contentGridBox_img {
     /* z-index: 2; */
-    height: 25vw;
+    height: 55vw;
   }
   
   .JSW_liststart{
+    height: 70vw;
     z-index: 2;
     margin-left: 10%;
   }
-
-
 }

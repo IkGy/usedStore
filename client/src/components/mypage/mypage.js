@@ -64,8 +64,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "구매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 목록")}
+                          className={menu === "구매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 내역")}
                         >
                           구매 내역
                         </a>
@@ -73,8 +73,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "판매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 목록")}
+                          className={menu === "판매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 내역")}
                         >
                           판매 내역
                         </a>

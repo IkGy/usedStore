@@ -1,4 +1,8 @@
 
+.JSW_container {
+  font-family: 'seolleimcool-SemiBold';
+}
+
 .active{
   color: #03C75A;
 }
@@ -72,7 +76,6 @@
 
 .JSW_nav1 > ul > li > a {
   text-decoration: none;
-  color: black;
   font-size: 100%;
 }
 
@@ -244,6 +247,7 @@
 .JSW_Sec2 {
   height: 70vh;
   border: 1px solid #000;
+  overflow: hidden;
 }
 
 .JSW_Sec2-1 {
@@ -394,6 +398,4 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
 }
-
-
 }
