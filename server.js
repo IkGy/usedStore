@@ -162,7 +162,6 @@ app.post("/productuser", async (req, res) => {
   }
 });
 
-
 app.get("/search/:search", async (req, res) => {
   const db = getDB();
   let 검색조건 = [
@@ -185,6 +184,7 @@ app.get("/address/:cookie", async (req, res) => {
   res.status(201).send(result.address)
 });
 
+
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -194,6 +194,7 @@ app.get("/mypage", async (요청, 응답) => {
   console.log("test", list);
   응답.send(list);
 });
+
 
 
 app.get("*", function (요청, 응답) {

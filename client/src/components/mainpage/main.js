@@ -16,8 +16,8 @@ function Main(){
       <div>
         <Link to="/mypage"><h2 className='KJH_testpage'>마이페이지</h2></Link>
       </div>
-      {/* <ImageSlide />
-      <AdComponent /> */}
+      <ImageSlide />
+      <AdComponent />
       <Products />
     </div>
   )
