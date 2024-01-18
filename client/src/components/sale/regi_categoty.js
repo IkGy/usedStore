@@ -319,7 +319,7 @@ function Regi_category(props){
         <div className="regi_selcetcategory" style={{ marginTop: "1vw" }}>
           {props.category1 && (
             <>
-              <span style={{ fontSize: "1vw" }}>선택된 카테고리:</span>{" "}
+              <span>선택된 카테고리:</span>{" "}
               {props.category1}
             </>
           )}
