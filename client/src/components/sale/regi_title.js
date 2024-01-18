@@ -1,7 +1,7 @@
 function Regi_title(props) {
   return (
     <div className="regi_select">
-      <div className="regi_title">
+      <div className="regi_title" style={{display:"flex", alignItems:"center"}}>
         상품명
         {props.title ? (
           <i

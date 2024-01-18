@@ -8,7 +8,7 @@ import { green } from "@mui/material/colors";
 function Regi_change(props) {
   return (
     <div className="regi_select">
-      <div className="regi_title">
+      <div className="regi_title" style={{display:"flex", alignItems:"center"}}>
         교환
         {props.change ? (
           <i

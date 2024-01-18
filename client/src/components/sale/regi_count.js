@@ -1,7 +1,7 @@
 function Regi_count(props) {
   return (
     <div className="regi_select" style={{ borderBottom: "none" }}>
-      <div>
+      <div style={{display:"flex", alignItems:"center"}}>
         수량
         {props.count ? (
           <i

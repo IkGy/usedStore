@@ -8,7 +8,7 @@ function Regi_price(props) {
   };
   return (
     <div className="regi_select">
-      <div className="regi_title">
+      <div className="regi_title" style={{display:"flex", alignItems:"center"}}>
         가격
         {props.price ? (
           <i

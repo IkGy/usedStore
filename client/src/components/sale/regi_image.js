@@ -1,4 +1,5 @@
 import React from "react";
+import cancel from "./그림1.png";
 
 function RegiImage(props) {
   const handleChange = (e) => {
@@ -27,7 +28,7 @@ function RegiImage(props) {
     <div className="regi_select">
       <div>
         <div className="regi_title">
-          상품 이미지 <span>({props.imageFile.length}/3)</span>
+          상품 이미지<span>({props.imageFile.length}/3)</span>
           {props.imageFile.length !== 0 ? (
             <i
               style={{ color: "green", paddingLeft: "0.5vw" }}
@@ -69,12 +70,11 @@ function RegiImage(props) {
                   className="preview-image"
                   onClick={() => handleImageClick(index)}
                 />
-                <button
-                  className="delete-button"
+                <img
+                  id="regi_delete-button"
+                  src={cancel}
                   onClick={() => handleImageClick(index)}
-                >
-                  X
-                </button>
+                ></img>
               </div>
             ))}
           </>
