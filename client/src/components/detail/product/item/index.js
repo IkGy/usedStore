@@ -72,7 +72,7 @@ function Item(props) {
         }
     };
 
-    // console.log(props.info)
+    console.log("aaaaaaaaaaaaa", props.info.images)
     const Info = props.info
     const Like = props.heart
     

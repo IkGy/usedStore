@@ -29,7 +29,7 @@ function Products() {
         <Link to={`/detail/${data._id}`}>
           <div className="main_prod_detail">
             <div className="main_prod_img">
-              <img className="main_prod_image" src={data.images}></img>
+              <img className="main_prod_image" src={data.images[0]}></img>
             </div>
             <div className="main_prod_info">
               <p className="main_prod_title">{data.title}</p>

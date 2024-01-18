@@ -1,11 +1,17 @@
 function Regi_tag(props) {
   let handleKeyPress = (event) => {
     // 엔터 키의 키 코드는 13입니다.
-    if (event.key === "Enter" && props.tag.length < 5 && event.target.value !== "") {
+    if (
+      event.key === "Enter" &&
+      props.tag.length < 5 &&
+      event.target.value !== ""
+    ) {
       const inputValue = event.target.value.replaceAll(" ", "");
 
       if (
-        !props.tag.map((tagItem) => tagItem.replaceAll(" ", "")).includes(inputValue)
+        !props.tag
+          .map((tagItem) => tagItem.replaceAll(" ", ""))
+          .includes(inputValue)
       ) {
         let copy = [...props.tag];
         copy.push(event.target.value);
@@ -39,10 +45,12 @@ function Regi_tag(props) {
             <>
               {"선택한 태그: "}
               <span className="regi_selecttag">
-                #{props.tag[0]}
-                <span className="regi_deltag" onClick={() => deletetag(0)}>
-                  x
-                </span>
+                <div>
+                  #{props.tag[0]}
+                  <span className="regi_deltag" onClick={() => deletetag(0)}>
+                    x
+                  </span>
+                </div>
               </span>
             </>
           )}
@@ -50,10 +58,12 @@ function Regi_tag(props) {
             <>
               {" ,"}
               <span className="regi_selecttag">
-                #{props.tag[1]}
-                <span className="regi_deltag" onClick={() => deletetag(1)}>
-                  x
-                </span>
+                <div>
+                  #{props.tag[1]}
+                  <span className="regi_deltag" onClick={() => deletetag(1)}>
+                    x
+                  </span>
+                </div>
               </span>
             </>
           )}
@@ -61,10 +71,12 @@ function Regi_tag(props) {
             <>
               {" ,"}
               <span className="regi_selecttag">
-                #{props.tag[2]}
-                <span className="regi_deltag" onClick={() => deletetag(2)}>
-                  x
-                </span>
+                <div>
+                  #{props.tag[2]}
+                  <span className="regi_deltag" onClick={() => deletetag(2)}>
+                    x
+                  </span>
+                </div>
               </span>
             </>
           )}
@@ -72,10 +84,12 @@ function Regi_tag(props) {
             <>
               {" ,"}
               <span className="regi_selecttag">
-                #{props.tag[3]}
-                <span className="regi_deltag" onClick={() => deletetag(3)}>
-                  x
-                </span>
+                <div>
+                  #{props.tag[3]}
+                  <span className="regi_deltag" onClick={() => deletetag(3)}>
+                    x
+                  </span>
+                </div>
               </span>
             </>
           )}
@@ -83,10 +97,12 @@ function Regi_tag(props) {
             <>
               {" ,"}
               <span className="regi_selecttag">
-                #{props.tag[4]}
-                <span className="regi_deltag" onClick={() => deletetag(4)}>
-                  x
-                </span>
+                <div>
+                  #{props.tag[4]}
+                  <span className="regi_deltag" onClick={() => deletetag(4)}>
+                    x
+                  </span>
+                </div>
               </span>
             </>
           )}

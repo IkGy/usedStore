@@ -35,6 +35,7 @@ const userRouter = require("./routes/user");
 app.use(express.json());
 
 var cors = require("cors");
+const { log } = require('console');
 app.use(cors());
 let db;
 const url = process.env.DB_URL;
@@ -161,6 +162,28 @@ app.post("/productuser", async (req, res) => {
   }
 });
 
+
+app.get("/search/:search", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {$search : {
+      index: 'title_index',
+      text : {query: req.params.search, path: ['title', 'tags']}
+    }}
+  ]
+  let result = await db.collection('product').aggregate(검색조건).toArray()
+  res.status(201).send(result)
+});
+
+app.get("/address/:cookie", async (req, res) => {
+  const db = getDB();
+  
+  let result = await db.collection("user").findOne({
+    _id: new ObjectId(req.params.cookie)
+  })
+  console.log(result);
+  res.status(201).send(result.address)
+});
 
 app.get("/mypage", async (요청, 응답) => {
   const db = getDB();

@@ -16,6 +16,7 @@ function Info(props) {
     console.log(props.seller);
     const review = props.review;
     const products = props.products;
+    console.log("products: ", products);
     
 
     return (
