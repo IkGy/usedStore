@@ -57,7 +57,7 @@ function Picklist() {
   }, [isInitialLoad]);
   return(
     <div className="JSW_picklist">
-      찜 목록
+      <div className="JSW_picklistname">찜 목록</div>
       <div className="JSW_conentGridBox">
         {data.map((a, i)=> {
           return(
