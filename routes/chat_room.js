@@ -14,7 +14,3 @@ router.get('/chat_room', async (req, res) => {
   }
 })
 
-
-
-
-

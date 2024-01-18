@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { setCookie } from "../../useCookies";
+import GoogleLoginButton from "./goolge";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -73,6 +74,17 @@ function Login() {
       navigate("/");
     }
   }, [isLoggedIn, navigate]);
+
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); 
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); 
+
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+  }
 
   return(
     <div>
@@ -155,15 +167,17 @@ function Login() {
           >
             네이버 계정으로 로그인
           </Button>
-          <Button
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "#A9E2F3",
-              color: "black",
-            }}
-          >
-            구글 계정으로 로그인
+          <Button>
+            <GoogleLoginButton
+              fullWidth
+              sx={{ 
+                mb: 2,
+                backgroundColor: "#A9E2F3",
+                color: "black",
+              }}
+            >
+              구글 계정으로 로그인
+            </GoogleLoginButton>
           </Button>
           <Grid container>
             <Grid item xs>
