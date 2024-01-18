@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+a{
+  color: black;
+  font-family: 'seolleimcool-SemiBold';
+}
 .total_display{
   width: 70%;
   display: flex;

@@ -1,0 +1,20 @@
+.searchpage_header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:2vw;
+  background-color: rgb(245, 245, 245);
+  font-size: 2vw;
+  font-family: 'seolleimcool-SemiBold';
+  margin-bottom: 1vw;
+}
+
+.searchpage_statussel{
+  display: flex;
+  align-items: center;
+  font-size: 1vw;
+}
+
+.searchpage_statussel div{
+  cursor: pointer;
+}
