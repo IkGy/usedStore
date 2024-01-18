@@ -4,7 +4,6 @@ const app = express();
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
-
 require("dotenv").config();
 
 const { S3Client } = require("@aws-sdk/client-s3");
@@ -31,6 +30,8 @@ const upload = multer({
 
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
+const jwtRouter = require("./routes/jwtRouter");
+
 
 app.use(express.json());
 
@@ -54,6 +55,8 @@ new MongoClient(url)
     console.log(err);
   });
 
+
+app.use('/jwt', jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
 
