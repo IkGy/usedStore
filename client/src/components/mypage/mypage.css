@@ -1,3 +1,6 @@
+.JSW_container {
+  font-family: 'seolleimcool-SemiBold';
+}
 
 .active{
   color: #03C75A;
@@ -72,7 +75,6 @@
 
 .JSW_nav1 > ul > li > a {
   text-decoration: none;
-  color: black;
   font-size: 100%;
 }
 
@@ -244,6 +246,7 @@
 .JSW_Sec2 {
   height: 70vh;
   border: 1px solid #000;
+  overflow: hidden;
 }
 
 .JSW_Sec2-1 {
@@ -335,8 +338,7 @@
 
  
   .JSW_menubar {
-    font-size: 70%;
-    padding-left: 17%;
+    padding-left: 12%;
     border-radius: 5px;
 
     width: 100%;
@@ -382,7 +384,7 @@
 .JSW_nav1 > ul > li {
   padding-left: 10px;
   padding-top: 15%;
-  font-size: 2.5vw;
+  font-size: 3vw;
 }
 
 .JSW_nav1 > ul > li > a {
@@ -394,6 +396,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
 }
+
 
 
 }
