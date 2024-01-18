@@ -24,11 +24,9 @@ function Detail() {
             if (res.data.product) {
                 setItem(res.data.product);
                 setSave(res.data.likes);
-                console.log(res.data.user);
                 setUserInfo(res.data.user);
                 setReview(res.data.review);
                 setProducts(res.data.products);
-                
             } else {
                 setError(true);  // 유효하지 않은 id에 대한 처리
             }
