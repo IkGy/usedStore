@@ -59,6 +59,7 @@ router.get('/detail/:id', async (req, res) => {
     }
 });
 
+
 // router.post('/product/new'.upload.single('image'), (요청, 응답) => {
 //         console.log(요청.file)
 // })

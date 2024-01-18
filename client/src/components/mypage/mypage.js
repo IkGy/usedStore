@@ -1,3 +1,4 @@
+import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
@@ -7,12 +8,11 @@ import Registered from "./registered";
 import Picklist from "./picklist";
 import "./mypage.css";
 import EK from "./image/이크.png"
-import { getCookie } from "../../useCookies";
 
 
 function Mypage() {
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("찜 목록");
+  const [menu, setMenu] = useState("구매 내역");
   const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {
@@ -124,13 +124,13 @@ function Mypage() {
               </div>
             </div>
             <div className="JSW_Sec2-2">
-              {menu === "구매 목록" && (
+              {menu === "구매 내역" && (
                 <div className={"start " + end}>
-                  <Buylist menu={menu} userInfo={userInfo}></Buylist>
+                  <Buylist menu={menu} userInfo={userInfo} data={data}></Buylist>
                 </div>
               )}
 
-              {menu === "판매 목록" && (
+              {menu === "판매 내역" && (
                 <div className={"start " + end}>
                   <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
                 </div>
@@ -138,7 +138,7 @@ function Mypage() {
 
               {menu === "등록된 상품" && (
                 <div className={"start " + end}>
-                  <Registered menu={menu} userInfo={userInfo}></Registered>
+                  <Registered menu={menu} userInfo={userInfo} data={data}></Registered>
                 </div>
               )}
               {menu === "찜 목록" && (

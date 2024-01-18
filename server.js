@@ -173,6 +173,61 @@ app.get("/mypage", async (요청, 응답) => {
   응답.send(list);
 });
 
+app.get("/product/registered", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    seller: 요청.query.id,
+    status: "판매중"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/product/buylist", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    buyer: 요청.query.id,
+    status: "판매완료"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/product/soldlist", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    seller: 요청.query.id,
+    status: "판매완료"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/like/picklist", async (요청, 응답) => {
+  const db = getDB();
+  const prodData = [];
+  console.log(요청.query);
+  let result = await db.collection("like").find({liker: 요청.query.id,}).toArray();
+  console.log('like',result);
+
+  for (let i = 0; i < result.length; i++) { 
+    await db.collection('product').findOne({_id:new ObjectId(result[i].product_id)})
+    .then((res)=>{
+      console.log('res',res);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.static(501).end();
+    })
+  }
+  응답.send(prodData);
+})
 
 
 app.get("*", function (요청, 응답) {
