@@ -157,57 +157,19 @@ function Regi() {
           </div>
         </div>
         <div>
-<<<<<<< HEAD
           <button className="regi_image">
             <FaCamera />
             <i class="fa-solid fa-camera"></i>
             <div>이미지 등록</div>
           </button>
-=======
-          <input
-            ref={imageInputRef}
-            style={{ display: "none" }}
-            name="img"
-            type="file"
-            accept="image/*"
-            multiple="multiple"
-            onChange={handleChange}
-          />
-          {imagePreview && (
-            <div>
-              <img
-                className="regi_img"
-                src={imagePreview}
-                alt="이미지 미리보기"
-                style={{ maxWidth: "100%", cursor: "pointer" }}
-                onClick={handleImageClick}
-              />
-            </div>
-          )}
-          {!imagePreview && (
-            <button className="regi_image" onClick={handleImageClick}>
-              <i class="fa-solid fa-camera"></i>
-              <div>이미지 등록</div>
-            </button>
-          )}
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="regi_select">
         <div className="regi_title">
           상품명<span style={{ color: "red" }}>*</span>
         </div>
-<<<<<<< HEAD
         <div className="regi_content">
           <input placeholder="상품명을 입력해 주세요."></input>
-=======
-        <div className="regi_title">
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="상품명을 입력해 주세요."
-          ></input>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="">
@@ -770,103 +732,15 @@ function Regi() {
         <div className="regi_title">
           설명<span style={{ color: "red" }}>*</span>
         </div>
-<<<<<<< HEAD
         <div>이미지등록</div>
       </div>
       <div className="regi_select">
         <div className="regi_title">
           태그<span style={{ color: "red" }}>*</span>
-=======
-        <div className="regi_content">
-          <textarea
-            spellcheck="false"
-            value={content}
-            onChange={(e) => {
-              const enteredValue = e.target.value;
-
-              // 입력된 값이 2000자 이하일 때만 업데이트
-              if (enteredValue.length <= 2000) {
-                setContent(enteredValue);
-              }
-            }}
-            placeholder="상품 내용을 입력해주세요"
-          />
-          <div className="regi_contentlength">{content.length}/2000</div>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         </div>
       </div>
       <div className="regi_select">
-<<<<<<< HEAD
         <div className="regi_title">
-=======
-        <div>태그 ({tag.length}/5)</div>
-        <div className="regi_tag">
-          <input
-            placeholder="태그을 입력해 주세요.(최대 5개)"
-            onKeyDown={handleKeyPress}
-          ></input>
-          <div className="regi_selecttags">
-            {tag[0] && (
-              <>
-                {"선택한 태그: "}
-                <span className="regi_selecttag">
-                  #{tag[0]}
-                  <span className="regi_deltag" onClick={() => deletetag(0)}>
-                    x
-                  </span>
-                </span>
-              </>
-            )}
-            {tag[1] && (
-              <>
-                {" ,"}
-                <span className="regi_selecttag">
-                  #{tag[1]}
-                  <span className="regi_deltag" onClick={() => deletetag(1)}>
-                    x
-                  </span>
-                </span>
-              </>
-            )}
-            {tag[2] && (
-              <>
-                {" ,"}
-                <span className="regi_selecttag">
-                  #{tag[2]}
-                  <span className="regi_deltag" onClick={() => deletetag(2)}>
-                    x
-                  </span>
-                </span>
-              </>
-            )}
-            {tag[3] && (
-              <>
-                {" ,"}
-                <span className="regi_selecttag">
-                  #{tag[3]}
-                  <span className="regi_deltag" onClick={() => deletetag(3)}>
-                    x
-                  </span>
-                </span>
-              </>
-            )}
-            {tag[4] && (
-              <>
-                {" ,"}
-                <span className="regi_selecttag">
-                  #{tag[4]}
-                  <span className="regi_deltag" onClick={() => deletetag(4)}>
-                    x
-                  </span>
-                </span>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="regi_select" style={{ borderBottom: "none" }}>
-        <div>
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
           수량<span style={{ color: "red" }}>*</span>
         </div>
         <div className="regi_price">

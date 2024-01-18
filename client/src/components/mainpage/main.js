@@ -36,12 +36,8 @@ function Main(){
         <Link to="/mypage"><h2 className='KJH_testpage'>마이페이지</h2></Link>
       </div>
       
-<<<<<<< HEAD
       
       {Products.length > 0 && Products.map((item, index) => (
-=======
-      {product.length > 0 && product.map((item, index) => (
->>>>>>> 162b0da141ffea85b6c648da367ce7b59b2b61dc
         <div key={index}>
           <Link to={`/detail/${Products[index]._id}`}>
             <div className='KJH_mainpage_list'>

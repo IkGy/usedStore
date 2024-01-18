@@ -34,6 +34,7 @@ new MongoClient(url)
     console.log(err);
   });
 
+  
 app.use('/', productRouter);
 // app.use('/', userRouter);
 
