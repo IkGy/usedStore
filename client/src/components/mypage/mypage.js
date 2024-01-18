@@ -12,7 +12,7 @@ import { getCookie } from "../../useCookies";
 
 function Mypage() {
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("구매 목록");
+  const [menu, setMenu] = useState("찜 목록");
   const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {
@@ -39,6 +39,8 @@ function Mypage() {
     return setEnd("");
   }, [menu]);
 
+  
+
   let [userInfo, setUSerInfo] = useState({
     // nickName: "??",
     // userName: "KDT",
@@ -50,21 +52,20 @@ function Mypage() {
     <div>
       <div className='JSW_container'>
         <div className="JSW_mypage_title">
-          {/* 마이페이지 */}
+          마이페이지
         </div>
         <div className="JSW_Main">
           <div className='JSW_Sec1'>
             <div className="JSW_menubar">
               <nav className="JSW_nav1">
                       <span id="JSW_Mypage_tag">
-                        마이 페이지
                       </span>
                     <ul>
                       <li>
                         <a
                           href="#"
-                          className={menu === "구매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 목록")}
+                          className={menu === "구매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 내역")}
                         >
                           구매 내역
                         </a>
@@ -72,8 +73,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "판매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 목록")}
+                          className={menu === "판매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 내역")}
                         >
                           판매 내역
                         </a>
@@ -84,7 +85,7 @@ function Mypage() {
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
-                          등록된 상품
+                          등록된 상품 
                         </a>
                       </li>
                       <li>
@@ -106,20 +107,20 @@ function Mypage() {
                 <img src={EK}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
-                내 정보
+                <div className="JSW_myname">내 정보 </div>
                 <div className="JSW_userinfo"  style={{ fontSize: '100%' }}> 
                       <div
                       key={data.id}
                       >
-                        <div className="JSW_username">이름 : {data.real_name}</div>
-                        <div className="JSW_usernum">전화번호 : {data.phone_number}</div>
-                        <div className="JSW_userage">이메일 : {data.email}</div>
-                        <div className="JSW_userarea">주소지 : {data.address}</div>
+                        <div className="JSW_userlist">이름 : {data.real_name}</div>
+                        <div className="JSW_userlist">전화번호 : {data.phone_number}</div>
+                        <div className="JSW_userlist">이메일 : {data.email}</div>
+                        <div className="JSW_userlist">주소지 : {data.address}</div>
                       </div>
                 </div>
-                <label className="JSW_Cristal">
+                {/* <label className="JSW_Cristal">
                   프로필 수정
-                </label>
+                </label> */}
               </div>
             </div>
             <div className="JSW_Sec2-2">

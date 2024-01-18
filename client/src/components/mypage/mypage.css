@@ -1,8 +1,28 @@
-/* 
-.img {
+
+.JSW_container {
+  font-family: 'seolleimcool-SemiBold';
+}
+
+.active{
+  color: #03C75A;
+}
+.noactive{
+  color: black
+}
+
+
+.JSW_mypage_title {
+  padding: 2vw 1.5vw;
+  font-size: 3vw;
+  font-weight: 900;
+  color: white;
+  
+
   width: 100%;
-  height: 100%;
-} */
+  height: 8vw;
+  background-color: #03C75A;
+  margin-bottom: 2%;
+}
 
 .JSW_Main {
   max-width: 100%;
@@ -11,6 +31,7 @@
   display: grid;
   grid-template-columns: 1fr 5fr;
   
+  padding-bottom: 5%;
 
   /* border: 1px solid #000; */
 }
@@ -24,14 +45,8 @@
 
   width: 90%;
   height: 90%;
-  /* border: 1px solid #000; */
-  box-shadow: 0px 0px 5px 1px;
-  background-color: #CCF4DC;
-  border-radius: 25px;
 
-  padding-left: 15px;
-
-  
+  border-right: 0.15vw solid #000;
 }
 
 #JSW_Mypage_tag {
@@ -51,14 +66,16 @@
 }
 
 .JSW_nav1 > ul > li {
-  padding-top: 10%;
+  padding-top: 20%;
   list-style: none;
+
+  font-size: 1vw;
+  font-weight: 700;
   
 }
 
 .JSW_nav1 > ul > li > a {
   text-decoration: none;
-  color: black;
   font-size: 100%;
 }
 
@@ -66,7 +83,6 @@
 
 .JSW_Sec2 {
   height: 70vh;
-  border: 1px solid #000;
 }
 
 .JSW_Sec2-1 {
@@ -76,7 +92,12 @@
   display: grid;
   grid-template-columns: 1.5fr 3fr;
 
-  border-bottom: 1px solid #000;
+
+  padding-bottom: 1%;
+  box-shadow: 0 1px 0 0;
+
+
+  /* border-bottom: 1px solid #000; */
 }
 
 .JSW_Sec2-1_left {
@@ -93,6 +114,11 @@
   object-fit: contain;
 }
 
+.JSW_myname {
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
 
 
 .JSW_Sec2-1_Right {
@@ -104,12 +130,13 @@
 
 .JSW_userinfo {
   position: absolute;
-  left: 10px;
-  top: 30px;
 
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  margin-top: 3%;
+  box-shadow: 0 0 2px 1px;
+  padding: 1%;
+
 }
+
 
 .JSW_Cristal {  
   padding: 2%;
@@ -132,6 +159,7 @@
   
 
 .JSW_Sec2-2 {
+  margin-top: 1%;
   width: 100%;
   height: 40vh;
   overflow-y: scroll;
@@ -146,6 +174,12 @@
 
 .JSW_Sec2-2_Right {
   border: 1px solid #000;
+}
+
+.JSW_userlist {
+  padding-top: 2%;
+  font-size: 1vw;
+  font-weight: 500;
 }
 
 
@@ -184,12 +218,13 @@
 
 .JSW_nav1 > ul {
   position: absolute;
-  left: -30px;
+  left: -35px;
 }
 
 .JSW_nav1 > ul > li {
   padding-top: 10%;
   list-style: none;
+  font-size: 1.5vw;
   
 }
 
@@ -199,15 +234,20 @@
   font-size: 100%;
 }
 
+.JSW_userlist {
+  font-size: 1.2vw;
+}
 
-  .JSW_menubar {
-    font-size: 80%; /* 원하는 크기로 조절하세요 */
-  }
+
+  /* .JSW_menubar {
+    font-size: 2vw; 
+  } */
 
 
 .JSW_Sec2 {
   height: 70vh;
   border: 1px solid #000;
+  overflow: hidden;
 }
 
 .JSW_Sec2-1 {
@@ -300,11 +340,62 @@
  
   .JSW_menubar {
     font-size: 70%;
-    padding-left: 0px;
+    padding-left: 17%;
+    border-radius: 5px;
+
+    width: 100%;
+    
+
   }
   
   .JSW_Sec2-1_Right {
     font-size: 70%;
   }
 
+  
+.JSW_userinfo {
+  position: absolute;
+
+  margin-top: 3%;
+  box-shadow: 0 0 2px 1px;
+  padding: 1%;
+
+}
+
+.JSW_myname {
+  font-size: 3vw;
+}
+
+.JSW_userlist {
+  padding-top: 2%;
+  font-size: 2.5vw;
+  font-weight: 500;
+}
+
+.JSW_nav1 {
+  padding-right: 0%;
+  text-align: center;
+}
+
+.JSW_nav1 > ul {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.JSW_nav1 > ul > li {
+  padding-left: 10px;
+  padding-top: 15%;
+  font-size: 2.5vw;
+}
+
+.JSW_nav1 > ul > li > a {
+  text-decoration: none;
+  color: black;
+}
+
+.JSW_Main {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10fr;
+}
 }

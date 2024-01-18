@@ -29,7 +29,7 @@ function Registered() {
 
   return(
     <div className="JSW_picklist">
-       등록된 상품
+      <div className="JSW_picklistname">등록된 상품</div>
       <div className="JSW_conentGridBox">
         {data.map((a, i)=> {
           return(
