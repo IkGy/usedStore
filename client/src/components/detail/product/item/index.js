@@ -21,17 +21,6 @@ import Car2 from './images/car2.png';
 import Car3 from './images/car3.png';
 
 
-// 가격 형식화
-function formatPrices(data) {
-    const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', currencyDisplay: 'code' });
-
-    return {
-        ...data, // 기존 데이터를 그대로 유지
-        price: formatter.format(data.price).replace('KRW', ''), // 가격 형식화
-        delivery_price: formatter.format(data.delivery_price).replace('KRW', '') // 배송비 형식화
-    };
-}
-
 // 시간 계산
 function formatTimeAgo(createdDate) {
     const created = new Date(createdDate);
@@ -72,18 +61,12 @@ function Item(props) {
         }
     };
 
-    // console.log(props.info)
     const Info = props.info
+    console.log(Info);
     const Like = props.heart
     
     // 생성 날짜 형식화
     const formattedCreatedAt = formatTimeAgo(Info.created_at);
-
-    // console.log(Info);
-    // console.log(Like);
-
-    // 가격 형식화 적용
-    const formattedInfo = formatPrices(Info);
 
     // 슬라이더의 위치를 저장하는 state
     const [slidePosition, setSlidePosition] = useState('');
@@ -99,7 +82,7 @@ function Item(props) {
         } 
         // 첫 번째 슬라이드에서 이전 버튼 클릭
         else if (newPosition > -slideWidth) {
-            setSlidePosition(-(totalSlides - 2) * slideWidth); // 마지막 실제 슬라이드로 이동
+            setSlidePosition(-(totalSlides - 1) * slideWidth); // 마지막 실제 슬라이드로 이동
         } 
         else {
             setSlidePosition(newPosition);
@@ -113,15 +96,15 @@ function Item(props) {
                 <div style={{ overflow: 'hidden' }} className='KJH_item-image_section'>
                     <div className='KJH_item_slide-container' style={{ transform: `translateX(${slidePosition}px)` }}>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={Car3} alt='car3'/>
+                            <img src={Info?.images?.[2]} alt='car3'/>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={Car1} alt='car1'/>
+                            <img src={Info?.images?.[0]} alt='car1'/>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={Car2} alt='car2'/>
+                            <img src={Info?.images?.[1]} alt='car2'/>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={Car3} alt='car3'/>
+                            <img src={Info?.images?.[2]} alt='car3'/>
                         <div className='KJH_item_slide-box'></div>
-                            <img src={Car1} alt='car1'/>
+                            <img src={Info?.images?.[0]} alt='car1'/>
                     </div>
                     <div className='KJH_item_slide_arrow_section'>
                         <button className='KJH_item_slide_left' onClick={() => handleSlideChange(slidePosition + 430)}>
@@ -133,9 +116,9 @@ function Item(props) {
                     </div>
                     
                     <div className='KJH_item_slide_images_section'>
-                        <img src={Car1} alt='car1'/>
-                        <img src={Car2} alt='car2'/>
-                        <img src={Car3} alt='car3'/>
+                        <img src={Info?.images?.[0]} alt='car1'/>
+                        <img src={Info?.images?.[1]} alt='car2'/>
+                        <img src={Info?.images?.[2]} alt='car3'/>
                     </div>
                 </div>
                 
