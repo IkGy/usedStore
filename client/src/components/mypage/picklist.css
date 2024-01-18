@@ -41,7 +41,6 @@
 
   z-index: 3;
   
-  
 }
 
 .JSW_liststart:hover {
@@ -83,8 +82,23 @@
   }
 
   .JSW_conentGridBox {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 2fr);
     
+    
+  }
+
+
+  .JSW_liststart {
+    width: 15vw;
+  }
+  
+  .JSW_contentGridBox_img {
+    height: 12vw;
+
+  }
+
+  .JSW_picklistname {
+    font-size: 2vw;
   }
 
 }
@@ -101,8 +115,24 @@
   }
 
   .JSW_conentGridBox {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 2fr);
+    z-index: 5;
     
   }
+
+  .JSW_picklistname {
+    font-size: 3vw;
+  }
+  
+  .JSW_contentGridBox_img {
+    /* z-index: 2; */
+    height: 25vw;
+  }
+  
+  .JSW_liststart{
+    z-index: 2;
+    margin-left: 10%;
+  }
+
 
 }

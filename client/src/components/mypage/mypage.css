@@ -43,9 +43,6 @@
   height: 90%;
 
   border-right: 0.15vw solid #000;
-
-
-  
 }
 
 #JSW_Mypage_tag {
@@ -218,12 +215,13 @@
 
 .JSW_nav1 > ul {
   position: absolute;
-  left: -30px;
+  left: -35px;
 }
 
 .JSW_nav1 > ul > li {
   padding-top: 10%;
   list-style: none;
+  font-size: 1.5vw;
   
 }
 
@@ -233,10 +231,14 @@
   font-size: 100%;
 }
 
+.JSW_userlist {
+  font-size: 1.2vw;
+}
 
-  .JSW_menubar {
-    font-size: 80%; /* 원하는 크기로 조절하세요 */
-  }
+
+  /* .JSW_menubar {
+    font-size: 2vw; 
+  } */
 
 
 .JSW_Sec2 {
@@ -334,11 +336,64 @@
  
   .JSW_menubar {
     font-size: 70%;
-    padding-left: 0px;
+    padding-left: 17%;
+    border-radius: 5px;
+
+    width: 100%;
+    
+
   }
   
   .JSW_Sec2-1_Right {
     font-size: 70%;
   }
+
+  
+.JSW_userinfo {
+  position: absolute;
+
+  margin-top: 3%;
+  box-shadow: 0 0 2px 1px;
+  padding: 1%;
+
+}
+
+.JSW_myname {
+  font-size: 3vw;
+}
+
+.JSW_userlist {
+  padding-top: 2%;
+  font-size: 2.5vw;
+  font-weight: 500;
+}
+
+.JSW_nav1 {
+  padding-right: 0%;
+  text-align: center;
+}
+
+.JSW_nav1 > ul {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.JSW_nav1 > ul > li {
+  padding-left: 10px;
+  padding-top: 15%;
+  font-size: 2.5vw;
+}
+
+.JSW_nav1 > ul > li > a {
+  text-decoration: none;
+  color: black;
+}
+
+.JSW_Main {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10fr;
+}
+
 
 }
