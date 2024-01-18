@@ -12,8 +12,20 @@ import { API_URL } from "../config/contansts";
 
 
 function Header() {
-  const [userInfo, setUserInfo] = useState();
+  const [search, setSearch] = useState("")
   const navigate = useNavigate();
+
+  const navi = (e) => {
+    e.preventDefault();
+    setSearch("")
+    navigate(`/main/${search}`)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      navi(e);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -85,8 +97,11 @@ function Header() {
           <input
             className="searchBar_input"
             placeholder="상품명, 지역명, @상점명 입력"
+            value={search}
+            onChange={(e)=>setSearch(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
-          <FaSearch className="main_searchIcon" />
+          <FaSearch className="main_searchIcon" onClick={navi}/>
         </div>
         <div className="main_login">
           {getCookie("login") ? (
