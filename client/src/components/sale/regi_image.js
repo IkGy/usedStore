@@ -28,7 +28,7 @@ function RegiImage(props) {
     <div className="regi_select">
       <div>
         <div className="regi_title">
-          상품 이미지<span>({props.imageFile.length}/3)</span>
+          <div>상품 이미지</div><span>({props.imageFile.length}/3)</span>
           {props.imageFile.length !== 0 ? (
             <i
               style={{ color: "green", paddingLeft: "0.5vw" }}
@@ -68,7 +68,6 @@ function RegiImage(props) {
                   src={URL.createObjectURL(file)}
                   alt={`Preview-${index}`}
                   className="preview-image"
-                  onClick={() => handleImageClick(index)}
                 />
                 <img
                   id="regi_delete-button"
