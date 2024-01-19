@@ -20,4 +20,4 @@ const chatingSchema = new Schema({
   }
 });
 
-module.exports = mongoose.module('Chating', chatingSchema);
+module.exports = mongoose.module('chating', chatingSchema);

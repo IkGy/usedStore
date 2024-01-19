@@ -36,8 +36,8 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.use('/', productRouter);
-app.use('/', userRouter);
+app.use('/product', productRouter);
+app.use('/user', userRouter);
 
 const s3 = new S3Client({
   region : 'ap-northeast-2',

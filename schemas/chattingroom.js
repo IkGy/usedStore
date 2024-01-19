@@ -31,4 +31,4 @@ const chatingroomSchema = new Schema({
   }
 });
 
-module.exports = mongoose.module('Chatingroom', chatingroomSchema);
+module.exports = mongoose.module('chattingroom', chatingroomSchema);
