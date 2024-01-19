@@ -1,76 +1,51 @@
 /*** 전체 설정 ***/
 
 .KJH_item_section {
+    position: relative;
     display: flex;
-    padding: 20px 0px;
+    padding: 2vw 0;
     border-bottom: 2px solid #666666;
 }
 
 /*** 이미지 관련 ***/
 
-.KJH_item-image_section {
+.sliderContainer {
     position: relative;
-    min-width: 430px;
-    height: 370px;
-}
-
-.KJH_item_slide_arrow_section > button {
-    background-color: transparent;
-    border: transparent;
-}
-
-.KJH_item_slide_arrow_section > button > svg {
-    width: 2.5em;
-    height: 2.5em;
-    background-color: transparent;
-    color: #c8c8c8;
-}
-
-.KJH_item_slide-container {
-    position: relative;
-    display: flex;
-    transition: all 0.8s;
-    transform: translateX(-430px);
-    float: left;
-    width: 430px;
-}
-
-.KJH_item_slide-container > img {
-    width: 100%;
-    height: 280px;
-}
-
-.KJH_item_slide_left, .KJH_item_slide_right {
-    position: absolute;
-    top: 140px;
-    cursor: pointer;
-}
-
-.KJH_item_slide_left {
-    left: 10px;
-}
-
-.KJH_item_slide_right{
-    right: 10px;
-}
-
-.KJH_item_slide_images_section {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.KJH_item_slide_images_section > img {
+    width: 25vw;
+    height: 42vh;
+    border: 1px solid black;
     border-radius: 5px;
-    width: 31%;
-    height: auto;
-    opacity: 0.7;
-    margin-right: 10px;
+    padding: 20px;
 }
 
-.KJH_item_slide_images_section > img:last-child {
-    margin-right: 0;
+.KJH_item_plus-image {
+    position: absolute;
+    bottom: 50px;
+    right: 25px;    
+}
+
+.KJH_item_plus-image > svg {
+    cursor: pointer;
+    width: 1.7vw;
+    height: 1.7vw;
+    border-radius: 5px;
+    background-color: #b8b8b8;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+
+.KJH_item_plus-image > svg:hover {
+    background-color: #444444;
+}
+
+
+
+.sliderImg > img {
+    width: 100%;
+    padding-bottom: 10px;
+    height: 35vh;
+    border-bottom: 1px solid #999999;
 }
 
 /*** 상품정보 ***/
