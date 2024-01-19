@@ -2,6 +2,9 @@ import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+
+import soldout from "./image/soldout.png";
+
 function Soldlist() {
 
   const [data, setData] = useState([])
@@ -44,9 +47,12 @@ function Soldlist() {
           return(
             <div className="JSW_liststart"
             key={data.id}>
-              <div className="JSW_contentGridBox_img">
+              <div className="JSW_contentGridBox_img" id='JSW_soldimg'>
                 <img src={data.images} width="100%"></img>
               </div>
+              {/* <div>
+                <img src={soldout} className="JSW_soldoutimg"></img>
+              </div> */}
               <div className="JSW_Aname">{data.title}</div>
               <div className="JSW_Aname">{data.comment}</div>
               <div className="JSW_Aname">{data.price}</div>

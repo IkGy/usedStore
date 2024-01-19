@@ -246,12 +246,14 @@ app.get("/like/picklist", async (요청, 응답) => {
     await db.collection('product').findOne({_id:new ObjectId(result[i].product_id)})
     .then((res)=>{
       console.log('res',res);
+      prodData.push(res);
     })
     .catch((err)=>{
       console.log(err);
       res.static(501).end();
     })
   }
+  console.log("prodData:",prodData);
   응답.send(prodData);
 })
 
