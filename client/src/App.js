@@ -17,6 +17,7 @@ import Rro from './components/guide/pro';
 import Searchpage from './components/searchpage/searchpage';
 import Test from './components/test';
 import Test2 from './components/test2';
+import Categorysc from './components/searchpage/categotysc';
 
 function App() {
   return (
@@ -37,7 +38,10 @@ function App() {
           <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
+          
           <Route path='/main/:search' element={<Searchpage />}></Route>
+          <Route path='/detailsearch/:category' element={<Categorysc />}></Route>
+          
         </Routes>
         <Footer />
       </div>

@@ -193,27 +193,25 @@
 }
 
 .regi_price {
-  border: 0.1vw solid rgba(0, 0, 0, 0.264);
-  width: 19vw;
-  padding: 0.5vw;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 30%;
 }
 
 .regi_price input {
-  border: none;
+  display: block;
   font-size: 1.2vw;
+  padding: 0.5vw;
+  width: 100%;
+  border:0.1vw solid rgba(0, 0, 0, 0.264)
 }
 
 .regi_price span {
+  position: absolute;
   font-size: 1.2vw;
   color: gray;
-}
-
-.regi_price input:focus {
-  outline: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
 }
 
 .regi_postprice span {
@@ -353,7 +351,7 @@
   .regi_start > span:last-child {
     font-size: 2vw;
     margin-left: 1.5vw;
-}
+  }
 
   .regi_selecttags {
     grid-template-columns: 18% 82%;
@@ -451,17 +449,19 @@
     font-size: 2vw;
   }
 
-  .regi_price input {
-    font-size: 2vw;
+  .regi_price {
+    position: relative;
+    width: 30%;
   }
-
+  
+  .regi_price input {
+    display: block;
+    font-size: 2vw;
+    padding: 1vw;
+  }
+  
   .regi_price span {
     font-size: 2vw;
-  }
-
-  .regi_price {
-    width: 30vw;
-    padding: 1vw;
   }
 
   .regi_postprice span {
@@ -505,5 +505,5 @@
   .regi_register button {
     padding: 1.5vw 1.5vw;
     font-size: 2vw;
-}
+  }
 }

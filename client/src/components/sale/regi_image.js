@@ -3,25 +3,33 @@ import cancel from "./그림1.png";
 
 function RegiImage(props) {
   const handleChange = (e) => {
+    e.preventDefault(); // 기본 이벤트 동작 막기
+  
     const selectedFiles = e.target.files;
-
+    console.log("selectedFiles: ", selectedFiles);
+  
     // 최대 3개까지만 선택하도록 제한
     const filesArray = Array.from(selectedFiles).slice(0, 3);
-
+    console.log("filesArray: ", filesArray);
+  
     // 이전에 선택한 이미지와 새로 선택한 이미지를 합침
     const updatedFiles = [...props.imageFile, ...filesArray];
-
+    console.log("updatedFiles: ", updatedFiles);
+  
     // 최대 3개까지 유지하도록 다시 제한
     const updatedFilesLimited = updatedFiles.slice(0, 3);
-
+    console.log("updatedFilesLimited: ", updatedFilesLimited);
+  
     props.setImageFile(updatedFilesLimited); // 이미지 파일들을 배열로 설정
   };
+  console.log("props.imageFile: ", props.imageFile);
 
   const handleImageClick = (index) => {
     // 이미지 클릭 시 해당 인덱스의 이미지를 삭제
     const updatedFiles = [...props.imageFile];
     updatedFiles.splice(index, 1);
     props.setImageFile(updatedFiles);
+    console.log("props.imageFile: ", props.imageFile);
   };
 
   return (
