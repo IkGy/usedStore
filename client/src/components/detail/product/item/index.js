@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './item.css';
 
 import Slider from "react-slick"; // 슬라이드 라이브러리
+
+import { CiSquarePlus } from "react-icons/ci"; // 이미지 확대
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -79,7 +81,7 @@ function Item(props) {
         slidesToShow: 1,     // 한 화면에 보여질 컨텐츠 개수
         slidesToScroll: 1,   // 스크롤 한번에 움직일 컨텐츠 개수
         lazyLoad: true,
-        arrows: true,       // 옆으로 이동하는 화살표 표시 여부
+        arrows: true,        // 옆으로 이동하는 화살표 표시 여부
         pauseOnHover : true, // 슬라이드 이동시 마우스 호버하면 슬라이더 멈추게 설정
     };
 
@@ -93,60 +95,67 @@ function Item(props) {
 
     return (
         <>
-                <div className='KJH_item_section'>
+            <div className='KJH_item_section'>
 
-                <div className="sliderContainer">
-                    <Slider {...sliderSettings}>
-                        {sliderImage}
-                    </Slider>
+            
+            <div className="sliderContainer">
+                <Slider {...sliderSettings}>
+                    {sliderImage}
+                </Slider>
+                <div className='KJH_item_plus-image'>
+                    <CiSquarePlus />
                 </div>
+            </div>
 
+            <div className='KJH_item_blur-background'>
+                
+            </div>
 
-                {/* 상품 정보 */}
-                <div className='KJH_item_info_section'>
-                    <div className='KJH_item_info'>
-                        <div className='KJH_item_info_top'>
-                            <div className='KJH_item_title_section'>
-                                <div className='KJH_item_title_name'>
-                                    {/* 상품 이름 */}
-                                    {Info.title}
-                                </div>
-                                <div className='KJH_item_title_price_section'>
-                                    <div className='KJH_item_title_price_info'>
-                                        {/* 상품 가격 */}
-                                        {Info?.price}<span>원</span>
-                                    </div>
+            {/* 상품 정보 */}
+            <div className='KJH_item_info_section'>
+                <div className='KJH_item_info'>
+                    <div className='KJH_item_info_top'>
+                        <div className='KJH_item_title_section'>
+                            <div className='KJH_item_title_name'>
+                                {/* 상품 이름 */}
+                                {Info.title}
+                            </div>
+                            <div className='KJH_item_title_price_section'>
+                                <div className='KJH_item_title_price_info'>
+                                    {/* 상품 가격 */}
+                                    {Info?.price}<span>원</span>
                                 </div>
                             </div>
-                            <div className='KJH_item_info_detail_section'>
-                                <div className='KJH_item_info_detail_info'>
-                                    <div className='KJH_item_info_detail_status'>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <GoHeartFill />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 찜 데이터 */}
-                                            {Like.length}
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <IoIosEye />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 조회수 데이터 */}
-                                            447
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <FaClock />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 시간 데이터 */}
-                                            {formattedCreatedAt}전
-                                        </div>
+                        </div>
+                        <div className='KJH_item_info_detail_section'>
+                            <div className='KJH_item_info_detail_info'>
+                                <div className='KJH_item_info_detail_status'>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <GoHeartFill />
                                     </div>
-                                    <button className='KJH_item_info_report'>
-                                        <MdReport />
-                                        <div className='KJH_item_info_report_text'>신고하기</div>
-                                    </button>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 찜 데이터 */}
+                                        {Like.length}
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <IoIosEye />
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 조회수 데이터 */}
+                                        447
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <FaClock />
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 시간 데이터 */}
+                                        {formattedCreatedAt}전
+                                    </div>
+                                </div>
+                                <button className='KJH_item_info_report'>
+                                    <MdReport />
+                                    <div className='KJH_item_info_report_text'>신고하기</div>
+                                </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>
                                     <div className='KJH_item_info_status_info'>

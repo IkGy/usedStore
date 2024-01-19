@@ -28,6 +28,7 @@ const upload = multer({
   }),
 });
 
+const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
@@ -55,7 +56,7 @@ new MongoClient(url)
     console.log(err);
   });
 
-
+app.use('/naver', naverRouter);
 app.use('/jwt', jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
