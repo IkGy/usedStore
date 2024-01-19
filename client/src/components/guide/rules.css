@@ -1,0 +1,78 @@
+.ymj_rules_all{
+  margin: 0 auto;
+  width: 100%; 
+  padding-top: 15px
+  
+}
+
+.ymj_guide_link {
+  display: flex;
+  text-align: center;
+}
+
+.ymj_guide_link1 {
+  background-color: rgb(80, 231, 186) ;
+}
+
+.ymj_guide_link :hover {
+  background-color: rgb(17, 180, 131)
+  
+}
+
+.ymj_guide_link > div {
+ 
+  width: 200px;
+  font-size: 24pt;
+  
+}
+
+.ymj_rules_entire > h2 {
+  text-align: left;
+  font-size: 24pt;
+  padding-top: 5px
+}
+
+.ymj_rules_number{
+  padding-left: 25px;
+}
+
+.ymj_rules_Chapter > h3{
+  font-size: 18pt;
+  padding-top: 15px;
+}
+
+.ymj_rules_number > li {
+  font-size: 12pt;
+  font-weight: 700;
+  list-style-type: disc;
+  padding-top: 15px;
+}
+
+.ymj_rules_number > div > li{
+  list-style-type: decimal;
+  margin-right: 5em;
+  padding-top: 15px;
+}
+
+
+.ymj_rules_li {
+  padding-left: 40px;
+  padding-top: 15px;
+}
+.ymj_rules_li2 > li{
+  list-style-type: decimal;
+  padding-left: 25px;
+  padding-top: 15px;
+}
+.ymj_rules_li3 > li{
+  padding-left: 50px;
+  list-style-type: "\1F44D";
+  padding-top: 15px;
+}
+
+
+.ymj_rules_end{
+  padding-top: 30px;
+  padding-left: 50px;
+  color: gray;
+}

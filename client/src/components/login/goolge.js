@@ -8,8 +8,8 @@ const GoogleLoginButton = () => {
     const navigate = useNavigate();
 
     const decodeToken = async (token) => {
-      const res = await axios.post(`${API_URL}/jwt`, {token});
-      console.log("사용자 정보: ", res.data);
+    const res = await axios.post(`${API_URL}/jwt`, {token});
+        console.log("사용자 정보: ", res.data);
     }
 
     return (
@@ -21,7 +21,7 @@ const GoogleLoginButton = () => {
                         console.log(res,"구글로그인 성공");
                         decodeToken(res.credential);
                         navigate("/");
-                      }
+                        }
                     }
                     onFailure={(err) => {
                         console.log(err, "구글 로그인 실패");

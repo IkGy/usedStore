@@ -16,9 +16,10 @@ a:active {
   color: inherit;
 }
 
-a:visited {
+
+/* a:visited {
   color: inherit;
-}
+} */
 
 a {
   text-decoration: none;

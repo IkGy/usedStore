@@ -23,7 +23,8 @@
 
 .main_prod_title {
   font-size: 1.3vw;
-  
+  font-family: 'JalnanGothic';
+  padding-bottom: 0.5vw;
 }
 
 .main_prod_price {
@@ -42,4 +43,40 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+  .main_prod_img {
+    height: 23vw;
+  }
+
+  .main_prod_grid {
+    grid-template-columns: repeat(3, 1fr);
+  column-gap: 2vw;
+  row-gap: 2.5vw;
+  }
+
+  .main_prod_info {
+    padding: 1vw;
+    max-width: 27vw;
+  }
+
+  .main_prod_info p:first-child {
+    width: 27vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .main_prod_title {
+    font-size: 2vw;
+    font-family: 'JalnanGothic';
+    padding-bottom: 1vw;
+  }
+  
+  .main_prod_price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2vw;
+  }
 }
