@@ -1,43 +1,82 @@
-.main_prod_grid{
+.main_prod_grid {
   /* border: 1px solid; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5vw;
+  gap: 0.7vw;
   justify-content: center;
 }
 
-.main_prod_detail{
-  margin: 0 auto;
-  
-  border: 1px solid darkgrey;
+.main_prod_detail {
+  border: 0.1vw solid rgba(169, 169, 169, 0.241);
   display: flex;
   flex-direction: column;
-  align-items: center;
-
 }
 
-.main_prod_img{
-  text-align: center;
+.main_prod_img {
+  height: 14vw;
 }
 
-.main_prod_image{
-  width: 9vw;
+.main_prod_img img {
+  height: 100%;
+  width: 100%;
 }
 
-.main_prod_info{
-
-}
-
-.main_prod_title{
-  width: 8vw;
+.main_prod_title {
   font-size: 1.3vw;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  font-family: 'JalnanGothic';
+  padding-bottom: 0.5vw;
 }
 
-.main_prod_price{
+.main_prod_price {
   display: flex;
   justify-content: space-between;
   font-size: 0.9vw;
+}
+
+.main_prod_info {
+  padding: 1vw;
+  max-width: 14vw;
+}
+
+.main_prod_info p:first-child {
+  width: 13vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+  .main_prod_img {
+    height: 23vw;
+  }
+
+  .main_prod_grid {
+    grid-template-columns: repeat(3, 1fr);
+  column-gap: 2vw;
+  row-gap: 2.5vw;
+  }
+
+  .main_prod_info {
+    padding: 1vw;
+    max-width: 27vw;
+  }
+
+  .main_prod_info p:first-child {
+    width: 27vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .main_prod_title {
+    font-size: 2vw;
+    font-family: 'JalnanGothic';
+    padding-bottom: 1vw;
+  }
+  
+  .main_prod_price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2vw;
+  }
 }

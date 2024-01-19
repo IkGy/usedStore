@@ -11,12 +11,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { API_URL } from '../config/contansts';
+import GoogleLoginButton from "../login/goolge";
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   const  navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
+  const [kakaoAccount, setKakaoAccount] = useState(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -29,7 +31,38 @@ export default function SignUp() {
     };
   }, []);
 
-  const [kakaoAccount, setKakaoAccount] = useState(null);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
+    };
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  function KakaoLogin() {
+    window.Kakao.Auth.login({
+      scope:'profile_nickname',
+      success: function(authObj) {
+        console.log(authObj);
+        window.Kakao.API.request({
+          url:'/v2/user/me',
+          success: res => {
+            const kakao_account = res.kakao_account;
+            console.log(kakao_account);
+            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
+          }
+        })
+      }
+    });
+  };
+
 
   useEffect(() => {
     const storedKakaoAccount = localStorage.getItem('kakao_account');
@@ -59,7 +92,7 @@ export default function SignUp() {
     }; 
     console.log(data);
 
-    await axios.post(`${API_URL}/register`, data)
+    await axios.post(`${API_URL}/user/register`, data)
     .then((result) => {
       console.log('result.data: ', result.data);
       navigate("/login");
@@ -92,20 +125,63 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Typography component="h1" variant="h5" sx={{ mt:5 }}>
-            벙개장터에 오신 여러분 환영합니다.
+          <Typography component="h1" variant="h5" sx={{ mt: 5 }}>
+            리셀마켓에 오신 여러분 환영합니다!
           </Typography>
+          <Typography component="h1" variant="h6" sx={{ mt: 2 }}>
+            연결할 플랫폼을 선택해주세요.
+          </Typography>
+          <Typography component="h1" variant="h6" sx={{ mb: 2 }}>
+            반드시 하나를 선택하셔야 합니다.
+          </Typography>
+          <Button>
+            <GoogleLoginButton
+              fullWidth
+              sx={{ 
+                mb: 2,
+                backgroundColor: "#A9E2F3",
+                color: "black",
+              }}
+            >
+              구글 계정으로 로그인
+            </GoogleLoginButton>
+          </Button>
+          <Button
+            onClick={KakaoLogin}
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "yellow",
+              color: "black",
+            }}
+          >
+            카카오톡 계정으로 로그인
+          </Button>
+          <Button
+            fullWidth
+            sx={{ 
+              mb: 2,
+              backgroundColor: "#40FF00",
+              color: "black",
+            }}
+          >
+            네이버 계정으로 로그인
+          </Button>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   name="id"
-                  required
+                  required // 반드시 작성
                   fullWidth
                   id="id"
-                  label="(카카오 로그인시 아이디를 불러올 수 있습니다) 아이디"
+                  label="(카카오톡 계정으로 회원가입한 아이디"
                   autoFocus
-                  value={kakaoAccount && kakaoAccount.nickname ? kakaoAccount.nickname : ''}
+                  value={kakaoAccount ? kakaoAccount.nickname : ''}
+                  // 만약 kakaoAccount가 없다면 (로컬 스토리지에 값이 없다면) onChange를 사용하여 수정 가능하게 함
+                  onChange={(e) => setKakaoAccount((prev) => ({ ...prev, nickname: e.target.value }))}
+                  // 만약 kakaoAccount가 있다면 (로컬 스토리지에 값이 있다면) 입력란을 읽기 전용으로 설정
+                  InputProps={{ readOnly: !kakaoAccount }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -171,7 +247,7 @@ export default function SignUp() {
             >
               가입하기
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-end" sx={{mb: 20}}>
               <Grid item>
                 <Link href="/login" variant="body2">
                   계정이 이미 있나요?  로그인

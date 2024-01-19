@@ -1,32 +1,36 @@
+import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
-
+import { API_URL } from '../config/contansts';
+import axios from 'axios';
 import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
 import "./mypage.css";
-
 import EK from "./image/이크.png"
 
 
 function Mypage() {
-
-  const [data, setData] = useState([
-    {
-      uname: "정선우",
-      unum: "010-9386-4594",
-      uarea: "장안웃길 56 국제대학교",
-      uage: "25",
-
-    },
-  ]);
-
-  const [menu, setMenu] = useState("구매 목록");
+  const [data, setData] = useState({})
+  const [menu, setMenu] = useState("구매 내역");
+  const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
   };
-  const [end, setEnd] = useState("");
+
+  useEffect(() => {
+    axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
+    .then((res) => {
+      console.log("DB 조회 완료");
+      console.log(res.data);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+      console.log("실패");
+    });
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,31 +39,33 @@ function Mypage() {
     return setEnd("");
   }, [menu]);
 
+  
+
   let [userInfo, setUSerInfo] = useState({
     // nickName: "??",
     // userName: "KDT",
     // phoneNumber: "010-1234-5678",
+
   });
 
   return(
     <div>
       <div className='JSW_container'>
         <div className="JSW_mypage_title">
-          {/* 마이페이지 */}
+          마이페이지
         </div>
         <div className="JSW_Main">
           <div className='JSW_Sec1'>
             <div className="JSW_menubar">
               <nav className="JSW_nav1">
+                      <span id="JSW_Mypage_tag">
+                      </span>
                     <ul>
-                      <li>
-                        
-                      </li>
                       <li>
                         <a
                           href="#"
-                          className={menu === "구매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 목록")}
+                          className={menu === "구매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 내역")}
                         >
                           구매 내역
                         </a>
@@ -67,8 +73,8 @@ function Mypage() {
                       <li>
                         <a
                           href="#"
-                          className={menu === "판매 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 목록")}
+                          className={menu === "판매 내역" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 내역")}
                         >
                           판매 내역
                         </a>
@@ -79,7 +85,7 @@ function Mypage() {
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
-                          등록된 상품
+                          등록된 상품 
                         </a>
                       </li>
                       <li>
@@ -101,35 +107,30 @@ function Mypage() {
                 <img src={EK}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
-                내 정보
+                <div className="JSW_myname">내 정보 </div>
                 <div className="JSW_userinfo"  style={{ fontSize: '100%' }}> 
-                  {data.map((a, i)=> {
-                    return(
                       <div
-                      key={a.id}
+                      key={data.id}
                       >
-                        
-                        <div className="JSW_username">이름 : {a.uname}</div>
-                        <div className="JSW_usernum">전화번호 : {a.unum}</div>
-                        <div className="JSW_userage">나이 : {a.uage}세</div>
-                        <div className="JSW_userarea">주소지 : {a.uarea}</div>
+                        <div className="JSW_userlist">이름 : {data.real_name}</div>
+                        <div className="JSW_userlist">전화번호 : {data.phone_number}</div>
+                        <div className="JSW_userlist">이메일 : {data.email}</div>
+                        <div className="JSW_userlist">주소지 : {data.address}</div>
                       </div>
-                    )
-                  })}
                 </div>
-                <label className="JSW_Cristal">
+                {/* <label className="JSW_Cristal">
                   프로필 수정
-                </label>
+                </label> */}
               </div>
             </div>
             <div className="JSW_Sec2-2">
-              {menu === "구매 목록" && (
+              {menu === "구매 내역" && (
                 <div className={"start " + end}>
-                  <Buylist menu={menu} userInfo={userInfo}></Buylist>
+                  <Buylist menu={menu} userInfo={userInfo} data={data}></Buylist>
                 </div>
               )}
 
-              {menu === "판매 목록" && (
+              {menu === "판매 내역" && (
                 <div className={"start " + end}>
                   <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
                 </div>
@@ -137,7 +138,7 @@ function Mypage() {
 
               {menu === "등록된 상품" && (
                 <div className={"start " + end}>
-                  <Registered menu={menu} userInfo={userInfo}></Registered>
+                  <Registered menu={menu} userInfo={userInfo} data={data}></Registered>
                 </div>
               )}
               {menu === "찜 목록" && (

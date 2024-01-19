@@ -4,13 +4,25 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'JalnanGothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *{
   margin: 0;
   box-sizing: border-box;
 }
 
+a{
+  color: black;
+  font-family: 'seolleimcool-SemiBold';
+}
 .total_display{
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -18,4 +30,19 @@
 
 .display_section {
   margin: 0 40px;
+}
+
+@media (max-width: 1024px) {
+  .total_display{
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .total_display{
+    width: 100%;
+  }
+  .display_section {
+    margin: 0 10px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import { API_URL } from '../config/contansts';
 
 import Category from './product/category';
 import Info from './product/info';
@@ -9,35 +9,44 @@ import Item from './product/item';
 
 function Detail() {
     const { id } = useParams();
-
     const [item, setItem] = useState([]);
-    const [like, setLike] = useState([]);
+    const [save, setSave] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
-    
+    const [review, setReview] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [error, setError] = useState(false);  // 에러 상태 추가
 
-    const fectchProduct = async () => {   
+    const fetchProduct = async () => {   
         try {
-            const res = await axios.get(`${API_URL}/detail/${id}`);
-            console.log('조회 완료');
-            setItem(res.data.product);
-            setLike(res.data.likes);
-            setUserInfo(res.data);
-            console.log(item);
-            console.log(like);
-            console.log(userInfo);
+            const res = await axios.get(`${API_URL}/prod/detail/${id}`);
+            if (res.data.product) {
+                setItem(res.data.product);
+                setSave(res.data.likes);
+                setUserInfo(res.data.user);
+                setReview(res.data.review);
+                setProducts(res.data.products);
+            } else {
+                setError(true);  // 유효하지 않은 id에 대한 처리
+            }
         } catch (error) {
-            console.log(error);
+            setError(true);  // 에러 처리
         }
     };
     useEffect(() => {
-        fectchProduct();
-    }, []);
+        fetchProduct();
+    }, [id]);
+
+    // 나중에 주석풀거임
+    // 기능 : 존재하지 않는 상품일시 상품에러 페이지로 이동
+    // if (error) {
+    //     return <Navigate to="/detail/error" />;
+    // }
 
     return (
         <>
             <Category info={item} />
-            <Item info={item} heart={like} />
-            <Info info={item} />
+            <Item info={item} heart={save} />
+            <Info info={item} seller={userInfo} review={review} products={products}/>
         </>
     );
 }

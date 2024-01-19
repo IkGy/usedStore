@@ -1,0 +1,36 @@
+.KJH_mainpage_list {
+    background-color: #acacac;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.KJH_mainpage_list:hover {
+    background-color: #333333;
+    color: white;
+}
+
+.KJH_product_1 {
+    font-size: 32px;
+    padding: 30px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+}
+
+.KJH_product_1:hover {
+    background-color: brown;
+    color: black;
+}
+
+.KJH_testpage {
+    display: inline-block;
+    background-color: #303030;
+    padding: 5px 10px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.KJH_testpage:hover {
+    background-color: #999999;
+    color: black;
+}

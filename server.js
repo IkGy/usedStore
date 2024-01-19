@@ -1,24 +1,43 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { MongoClient } = require('mongodb');
-const { setDB } = require('./db');
+const { MongoClient, ObjectId } = require("mongodb");
+const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
+require("dotenv").config();
 
-const { S3Client } = require('@aws-sdk/client-s3')
-const multer = require('multer')
-const multerS3 = require('multer-s3')
+const { S3Client } = require("@aws-sdk/client-s3");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const s3 = new S3Client({
+  region: "ap-northeast-2",
+  credentials: {
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+  },
+});
 
-const productRouter = require('./routes/product');
-const userRouter = require('./routes/user');
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "popol5",
+    key: function (요청, file, cb) {
+      const ext = path.extname(file.originalname);
+      cb(null, Date.now().toString() + ext);
+    },
+  }),
+});
+
+const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
+const jwtRouter = require("./routes/jwtRouter");
+
 
 app.use(express.json());
 
 var cors = require("cors");
+const { log } = require('console');
 app.use(cors());
-
-require("dotenv").config();
-
 let db;
 const url = process.env.DB_URL;
 
@@ -28,52 +47,35 @@ new MongoClient(url)
     const db = client.db("popol5");
     setDB(db);
     console.log("DB연결성공");
-    app.listen(process.env.PORT, function() {
-      console.log(`서버주소 : ${process.env.PORT}`);
+    app.listen(process.env.PORT, function () {
+      console.log(`연결포트 : ${process.env.PORT}`);
     });
   })
   .catch((err) => {
     console.log(err);
   });
 
-app.use('/product', productRouter);
-app.use('/user', userRouter);
 
-const s3 = new S3Client({
-  region : 'ap-northeast-2',
-  credentials : {
-      accessKeyId : 'AKIAZEIXXJWXC7GFDDLA',
-      secretAccessKey : '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'
-  }
-})
-
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: 'devhunforum1',
-    key: function (요청, file, cb) {
-      cb(null, Date.now().toString()) //업로드시 파일명 변경가능
-    }
-  })
-})
+app.use('/jwt', jwtRouter);
+app.use("/prod", productRouter);
+app.use("/user", userRouter);
 
 // app.post('/product/new', upload.single('image'), (요청, 응답) => {
 //   console.log(요청.file)
-// }) 
+// })
 
 app.use(express.static(path.join(__dirname, "client/build")));
-
 
 // app.get('/', async (req,res) => {
 //   let result = await db.collection("product").find().toArray()
 //   console.log(result);
-//   res.status(201).send(result) 
+//   res.status(201).send(result)
 // })
 
 // app.get('/header', async (req,res) => {
 //   let result = await db.collection("product").find().toArray()
 //   console.log(result);
-//   res.status(201).send(result) 
+//   res.status(201).send(result)
 // })
 
 app.get("/", function (요청, 응답) {
@@ -83,7 +85,7 @@ app.get("/", function (요청, 응답) {
 // app.post("/login", async (req, res) => {
 //   const { email, password } = req.body;
 //   console.log(req.body);
-  
+
 //   const Findemail = await db.collection("user").findOne({
 //     email: req.body.email
 //   });
@@ -118,6 +120,140 @@ app.get("/", function (요청, 응답) {
 //   }
 // );
 
+app.post("/product", upload.array("img", 3), async (req, res) => {
+  const tag = JSON.parse(req.body.tag);
+  const category = JSON.parse(req.body.category);
+  const db = getDB();
+
+  console.log(req.body);
+  console.log("img", req.files);
+
+  const images = req.files.map((file) => file.location);
+  await db.collection("product").insertOne({
+    seller: req.body.seller,
+    buyer: "",
+    category: category,
+    title: req.body.title,
+    comment: req.body.content,
+    product_status: req.body.status,
+    refund: req.body.change,
+    price: req.body.price,
+    location: req.body.selectedAddress,
+    tags: tag,
+    count: req.body.count,
+    images: images,
+    status: "판매중",
+    created_at: new Date(),
+    updated_at: "",
+    postprice: req.body.postprice,
+  });
+  res.status(201).send("상품등록성공");
+});
+
+app.post("/productuser", async (req, res) => {
+  console.log(req.body.cookie);
+  if (req.body.cookie) {
+    const db = getDB();
+    console.log("/productuser: ", req.body);
+    let result = await db
+      .collection("user")
+      .findOne({ _id: new ObjectId(req.body.cookie) });
+    console.log(result);
+    res.status(201).send(result.address);
+  } else {
+    res.status(404).send("");
+  }
+});
+
+app.get("/search/:search", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {$search : {
+      index: 'title_index',
+      text : {query: req.params.search, path: ['title', 'tags']}
+    }}
+  ]
+  let result = await db.collection('product').aggregate(검색조건).toArray()
+  res.status(201).send(result)
+});
+
+app.get("/address/:cookie", async (req, res) => {
+  const db = getDB();
+  
+  let result = await db.collection("user").findOne({
+    _id: new ObjectId(req.params.cookie)
+  })
+  console.log(result);
+  res.status(201).send(result.address)
+});
+
+
+
+app.get("/mypage", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let list = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(요청.query.id) });
+  console.log("test", list);
+  응답.send(list);
+});
+
+app.get("/product/registered", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    seller: 요청.query.id,
+    status: "판매중"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/product/buylist", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    buyer: 요청.query.id,
+    status: "판매완료"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/product/soldlist", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db.collection("product").find({
+    seller: 요청.query.id,
+    status: "판매완료"
+  }).toArray();
+  console.log(result);
+  응답.send(result);
+
+})
+
+app.get("/like/picklist", async (요청, 응답) => {
+  const db = getDB();
+  const prodData = [];
+  console.log(요청.query);
+  let result = await db.collection("like").find({liker: 요청.query.id,}).toArray();
+  console.log('like',result);
+
+  for (let i = 0; i < result.length; i++) { 
+    await db.collection('product').findOne({_id:new ObjectId(result[i].product_id)})
+    .then((res)=>{
+      console.log('res',res);
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.static(501).end();
+    })
+  }
+  응답.send(prodData);
+})
 
 
 app.get("*", function (요청, 응답) {

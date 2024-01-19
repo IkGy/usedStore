@@ -23,7 +23,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("http://localhost:8080/user/login", {
         email: email,
         password: password,
       });
@@ -33,39 +33,6 @@ function Login() {
     } catch (error) {
       console.error("로그인 실패:", error);
     }
-  };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
-    script.async = true;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
-      console.log("Kakao 계정으로 성공적으로 로그인 하였습니다")
-    };
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
-
-  function KakaoLogin() {
-    window.Kakao.Auth.login({
-      scope:'profile_nickname',
-      success: function(authObj) {
-        console.log(authObj);
-        window.Kakao.API.request({
-          url:'/v2/user/me',
-          success: res => {
-            const kakao_account = res.kakao_account;
-            console.log(kakao_account);
-            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
-          }
-        })
-      }
-    });
   };
 
   useEffect(() => {
@@ -79,7 +46,7 @@ function Login() {
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -114,6 +81,11 @@ function Login() {
             required
             fullWidth 
             autoComplete="current-password"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleLogin();
+              }
+            }}
           />
           <FormControlLabel 
             control={<Checkbox value="remember" 
@@ -128,17 +100,6 @@ function Login() {
             sx={{ mt: 3, mb: 2}} //margin-top: 3px, margin-bottom: 2px;
           >
             로그인
-          </Button>
-          <Button
-            onClick={KakaoLogin}
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "yellow",
-              color: "black",
-            }}
-          >
-            카카오톡 계정으로 로그인
           </Button>
           <Grid container>
             <Grid item xs>
