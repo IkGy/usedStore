@@ -8,7 +8,8 @@ import Tag from './images/tag.png';
 import { IoIosArrowForward } from "react-icons/io";
 
 import Image1 from './images/image1.jpg';
-import Profile from './images/profile_image.svg';
+import { CiShop } from "react-icons/ci"; // 상점 아이콘
+// import Profile from './images/profile_image.svg';
 import Follow from './images/follow.png';
 import TalkBtn from './images/talkbtn.png';
 
@@ -94,7 +95,7 @@ function Info(props) {
                                             <div className='KJH_if_left_content_div_link_span'>
                                                 {info?.category?.[0] && (
                                                     <>
-                                                        <Link to={`/search/${info.category[0]}`}>
+                                                        <Link to={`/category/${info.category[0]}`}>
                                                             {info.category[0]}
                                                         </Link>
                                                         {info?.category?.[1] && <IoIosArrowForward />}
@@ -102,14 +103,14 @@ function Info(props) {
                                                 )}
                                                 {info?.category?.[1] && (
                                                     <>
-                                                        <Link to={`/search/${info.category[1]}`}>
+                                                        <Link to={`/category/${info.category[1]}`}>
                                                             {info.category[1]}
                                                         </Link>
                                                         {info?.category?.[2] && <IoIosArrowForward />}
                                                     </>
                                                 )}
                                                 {info?.category?.[2] && (
-                                                    <Link to={`/search/${info.category[2]}`}>
+                                                    <Link to={`/category/${info.category[2]}`}>
                                                         {info.category[2]}
                                                     </Link>
                                                 )}
@@ -123,7 +124,7 @@ function Info(props) {
                                         </div>
                                         <div className='KJH_if_left_content_div_bottom_tag_section'>
                                             {info.tags && info.tags.map((item) => (
-                                                <div key={item}>#{item}&nbsp;</div>
+                                                <Link to={`/search/${item}`}><div key={item}>#{item}&nbsp;</div></Link>
                                             ))}
                                         </div>
                                     </div>
@@ -186,65 +187,63 @@ function Info(props) {
                                 상점정보
                             </div>
                             <div className='KJH_if_right_top_content_section'>
-                                <div className='KJH_if_right_top_content_top'>
-                                    {/* 해당 판매자 정보로 가는 링크 데이터 */}
-                                    <Link to='/'>
-                                        <img src={Profile} alt='프로필이미지' width='48px' height='48px' />
-                                    </Link>
-                                    <div className='KJH_if_right_top_content_user_name'>
-                                        {/* 해당 판매자 닉네임 데이터 + 판매자 정보로 가는 링크 데이터 */}
-                                        {seller.id}
-                                        <div className='KJH_if_right_top_content_user_info'>
-                                            {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
-                                            <Link to='/' className='KJH_if_right_top_content_user_product_link'>
-                                                상품{products}&emsp;|
-                                            </Link>
+                                <Link to='/' className='KJH_if_right_shop-link'>
+                                    <div className='KJH_if_right_top_content_top'>
+                                        {/* 판매자 상점으로 가는 링크 */}
+                                        <div className='KJH_if_right_shop_icon'>
+                                            <CiShop />
+                                        </div>
+                                        <div className='KJH_if_right_top_content_user_name'>
+                                            {/* 해당 판매자 닉네임 데이터 + 판매자 정보로 가는 링크 데이터 */}
+                                            <div className='KJH_if_right_top_seller'>{seller.id}</div>
+                                            <div className='KJH_if_right_top_content_user_info'>
+                                                {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
+                                                <div>
+                                                    등록된 상품
+                                                </div>
+                                                <div className='KJH_if_right_top_prod_count'>
+                                                    {products}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button className='KJH_if_right_top_content_user_follow_btn'>
-                                    <img src={Follow} alt='팔로우' width='20px' height='14px' />
-                                    팔로우
-                                </button>
+                                </Link>
                                 <div className='KJH_if_right_top_content_user_review'>
                                     상점후기 <span>{review.length}</span>
                                 </div>
-                                {/* 후기가 없으면 나오는 div */}
+                                {/* 상점 후기 */}
                                 <div className='KJH_if_right_top_content_user_review_list_section'>
-                                <div className='KJH_if_right_top_content_user_no_review'>
+                                    <div className='KJH_if_right_top_content_user_no_review'>
                                     <div className='KJH_if_right_review_section'>
-                                        <div className='KJH_if_right_review_info'>
-                                            <div className='KJH_if_right_review_title'>
-                                                <div className='KJH_if_right_review_writer'>
-                                                    리뷰 작성자 : {review[0]?.writer}
+                                        {review.length > 0 ? (
+                                            <>
+                                            {review.slice(0, 2).map((r, index) => (
+                                                <div className='KJH_if_right_review_info' key={index}>
+                                                <div className='KJH_if_right_review_title'>
+                                                    <div className='KJH_if_right_review_writer'>
+                                                    리뷰 작성자 : {r.writer}
+                                                    </div>
+                                                    <div className='KJH_if_right_review_date'>
+                                                    {formatDate(r.update_at)}
+                                                    </div>
                                                 </div>
-                                                <div className='KJH_if_right_review_date'>
-                                                    {formatDate(review[0]?.update_at)}
+                                                <div className='KJH_if_right_review_comment'>
+                                                    {r.comment}
                                                 </div>
-                                            </div>
-                                            <div className='KJH_if_right_review_comment'>
-                                                {review[0]?.comment}
-                                            </div>
-                                        </div>
-                                        <div className='KJH_if_right_review_info'>
-                                            <div className='KJH_if_right_review_title'>
-                                                <div className='KJH_if_right_review_writer'>
-                                                    리뷰 작성자 : {review[1]?.writer}
                                                 </div>
-                                                <div className='KJH_if_right_review_date'>
-                                                    {formatDate(review[1]?.update_at)}
-                                                </div>
+                                            ))}
+                                            <div className='KJH_if_right_review_more'>
+                                                상점후기 더보기
                                             </div>
-                                            <div className='KJH_if_right_review_comment'>
-                                                {review[1]?.comment}
+                                            </>
+                                        ) : (
+                                            <div className='KJH_if_right_review_more'>
+                                                <div>상점후기가 없습니다.</div>
+                                                <div>첫 후기를 작성해주세요!</div>
                                             </div>
-                                        </div>
-                                        <div className='KJH_if_right_review_more'>
-                                            상점후기 더보기
+                                        )}
                                         </div>
                                     </div>
-                                </div>
-
                                 </div>
                             </div>
                             <div className='KJH_if_right_bottom_section'>

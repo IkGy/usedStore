@@ -1,5 +1,8 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import Header from './components/header/header';
 import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
@@ -16,9 +19,20 @@ import Room_list from './components/chat/room_list';
 import Test from './components/test';
 import Test2 from './components/test2';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <div className='total_display'>
+      <ScrollToTop />
       <div className='display_section'>
         <Header />
         <Routes>
