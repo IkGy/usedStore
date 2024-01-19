@@ -12,13 +12,16 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { API_URL } from '../config/contansts';
 import GoogleLoginButton from "../login/goolge";
+import NaverLoginButton from "../login/NaverLoginButton"; 
+
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const  navigate = useNavigate();
+  const navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
   const [kakaoAccount, setKakaoAccount] = useState(null);
+  const [googleInfo, setGoogleInfo] = useState(null);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -52,26 +55,31 @@ export default function SignUp() {
       success: function(authObj) {
         console.log(authObj);
         window.Kakao.API.request({
-          url:'/v2/user/me',
+          url:'/v2/user/me', 
           success: res => {
+
             const kakao_account = res.kakao_account;
             console.log(kakao_account);
             localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
+            setKakaoAccount(kakao_account.profile);
           }
         })
       }
     });
   };
 
-
   useEffect(() => {
     const storedKakaoAccount = localStorage.getItem('kakao_account');
-  
+
     if (storedKakaoAccount) {
       const parsedKakaoAccount = JSON.parse(storedKakaoAccount);
       setKakaoAccount(parsedKakaoAccount);
     }
   }, []);
+
+  const handleGoogleLogin = (info) => {
+    setGoogleInfo(info); // Google 로그인 정보 업데이트
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -136,6 +144,7 @@ export default function SignUp() {
           </Typography>
           <Button>
             <GoogleLoginButton
+              onGoogleLogin={handleGoogleLogin}
               fullWidth
               sx={{ 
                 mb: 2,
@@ -157,7 +166,8 @@ export default function SignUp() {
           >
             카카오톡 계정으로 로그인
           </Button>
-          <Button
+          <NaverLoginButton/>
+          {/* <Button
             fullWidth
             sx={{ 
               mb: 2,
@@ -166,7 +176,7 @@ export default function SignUp() {
             }}
           >
             네이버 계정으로 로그인
-          </Button>
+          </Button> */}
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -175,13 +185,10 @@ export default function SignUp() {
                   required // 반드시 작성
                   fullWidth
                   id="id"
-                  label="(카카오톡 계정으로 회원가입한 아이디"
+                  label="아이디"
                   autoFocus
                   value={kakaoAccount ? kakaoAccount.nickname : ''}
-                  // 만약 kakaoAccount가 없다면 (로컬 스토리지에 값이 없다면) onChange를 사용하여 수정 가능하게 함
                   onChange={(e) => setKakaoAccount((prev) => ({ ...prev, nickname: e.target.value }))}
-                  // 만약 kakaoAccount가 있다면 (로컬 스토리지에 값이 있다면) 입력란을 읽기 전용으로 설정
-                  InputProps={{ readOnly: !kakaoAccount }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -192,6 +199,7 @@ export default function SignUp() {
                   fullWidth
                   id="real_name"
                   label="성명"
+                  value={(googleInfo && googleInfo.name) || ''}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -203,6 +211,7 @@ export default function SignUp() {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={(googleInfo && googleInfo.email) || ''}
                 />
               </Grid>
               <Grid item xs={12}>
