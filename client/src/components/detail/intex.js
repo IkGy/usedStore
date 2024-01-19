@@ -1,5 +1,3 @@
-import './detail.css';
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -46,11 +44,9 @@ function Detail() {
 
     return (
         <>
-            <div className='KJH_detail_container'>
-                <Category info={item} />
-                <Item info={item} heart={save} />
-                <Info info={item} seller={userInfo} review={review} products={products}/>
-            </div>
+            <Category info={item} />
+            <Item info={item} heart={save} />
+            <Info info={item} seller={userInfo} review={review} products={products}/>
         </>
     );
 }
