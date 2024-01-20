@@ -54,7 +54,18 @@
   object-fit: cover;
   overflow: hidden;
   
+  z-index: 1;
 }
+
+/* #JSW_soldimg {
+  position: relative;
+  z-index: 1;
+}
+
+.JSW_soldoutimg {
+  position: absolute;
+  z-index: 2;
+} */
 
 .JSW_Aname {
   font-weight: 700;

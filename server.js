@@ -28,6 +28,7 @@ const upload = multer({
   }),
 });
 
+const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
@@ -55,7 +56,7 @@ new MongoClient(url)
     console.log(err);
   });
 
-
+app.use('/naver', naverRouter);
 app.use('/jwt', jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
@@ -246,12 +247,14 @@ app.get("/like/picklist", async (요청, 응답) => {
     await db.collection('product').findOne({_id:new ObjectId(result[i].product_id)})
     .then((res)=>{
       console.log('res',res);
+      prodData.push(res);
     })
     .catch((err)=>{
       console.log(err);
       res.static(501).end();
     })
   }
+  console.log("prodData:",prodData);
   응답.send(prodData);
 })
 

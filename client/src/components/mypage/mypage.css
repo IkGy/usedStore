@@ -106,6 +106,7 @@
   
   overflow: hidden;  
   border-right: 1px solid #000;
+
 }
 
 .JSW_Sec2-1_left > img {
@@ -132,6 +133,7 @@
   position: absolute;
 
   margin-top: 3%;
+  left: 10px;
   box-shadow: 0 0 2px 1px;
   padding: 1%;
 
