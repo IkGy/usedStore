@@ -17,10 +17,15 @@
   box-sizing: border-box;
 }
 
+div {
+  user-select: none;
+}
+
 a{
   color: black;
   font-family: 'seolleimcool-SemiBold';
 }
+
 .total_display{
   width: 70%;
   height: 100%;

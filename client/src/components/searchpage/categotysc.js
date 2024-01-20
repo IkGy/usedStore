@@ -18,7 +18,7 @@ function Categorysc() {
   return (
     <div>
       <div className="searchpage_header">
-        <div>'{category}' 검색 결과({data.length})</div>
+        <div>카테고리: '{category}' 검색 결과({data.length})</div>
       </div>
       <div className="main_prod_grid">
         {data.length > 0 &&

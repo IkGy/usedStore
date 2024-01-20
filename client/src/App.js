@@ -56,7 +56,6 @@ function App() {
           <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/test' element={<Test />}></Route>
           <Route path='/product/new' element={<Test2 />}></Route>
-          
           <Route path='/main/:search' element={<Searchpage />}></Route>
           <Route path='/detailsearch/:category' element={<Categorysc />}></Route>
           

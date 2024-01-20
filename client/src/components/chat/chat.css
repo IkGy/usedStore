@@ -1,5 +1,5 @@
 .chat_page_Main{
-  margin: 1vh auto; 
+  margin: 1vh 0; 
   border: 1px solid #000; 
   display: grid;
   grid-template-areas: ".room_list_div .chat_room_div";
