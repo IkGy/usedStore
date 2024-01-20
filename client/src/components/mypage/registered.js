@@ -51,7 +51,7 @@ function Registered(props) {
             <div className="JSW_liststart"
             key={data.id}>
               <div className="JSW_contentGridBox_img">
-                <img src={data.images} width="100%"></img>
+                <img src={data.images[0]} width="100%"></img>
               </div>
               <div className="JSW_Aname">{data.title}</div>
               <div className="JSW_Aname">{data.comment}</div>

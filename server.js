@@ -178,6 +178,18 @@ app.get("/search/:search", async (req, res) => {
   res.status(201).send(result)
 });
 
+app.get("/detailsearch/:category", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {$search : {
+      index: 'category_index',
+      text : {query: req.params.category, path: 'category'}
+    }}
+  ]
+  let result = await db.collection('product').aggregate(검색조건).toArray()
+  res.status(201).send(result)
+});
+
 app.get("/address/:cookie", async (req, res) => {
   const db = getDB();
   
