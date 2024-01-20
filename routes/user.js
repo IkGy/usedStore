@@ -50,7 +50,7 @@ router.get("/mypage", async (요청, 응답) => {
   console.log(요청.query);
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
   console.log('test',list);
-  응답.send(list)
+  응답.send(list);
 })
 
 module.exports = router;
