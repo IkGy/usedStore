@@ -1,8 +1,8 @@
 import './room_list.css';
 import { API_URL } from '../../config/contansts';
+import { getCookie } from '../../../useCookies';  
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getCookie } from '../../../useCookies';
 
 
 
@@ -32,7 +32,11 @@ useEffect(() => {
   return(
     <div className='room_list_Main'>
       채팅방 리스트
-
+      {/* 각 채팅방은
+        <Link to={`/chatroom/${room_id}`}></Link>
+        와 같은 형식으로 연결해줄 예정
+      
+      */}
     </div>
   );
 }

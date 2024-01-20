@@ -28,6 +28,7 @@
     "react-slick": "^0.29.0",
     "sass": "^1.69.7",
     "slick-carousel": "^1.8.1",
+    "socket.io": "^4.7.4",
     "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"
   },
