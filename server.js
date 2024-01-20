@@ -270,6 +270,13 @@ app.get("/like/picklist", async (요청, 응답) => {
   응답.send(prodData);
 })
 
+app.get('/room_list', async(req, res) => {
+  const db = getDB();
+  let result = await db.collection('chattingroom').find({
+    user: req.query.id
+  }).toArray()
+  res.status(201).send(result)
+})
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));

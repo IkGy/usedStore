@@ -1,3 +1,5 @@
 .chat_room_Main{
   border: 1px solid #000;
+  max-height: 35vw;
+  min-height: 35vw;
 }
