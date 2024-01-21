@@ -3,7 +3,9 @@
 .KJH_item_section {
     position: relative;
     display: flex;
-    padding: 2vw 0;
+    width: 100%;
+    height: 48vh;
+    padding: 2vh 0;
     border-bottom: 2px solid #666666;
 }
 
@@ -12,7 +14,7 @@
 .sliderContainer {
     position: relative;
     width: 25vw;
-    height: 42vh;
+    height: 100%;
     border: 1px solid black;
     border-radius: 5px;
     padding: 20px;
@@ -20,8 +22,8 @@
 
 .KJH_item_plus-image {
     position: absolute;
-    bottom: 50px;
-    right: 25px;    
+    bottom: 1vh;
+    right: 1vw;
 }
 
 .KJH_item_plus-image > svg {
@@ -39,12 +41,19 @@
     background-color: #444444;
 }
 
+.slick-slider {
+    margin: 0 2vw;
+}
 
+.slick-dots > li > button {
+    width: 1vw;
+    height: 1vh;
+}
 
 .sliderImg > img {
     width: 100%;
-    padding-bottom: 10px;
     height: 35vh;
+    padding-bottom: 2vh;
     border-bottom: 1px solid #999999;
 }
 
@@ -63,34 +72,30 @@
 }
 
 .KJH_item_info_top {
-    margin: 0 0 0 40px;
-    padding: 0px;
-    border: 0px;
-    font: inherit;
-    vertical-align: baseline;
+    margin: 0 0 0 3vw;
+    padding: 0;
+    border: 0;
 }
 
 .KJH_item_title_section {
-    padding-bottom: 25px;
+    padding-bottom: 2.2vw;
     border-bottom: 1px solid #e6e6e6;
     width: 100%;
 }
 
 .KJH_item_title_name {
-    font-size: 28px;
-    margin-bottom: 25px;
+    font-size: 1.3vw;
+    margin-bottom: 2vh;
     font-weight: 500;
-    line-height: 1.4;
 }
 
 .KJH_item_title_price_section {
     display: flex;
     align-items: flex-end;
-    gap: 10px;
 }
 
 .KJH_item_title_price_info {
-    font-size: 40px;
+    font-size: 2.5vw;
     font-weight: 700;
 }
 
@@ -100,21 +105,19 @@
 }
 
 .KJH_item_info_detail_section {
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    font: inherit;
-    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 .KJH_item_info_detail_info {
-    height: 30px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    height: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vw solid #e6e6e6;
 }
 
 .KJH_item_info_detail_status {
@@ -127,22 +130,22 @@
     display: flex;
     align-items: center;
     color: rgb(204, 204, 204);
-    font-size: 16px;
+    font-size: 1vw;
     height: 100%;
 }
 
 .KJH_item_info_detail_status_icon > svg {
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 5px;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.3vw;
 }
 
 .KJH_item_info_detail_status_num {
     display: flex;
     margin: 0 10px 0 0;
-    padding: 0px;
-    border: 0px;
-    font-size: 16px;
+    padding: 0;
+    border: 0;
+    font-size: 0.8vw;
     font-weight: 600;
     align-items: center;
     color: #666666;
@@ -158,14 +161,13 @@
     direction: ltr;
     text-align: left;
     color: rgb(33, 33, 33);
-    letter-spacing: -0.5px;
-    outline: 0px;
-    border: 0px;
+    outline: 0;
+    border: 0;
 }
 
 .KJH_item_info_report, .KJH_item_info_report_text {
     color: #777777;
-    font-size: 16px;
+    font-size: 1vw;
     font-weight: 700;
     display: flex;
     -webkit-box-align: center;
@@ -174,8 +176,8 @@
 
 .KJH_item_info_report svg {
     margin-right: 3px;
-    width: 1.3em;
-    height: 1.3em;
+    width: 1vw;
+    height: 1vw;
     vertical-align: bottom;
     border-style: none;
 }
@@ -184,7 +186,6 @@
     margin: 0px;
     padding: 0px;
     border: 0px;
-    font: inherit;
     vertical-align: baseline;
 }
 
@@ -195,7 +196,7 @@
 
 .KJH_item_info_status_info, .KJH_item_info_status_info_share {
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 2vh;
     width: 100%;
 }
 
@@ -205,10 +206,11 @@
 
 .KJH_item_info_item_status_title {
     position: relative;
-    width: 100px;
-    padding-left: 15px;
+    width: 5vw;
+    padding-left: 1vw;
     color: #888888;
-    margin-right: 10px;
+    font-size: 0.8vw;
+    margin-right: 0.8vw;
 }
 
 .KJH_item_info_item_status {
@@ -216,10 +218,11 @@
     display: flex;
     direction: ltr;
     text-align: left;
+    width: 25vw;
+    font-size: 0.8vw;
     font-weight: 700;
     color: #333333;
     outline: 0px;
-    min-width: 310px;
 }
 
 .KJH_item_info_share_section {
@@ -228,13 +231,16 @@
 
 .KJH_item_info_share_section > svg {
     color: #777777;
-    margin-right: 15px;
+    margin-right: 1vw;
     cursor: pointer;
+    position: absolute;
+    right: 0;
     transition: all 0.3s ease;
-    width: 2.2em;
-    height: 2.2em;
-    padding: 8px;
-    border-radius: 10px;
+    height: 3.5vh;
+    border-radius: 0.2vw;
+    padding: 0.2vw;
+    border: 2px solid rgb(200, 200, 200);
+    width: 2vw;
 }
 
 .KJH_item_info_share_section > svg:hover {
@@ -244,14 +250,16 @@
 
 .KJH_item_info_shear_link {
     position: absolute;
-    width: 120px;
+    width: 5.5vw;
     top: -45px;
+    text-align: center;
     right: 0;
     background-color: black;
     color: white;
+    font-size: 0.7vw;
     font-weight: 700;
     border-radius: 10px;
-    padding: 10px;
+    padding: 0.5vw;
     opacity: 0;
     visibility: hidden;
     transition: visibility 0.5s linear 0.5s, opacity 0.5s linear;
@@ -266,8 +274,8 @@
 .KJH_item_btn_section {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #e6e6e6;
-    padding-top: 15px;
+    border-top: 0.2vw solid #e6e6e6;
+    padding-top: 1.2vh;
 }
 
 .KJH_item_btn_section > button {
@@ -283,12 +291,12 @@
 
 .KJH_item_like_section > svg {
     background-color: #dddddd;
-    border: 2px solid #dddddd;
-    border-radius: 10px;
-    padding: 5px;
+    border: 0.15vw solid #dddddd;
+    border-radius: 0.2vw;
+    padding: 0.2vw;
     color: white;
-    width: 2.5em;
-    height: 2.5em;
+    width: 2vw;
+    height: 4.3vh;
     transition: all 0.3s ease;
 }
 
@@ -296,29 +304,19 @@
     color: #ff4c4c;
     background-color: #fff09b;
     cursor: pointer;
-    border: 2px solid #ff4c4c;
+    border: 0.15vw solid #ff4c4c;
 }
 
 .KJH_item_btn_select_section {
     position: relative;
     flex: 1 1 0%;
     font-weight: 600;
-    margin-right: 10px;
+    margin-right: 1vw;
     display: flex;
     justify-content: center;
-    height: 56px;
+    height: 5.5vh;
     font-size: 18px;
     align-items: center;
-}
-
-.KJH_item_btn_select_section > button {
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.KJH_item_btn_select_section > button:hover {
-    background-color: transparent;
-    color: #333333;
 }
 
 .KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
@@ -329,31 +327,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
-    appearance: none;
-    padding: 0px;
-    border: 0px;
-    font-synthesis: none;
-    direction: ltr;
     text-align: left;
-    overflow: visible;
-    font-size: 18px;
+    font-size: 1vw;
     cursor: pointer;
+    border-radius: 0.2vw;
+    transition: all 0.3s;
+}
+
+.KJH_item_btn_select_talk:hover, .KJH_item_btn_select_buy:hover {
+    background-color: transparent;
+    color: black;
 }
 
 .KJH_item_btn_select_status {
     background: #ababab;
     color: rgb(255, 255, 255);
-    border: 3px solid #999999;
+    border: 1.5vw solid #999999;
 }
 
 .KJH_item_btn_select_talk {
     background: rgb(255, 164, 37);
-    border: 1px solid rgb(243, 150, 20);
-    border: 3px solid #da9940;
+    border: 0.2vw solid rgb(243, 150, 20);
 }
+
 
 .KJH_item_btn_select_buy {
     background: #ff4c4c;
-    border: 3px solid #ff3c3c;
+    border: 0.2vw solid #ff3c3c;
 }
