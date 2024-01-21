@@ -10,7 +10,7 @@ import Room_main from './chat_room_componant/room_main/room_main';
 
 
 function Chat_room(){
-let selectRoom = false;
+let selectRoom = true;
 const [select, setSelect]= useState();
 
   return (

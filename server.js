@@ -294,14 +294,14 @@ io.on('connection', (socket) => {
   });
 
   
+  
+  // 클라이언트 측에서 'room_list' 이벤트를 핸들링하는 부분
+  // (이는 Chat 컴포넌트 등에서 구현해야 함)
+  socket.on('room_list', ({ rooms }) => {
+    // 여기에서 클라이언트의 상태를 업데이트하거나 UI를 갱신하는 등의 작업 수행
+    // rooms는 서버에서 전송한 채팅방 목록
+    updateRoomList(rooms);
+  });
+  
 });
-
-// 클라이언트 측에서 'room_list' 이벤트를 핸들링하는 부분
-// (이는 Chat 컴포넌트 등에서 구현해야 함)
-socket.on('room_list', ({ rooms }) => {
-  // 여기에서 클라이언트의 상태를 업데이트하거나 UI를 갱신하는 등의 작업 수행
-  // rooms는 서버에서 전송한 채팅방 목록
-  updateRoomList(rooms);
-});
-
 // ------------------------------- //

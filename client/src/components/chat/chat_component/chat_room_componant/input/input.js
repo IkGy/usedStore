@@ -1,6 +1,6 @@
+import React, { useState } from "react";
+import { FaRegPlusSquare } from "react-icons/fa";
 import './input.css';
-
-
 
 
 
@@ -8,9 +8,25 @@ import './input.css';
 
 function Input(){
   return(
-    <div className='chat_room_input_main'>
-      인풋
-    </div> 
+    <form className='chat_room_input_main'>
+      <label htmlFor="file-upload" className="custom-file-upload">
+        <FaRegPlusSquare />
+      </label>
+
+      <input
+        id="file-upload"
+        type="file"
+        multiple
+      />
+
+      <input
+        className="input_area"
+        type="text"
+        placeholder="전송하려는 메시지를 입력하세요."
+      />
+
+      <button className="sendButton" >전송</button>
+    </form> 
   );
 }
 
