@@ -9,16 +9,18 @@ function RegiImage(props) {
     e.preventDefault();
 
     const selectedFiles = e.target.files;
-    const filesArray = Array.from(selectedFiles).slice(0, 3);
-    const updatedFiles = [...props.imageFile, ...filesArray];
-    const updatedFilesLimited = updatedFiles.slice(0, 3);
-
-    props.setImageFile(updatedFilesLimited);
+    if (selectedFiles.length > 4) {
+      alert("이미지는 최대 3개까지만 등록 가능합니다.");
+    } else {
+      const filesArray = Array.from(selectedFiles);
+      const updatedFiles = [...props.imageFile, ...filesArray];
+      props.setImageFile(updatedFiles);
+    }
   };
 
   const handleImageClick = (index) => {
     const updatedFiles = [...props.imageFile];
-    updatedFiles.splice(index, 1);
+    props.imageFile.splice(index, 1);
     props.setImageFile(updatedFiles);
   };
 
@@ -34,6 +36,7 @@ function RegiImage(props) {
 
   useEffect(() => {
     const body = document.body;
+    console.log(body);
     if (modal) {
       body.style.overflow = "hidden"; // 모달이 열릴 때 스크롤 방지
     } else {
@@ -44,6 +47,7 @@ function RegiImage(props) {
       body.style.overflow = "auto"; // 컴포넌트가 언마운트될 때 스크롤 복원
     };
   }, [modal]);
+
   return (
     <div>
       <div
@@ -80,6 +84,7 @@ function RegiImage(props) {
             )}
           </div>
         </div>
+        
         <div className="regi_imageform">
           {props.imageFile.length < 3 && (
             <>
@@ -116,6 +121,13 @@ function RegiImage(props) {
                     src={cancel}
                     onClick={() => handleImageClick(index)}
                   ></img>
+                  <div
+                    className={
+                      index === 0 ? "regi_firstimg" : "regi_nofirstimg"
+                    }
+                  >
+                    대표이미지
+                  </div>
                 </div>
               ))}
             </>
