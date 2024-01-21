@@ -169,14 +169,11 @@ app.post("/product", upload.array("img", 3), async (req, res) => {
 });
 
 app.post("/productuser", async (req, res) => {
-  console.log(req.body.cookie);
   if (req.body.cookie) {
     const db = getDB();
-    console.log("/productuser: ", req.body);
     let result = await db
       .collection("user")
       .findOne({ _id: new ObjectId(req.body.cookie) });
-    console.log(result);
     res.status(201).send(result.address);
   } else {
     res.status(404).send("");
@@ -189,6 +186,18 @@ app.get("/search/:search", async (req, res) => {
     {$search : {
       index: 'title_index',
       text : {query: req.params.search, path: ['title', 'tags']}
+    }}
+  ]
+  let result = await db.collection('product').aggregate(검색조건).toArray()
+  res.status(201).send(result)
+});
+
+app.get("/detailsearch/:category", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {$search : {
+      index: 'category_index',
+      text : {query: req.params.category, path: 'category'}
     }}
   ]
   let result = await db.collection('product').aggregate(검색조건).toArray()
@@ -275,6 +284,13 @@ app.get("/like/picklist", async (요청, 응답) => {
   응답.send(prodData);
 })
 
+app.get('/room_list', async(req, res) => {
+  const db = getDB();
+  let result = await db.collection('chattingroom').find({
+    user: req.query.id
+  }).toArray()
+  res.status(201).send(result)
+})
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));

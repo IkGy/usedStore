@@ -45,7 +45,7 @@
 .KJH_cg_filter {
     border: 1px solid rgb(238, 238, 238);
     display: flex;
-    width: 100%;
+    width: 8vw;
     height: 28px;
     align-items: center;
     position: relative;
