@@ -1,0 +1,38 @@
+.chat_room_input_main {
+  display: flex;
+  border-top: 2px solid #D3D3D3;
+  position: relative;
+}
+
+.input_area {
+  border: none;
+  border-radius: 0;
+  padding: 5% 5% 5% 3%;
+  width: 80%;
+  font-size: 1.2em;
+  max-width: calc(100% - 100px);
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+#file-upload{
+  display: none;
+}
+.custom-file-upload{
+  padding-left: 3%;
+  font-size: 30px;
+  margin: auto;
+}
+.sendButton {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979FF;
+  padding: 20px;
+  display: inline-block;
+  border: none;
+  width: 20%;
+  border-radius: 0 0 8px 0;
+}

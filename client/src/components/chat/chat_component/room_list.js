@@ -38,6 +38,7 @@ function Room_list() {
       {myRoom_list.map((a, i) => {
         return <div className="room_list">{user[i]}님과의 채팅방</div>;
       })}
+
     </div>
   );
 }
