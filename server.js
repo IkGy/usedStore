@@ -152,14 +152,11 @@ app.post("/product", upload.array("img", 3), async (req, res) => {
 });
 
 app.post("/productuser", async (req, res) => {
-  console.log(req.body.cookie);
   if (req.body.cookie) {
     const db = getDB();
-    console.log("/productuser: ", req.body);
     let result = await db
       .collection("user")
       .findOne({ _id: new ObjectId(req.body.cookie) });
-    console.log(result);
     res.status(201).send(result.address);
   } else {
     res.status(404).send("");

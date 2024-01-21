@@ -384,6 +384,20 @@
   font-size: 1vw;
 }
 
+.regi_firstimg{
+  position: absolute;
+  top: 0;
+  left:  0;
+  font-size: 1vw;
+  background-color: green;
+  color: white;
+  padding: 0.5vw;
+}
+
+.regi_nofirstimg{
+  display: none;
+}
+
 @media (max-width: 500px) {
   .regi_start {
     font-family: "JalnanGothic";
@@ -565,5 +579,10 @@
     height: 6vw;
     top: 4vw;
     right: 3vw;
+  }
+
+  .regi_firstimg{
+    font-size: 1.7vw;
+    padding: 1vw;
   }
 }

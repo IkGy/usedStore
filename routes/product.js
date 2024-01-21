@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
     try {
         const db = getDB();
         let result = await db.collection("product").find().toArray();
-        console.log('result:', result);
         res.status(201).send(result);
     } catch (error) {
         console.error(error);

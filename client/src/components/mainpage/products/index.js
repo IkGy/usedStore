@@ -27,6 +27,7 @@ function Products() {
       console.log(error);
     }
   };
+  
   useEffect(() => {
     fectchProduct();
   }, []);
