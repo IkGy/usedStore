@@ -138,13 +138,6 @@ function Item(props) {
                                         {Like.length}
                                     </div>
                                     <div className='KJH_item_info_detail_status_icon'>
-                                        <IoIosEye />
-                                    </div>
-                                    <div className='KJH_item_info_detail_status_num'>
-                                        {/* 조회수 데이터 */}
-                                        447
-                                    </div>
-                                    <div className='KJH_item_info_detail_status_icon'>
                                         <FaClock />
                                     </div>
                                     <div className='KJH_item_info_detail_status_num'>
@@ -203,15 +196,15 @@ function Item(props) {
                                     <FaHeart />
                                 </div>
                                 <div className='KJH_item_btn_select_section'>
-                                    <button className='KJH_item_btn_select_talk'>
+                                    <div className='KJH_item_btn_select_talk'>
                                         <IoChatboxEllipsesOutline />
                                         <span>실시간 채팅</span>
-                                    </button>
+                                    </div>
                                 </div>
                                 <div className='KJH_item_btn_select_section'>
-                                    <button className='KJH_item_btn_select_buy'>
+                                    <div className='KJH_item_btn_select_buy'>
                                         <span>바로구매</span>
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
