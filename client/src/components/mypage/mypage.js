@@ -12,7 +12,7 @@ import EK from "./image/이크.png"
 
 function Mypage() {
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("구매 내역");
+  const [menu, setMenu] = useState("판매 내역");
   const [end, setEnd] = useState("");
 
   const MenuClick = (selectMenu) => {

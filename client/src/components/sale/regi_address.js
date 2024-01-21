@@ -29,7 +29,7 @@ function Regi_address(props) {
       },
     }).open();
   };
-
+  //${data.buildingName || ""}
   const handleAddressFocus = (event) => {
     event.target.blur();
   };
@@ -50,11 +50,7 @@ function Regi_address(props) {
       <div className="regi_address">
         <div className="regi_addressbtnbox">
           <button onClick={nomaladdress}>기본 위치</button>
-          <button
-            onClick={() => props.setSelectedAddress("전국")}
-          >
-            전국
-          </button>
+          <button onClick={() => props.setSelectedAddress("전국")}>전국</button>
           <button onClick={handleAddressClick}>새 위치</button>
         </div>
 

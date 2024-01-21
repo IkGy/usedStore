@@ -1,10 +1,27 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
 require("dotenv").config();
+
+// ---------실시간채팅------------- //
+const http = require('http')
+const socketio = require('socket.io')
+const server = http.createServer(app)
+const io = socketio(server)
+
+
+const {} = require('./routes/user')
+const {} = require('./routes/room_list')
+const {} = require('./routes/chat_room')
+
+
+const roomRouter = require('./routes/chat_room')
+const room_listRouter = require('./routes/room_list')
+// ------------------------------- //
 
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
@@ -28,6 +45,7 @@ const upload = multer({
   }),
 });
 
+const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
@@ -55,7 +73,7 @@ new MongoClient(url)
     console.log(err);
   });
 
-
+app.use('/naver', naverRouter);
 app.use('/jwt', jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
@@ -151,14 +169,11 @@ app.post("/product", upload.array("img", 3), async (req, res) => {
 });
 
 app.post("/productuser", async (req, res) => {
-  console.log(req.body.cookie);
   if (req.body.cookie) {
     const db = getDB();
-    console.log("/productuser: ", req.body);
     let result = await db
       .collection("user")
       .findOne({ _id: new ObjectId(req.body.cookie) });
-    console.log(result);
     res.status(201).send(result.address);
   } else {
     res.status(404).send("");
@@ -171,6 +186,18 @@ app.get("/search/:search", async (req, res) => {
     {$search : {
       index: 'title_index',
       text : {query: req.params.search, path: ['title', 'tags']}
+    }}
+  ]
+  let result = await db.collection('product').aggregate(검색조건).toArray()
+  res.status(201).send(result)
+});
+
+app.get("/detailsearch/:category", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {$search : {
+      index: 'category_index',
+      text : {query: req.params.category, path: 'category'}
     }}
   ]
   let result = await db.collection('product').aggregate(검색조건).toArray()
@@ -246,16 +273,51 @@ app.get("/like/picklist", async (요청, 응답) => {
     await db.collection('product').findOne({_id:new ObjectId(result[i].product_id)})
     .then((res)=>{
       console.log('res',res);
+      prodData.push(res);
     })
     .catch((err)=>{
       console.log(err);
       res.static(501).end();
     })
   }
+  console.log("prodData:",prodData);
   응답.send(prodData);
 })
 
+app.get('/room_list', async(req, res) => {
+  const db = getDB();
+  let result = await db.collection('chattingroom').find({
+    user: req.query.id
+  }).toArray()
+  res.status(201).send(result)
+})
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
+
+// ---------실시간채팅------------- //
+
+// 서버 측에서 'room_list' 이벤트를 수신하고 클라이언트에게 채팅방 목록을 전달하는 부분 
+io.on('connection', (socket) => {
+  console.log('채팅서버 접속');
+
+  // 클라이언트에서 'room_list' 이벤트를 수신
+  socket.on('room_list', ({ id, room_id }) => {
+    // 여기에서 채팅방 목록을 조회하고 클라이언트에게 전송
+    const roomList = getRoomList(); // 이 함수는 현재 서버에 존재하는 채팅방 목록을 반환하는 함수
+    io.emit('room_list', { rooms: roomList });
+  });
+
+  
+  
+  // 클라이언트 측에서 'room_list' 이벤트를 핸들링하는 부분
+  // (이는 Chat 컴포넌트 등에서 구현해야 함)
+  socket.on('room_list', ({ rooms }) => {
+    // 여기에서 클라이언트의 상태를 업데이트하거나 UI를 갱신하는 등의 작업 수행
+    // rooms는 서버에서 전송한 채팅방 목록
+    updateRoomList(rooms);
+  });
+  
+});
+// ------------------------------- //

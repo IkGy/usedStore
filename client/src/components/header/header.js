@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaSearch, FaWonSign } from "react-icons/fa";
 import { LuUserPlus2, LuUserCircle2 } from "react-icons/lu";
 import { AiOutlineAliwangwang } from "react-icons/ai";
@@ -11,7 +11,17 @@ import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
 
 
+let currentPath = "";
 function Header() {
+
+  let location = useLocation();
+  console.log("location pathname: ", location.pathname);
+  useEffect(() => {
+    if(currentPath === location.pathname) window.location.reload();
+    currentPath = location.pathname;
+  }, [location]);
+
+
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
 

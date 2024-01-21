@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import './item.css';
+
+import Slider from "react-slick"; // 슬라이드 라이브러리
+
+import { CiSquarePlus } from "react-icons/ci"; // 이미지 확대
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { GoHeartFill } from "react-icons/go";
 import { IoIosEye } from "react-icons/io";
 import { FaClock } from "react-icons/fa6";
@@ -10,10 +17,6 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-
-// 이전, 다음 이미지
-import { FaArrowAltCircleLeft } from "react-icons/fa"; // 이전 이미지
-import { FaArrowAltCircleRight } from "react-icons/fa"; // 다음 이미지
 
 // 임시 이미지
 import Car1 from './images/car1.png';
@@ -47,6 +50,7 @@ function formatTimeAgo(createdDate) {
 
 function Item(props) {
     
+    // 주소 복사
     const [showCopyMessage, setShowCopyMessage] = useState(false);
     const handleCopyClipBoard = async () => {
         try {
@@ -65,108 +69,93 @@ function Item(props) {
     console.log(Info);
     const Like = props.heart
     
-    // 생성 날짜 형식화
+    // 생성 날짜 형식화`
     const formattedCreatedAt = formatTimeAgo(Info.created_at);
 
-    // 슬라이더의 위치를 저장하는 state
-    const [slidePosition, setSlidePosition] = useState('');
-
-    // 슬라이더 위치를 변경하는 함수
-    const handleSlideChange = (newPosition) => {
-        const totalSlides = 4; // 전체 슬라이드 수 (추가된 이미지 포함)
-        const slideWidth = 430; // 슬라이드 너비
-    
-        // 마지막 슬라이드에서 다음 버튼 클릭
-        if (newPosition < -(totalSlides - 1) * slideWidth) {
-            setSlidePosition(-slideWidth); // 첫 번째 실제 슬라이드로 이동
-        } 
-        // 첫 번째 슬라이드에서 이전 버튼 클릭
-        else if (newPosition > -slideWidth) {
-            setSlidePosition(-(totalSlides - 1) * slideWidth); // 마지막 실제 슬라이드로 이동
-        } 
-        else {
-            setSlidePosition(newPosition);
-        }
+    // 슬라이더 설정
+    const sliderSettings = {
+        dots: true,          // 스크롤바 아래 점으로 페이지네이션 여부
+        infinite: true,      // 무한 반복
+        speed: 1000,         // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+        autoplay: true,      // 자동 스크롤 사용 여부
+        slidesToShow: 1,     // 한 화면에 보여질 컨텐츠 개수
+        slidesToScroll: 1,   // 스크롤 한번에 움직일 컨텐츠 개수
+        lazyLoad: true,
+        arrows: true,        // 옆으로 이동하는 화살표 표시 여부
+        pauseOnHover : true, // 슬라이드 이동시 마우스 호버하면 슬라이더 멈추게 설정
     };
+
+    const sliderImage = Info?.images?.map((image, index) => (
+        <div className="sliderImg" key={index}>
+            <img src={image} alt={`Slide ${index}`} />
+        </div>
+    ));
+
+    console.log(sliderImage);
 
     return (
         <>
             <div className='KJH_item_section'>
-                {/* 이미지 관련 */}
-                <div style={{ overflow: 'hidden' }} className='KJH_item-image_section'>
-                    <div className='KJH_item_slide-container' style={{ transform: `translateX(${slidePosition}px)` }}>
-                        <div className='KJH_item_slide-box'></div>
-                            <img src={Info?.images?.[2]} alt='car3'/>
-                        <div className='KJH_item_slide-box'></div>
-                            <img src={Info?.images?.[0]} alt='car1'/>
-                        <div className='KJH_item_slide-box'></div>
-                            <img src={Info?.images?.[1]} alt='car2'/>
-                        <div className='KJH_item_slide-box'></div>
-                            <img src={Info?.images?.[2]} alt='car3'/>
-                        <div className='KJH_item_slide-box'></div>
-                            <img src={Info?.images?.[0]} alt='car1'/>
-                    </div>
-                    <div className='KJH_item_slide_arrow_section'>
-                        <button className='KJH_item_slide_left' onClick={() => handleSlideChange(slidePosition + 430)}>
-                            <FaArrowAltCircleLeft />
-                        </button>
-                        <button className='KJH_item_slide_right' onClick={() => handleSlideChange(slidePosition - 430)}>
-                            <FaArrowAltCircleRight />
-                        </button>
-                    </div>
-                    
-                    <div className='KJH_item_slide_images_section'>
-                        <img src={Info?.images?.[0]} alt='car1'/>
-                        <img src={Info?.images?.[1]} alt='car2'/>
-                        <img src={Info?.images?.[2]} alt='car3'/>
-                    </div>
+
+            
+            <div className="sliderContainer">
+                <Slider {...sliderSettings}>
+                    {sliderImage}
+                </Slider>
+                <div className='KJH_item_plus-image'>
+                    <CiSquarePlus />
                 </div>
+            </div>
+
+            <div className='KJH_item_blur-background'>
                 
-                {/* 상품 정보 */}
-                <div className='KJH_item_info_section'>
-                    <div className='KJH_item_info'>
-                        <div className='KJH_item_info_top'>
-                            <div className='KJH_item_title_section'>
-                                <div className='KJH_item_title_name'>
-                                    {/* 상품 이름 */}
-                                    {Info.title}
-                                </div>
-                                <div className='KJH_item_title_price_section'>
-                                    <div className='KJH_item_title_price_info'>
-                                        {/* 상품 가격 */}
-                                        {Info.price}<span>원</span>
-                                    </div>
+            </div>
+
+            {/* 상품 정보 */}
+            <div className='KJH_item_info_section'>
+                <div className='KJH_item_info'>
+                    <div className='KJH_item_info_top'>
+                        <div className='KJH_item_title_section'>
+                            <div className='KJH_item_title_name'>
+                                {/* 상품 이름 */}
+                                {Info.title}
+                            </div>
+                            <div className='KJH_item_title_price_section'>
+                                <div className='KJH_item_title_price_info'>
+                                    {/* 상품 가격 */}
+                                    {Info?.price}<span>원</span>
                                 </div>
                             </div>
-                            <div className='KJH_item_info_detail_section'>
-                                <div className='KJH_item_info_detail_info'>
-                                    <div className='KJH_item_info_detail_status'>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <GoHeartFill />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 찜 데이터 */}
-                                            {Like.length}
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <IoIosEye />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 조회수 데이터 */}
-                                            447
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_icon'>
-                                            <FaClock />
-                                        </div>
-                                        <div className='KJH_item_info_detail_status_num'>
-                                            {/* 시간 데이터 */}
-                                            {formattedCreatedAt}전
-                                        </div>
+                        </div>
+                        <div className='KJH_item_info_detail_section'>
+                            <div className='KJH_item_info_detail_info'>
+                                <div className='KJH_item_info_detail_status'>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <GoHeartFill />
                                     </div>
-                                    <button className='KJH_item_info_report'>
-                                        <MdReport />
-                                        <div className='KJH_item_info_report_text'>신고하기</div>
-                                    </button>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 찜 데이터 */}
+                                        {Like.length}
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <IoIosEye />
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 조회수 데이터 */}
+                                        447
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_icon'>
+                                        <FaClock />
+                                    </div>
+                                    <div className='KJH_item_info_detail_status_num'>
+                                        {/* 시간 데이터 */}
+                                        {formattedCreatedAt}전
+                                    </div>
+                                </div>
+                                <button className='KJH_item_info_report'>
+                                    <MdReport />
+                                    <div className='KJH_item_info_report_text'>신고하기</div>
+                                </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>
                                     <div className='KJH_item_info_status_info'>

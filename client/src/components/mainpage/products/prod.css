@@ -2,8 +2,9 @@
   /* border: 1px solid; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.7vw;
+  gap: 1vw;
   justify-content: center;
+  margin-top: 2vw;
 }
 
 .main_prod_detail {
@@ -47,7 +48,7 @@
 
 @media (max-width: 500px) {
   .main_prod_img {
-    height: 23vw;
+    height: 25vw;
   }
 
   .main_prod_grid {

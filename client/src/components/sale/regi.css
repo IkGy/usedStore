@@ -69,7 +69,7 @@
 
 .regi_image {
   width: 100%;
-  height: 12vw;
+  height: 15vw;
   border: 0.1vw solid rgba(0, 0, 0, 0.264);
   display: flex;
   flex-direction: column;
@@ -193,27 +193,25 @@
 }
 
 .regi_price {
-  border: 0.1vw solid rgba(0, 0, 0, 0.264);
-  width: 19vw;
-  padding: 0.5vw;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  width: 30%;
 }
 
 .regi_price input {
-  border: none;
+  display: block;
   font-size: 1.2vw;
+  padding: 0.5vw;
+  width: 100%;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
 }
 
 .regi_price span {
+  position: absolute;
   font-size: 1.2vw;
   color: gray;
-}
-
-.regi_price input:focus {
-  outline: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
 }
 
 .regi_postprice span {
@@ -306,23 +304,35 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1vw;
+  height: 15vw;
+  justify-content: center;
+  align-items: center;
 }
 
 .regi_imageform img {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  object-fit: contain;
   width: 100%;
-  height: 12vw;
+  max-height: 15vw; /* 최대 높이를 15vw로 설정 */
 }
 
 .regi_image-container {
   position: relative;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #regi_delete-button {
   width: 2vw;
   height: 2vw;
   position: absolute;
-  top: 0.3vw;
-  right: 0.3vw;
+  top: 0.4vw;
+  right: 0.4vw;
   cursor: pointer;
   border-radius: 50%;
   font-size: 1vw;
@@ -330,7 +340,7 @@
   justify-content: center;
   align-items: center;
   color: black;
-  background-color: white;
+  opacity: 0.7;
 }
 
 .regi_selcetcategory span {
@@ -340,6 +350,52 @@
 .regi_addressbtnbox {
   display: flex;
   column-gap: 1vw;
+}
+
+.modalbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.751);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalimg {
+  position: absolute;
+  display: block;
+  z-index: 3;
+  max-height: 40vw;
+  max-width: 90vw;
+}
+
+#regi_delete-modal {
+  width: 3vw;
+  height: 3vw;
+  position: absolute;
+  top: 1vw;
+  right: 1.5vw;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1vw;
+}
+
+.regi_firstimg{
+  position: absolute;
+  top: 0;
+  left:  0;
+  font-size: 1vw;
+  background-color: green;
+  color: white;
+  padding: 0.5vw;
+}
+
+.regi_nofirstimg{
+  display: none;
 }
 
 @media (max-width: 500px) {
@@ -353,7 +409,7 @@
   .regi_start > span:last-child {
     font-size: 2vw;
     margin-left: 1.5vw;
-}
+  }
 
   .regi_selecttags {
     grid-template-columns: 18% 82%;
@@ -370,7 +426,7 @@
   }
 
   .regi_image {
-    height: 18vw;
+    height: 20vw;
   }
 
   .regi_image i {
@@ -382,14 +438,14 @@
   }
 
   .regi_imageform img {
-    height: 18vw;
+    max-height: 20vw;
   }
 
   #regi_delete-button {
     width: 4vw;
     height: 4vw;
     top: 0.3vw;
-    right: 0.3vw;
+    right: 0.5vw;
   }
 
   .regi_select {
@@ -451,17 +507,19 @@
     font-size: 2vw;
   }
 
+  .regi_price {
+    position: relative;
+    width: 30%;
+  }
+
   .regi_price input {
+    display: block;
     font-size: 2vw;
+    padding: 1vw;
   }
 
   .regi_price span {
     font-size: 2vw;
-  }
-
-  .regi_price {
-    width: 30vw;
-    padding: 1vw;
   }
 
   .regi_postprice span {
@@ -505,5 +563,26 @@
   .regi_register button {
     padding: 1.5vw 1.5vw;
     font-size: 2vw;
-}
+  }
+
+  .regi_imageform {
+    height: 20vw;
+  }
+
+  .modalimg {
+    max-height: 60vw;
+    max-width: 90vw;
+  }
+
+  #regi_delete-modal {
+    width: 6vw;
+    height: 6vw;
+    top: 4vw;
+    right: 3vw;
+  }
+
+  .regi_firstimg{
+    font-size: 1.7vw;
+    padding: 1vw;
+  }
 }

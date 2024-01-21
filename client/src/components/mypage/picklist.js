@@ -4,8 +4,7 @@ import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import "./picklist.css"
 
-import img1 from "./image/img_mouse.jpg"
-import img2 from "./image/g102.jpg"
+import img3 from "./image/noimg.png"
 
 function Picklist() {
   const [data, setData] = useState([])
@@ -46,15 +45,23 @@ function Picklist() {
       <div className="JSW_picklistname">찜 목록</div>
       <div className="JSW_conentGridBox">
         {data.map((data, i)=> {
+          console.log("데이터: ",data);
+          let img0 = null;
+          if (data.images.length > 0)
+          {
+            img0 = data.images[0];
+          }else {
+            img0 = img3;
+          }
           return(
             <div className="JSW_liststart"
               key={data.id}>
               <div className="JSW_contentGridBox_img">
-                <img src={data.img} width="100%"></img>
+                <img src={img0} width="100%"></img>
               </div>
-              <div className="JSW_Aname">{data.Kname}</div>
+              <div className="JSW_Aname">{data.title}</div>
+              <div className="JSW_Aname">{data.comment}</div>
               <div className="JSW_Aname">{data.liker}</div>
-              <div className="JSW_Aname">{data.Kname}</div>
             </div>
           )
         })}

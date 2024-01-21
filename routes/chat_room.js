@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const { getDB } = require('../db');
 const { ObjectId } = require('mongodb'); 
 
@@ -14,3 +13,8 @@ router.get('/chat_room', async (req, res) => {
   }
 })
 
+
+
+
+
+module.exports = router;
