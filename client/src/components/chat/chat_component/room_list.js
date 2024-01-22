@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getCookie } from "../../../useCookies";
 
-function Room_list({ onSelectUser  }) {
+function Room_list({ onSelectUser }) {
   // 각 유저의 id를 가져오고
   // 유저 id가 포함되어있는 채팅방 id를 조회해야함
   // 유저가 포함된 채팅방의 정보를 왼쪽에 나열해주면 됨
@@ -14,18 +14,6 @@ function Room_list({ onSelectUser  }) {
   const [myRoom_list, setMyRoom_List] = useState([]);
   const [user, setUser] = useState([]);
   
-  const updateUsers = (data) => {
-    let updatedUsers = [];
-    for (let i = 0; i < data.length; i++) {
-      let filteruser = data[i].user.filter(
-        (element) => element !== getCookie("login")
-      );
-      updatedUsers.push(...filteruser);
-    }
-    setUser(updatedUsers);
-  };
-
-
 
   useEffect(() => {
     try {
@@ -51,7 +39,7 @@ function Room_list({ onSelectUser  }) {
   }, []);
 
   const clickRoom = (user) => {
-    console.log("clickRoom실행됨");
+    // console.log("clickRoom실행됨");
     console.log(`${user}님과의 채팅방`);
     onSelectUser(user);
   }

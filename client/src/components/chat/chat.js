@@ -8,7 +8,7 @@ import './chat.css'
 
 function Chat(){
   const [selectedUser, setSelectedUser] = useState(null);
-  console.log("Chat에서 selecteduser: ", selectedUser);
+  // console.log("Chat에서 selecteduser: ", selectedUser);
 
   const SelectUser = (user) => {
     setSelectedUser(user);

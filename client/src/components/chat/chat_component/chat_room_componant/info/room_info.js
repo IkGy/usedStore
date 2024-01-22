@@ -9,7 +9,7 @@ import select_user from '../../room_list';
 
 function Room_info({ who }){
   
-  console.log("who: ", who);
+  // console.log("who: ", who);
 
 
   return(

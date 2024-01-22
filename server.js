@@ -298,26 +298,32 @@ app.get("*", function (요청, 응답) {
 
 // ---------실시간채팅------------- //
 
-// 서버 측에서 'room_list' 이벤트를 수신하고 클라이언트에게 채팅방 목록을 전달하는 부분 
+
 io.on('connection', (socket) => {
-  console.log('채팅서버 접속');
+  console.log('새로운 유저가 접속했습니다.')
 
-  // 클라이언트에서 'room_list' 이벤트를 수신
-  socket.on('room_list', ({ id, room_id }) => {
-    // 여기에서 채팅방 목록을 조회하고 클라이언트에게 전송
-    const roomList = getRoomList(); // 이 함수는 현재 서버에 존재하는 채팅방 목록을 반환하는 함수
-    io.emit('room_list', { rooms: roomList });
-  });
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id)
+    console.log('user: ', user)
+    console.log(typeof message, message)
 
-  
-  
-  // 클라이언트 측에서 'room_list' 이벤트를 핸들링하는 부분
-  // (이는 Chat 컴포넌트 등에서 구현해야 함)
-  socket.on('room_list', ({ rooms }) => {
-    // 여기에서 클라이언트의 상태를 업데이트하거나 UI를 갱신하는 등의 작업 수행
-    // rooms는 서버에서 전송한 채팅방 목록
-    updateRoomList(rooms);
-  });
-  
-});
+    callback();
+  })
+
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id)
+    if (user) {
+      io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name}님이 퇴장하셨습니다.`,
+      })
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      })
+    }
+    console.log('유저가 나갔습니다.') 
+  })
+})
+
 // ------------------------------- //
