@@ -5,9 +5,10 @@
     position: relative;
     min-width: 25vw;
     width: 25vw;
+    height: 100%;
     border: 0.1em solid black;
     border-radius: 5px;
-    padding: 20px;  
+    padding: 20px; 
 }
 
 .KJH_item_plus-image {
@@ -35,13 +36,24 @@
     margin: 0 2vw;
 }
 
-.slick-dots {
-    border-top: 0.1em solid black;
+.slick-slider > button {
+    background-color: rgb(193, 193, 193);
+    border-radius: 0.3vw;
+    width: 2vw;
+    height: 5vh;
+    z-index: 5;
+    border: none;
+    box-shadow: none;
+    opacity: 1;
 }
 
-.slick-dots > li > button {
-    width: 1vw;
-    height: 1vh;
+.slick-slider > button:hover {
+    background-color: gray;
+    opacity: 0.7;
+}
+
+.slick-slider > button:focus {
+    outline: none;
 }
 
 .sliderImg > img {
@@ -62,14 +74,14 @@
     
     .KJH_item_plus-image {
         position: absolute;
-        bottom: 1vh;
-        right: 1vw;
+        bottom: 6vh;
+        right: 5.5vw;
     }
     
     .KJH_item_plus-image > svg {
         cursor: pointer;
-        width: 1.7vw;
-        height: 1.7vw;
+        width: 5vw;
+        height: 5vw;
         border-radius: 5px;
         background-color: #b8b8b8;
         color: white;

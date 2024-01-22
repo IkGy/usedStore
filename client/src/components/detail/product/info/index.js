@@ -197,10 +197,13 @@ function Info(props) {
                                             <div className='KJH_if_right_top_content_user_info'>
                                                 {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                                 <div>
-                                                    등록된 상품
+                                                    님의 등록된 상품
                                                 </div>
                                                 <div className='KJH_if_right_top_prod_count'>
                                                     {products}
+                                                </div>
+                                                <div>
+                                                    개
                                                 </div>
                                             </div>
                                         </div>

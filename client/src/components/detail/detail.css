@@ -1,3 +1,7 @@
+.KJH_detail_container {
+    margin: 0 auto;
+}
+
 .KJH_detail_slide_section {
     display: flex;
 }

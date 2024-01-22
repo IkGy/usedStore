@@ -48,12 +48,14 @@ function Detail() {
 
     return (
         <>
-            <Category info={item} />
-            <div className='KJH_detail_slide_section'>
-                <Slide info={item} />
-                <Overview info={item} heart={save} />
+            <div className='KJH_detail_container'>
+                <Category info={item} />
+                <div className='KJH_detail_slide_section'>
+                    <Slide info={item} />
+                    <Overview info={item} heart={save} />
+                </div>
+                <Info info={item} seller={userInfo} review={review} products={products}/>
             </div>
-            <Info info={item} seller={userInfo} review={review} products={products}/>
         </>
     );
 }

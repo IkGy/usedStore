@@ -1,13 +1,25 @@
 import './slide.css';
+import Modal from './modal';
 
-import Slider from "react-slick"; // 슬라이드 라이브러리
+import { useState } from 'react';
+import Slider from "react-slick"; // slick 슬라이드 라이브러리
 
-import { CiSquarePlus } from "react-icons/ci"; // 이미지 확대
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Slide(props) {
 
+    const [modalOpen, setModalOpen] = useState(false); // 모달창 관리
+    const [selectedImage, setSelectedImage] = useState(null); // 선택된 이미지 URL 관리
+
+    function openModal(imageUrl) {
+        setSelectedImage(imageUrl); // 클릭된 이미지 URL 저장
+        setModalOpen(true); // 모달창 열기
+    }
+
+    function closeModal() {
+        setModalOpen(false); // 모달창 닫기
+    }
     // 슬라이더 설정
     const sliderSettings = {
         dots: true,          // 스크롤바 아래 점으로 페이지네이션 여부
@@ -24,7 +36,7 @@ function Slide(props) {
     const Info = props.info
 
     const sliderImage = Info?.images?.map((image, index) => (
-        <div className="sliderImg" key={index}>
+        <div className="sliderImg" key={index} onClick={() => openModal(image)}>
             <img src={image} alt={`Slide ${index}`} />
         </div>
     ));
@@ -35,12 +47,10 @@ function Slide(props) {
                 <Slider {...sliderSettings}>
                     {sliderImage}
                 </Slider>
-                <div className='KJH_item_plus-image'>
-                    <CiSquarePlus />
-                </div>
+                <Modal show={modalOpen} onClose={closeModal} image={selectedImage} />
             </div>
         </>
-    )
+    );
 }
 
 export default Slide;
