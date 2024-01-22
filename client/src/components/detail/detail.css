@@ -1,0 +1,9 @@
+.KJH_detail_slide_section {
+    display: flex;
+}
+
+@media (max-width: 1024px) {
+    .KJH_detail_slide_section {
+        display: block;
+    }
+}
