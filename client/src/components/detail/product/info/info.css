@@ -80,11 +80,10 @@
 }
 
 .KJH_if_left_content_div_center {
-    font-size: 0.5vw;
+    font-size: 1vw;
     color: rgb(102, 102, 102);
     padding: 0px 15px;
     display: flex;
-    font-size: 2vw;
     flex-wrap: wrap;
     justify-content: center;
     line-height: 1.5;
@@ -101,7 +100,7 @@
     display: flex;
     align-items: center;
     color: rgb(102, 102, 102);
-    font-size: 0.6vw;
+    font-size: 0.9vw;
 }
 
 .KJH_if_left_content_div_link_span {
@@ -111,7 +110,7 @@
 }
 
 .KJH_if_left_content_div_bottom_tag_section {
-    font-size: 0.6vw;
+    font-size: 0.8vw;
     color: rgb(102, 102, 102);
     padding: 0px 15px;
     display: flex;
@@ -209,6 +208,7 @@
 .KJH_if_right_top_content_top {
     display: flex;
     align-items: center;
+    min-width: 14vw;
     width: 100%;
     margin-top: 2vh;
     margin-bottom: 1.5vh;
@@ -219,14 +219,16 @@
 
 .KJH_if_right_top_seller {
     padding: 0 0.5vw;
+    min-width: 40px;
     font-size: 1vw;
     font-weight: 700;
 }
 
 .KJH_if_right_top_prod_count {
-    padding: 0 1vw;
+    padding: 0 0.5vw;
     color: red;
     font-weight: 700;
+    font-size: 0.6vw;
 }
 
 .KJH_if_right_shop_icon {
@@ -248,6 +250,7 @@
 .KJH_if_right_top_content_user_name {
     display: flex;
     align-items: center;
+    padding-right: 0.5vw;
 }
 
 .KJH_if_right_top_content_user_name > a {
@@ -259,6 +262,7 @@
 
 .KJH_if_right_top_content_user_info {
     display: flex;
+    font-size: 0.6vw;
 }
 
 .KJH_if_right_top_content_user_info > a {
@@ -312,7 +316,7 @@
     position: relative;
     bottom: 0.3vw;
     padding: 0 0.3vw;
-    border-radius: 0.7vw;
+    border-radius: 0.2vw;
     display: flex;
     align-items: center;
     background-color: #ff6e6e;
@@ -320,12 +324,14 @@
 }
 
 .KJH_if_right_review_writer {
+    font-size: 0.8vw;
     font-weight: 700;
     margin-bottom: 0.7vw;
 }
 
 .KJH_if_right_review_comment {
     padding: 0.3vw 0;
+    font-size: 0.7vw;
 }
 
 .KJH_if_right_review_more {
@@ -406,7 +412,8 @@
 @media (max-width: 1024px) {
     .KJH_if_section {
         display: block;
-        border-top: 0.15em solid black;
+        border-top: 0.1em solid #e9e9e9;
+        margin-bottom: 35vh;
     }
     
     .KJH_if_right_section {
@@ -434,28 +441,34 @@
     .KJH_if_left_top_title {
         font-size: 2.5vw;
         font-weight: 700;
-        padding: 3vh 0 2vh;
-        border-bottom: 0.1em solid rgb(238, 238, 238);
+        padding: 2vh 0;
+        border-bottom: 0;
     }
     
     .KJH_if_left_content_top {
         white-space: pre-wrap;
         overflow-wrap: break-word;
-        margin: 1em 0;
+        margin: 0;
+        padding: 3vh 0;
+        border-bottom: 0.1em solid #e9e9e9;
         line-height: 1.5;
         font-size: 2vw;
     }
     
     .KJH_if_left_content_bottom {
+        position: relative;
+        height: 100%;
         border-top: 0;
         border-bottom: 0;
         display: flex;
         align-items: center;
+        border-bottom: 0.1em solid #e9e9e9;
     }
     
     .KJH_if_left_content_div {
         width: 100%;
         border-right: 0;
+        margin: 2.5vh 0;
     }
     
     .KJH_if_left_content_div:last-child {
@@ -602,32 +615,31 @@
     }
     
     .KJH_if_right_top_section {
-        height: 100%;
-        border-right: 0.1em solid rgb(238, 238, 238);
-        padding: 0px 1.5vw 15vh;
+        border-right: 0;
+        padding: 0;
         position: relative;
     }
     
     .KJH_if_right_top_title {
-        font-size: 1vw;
+        font-size: 2.4vw;
         font-weight: 700;
-        padding: 4vh 0 2vh;
-        border-bottom: 0.1em solid rgb(238, 238, 238);
+        padding: 2vh 0 2vh;
+        border-bottom: 0;
     }
     .KJH_if_right_top_content_top {
         display: flex;
         align-items: center;
         width: 100%;
-        margin-top: 2vh;
-        margin-bottom: 1.5vh;
+        margin-top: 0;
+        margin-bottom: 0;
         border: 0.1em solid black;
-        border-radius: 0.2vw;
+        border-radius: 0.6vw;
         font-size: 0.8vw;
     }
     
     .KJH_if_right_top_seller {
-        padding: 0 0.5vw;
-        font-size: 1vw;
+        padding: 0 1vw;
+        font-size: 3vw;
         font-weight: 700;
     }
     
@@ -635,17 +647,18 @@
         padding: 0 1vw;
         color: red;
         font-weight: 700;
+        font-size: 2.4vw;
     }
     
     .KJH_if_right_shop_icon {
-        padding: 0.5vw;
+        padding: 1vw;
     }
     
     .KJH_if_right_shop_icon > svg {
         position: relative;
         top: 0.1vw;
-        width: 1.5vw;
-        height: 2.5vh;
+        width: 3.5vw;
+        height: 6vh;
     }
     
     .KJH_if_right_shop-link {
@@ -667,6 +680,7 @@
     
     .KJH_if_right_top_content_user_info {
         display: flex;
+        font-size: 2vw;
     }
     
     .KJH_if_right_top_content_user_info > a {
@@ -676,11 +690,11 @@
     }
     
     .KJH_if_right_top_content_user_review {
-        padding: 1.0vw 0 1.1vw;
+        padding: 2vh 0;
         border-top: 0.1em solid rgb(238, 238, 238);
         border-bottom: 0.1em solid rgb(238, 238, 238);
         font-weight: 700;
-        font-size: 0.8vw;
+        font-size: 2.2vw;
     }
     
     .KJH_if_right_top_content_user_review > span {
@@ -688,10 +702,8 @@
     }
     
     .KJH_if_right_top_content_user_review_list_section {
-        display: flex;
+        display: block;
         justify-content: space-between;
-        min-height: 13.9vw;
-        max-height: 13.9vw;
     }
     
     .KJH_if_right_top_content_user_no_review {
@@ -702,8 +714,8 @@
     }
     
     .KJH_if_right_review_info {
-        padding: 0.7vw;
-        margin-bottom: 0.7vw;
+        padding: 2vh 3vw;
+        margin-bottom: 2.5vh;
         border: 0.1em solid black;
         border-radius: 0.6vw;
     }
@@ -718,31 +730,35 @@
     
     .KJH_if_right_review_date {
         position: relative;
-        bottom: 0.3vw;
-        padding: 0 0.3vw;
+        bottom: 1vw;
+        padding: 0 1vw;
         border-radius: 0.7vw;
         display: flex;
         align-items: center;
         background-color: #ff6e6e;
         color: white;
+        font-size: 1.8vw;
+        font-weight: 500;
     }
     
     .KJH_if_right_review_writer {
+        font-size: 2.5vw;
         font-weight: 700;
         margin-bottom: 0.7vw;
     }
     
     .KJH_if_right_review_comment {
         padding: 0.3vw 0;
+        font-size: 2vw;
     }
     
     .KJH_if_right_review_more {
-        margin-top: 1.5vw;
+        margin-top: 0;
         border-top: 0.1em solid #e6e6e6;
         border-bottom: 0.1em solid #e6e6e6;
-        padding: 10px 0;
+        padding: 2.5vh 0;
         text-align: center;
-        font-size: 0.8vw;
+        font-size: 3vw;
         font-weight: 700;
         transition: all 0.3s;
     }
@@ -753,10 +769,8 @@
     }
     
     .KJH_if_right_bottom_section {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: flex;
+        position: relative;
+        display: none;
         width: 100%;
         padding: 1.1vw;
     }
@@ -805,9 +819,428 @@
     }
     
     .KJH_if_section_bottom {
-        display: flex;
+        display: none;
         justify-content: center;
         background: rgb(249, 249, 249);
         padding: 2.8vw 0 5.6vw;
+    }
+
+    @media (max-width: 500px) {
+        .KJH_if_section {
+            display: block;
+            border-top: 0.1em solid #e9e9e9;
+            margin-bottom: 35vh;
+        }
+        
+        .KJH_if_right_section {
+            width: 330px;
+        }
+        
+        .KJH_if_right_info {
+            height: 100%;
+            position: relative;
+        }
+        
+        .KJH_if_left_info {
+            width: 100%;
+            padding-right: 0;
+            border-right: 0;
+            height: 100%;
+        }
+        
+        .KJH_if_left_bottom {
+            display: none;
+            margin-top: 50px;
+            width: 100%;
+        }
+        
+        .KJH_if_left_top_title {
+            font-size: 5vw;
+            font-weight: 700;
+            padding: 1vh 0;
+            border-bottom: 0;
+        }
+        
+        .KJH_if_left_content_top {
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            margin: 0;
+            padding: 2vh 0;
+            border-bottom: 0.1em solid #e9e9e9;
+            line-height: 1.5;
+            font-size: 3.8vw;
+        }
+        
+        .KJH_if_left_content_bottom {
+            position: relative;
+            height: 100%;
+            border-top: 0;
+            border-bottom: 0;
+            display: none;
+            align-items: center;
+            border-bottom: 0.1em solid #e9e9e9;
+        }
+        
+        .KJH_if_left_content_div {
+            width: 100%;
+            border-right: 0;
+            margin: 2.5vh 0;
+        }
+        
+        .KJH_if_left_content_div:last-child {
+            border-right: 0;
+        }
+        
+        .KJH_if_left_content_div_top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 2vw;
+            font-weight: 700;
+            color: rgb(178, 178, 178);
+        }
+        
+        .KJH_if_left_content_div_top > img {
+            margin-right: 5px;
+        }
+        
+        .KJH_if_left_content_div_center_category {
+            font-size: 1vw;
+            color: rgb(102, 102, 102);
+            padding: 0px 15px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.5;
+        }
+        
+        .KJH_if_left_content_div_center {
+            font-size: 0.5vw;
+            color: rgb(102, 102, 102);
+            padding: 0px 15px;
+            display: flex;
+            font-size: 1.4vw;
+            font-weight: 700;
+            flex-wrap: wrap;
+            justify-content: center;
+            line-height: 1.5;
+            color: black;
+        }
+        
+        .KJH_if_left_content_div_center > div > a {
+            display: flex;
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .KJH_if_left_content_div_center > div {
+            display: flex;
+            align-items: center;
+            color: rgb(102, 102, 102);
+            font-size: 1.4vw;
+        }
+        
+        .KJH_if_left_content_div_link_span {
+            display: flex;
+            margin-right: 5px;
+            font-size: 0.5vw;
+        }
+        
+        .KJH_if_left_content_div_bottom_tag_section {
+            font-size: 1.4vw;
+            color: rgb(102, 102, 102);
+            padding: 0px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            line-height: 1.5;
+            min-height: 19px;
+        }
+        
+        .KJH_if_left_content_div_bottom_tag_section > a {
+            margin-right: 5px;
+            color: rgb(102, 102, 102);
+            text-decoration: none;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        
+        .KJH_if_left_bottom_title_section {
+            font-size: 0.8vw;
+            color: rgb(51, 51, 51);
+            margin-bottom: 3vh;
+        }
+        
+        .KJH_if_left_bottom_content_section {
+            display: flex;
+            align-items: center;
+            column-gap: 16px;
+            width: 100%;
+            padding: 2vh 0;
+            border: 0.1em solid rgb(238, 238, 238);
+            margin-bottom: 16px;
+        }
+        
+        .KJH_if_left_bottom_content_section > li {
+            list-style: none;
+        }
+        
+        .KJH_if_left_bottom_content_link_section {
+            display: flex;
+            color: rgb(33, 33, 33);
+            text-decoration: none;
+        }
+        
+        .KJH_if_left_bottom_content_link_section > img {
+            width: 8vw;
+        }
+        
+        .KJH_if_left_bottom_content_link_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 0.5vw;
+            box-sizing: border-box;
+            width: 13vw;
+        }
+        
+        .KJH_if_left_bottom_content_link_price {
+            color: rgb(33, 33, 33);
+            font-size: 1vw;
+            font-weight: 700;
+            margin-bottom: 2vh;
+            height: 2vh;
+        }
+        
+        .KJH_if_left_bottom_content_link_title {
+            font-size: 0.8vw;
+            color: rgb(113, 112, 126);
+            margin-bottom: 0.8vh;
+        }
+        
+        .KJH_if_left_bottom_content_link_ad {
+            font-size: 0.6vw;
+            color: rgb(178, 178, 178);
+        }
+        
+        /*** 오른쪽 ***/
+        
+        .KJH_if_right_section {
+            width: 100%;
+        }
+        
+        .KJH_if_right_top_section {
+            border-right: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        .KJH_if_right_top_title {
+            font-size: 4vw;
+            font-weight: 700;
+            padding: 2vh 0;
+            border-bottom: 0;
+        }
+        .KJH_if_right_top_content_top {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 8vh;
+            margin-top: 0;
+            margin-bottom: 0;
+            border: 0.1em solid black;
+            border-radius: 0.6vw;
+            font-size: 0.8vw;
+        }
+        
+        .KJH_if_right_top_seller {
+            padding: 0 1vw;
+            font-size: 5vw;
+            font-weight: 700;
+        }
+        
+        .KJH_if_right_top_prod_count {
+            padding: 0 1vw;
+            color: red;
+            font-weight: 700;
+            font-size: 4vw;
+        }
+        
+        .KJH_if_right_shop_icon {
+            padding: 1vw;
+        }
+        
+        .KJH_if_right_shop_icon > svg {
+            position: relative;
+            top: 0.1vw;
+            width: 8vw;
+            height: auto;
+        }
+        
+        .KJH_if_right_shop-link {
+            display: flex;
+            align-items: center;
+        }
+        
+        .KJH_if_right_top_content_user_name {
+            display: flex;
+            align-items: center;
+        }
+        
+        .KJH_if_right_top_content_user_name > a {
+            color: rgb(33, 33, 33);
+            text-decoration: none;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        
+        .KJH_if_right_top_content_user_info {
+            display: flex;
+            font-size: 2vw;
+            font-size: 3.6vw;
+        }
+        
+        .KJH_if_right_top_content_user_info > a {
+            text-decoration: none;
+            cursor: pointer;
+            background-color: transparent;
+        }
+        
+        .KJH_if_right_top_content_user_review {
+            padding: 1vh 0;
+            border-top: 0.1em solid rgb(238, 238, 238);
+            border-bottom: 0.1em solid rgb(238, 238, 238);
+            font-weight: 700;
+            font-size: 3.6vw;
+        }
+        
+        .KJH_if_right_top_content_user_review > span {
+            color: red;
+        }
+        
+        .KJH_if_right_top_content_user_review_list_section {
+            display: block;
+            justify-content: space-between;
+        }
+        
+        .KJH_if_right_top_content_user_no_review {
+            color: rgb(102, 102, 102);
+            font-size: 0.5vw;
+            line-height: 1.3;
+            width: 100%;
+        }
+        
+        .KJH_if_right_review_info {
+            padding: 1.6vh 3vw;
+            margin-bottom: 2.5vh;
+            border: 0.1em solid black;
+            border-radius: 0.6vw;
+        }
+        
+        .KJH_if_right_review_title {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 0.3vw;
+            border-bottom: 0.1em solid #e6e6e6;
+            margin-bottom: 0.3vw;
+        }
+        
+        .KJH_if_right_review_date {
+            position: relative;
+            bottom: 1vw;
+            padding: 0 2vw;
+            border-radius: 0.7vw;
+            display: flex;
+            align-items: center;
+            background-color: #ff6e6e;
+            color: white;
+            font-size: 3vw;
+            font-weight: 500;
+        }
+        
+        .KJH_if_right_review_writer {
+            font-size: 4vw;
+            font-weight: 700;
+            margin-bottom: 0.7vw;
+        }
+        
+        .KJH_if_right_review_comment {
+            padding: 0.3vw 0;
+            font-size: 3.4vw;
+        }
+        
+        .KJH_if_right_review_more {
+            margin-top: 0;
+            border-top: 0.1em solid #e6e6e6;
+            border-bottom: 0.1em solid #e6e6e6;
+            padding: 2.5vh 0;
+            text-align: center;
+            font-size: 5.5vw;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .KJH_if_right_review_more:hover {
+            cursor: pointer;
+            background-color: rgb(253, 255, 185);
+        }
+        
+        .KJH_if_right_bottom_section {
+            position: relative;
+            display: none;
+            width: 100%;
+            padding: 1.1vw;
+        }
+        
+        .KJH_if_right_bottom_section > button {
+            border-radius: 0.7vw;
+        }
+        
+        .KJH_if_right_bottom_talk, .KJH_if_right_bottom_buy {
+            height: 6vh;
+            font-size: 0.8vw;
+        }
+        
+        .KJH_if_right_bottom_talk {
+            display: flex;
+            background: rgb(255, 164, 37);
+            border: 0.1em solid rgb(243, 150, 20);
+            color: rgb(255, 255, 255);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            cursor: pointer;
+            outline: none;
+            margin-right: 1.4vw;
+        }
+        
+        .KJH_if_right_bottom_talk > img {
+            margin-right: 0.3vw;
+            vertical-align: bottom;
+            border-style: none;
+        }
+        
+        .KJH_if_right_bottom_buy {
+            background-color: rgb(198, 0, 0);
+            border-color: rgb(188, 0, 0);
+            color: rgb(255, 255, 255);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .KJH_if_section_bottom {
+            display: none;
+            justify-content: center;
+            background: rgb(249, 249, 249);
+            padding: 2.8vw 0 5.6vw;
+        }
     }
 }
