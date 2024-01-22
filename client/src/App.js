@@ -6,9 +6,8 @@ import { useLocation } from "react-router-dom";
 import Header from './components/header/header';
 import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
-import Detail from './components/detail/intex';
+import Detail from './components/detail';
 import Detail_Error from './components/detail/error';
-
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
