@@ -1,7 +1,22 @@
 .room_list_Main{
   border: 1px solid #000; 
   max-height: 35vw;
+  min-height: 35vw;
   overflow-y: auto;
+}
+
+.room_nolist_Main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 34vw;
+  font-size: 2vw;
+  row-gap: 0.5vw;
+}
+
+.room_nolist_Main img{
+  width: 10vw;
 }
 
 .room_list{
