@@ -103,7 +103,40 @@ function Header() {
           <img src={Logo} className="main_logoIcon" />
           <span className="main_titleName">리셀 마켓</span>
         </Link>
-        <div className="main_searchBar">
+        {/* <div className="main_searchBar">
+          <input
+            className="searchBar_input"
+            placeholder="상품명, 태그 입력"
+            value={search}
+            onChange={(e)=>setSearch(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <FaSearch className="main_searchIcon" onClick={navi}/>
+        </div> */}
+        <div className="main_login">
+          {getCookie("login") ? (
+            <nav>
+              <ul className="header_login">
+                <li className="header_login_nav">
+                  <span>
+                    <FaWonSign className="main_loginIcon" />
+                  </span>
+                  <Link to={"/sellitem"}>판매하기</Link>
+                  <span>
+                    <LuUserCircle2 className="main_loginIcon" />
+                  </span>
+                  <Link to={"/mypage"}>내정보</Link>
+                  <span>
+                    <AiOutlineAliwangwang className="main_loginIcon" />
+                  </span>
+                  <Link to={"/chat"}>채팅</Link>
+                </li>
+                <li></li>
+                <li>
+                  <Link onClick={logOut} className="main_logout">로그아웃</Link>
+                </li>
+              </ul>
+              <div className="main_searchBar">
           <input
             className="searchBar_input"
             placeholder="상품명, 태그 입력"
@@ -113,35 +146,6 @@ function Header() {
           />
           <FaSearch className="main_searchIcon" onClick={navi}/>
         </div>
-        <div className="main_login">
-          {getCookie("login") ? (
-            <nav>
-              <ul className="header_login">
-                <li>
-                  <span>
-                    <FaWonSign className="main_loginIcon" />
-                  </span>
-                  <Link to={"/sellitem"}>판매하기</Link>
-                </li>
-                <li>
-                  <span>
-                    <LuUserCircle2 className="main_loginIcon" />
-                  </span>
-                  <Link to={"/mypage"}>내정보</Link>
-                </li>
-                <li>
-                  <span>
-                    <AiOutlineAliwangwang className="main_loginIcon" />
-                  </span>
-                  <Link to={"/chat"}>채팅</Link>
-                </li>
-              </ul>
-              <ul className="header_login">
-                <li></li>
-                <li>
-                  <Link onClick={logOut}>로그아웃</Link>
-                </li>
-              </ul>
             </nav>
           ) : (
             <ul className="header_login">
