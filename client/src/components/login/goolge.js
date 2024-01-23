@@ -32,6 +32,7 @@ const GoogleLoginButton = ({ onGoogleLogin }) => {
                         console.log(res,"구글 로그인 성공");
                         decodeToken(res.credential);
                         navigate('/sign_up');
+                        window.location.reload();
                         }
                     }
                     onFailure={(err) => {
