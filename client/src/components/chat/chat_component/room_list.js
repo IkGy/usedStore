@@ -46,7 +46,7 @@ function Room_list({ onSelectUser }) {
 
   return (
     <div className="room_list_Main">
-      {
+      { 
       myRoom_list.map((a, i) => {
         return <div 
           key={i}
