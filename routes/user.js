@@ -8,7 +8,6 @@ router.post("/login", async (req, res) => {
     const db = getDB();
     const { email, password } = req.body;
 
-
     const user = await db.collection("user").findOne({ email: email });
     if (user && password === user.password) {
       res.status(201).send(user._id);
@@ -24,17 +23,17 @@ router.post("/login", async (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     const db = getDB();
-    let { name, id, email, password, address, phone_number } = req.body;
+    let { name, id, nickname, email, password, address, phone_number } = req.body;
 
     await db.collection("user").insertOne({
       real_name: name,
       id: id,
+      nickname: nickname,
       email: email,
       password: password,
       address: address,
       phone_number: phone_number,
       role: "user",
-      user_name: "user",
       about: " ",
       create_at: new Date(),
     });
@@ -45,6 +44,7 @@ router.post("/register", async (req, res) => {
     res.status(500).send("서버 오류");
   }
 });
+
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
