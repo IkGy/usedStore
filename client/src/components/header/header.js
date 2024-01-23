@@ -153,7 +153,7 @@ function Header() {
               </li>
               <li>
                 <LuUserPlus2 className="main_mainIcon" />
-                <Link to={"/sign_up"}>회원가입</Link>
+                <Link to={"/sign_up1"}>회원가입</Link>
               </li>
             </ul>
           )}
