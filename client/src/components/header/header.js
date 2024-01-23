@@ -76,7 +76,7 @@ function Header() {
     const cookies = document.cookie.split("; ");
     for (const cookie of cookies) {
       const [name] = cookie.split("=");
-      removeCookie(name);
+      removeCookie("name");
     }
     window.localStorage.clear();
     if (getCookie("login")) {
