@@ -14,6 +14,7 @@ import Regi_postprice from "./regi_postprice";
 import Regi_content from "./regi_content";
 import Regi_tag from "./regi_tag";
 import Regi_count from "./regi_count";
+import { API_URL } from '../config/contansts';
 
 function Regi() {
   const [imageFile, setImageFile] = useState([]);
@@ -35,7 +36,7 @@ function Regi() {
   useEffect(() => {
     // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
     axios
-      .post("http://localhost:8080/productuser", {
+      .post(`${API_URL}/productuser`, {
         cookie: getCookie("login"),
       })
       .then((result) => {
@@ -82,7 +83,7 @@ function Regi() {
       formDataWithImage.append("seller", getCookie("login"));
 
       axios
-        .post("http://localhost:8080/product", formDataWithImage)
+        .post(`${API_URL}/product`, formDataWithImage)
         .then((result) => {
           console.log(result.data);
           navigate("/");

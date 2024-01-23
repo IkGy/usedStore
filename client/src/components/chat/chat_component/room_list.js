@@ -3,6 +3,7 @@ import { API_URL } from "../../config/contansts";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getCookie } from "../../../useCookies";
+import chatimgage from "./3721935.png"
 
 function Room_list({ onSelectUser }) {
   // 각 유저의 id를 가져오고
@@ -13,7 +14,6 @@ function Room_list({ onSelectUser }) {
   //
   const [myRoom_list, setMyRoom_List] = useState([]);
   const [user, setUser] = useState([]);
-  
 
   useEffect(() => {
     try {
@@ -42,19 +42,30 @@ function Room_list({ onSelectUser }) {
     // console.log("clickRoom실행됨");
     console.log(`${user}님과의 채팅방`);
     onSelectUser(user);
-  }
+  };
 
   return (
     <div className="room_list_Main">
-      {
-      myRoom_list.map((a, i) => {
-        return <div 
-          key={i}
-          className="room_list"
-          onClick={() => clickRoom(user[i])}
-          >{user[i]}님과의 채팅방</div>;
-      })}
-
+      {myRoom_list.length === 0 ? (
+        <div className="room_nolist_Main">
+          <img src={chatimgage}></img>
+          <div>아직 채팅방이 없어요...</div>
+        </div>
+      ) : (
+        <>
+          {myRoom_list.map((a, i) => {
+            return (
+              <div
+                key={i}
+                className="room_list"
+                onClick={() => clickRoom(user[i])}
+              >
+                {user[i]}님과의 채팅방
+              </div>
+            );
+          })}
+        </>
+      )}
     </div>
   );
 }
