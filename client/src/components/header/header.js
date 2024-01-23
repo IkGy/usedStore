@@ -10,29 +10,26 @@ import axios from "axios";
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
 
-
 let currentPath = "";
 function Header() {
-
   let location = useLocation();
   console.log("location pathname: ", location.pathname);
   useEffect(() => {
-    if(currentPath === location.pathname) window.location.reload();
+    if (currentPath === location.pathname) window.location.reload();
     currentPath = location.pathname;
   }, [location]);
 
-
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const navi = (e) => {
     e.preventDefault();
-    setSearch("")
-    navigate(`/main/${search}`)
-  }
+    setSearch("");
+    navigate(`/main/${search}`);
+  };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       navi(e);
     }
   };
@@ -44,7 +41,6 @@ function Header() {
         console.log(result.data);
       });
   }, []);
-
 
   useEffect(() => {
     // 카카오 SDK 초기화
@@ -59,24 +55,25 @@ function Header() {
       // 카카오 SDK 초기화
       window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
     };
-    
-    axios.get(`${API_URL}/user/header`, {params:{id:getCookie("login")}})
-    .then((result) => {
-    console.log(result.data);
-  })
+
+    axios
+      .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
+      .then((result) => {
+        console.log(result.data);
+      });
   }, []);
 
   const deleteCookie = () => {
+    document.cookie =
+      "authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  };
 
-    document.cookie = 'authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  }
-  
   const logOut = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const cookies = document.cookie.split("; ");
     for (const cookie of cookies) {
       const [name] = cookie.split("=");
-      removeCookie(name);
+      removeCookie("name");
     }
     window.localStorage.clear();
     if (getCookie("login")) {
@@ -91,10 +88,9 @@ function Header() {
           alert("Not logged in");
         });
     }
-    navigate('/');
+    navigate("/");
     // window.location.href = '/'
-  }
-
+  };
 
   return (
     <div className="main_header">
@@ -103,7 +99,7 @@ function Header() {
           <img src={Logo} className="main_logoIcon" />
           <span className="main_titleName">리셀 마켓</span>
         </Link>
-        <div className="main_searchBar">
+        {/* <div className="main_searchBar">
           <input
             className="searchBar_input"
             placeholder="상품명, 태그 입력"
@@ -112,36 +108,42 @@ function Header() {
             onKeyDown={handleKeyDown}
           />
           <FaSearch className="main_searchIcon" onClick={navi}/>
-        </div>
+        </div> */}
         <div className="main_login">
           {getCookie("login") ? (
             <nav>
               <ul className="header_login">
-                <li>
+                <li className="header_login_nav">
                   <span>
                     <FaWonSign className="main_loginIcon" />
                   </span>
                   <Link to={"/sellitem"}>판매하기</Link>
-                </li>
-                <li>
                   <span>
                     <LuUserCircle2 className="main_loginIcon" />
                   </span>
                   <Link to={"/mypage"}>내정보</Link>
-                </li>
-                <li>
                   <span>
                     <AiOutlineAliwangwang className="main_loginIcon" />
                   </span>
                   <Link to={"/chat"}>채팅</Link>
                 </li>
-              </ul>
-              <ul className="header_login">
                 <li></li>
                 <li>
-                  <Link onClick={logOut}>로그아웃</Link>
+                  <Link onClick={logOut} className="main_logout">
+                    로그아웃
+                  </Link>
                 </li>
               </ul>
+              <div className="main_searchBar">
+                <input
+                  className="searchBar_input"
+                  placeholder="상품명, 태그 입력"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+                <FaSearch className="main_searchIcon" onClick={navi} />
+              </div>
             </nav>
           ) : (
             <ul className="header_login">
@@ -151,7 +153,7 @@ function Header() {
               </li>
               <li>
                 <LuUserPlus2 className="main_mainIcon" />
-                <Link to={"/sign_up"}>회원가입</Link>
+                <Link to={"/sign_up1"}>회원가입</Link>
               </li>
             </ul>
           )}
