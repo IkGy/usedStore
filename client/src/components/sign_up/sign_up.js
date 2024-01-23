@@ -17,8 +17,8 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
   const [kakaoAccount, setKakaoAccount] = useState(null);
-  const [Naver_InfoN, setNaver_InfoN] = useState('');
-  const [Naver_InfoE, setNaver_InfoE] = useState('');
+  const [Naver_InfoN, setNaver_InfoN] = useState(''); //name
+  const [Naver_InfoE, setNaver_InfoE] = useState(''); //email
   const [userData, setUserData] = useState('');
 
   useEffect(() => {
