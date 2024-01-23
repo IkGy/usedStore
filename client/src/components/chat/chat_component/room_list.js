@@ -46,6 +46,17 @@ function Room_list({ onSelectUser }) {
 
   return (
     <div className="room_list_Main">
+<<<<<<< HEAD
+      { 
+      myRoom_list.map((a, i) => {
+        return <div 
+          key={i}
+          className="room_list"
+          onClick={() => clickRoom(user[i])}
+          >{user[i]}님과의 채팅방</div>;
+      })}
+
+=======
       {myRoom_list.length === 0 ? (
         <div className="room_nolist_Main">
           <img src={chatimgage}></img>
@@ -66,6 +77,7 @@ function Room_list({ onSelectUser }) {
           })}
         </>
       )}
+>>>>>>> f137116a95eefaab4a7697f69c8d28d9a3d34a7f
     </div>
   );
 }

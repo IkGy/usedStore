@@ -1,7 +1,10 @@
-import { getCookie } from "../../useCookies";
+import { Link, useNavigate } from "react-router-dom";
+import { setCookie, getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import Modal from "react-modal";
+
 import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
@@ -11,6 +14,28 @@ import EK from "./image/이크.png"
 
 
 function Mypage() {
+
+  let [modalIsOpen, setModalIsOpen] = useState(false); 
+  let [zIndex, setZindex] = useState(1);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setEnd("end");
+    }, 100);
+    return setEnd("");
+  }, [modalIsOpen]); // 로그인 모달창 등장시 등장애내메이션을 담당하는 useEffect
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    const id = e.target.user_id.value;
+    const pwd = e.target.user_pwd.value;
+    console.log("test", id, pwd);
+    if (id === "" || pwd === "") {
+      return alert("아이디 또는 비밀번호를 입력해주세요");
+    }
+  }
+
+/* */
   const [data, setData] = useState({})
   const [menu, setMenu] = useState("판매 내역");
   const [end, setEnd] = useState("");
@@ -118,11 +143,79 @@ function Mypage() {
                         <div className="JSW_userlist">주소지 : {data.address}</div>
                       </div>
                 </div>
-                {/* <label className="JSW_Cristal">
+                <Link
+                className="loginBtn"
+                style={{ textDecoration: "none" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalIsOpen(true);
+                  setZindex(0);
+                }}>
+                <label className="JSW_Cristal">
                   프로필 수정
-                </label> */}
+                </label>
+                </Link>
               </div>
             </div>
+            <div>
+              <Modal
+              className={"loginModal"}
+              isOpen={modalIsOpen}
+              bodyOpenClassName="modal-open"
+              onRequestClose={() => {
+                console.log('test');
+                setModalIsOpen(false);
+                setZindex(1);
+              }}
+            > {/* 로그인버튼 클릭시 보여주는 모달창 */}
+            <form onSubmit={onLogin} className={"start " + end} id="JSW_modalALL">
+            <div
+              className="JSW_modal_loginCloseBtn"
+              onClick={() => {
+                setModalIsOpen(false);
+                setZindex(1);
+              }}
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div className="JSW_modal_mainTitle">내 정보</div>
+            <div className="JSW_modal_loginInputBox">
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="real_name" 
+                type="text" 
+                placeholder={data.real_name}
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="phone_number"
+                type="password"
+                placeholder={data.phone_number}
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="email"
+                type="text"
+                placeholder={data.email}
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="adress"
+                type="text"
+                placeholder={data.address}
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="about"
+                type="text"
+                placeholder={data.about}
+              ></input>
+              </div>
+              <button className="JSW_mypagewater">수정하기</button>
+              </form>
+            </Modal>
+            </div>
+
             <div className="JSW_Sec2-2">
               {menu === "구매 내역" && (
                 <div className={"start " + end}>

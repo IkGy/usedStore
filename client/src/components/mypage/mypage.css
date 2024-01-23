@@ -400,4 +400,57 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
 }
+
+}
+
+#JSW_modalALL {
+  background-color: #03C75A;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 15vw;
+  height: 40vh;
+  
+  border: 1px solid #000;
+  border-radius: 15px;
+}
+
+.JSW_modal_loginInputBox {
+  padding-top: 3%;
+  margin: 0 auto;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  
+  width: 80%;
+  
+}
+
+.JSW_modal_loginInputBox_s {
+  /* background-color: #CCF4DC; */
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.JSW_modal_mainTitle {
+  padding-left: 10%;
+  font-size: 1vw;
+  font-weight: 900;
+  color: white;
+}
+
+.JSW_modal_loginCloseBtn {
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.JSW_mypagewater {
+  width: 4vw;
+  height: 4vh;
+
+  background-color: #CCF4DC;
+  border-color: #CCF4DC;
+
 }
