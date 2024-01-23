@@ -1,10 +1,27 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
 require("dotenv").config();
+
+// ---------실시간채팅------------- //
+const http = require('http')
+const socketio = require('socket.io')
+const server = http.createServer(app)
+const io = socketio(server)
+
+
+const {} = require('./routes/user')
+const {} = require('./routes/room_list')
+const {} = require('./routes/chat_room')
+
+
+const roomRouter = require('./routes/chat_room')
+const room_listRouter = require('./routes/room_list')
+// ------------------------------- //
 
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
@@ -278,3 +295,35 @@ app.get('/room_list', async(req, res) => {
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
+
+// ---------실시간채팅------------- //
+
+
+io.on('connection', (socket) => {
+  console.log('새로운 유저가 접속했습니다.')
+
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id)
+    console.log('user: ', user)
+    console.log(typeof message, message)
+
+    callback();
+  })
+
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id)
+    if (user) {
+      io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name}님이 퇴장하셨습니다.`,
+      })
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      })
+    }
+    console.log('유저가 나갔습니다.') 
+  })
+})
+
+// ------------------------------- //
