@@ -6,12 +6,12 @@ import { useLocation } from "react-router-dom";
 import Header from './components/header/header';
 import Main from './components/mainpage/main';
 import Footer from './components/footer/footer';
-import Detail from './components/detail/intex';
+import Detail from './components/detail';
 import Detail_Error from './components/detail/error';
-
 import Mypage from './components/mypage/mypage';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
+import Sign_Up1 from './components/sign_up/sign_up1';
 import Sale from './components/sale/regi'
 import Chat from './components/chat/chat';
 import Chat_room from './components/chat/chat_component/chat_room';
@@ -47,6 +47,7 @@ function App() {
           <Route path='/mypage' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>
+          <Route path='/sign_up1' element={<Sign_Up1 />}></Route>
           <Route path='/chat' element={<Chat />}></Route>
           <Route path='/chatroom/:id' element={<Chat_room />}></Route>
           <Route path='/room_list' element={<Room_list />}></Route>

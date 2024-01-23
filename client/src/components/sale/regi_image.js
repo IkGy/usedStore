@@ -24,6 +24,7 @@ function RegiImage(props) {
     props.setImageFile(updatedFiles);
   };
 
+
   const openmodal = (img) => {
     if (modal === false) {
       setmodal(true);

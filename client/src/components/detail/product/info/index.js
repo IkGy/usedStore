@@ -10,8 +10,6 @@ import { IoIosArrowForward } from "react-icons/io";
 import Image1 from './images/image1.jpg';
 import { CiShop } from "react-icons/ci"; // 상점 아이콘
 // import Profile from './images/profile_image.svg';
-import Follow from './images/follow.png';
-import TalkBtn from './images/talkbtn.png';
 
 
 // 시간 계산
@@ -95,7 +93,7 @@ function Info(props) {
                                             <div className='KJH_if_left_content_div_link_span'>
                                                 {info?.category?.[0] && (
                                                     <>
-                                                        <Link to={`/category/${info.category[0]}`}>
+                                                        <Link to={`/detailsearch/${info.category[0]}`}>
                                                             {info.category[0]}
                                                         </Link>
                                                         {info?.category?.[1] && <IoIosArrowForward />}
@@ -103,14 +101,14 @@ function Info(props) {
                                                 )}
                                                 {info?.category?.[1] && (
                                                     <>
-                                                        <Link to={`/category/${info.category[1]}`}>
+                                                        <Link to={`/detailsearch/${info.category[1]}`}>
                                                             {info.category[1]}
                                                         </Link>
                                                         {info?.category?.[2] && <IoIosArrowForward />}
                                                     </>
                                                 )}
                                                 {info?.category?.[2] && (
-                                                    <Link to={`/category/${info.category[2]}`}>
+                                                    <Link to={`/detailsearch/${info.category[2]}`}>
                                                         {info.category[2]}
                                                     </Link>
                                                 )}
@@ -124,7 +122,7 @@ function Info(props) {
                                         </div>
                                         <div className='KJH_if_left_content_div_bottom_tag_section'>
                                             {info.tags && info.tags.map((item) => (
-                                                <Link to={`/search/${item}`}><div key={item}>#{item}&nbsp;</div></Link>
+                                                <Link to={`/search/${item}`} key={item}><div>#{item}&nbsp;</div></Link>
                                             ))}
                                         </div>
                                     </div>
@@ -133,13 +131,13 @@ function Info(props) {
                         </div>
                         <div className='KJH_if_left_bottom'>
                             <div className='KJH_if_left_bottom_title_section'>
-                                비슷한 새 상품 보기
+                                의 상점 물건 더보기
                             </div>
                             <ul className='KJH_if_left_bottom_content_section'>
                                 <li>
                                     <Link to='/' target='black' className='KJH_if_left_bottom_content_link_section'>
                                         {/* 랜덤 이미지 데이터 */}
-                                        <img src={Image1} alt='임시 alt' width='110px' />
+                                        <img src={Image1} alt='임시 alt' />
                                         <div className='KJH_if_left_bottom_content_link_info'>
                                             {/* 해당 가격 데이터 */}
                                             <span className='KJH_if_left_bottom_content_link_price'>
@@ -159,7 +157,7 @@ function Info(props) {
                                 <li>
                                     <Link to='/' target='black' className='KJH_if_left_bottom_content_link_section'>
                                         {/* 랜덤 이미지 데이터 */}
-                                        <img src={Image1} alt='임시 alt' width='110px' />
+                                        <img src={Image1} alt='임시 alt' />
                                         <div className='KJH_if_left_bottom_content_link_info'>
                                             {/* 해당 가격 데이터 */}
                                             <span className='KJH_if_left_bottom_content_link_price'>
@@ -199,10 +197,13 @@ function Info(props) {
                                             <div className='KJH_if_right_top_content_user_info'>
                                                 {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                                 <div>
-                                                    등록된 상품
+                                                    님의 등록된 상품
                                                 </div>
                                                 <div className='KJH_if_right_top_prod_count'>
                                                     {products}
+                                                </div>
+                                                <div>
+                                                    개
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +215,7 @@ function Info(props) {
                                 {/* 상점 후기 */}
                                 <div className='KJH_if_right_top_content_user_review_list_section'>
                                     <div className='KJH_if_right_top_content_user_no_review'>
-                                    <div className='KJH_if_right_review_section'>
+                                        <div className='KJH_if_right_review_section'>
                                         {review.length > 0 ? (
                                             <>
                                             {review.slice(0, 2).map((r, index) => (
@@ -248,7 +249,6 @@ function Info(props) {
                             </div>
                             <div className='KJH_if_right_bottom_section'>
                                 <button className='KJH_if_right_bottom_talk'>
-                                    <img src={TalkBtn} alt='실시간톡' width='20px' height='19px' />
                                     <div>실시간톡</div>
                                 </button>
                                 <button className='KJH_if_right_bottom_buy'>

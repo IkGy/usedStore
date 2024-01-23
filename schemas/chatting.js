@@ -20,12 +20,15 @@ const chattingSchema = new Schema({
       require: true
     },
     // 채팅 내용
-    chat: {
-      type: {
-        text: { type: String },
-        image: { type: Buffer }, // 이미지 URL 또는 Buffer 등
-      },
-      require: true,
+    text: {
+      type: String,
+      require: false
+    },
+    // 이미지 첨부
+    images: {
+      type: Image, 
+      default: null,
+      require: false
     },
     // 채팅 시간
     created_at: {
