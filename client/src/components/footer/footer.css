@@ -1,44 +1,60 @@
-.footer_container{
-  margin: 0 auto;
+.footer_container {
+  margin: 2vw 0;
 }
 
-.footer_container > div{
+.footer_container > div {
   border-top: 2px solid #000;
 }
 
-.ymj_footer_link_all{
-  flex-direction: row;
-  display: flex;
-  font-size: 25px;
+.ymj_footer_link_all {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: 1vw;
   justify-content: center;
   align-items: center;
 }
 
+.ymj_footer_all h3 {
+  font-size: 1.5vw;
+  margin: 0.5vw 0;
+}
+
 .ymj_footer_link {
   display: flex;
-  width: 200px;
-  
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.3s;
+  background-color: white;
+  height: 100%;
+  color: black;
 }
 
-.ymj_footer_link :hover{
-  background-color: rgb(17, 180, 131)
+.ymj_footer_link:hover a {
+  color: white;
 }
 
-.ymj_footer_all{
+.ymj_footer_link:hover {
+  background-color: rgb(17, 180, 131);
+  color: white;
+}
+
+.ymj_footer_link a {
+  width: 100%;
+  color: black;
+  padding: 1vw 1.5vw;
+}
+
+.ymj_footer_all {
   display: flex;
-  margin: 0 auto;
+  justify-content: space-around;
 }
 
-.ymj_footer_left > p{
-  font-size: 12pt;
-
+.ymj_footer_left > p {
+  font-size: 1vw;
 }
 
-.ymj_footer_right {
-  margin-left: 170px;
+.ymj_footer_right > p {
+  font-size: 1vw;
 }
-
-.ymj_footer_right > p{
-  font-size: 12pt;
-}
-
