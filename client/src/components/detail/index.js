@@ -1,19 +1,23 @@
+import './detail.css';
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { API_URL } from '../config/contansts';
 
+import Slide from './product/slide';
 import Category from './product/category';
 import Info from './product/info';
-import Item from './product/item';
+import Overview from './product/overview';
 
 function Detail() {
     const { id } = useParams();
-    const [item, setItem] = useState([]);
-    const [save, setSave] = useState([]);
-    const [userInfo, setUserInfo] = useState([]);
-    const [review, setReview] = useState([]);
-    const [products, setProducts] = useState([]);
+    const [item, setItem] = useState([]); // 상품 정보들
+    const [save, setSave] = useState([]); // 해당 상품을 찜한 개수
+    const [userInfo, setUserInfo] = useState([]); // 판매자 정보 
+    // 판매자정보의 일부를 불러오는 작업요망 현재 모두 불러오고 있음
+    const [review, setReview] = useState([]); // 해당 상품을 리뷰한 유저의 리뷰정보
+    const [products, setProducts] = useState([]); // 판매자가 등록한 상품들 정보 전부
     const [error, setError] = useState(false);  // 에러 상태 추가
 
     const fetchProduct = async () => {   
@@ -44,9 +48,14 @@ function Detail() {
 
     return (
         <>
-            <Category info={item} />
-            <Item info={item} heart={save} />
-            <Info info={item} seller={userInfo} review={review} products={products}/>
+            <div className='KJH_detail_container'>
+                <Category info={item} />
+                <div className='KJH_detail_slide_section'>
+                    <Slide info={item} />
+                    <Overview info={item} heart={save} />
+                </div>
+                <Info info={item} seller={userInfo} review={review} products={products}/>
+            </div>
         </>
     );
 }

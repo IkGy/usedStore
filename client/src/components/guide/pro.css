@@ -1,0 +1,81 @@
+.ymj_pro_all{
+  margin: 0 auto;
+  width: 50%; 
+  padding-top: 15px;
+  
+}
+
+.ymj_pro_link {
+  display: flex;
+  text-align: center;
+
+}
+
+.ymj_pro_link2 {
+  background-color: rgb(80, 231, 186) ;
+}
+
+.ymj_pro_link :hover {
+  background-color: rgb(17, 180, 131)
+  
+}
+
+.ymj_pro_link > div {
+ 
+  width: 150px;
+  font-size: 24pt;
+  
+}
+
+.ymj_pro_entire > h2 {
+  text-align: left;
+  font-size: 24pt;
+  padding-top: 5px
+}
+
+.ymj_pro_number{
+  padding-left: 25px;
+}
+
+.ymj_pro_Chapter > h3{
+  font-size: 18pt;
+  padding-top: 15px;
+}
+
+.ymj_pro_number > p {
+  font-size: 12pt;
+  font-weight: 700;
+  list-style-type: disc;
+  padding-top: 15px;
+}
+
+
+
+.ymj_pro_number > div > li{
+  list-style-type: decimal;
+  margin-right: 5em;
+  padding-top: 15px;
+}
+
+
+.ymj_pro_li {
+  padding-left: 40px;
+  padding-top: 15px;
+}
+.ymj_pro_li2 > li{
+  list-style-type: decimal;
+  padding-left: 25px;
+  padding-top: 15px;
+}
+.ymj_pro_li3 > li{
+  padding-left: 50px;
+  list-style-type: "\1F44D";
+  padding-top: 15px;
+}
+
+
+.ymj_pro_end{
+  padding-top: 30px;
+  padding-left: 50px;
+  color: gray;
+}

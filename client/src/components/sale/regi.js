@@ -17,7 +17,6 @@ import Regi_count from "./regi_count";
 
 function Regi() {
   const [imageFile, setImageFile] = useState([]);
-  const [imagePreview, setImagePreview] = useState(null);
   const [title, setTitle] = useState("");
   const [category1, setCategory1] = useState("");
   const [category2, setCategory2] = useState("");
@@ -31,33 +30,27 @@ function Regi() {
   const [content, setContent] = useState("");
   const [tag, setTag] = useState([]);
   const [count, setCount] = useState("");
-  const [cookie, setCookie] = useState("");
   let navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const loginCookie = getCookie("login");
-      await setCookie(loginCookie);
-
-      // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
-      axios
-        .post("http://localhost:8080/productuser", { cookie: loginCookie })
-        .then((result) => {
-          setSelectedAddress(result.data);
-        })
-        .catch((error) => {
-          if (error.response.status === 404) {
-            navigate("/login");
-          }
-        });
-    };
-
-    fetchData();
+    // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
+    axios
+      .post("http://localhost:8080/productuser", {
+        cookie: getCookie("login"),
+      })
+      .then((result) => {
+        setSelectedAddress(result.data);
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          navigate("/login");
+        }
+      });
   }, []);
 
   let productpost = (e) => {
     e.preventDefault();
-  
+
     if (
       imageFile.length === 0 ||
       title === "" ||
@@ -73,7 +66,7 @@ function Regi() {
       alert("필수입력칸을 채워주세요.");
     } else {
       let formDataWithImage = new FormData();
-      imageFile.forEach((file, index) => {
+      imageFile.forEach((file) => {
         formDataWithImage.append(`img`, file);
       });
       formDataWithImage.append("title", title);
@@ -87,7 +80,7 @@ function Regi() {
       formDataWithImage.append("tag", JSON.stringify(tag));
       formDataWithImage.append("count", count);
       formDataWithImage.append("seller", getCookie("login"));
-  
+
       axios
         .post("http://localhost:8080/product", formDataWithImage)
         .then((result) => {
@@ -96,8 +89,6 @@ function Regi() {
         });
     }
   };
-
-  console.log("aaaaa", imageFile);
   return (
     <div className="regi">
       <div className="regi_start">
@@ -105,12 +96,8 @@ function Regi() {
         <span style={{ color: "red" }}>*필수항목</span>
       </div>
 
-      <Regi_image
-        imageFile={imageFile}
-        setImageFile={setImageFile}
-        imagePreview={imagePreview}
-        setImagePreview={setImagePreview}
-      />
+      <Regi_image imageFile={imageFile} setImageFile={setImageFile} />
+
       <Regi_title title={title} setTitle={setTitle}></Regi_title>
 
       <Regi_category

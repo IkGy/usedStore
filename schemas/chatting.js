@@ -1,23 +1,40 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const chatingSchema = new Schema({
-  // 채팅방 id
-  id: {
-    type: String,
-    require: true,
-    unique: true
-  },
-  // 개설 시간
-  created_at: {
-    type: Date,
-    require: true
-  },
-  // 구성원
-  users: {
-    type: Array,
-    require: true
-  }
+const chattingSchema = new Schema({
+    // 채팅내역 id
+    id: {
+      type: String,
+      require: true,
+      unique: true
+    },
+    // 채팅방 id
+    room_id:{
+      type: String,
+      require: true,
+      unique: true
+    },
+    // 작성자
+    writer: {
+      type: String,
+      require: true
+    },
+    // 채팅 내용
+    text: {
+      type: String,
+      require: false
+    },
+    // 이미지 첨부
+    images: {
+      type: Image, 
+      default: null,
+      require: false
+    },
+    // 채팅 시간
+    created_at: {
+      type: Date,
+      require: true
+    }
 });
 
-module.exports = mongoose.module('chating', chatingSchema);
+module.exports = mongoose.module('chatting', chattingSchema);

@@ -1,83 +1,139 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cancel from "./그림1.png";
+import { MdPalette } from "react-icons/md";
 
 function RegiImage(props) {
+  let [modal, setmodal] = useState(false);
+  let [selectimg, setSelectimg] = useState("");
   const handleChange = (e) => {
+    e.preventDefault();
+
     const selectedFiles = e.target.files;
-
-    // 최대 3개까지만 선택하도록 제한
-    const filesArray = Array.from(selectedFiles).slice(0, 3);
-
-    // 이전에 선택한 이미지와 새로 선택한 이미지를 합침
-    const updatedFiles = [...props.imageFile, ...filesArray];
-
-    // 최대 3개까지 유지하도록 다시 제한
-    const updatedFilesLimited = updatedFiles.slice(0, 3);
-
-    props.setImageFile(updatedFilesLimited); // 이미지 파일들을 배열로 설정
+    if (selectedFiles.length > 4) {
+      alert("이미지는 최대 3개까지만 등록 가능합니다.");
+    } else {
+      const filesArray = Array.from(selectedFiles);
+      const updatedFiles = [...props.imageFile, ...filesArray];
+      props.setImageFile(updatedFiles);
+    }
   };
 
   const handleImageClick = (index) => {
-    // 이미지 클릭 시 해당 인덱스의 이미지를 삭제
     const updatedFiles = [...props.imageFile];
-    updatedFiles.splice(index, 1);
+    props.imageFile.splice(index, 1);
     props.setImageFile(updatedFiles);
   };
 
+
+  const openmodal = (img) => {
+    if (modal === false) {
+      setmodal(true);
+      setSelectimg(img);
+    } else if (modal === true) {
+      setmodal(false);
+      setSelectimg("");
+    }
+  };
+
+  useEffect(() => {
+    const body = document.body;
+    console.log(body);
+    if (modal) {
+      body.style.overflow = "hidden"; // 모달이 열릴 때 스크롤 방지
+    } else {
+      body.style.overflow = "auto"; // 모달이 닫힐 때 스크롤 복원
+    }
+
+    return () => {
+      body.style.overflow = "auto"; // 컴포넌트가 언마운트될 때 스크롤 복원
+    };
+  }, [modal]);
+
   return (
-    <div className="regi_select">
-      <div>
-        <div className="regi_title">
-          <div>상품 이미지</div><span>({props.imageFile.length}/3)</span>
-          {props.imageFile.length !== 0 ? (
-            <i
-              style={{ color: "green", paddingLeft: "0.5vw" }}
-              className="fa-solid fa-check"
-            ></i>
-          ) : (
-            <span style={{ color: "red" }}>*</span>
+    <div>
+      <div
+        className="modalbg"
+        style={modal === true ? { display: "flex" } : { display: "none" }}
+      >
+        {selectimg && (
+          <>
+            <img
+              className="modalimg"
+              src={URL.createObjectURL(selectimg)}
+              alt="Selected"
+            />
+            <img
+              id="regi_delete-modal"
+              src={cancel}
+              onClick={() => openmodal()}
+            ></img>
+          </>
+        )}
+      </div>
+      <div className="regi_select">
+        <div>
+          <div className="regi_title">
+            <div>상품 이미지</div>
+            <span>({props.imageFile.length}/3)</span>
+            {props.imageFile.length !== 0 ? (
+              <i
+                style={{ color: "green", paddingLeft: "0.5vw" }}
+                className="fa-solid fa-check"
+              ></i>
+            ) : (
+              <span style={{ color: "red" }}>*</span>
+            )}
+          </div>
+        </div>
+        
+        <div className="regi_imageform">
+          {props.imageFile.length < 3 && (
+            <>
+              <input
+                name="img"
+                type="file"
+                accept="image/*"
+                multiple="multiple"
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              <button
+                className="regi_image"
+                onClick={() => document.getElementsByName("img")[0].click()}
+              >
+                <i className="fa-solid fa-camera"></i>
+                <div>이미지 등록</div>
+              </button>
+            </>
+          )}
+
+          {props.imageFile && (
+            <>
+              {props.imageFile.map((file, index) => (
+                <div key={index} className="regi_image-container">
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt={`Preview-${index}`}
+                    className="preview-image"
+                    onClick={() => openmodal(file)}
+                  />
+                  <img
+                    id="regi_delete-button"
+                    src={cancel}
+                    onClick={() => handleImageClick(index)}
+                  ></img>
+                  <div
+                    className={
+                      index === 0 ? "regi_firstimg" : "regi_nofirstimg"
+                    }
+                  >
+                    대표이미지
+                  </div>
+                </div>
+              ))}
+            </>
           )}
         </div>
-      </div>
-      <div className="regi_imageform">
-        {props.imageFile.length < 3 && (
-          <>
-            <input
-              name="img"
-              type="file"
-              accept="image/*"
-              multiple="multiple"
-              onChange={handleChange}
-              style={{ display: "none" }}
-            />
-            <button
-              className="regi_image"
-              onClick={() => document.getElementsByName("img")[0].click()}
-            >
-              <i className="fa-solid fa-camera"></i>
-              <div>이미지 등록</div>
-            </button>
-          </>
-        )}
-
-        {props.imageFile && (
-          <>
-            {props.imageFile.map((file, index) => (
-              <div key={index} className="regi_image-container">
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt={`Preview-${index}`}
-                  className="preview-image"
-                />
-                <img
-                  id="regi_delete-button"
-                  src={cancel}
-                  onClick={() => handleImageClick(index)}
-                ></img>
-              </div>
-            ))}
-          </>
-        )}
       </div>
     </div>
   );
