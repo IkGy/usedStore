@@ -1,0 +1,45 @@
+.footer_container{
+  margin: 0 auto;
+}
+
+.footer_container > div{
+  border-top: 2px solid #000;
+}
+
+.ymj_footer_link_all{
+  flex-direction: row;
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ymj_footer_link {
+  .ymj_footer_link {
+  display: flex;
+  width: 200px;
+  
+}
+
+.ymj_footer_link :hover{
+  background-color: rgb(17, 180, 131)
+}
+
+.ymj_footer_all{
+  display: flex;
+  margin: 0 auto;
+}
+
+.ymj_footer_left > p{
+  font-size: 12pt;
+
+}
+
+.ymj_footer_right {
+  margin-left: 170px;
+}
+
+.ymj_footer_right > p{
+  font-size: 12pt;
+}
+
