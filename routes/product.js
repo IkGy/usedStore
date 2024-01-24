@@ -58,7 +58,6 @@ router.get('/detail/:id', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 router.delete('/delete/:id', async (req, res) => {
   try {
     console.log(req.params);
@@ -75,7 +74,6 @@ router.delete('/delete/:id', async (req, res) => {
     res.status(500).send('삭제 오류');
   }
 })
-=======
 router.get('/like/check', async (req, res) => {
   try {
     const db = getDB();
@@ -137,9 +135,6 @@ router.delete('/like/remove', async (req, res) => {
     res.status(500).send('찜 제거에 실패했습니다');
   }
 });
-
-
->>>>>>> 26591ed7527418425b2bd38cfd748153eb1ddb8f
 
 // router.post('/product/new'.upload.single('image'), (요청, 응답) => {
 //         console.log(요청.file)
