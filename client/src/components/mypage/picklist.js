@@ -66,7 +66,10 @@ function Picklist() {
               <div className="JSW_Aname">{data.comment}</div>
               <div className="JSW_Aname">{data.liker}</div>
             </Link>
-
+              <div className="JSW_list_edit_delete">
+                <div className="JSW_listedit"></div>
+                <div className="JSW_listdelete"></div>
+              </div>
             </div>
           )
         })}

@@ -52,7 +52,12 @@ function Info(props) {
     const review = props.review;
     // console.log(props.review);
     // console.log(review[0]);
-    const products = props.products.length;
+    const products = props.products;
+    // console.log(products);
+
+    // 판매자의 최근에 게시한 상품 2개 뽑기
+    const lastTwoProducts = products.slice(-2);
+
 
     if (!info || !seller || !review) {
         return <div>Loading...</div>; // 여기서는 간단한 텍스트를 사용했지만, 실제 애플리케이션에서는 스피너나 로딩 애니메이션을 사용할 수 있습니다.
@@ -131,49 +136,27 @@ function Info(props) {
                         </div>
                         <div className='KJH_if_left_bottom'>
                             <div className='KJH_if_left_bottom_title_section'>
-                                의 상점 물건 더보기
+                                {seller.id} 님의 최근에 올린 상품
                             </div>
                             <ul className='KJH_if_left_bottom_content_section'>
-                                <li>
-                                    <Link to='/' target='black' className='KJH_if_left_bottom_content_link_section'>
-                                        {/* 랜덤 이미지 데이터 */}
-                                        <img src={Image1} alt='임시 alt' />
-                                        <div className='KJH_if_left_bottom_content_link_info'>
-                                            {/* 해당 가격 데이터 */}
-                                            <span className='KJH_if_left_bottom_content_link_price'>
-                                                000,000원
-                                            </span>
-                                            {/* 해당 품명 데이터 */}
-                                            <span className='KJH_if_left_bottom_content_link_title'>
-                                                해당 품명 데이터
-                                            </span>
-                                            <span className='KJH_if_left_bottom_content_link_ad'>
-                                            {/* 해당 광고주 데이터 */}
-                                                해당 광고주 데이터
-                                            </span>
-                                        </div>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to='/' target='black' className='KJH_if_left_bottom_content_link_section'>
-                                        {/* 랜덤 이미지 데이터 */}
-                                        <img src={Image1} alt='임시 alt' />
-                                        <div className='KJH_if_left_bottom_content_link_info'>
-                                            {/* 해당 가격 데이터 */}
-                                            <span className='KJH_if_left_bottom_content_link_price'>
-                                                000,000원
-                                            </span>
-                                            {/* 해당 품명 데이터 */}
-                                            <span className='KJH_if_left_bottom_content_link_title'>
-                                                해당 품명 데이터 해당 품명 데이터 해당 품명 데이터 해당 품명 데이터 해당 품명 데이터 
-                                            </span>
-                                            <span className='KJH_if_left_bottom_content_link_ad'>
-                                            {/* 해당 광고주 데이터 */}
-                                                해당 광고주 데이터
-                                            </span>
-                                        </div>
-                                    </Link>
-                                </li>
+                                {lastTwoProducts.map((product, index) => (
+                                    <li key={index}>
+                                        <Link to={`/detail/${product._id}`} target='black' className='KJH_if_left_bottom_content_link_section'>
+                                            <img src={product.images[0]} alt={product.title} />
+                                            <div className='KJH_if_left_bottom_content_link_info'>
+                                                <span className='KJH_if_left_bottom_content_link_price'>
+                                                    {product.price}원
+                                                </span>
+                                                <span className='KJH_if_left_bottom_content_link_title'>
+                                                    {product.title}
+                                                </span>
+                                                <span className='KJH_if_left_bottom_content_link_ad'>
+                                                    #{product.tags[0]} #{product.tags[1]}
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -200,7 +183,7 @@ function Info(props) {
                                                     님의 등록된 상품
                                                 </div>
                                                 <div className='KJH_if_right_top_prod_count'>
-                                                    {products}
+                                                    {products.length}
                                                 </div>
                                                 <div>
                                                     개

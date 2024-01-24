@@ -1,9 +1,11 @@
 .footer_container {
+  display: block;
   margin: 2vw 0;
 }
 
-.footer_container > div {
+.ymj_footer_link_all {
   border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
 }
 
 .ymj_footer_link_all {
@@ -48,8 +50,35 @@
 
 .ymj_footer_all {
   display: flex;
-  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 20px;
+  justify-content: center;
+  color: gray;
 }
+
+.ymj_footer_all > p {
+ font-size: 12px;
+}
+
+.ymj_footer_right {
+  margin-left: 170px;
+}
+
+.ymj_footer_left > p{
+  font-size: 15pt;
+}
+.ymj_footer_right > div {
+  margin-top: 40px;
+}
+
+.ymj_footer_right > div > p{
+  font-size: 15pt;
+  }
+
+.ymj_footer_right{
+  font-size: 30px;
+}
+
 
 .ymj_footer_left > p {
   font-size: 1vw;
