@@ -77,6 +77,7 @@ function Header() {
     }
     window.localStorage.clear();
     if (getCookie("login")) {
+      removeCookie('login');
       window.Kakao.Auth.logout()
         .then(function () {
           alert(
@@ -99,77 +100,58 @@ function Header() {
           <img src={Logo} className="main_logoIcon" />
           <span className="main_titleName">리셀 마켓</span>
         </Link>
-        {/* <div className="main_searchBar">
-          <input
-            className="searchBar_input"
-            placeholder="상품명, 태그 입력"
-            value={search}
-            onChange={(e)=>setSearch(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <FaSearch className="main_searchIcon" onClick={navi}/>
-        </div> */}
-        <div className="main_login">
-          {getCookie("login") ? (
-            <nav>
+        <div className="header_position">
+          <div className="main_searchBar">
+            <input
+              className="searchBar_input"
+              placeholder="상품명, 태그 입력"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <FaSearch className="main_searchIcon" onClick={navi} />
+          </div>
+          <div className="main_login">
+            {getCookie("login") ? (
+              <nav>
+                <ul className="header_login">
+                  <li className="header_login_nav">
+                    <span>
+                      <FaWonSign className="main_loginIcon" />
+                    </span>
+                    <Link to={"/sellitem"}>판매하기</Link>
+                    <span>
+                      <LuUserCircle2 className="main_loginIcon" />
+                    </span>
+                    <Link to={"/mypage"}>내정보</Link>
+                    <span>
+                      <AiOutlineAliwangwang className="main_loginIcon" />
+                    </span>
+                    <Link to={"/chat"}>채팅</Link>
+                  </li>
+                  <li></li>
+                  <li>
+                    <Link onClick={logOut} className="main_logout">
+                      로그아웃
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            ) : (
               <ul className="header_login">
-                <li className="header_login_nav">
-                  <span>
-                    <FaWonSign className="main_loginIcon" />
-                  </span>
-                  <Link to={"/sellitem"}>판매하기</Link>
-                  <span>
-                    <LuUserCircle2 className="main_loginIcon" />
-                  </span>
-                  <Link to={"/mypage"}>내정보</Link>
-                  <span>
-                    <AiOutlineAliwangwang className="main_loginIcon" />
-                  </span>
-                  <Link to={"/chat"}>채팅</Link>
-                </li>
-                <li></li>
                 <li>
-                  <Link onClick={logOut} className="main_logout">
-                    로그아웃
-                  </Link>
+                  <CiLogin className="main_mainIcon" />
+                  <Link to={"/login"}>로그인</Link>
+                </li>
+                <li>
+                  <LuUserPlus2 className="main_mainIcon" />
+                  <Link to={"/sign_up1"}>회원가입</Link>
                 </li>
               </ul>
-              <div className="main_searchBar">
-                <input
-                  className="searchBar_input"
-                  placeholder="상품명, 태그 입력"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                />
-                <FaSearch className="main_searchIcon" onClick={navi} />
-              </div>
-            </nav>
-          ) : (
-            <ul className="header_login">
-              <li>
-                <CiLogin className="main_mainIcon" />
-                <Link to={"/login"}>로그인</Link>
-              </li>
-              <li>
-                <LuUserPlus2 className="main_mainIcon" />
-                <Link to={"/sign_up1"}>회원가입</Link>
-              </li>
-            </ul>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-      {/* <div className="header_list">
-        <nav>
-          <ol>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-          </ol>
-        </nav>
-      </div> */}
+        </div>
     </div>
   );
 }

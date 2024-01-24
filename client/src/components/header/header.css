@@ -1,6 +1,5 @@
 .main_header {
-  margin-top: 4vh;
-  margin-bottom: 1vw;
+  margin-top: 5vh;
   height: 80px;
   display: flex;
   text-align: center;
@@ -39,9 +38,14 @@
   /* border: 1px solid #000; */
 }
 
+.header_position{
+  display: flex;
+  flex-direction: row;
+}
+
 .main_searchBar {
   border: 0.2vw #2748b0 solid;
-  width: 20vw;
+  width: 25vw;
   height: 2vw;
   display: flex;
   align-items: center;
@@ -66,8 +70,6 @@
 
 .main_login {
   width: 30%;
-  /* border: 1px solid; */
-  font-size: 1.2em;
   display: flex;
   align-items: center;
 }
@@ -106,7 +108,8 @@
   display: flex;
   align-items: center;
   padding: 4em;
-  font-size: 0.8vw;
+  font-size: 1vw;
+  white-space: nowrap;
 }
 
 .main_mainIcon, .main_singUpIcon{
@@ -140,7 +143,6 @@
   }
 
   .main_searchBar {
-    border: 0.25vw #ff0000 solid;
     width: 30vw;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -155,6 +157,9 @@
   .main_logoIcon {
     width: 7vw;
   }
+  .main_loginIcon{
+    font-size: 2.5vw;
+  }
   .main_titleName {
     font-size: 4vw;
   }
@@ -167,8 +172,13 @@
     width: 40vw;
   }
 
+  .header_position{
+    width: 45w;
+    flex-direction: column-reverse;
+  }
+
   .main_searchBar{
-    border: 0.5vw #ff0000 solid;
+    border: 0.5vw #2748b0 solid;
     width: 40vw;
     height: 5vw;
     overflow:hidden;
@@ -181,13 +191,9 @@
 
   .header_login > li{
     display: flex;
-    flex-direction: column;
     width: auto; 
   }
   
-  .main_mainIcon, .main_singUpIcon{
-    font-size: 3.5vw;
-  }
   .header_login > li > a{
     font-size: 2.4vw;
   }
