@@ -58,6 +58,22 @@ router.get('/detail/:id', async (req, res) => {
   }
 });
 
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    console.log(req.params);
+    const db = getDB();
+    await db.collection("product").deleteOne({_id: new ObjectId(req.params.id)})
+    .then(()=>{
+      res.status(201).end();
+    })
+    .catch(()=>{
+      res.status(501).send("삭제 실패")
+    })
+  }catch(err) {
+    console.error(err);
+    res.status(500).send('삭제 오류');
+  }
+})
 router.get('/like/check', async (req, res) => {
   try {
     const db = getDB();
@@ -120,8 +136,6 @@ router.delete('/like/remove', async (req, res) => {
   }
 });
 
-
-
 // router.post('/product/new'.upload.single('image'), (요청, 응답) => {
 //         console.log(요청.file)
 // })
@@ -150,6 +164,8 @@ router.delete('/like/remove', async (req, res) => {
 //     //     응답.status(500).send('서버에러')
 //     // }
 // })
+
+
 
 
 
