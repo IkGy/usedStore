@@ -45,6 +45,23 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/edit", async (req, res) => {
+  const db = getDB();
+  await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
+    $set:{
+      nickname:req.body.nickname,
+      about:req.body.about,
+      address:req.body.address
+    }})
+  .then(()=>{
+    res.status(201).end();
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(500).end();
+  })
+})
+
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
