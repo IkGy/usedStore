@@ -36,6 +36,17 @@ router.post("/register", async (req, res) => {
       return res.status(400).send("이미 사용 중인 닉네임입니다");
     }
 
+    // email과 nickname 중복 확인
+    const existingEmailUser = await db.collection("user").findOne({ email: email });
+    const existingNicknameUser = await db.collection("user").findOne({ nickname: nickname });
+
+    if (existingEmailUser) {
+      return res.status(400).send("이미 사용 중인 이메일입니다");
+    }
+    if (existingNicknameUser) {
+      return res.status(400).send("이미 사용 중인 닉네임입니다");
+    }
+
     await db.collection("user").insertOne({
       real_name: name,
       id: id,
