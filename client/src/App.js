@@ -23,6 +23,7 @@ import Searchpage from './components/searchpage/searchpage';
 import Test from './components/test';
 import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
+import FindPW from './components/login/findpw';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,6 +47,7 @@ function App() {
           <Route path='/detail/error' element={<Detail_Error />}></Route>
           <Route path='/mypage' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
+          <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>
           <Route path='/sign_up1' element={<Sign_Up1 />}></Route>
           <Route path='/chat' element={<Chat />}></Route>

@@ -24,6 +24,17 @@ router.post("/register", async (req, res) => {
   try {
     const db = getDB();
     let { name, id, nickname, email, password, address, phone_number } = req.body;
+    
+    // email과 nickname 중복 확인
+    const existingEmailUser = await db.collection("user").findOne({ email: email });
+    const existingNicknameUser = await db.collection("user").findOne({ nickname: nickname });
+
+    if (existingEmailUser) {
+      return res.status(400).send("이미 사용 중인 이메일입니다");
+    }
+    if (existingNicknameUser) {
+      return res.status(400).send("이미 사용 중인 닉네임입니다");
+    }
 
     await db.collection("user").insertOne({
       real_name: name,
@@ -36,6 +47,7 @@ router.post("/register", async (req, res) => {
       role: "user",
       about: " ",
       create_at: new Date(),
+      profileIMG: " ",
     });
 
     res.status(201).send("회원가입 완료");
@@ -45,6 +57,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 router.post("/edit", async (req, res) => {
   const db = getDB();
   await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
@@ -61,6 +74,28 @@ router.post("/edit", async (req, res) => {
     res.status(500).end();
   })
 })
+=======
+// router.post("/findpw", async (req, res) => {
+//   try {
+//     const db = getDB();
+//     const { email } = req.body;
+
+//     // 이메일로 사용자 찾기
+//     const user = await db.collection("user").findOne({ email: email });
+
+//     if (!user) {
+//       return res.status(400).send("등록되지 않은 이메일입니다");
+//     }
+
+//     res.status(200).send({ password: user.password });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("서버 오류");
+//   }
+// });
+// 보안상의 이유로 권장되지 않는 방식입니다...
+
+>>>>>>> 11b9ce87af7af6f738f856434ec42d877f8d2c1d
 
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
