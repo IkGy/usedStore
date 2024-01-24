@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
   try {
     const db = getDB();
     let { name, id, nickname, email, password, address, phone_number } = req.body;
-    
+
     // email과 nickname 중복 확인
     const existingEmailUser = await db.collection("user").findOne({ email: email });
     const existingNicknameUser = await db.collection("user").findOne({ nickname: nickname });
@@ -94,9 +94,6 @@ router.post("/edit", async (req, res) => {
 //   }
 // });
 // 보안상의 이유로 권장되지 않는 방식입니다...
-
-router.get("/productedit")
-
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
