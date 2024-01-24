@@ -91,6 +91,7 @@
 
 .main_logout{
   color: #b0272c;
+  margin-left: 2vw;
 }
 
 .main_logo {
@@ -135,6 +136,10 @@
     width: 9vw;
   }
 
+  .header_login_nav > span{
+    font-size: 1.5vw;
+  }
+
   .header_login > li > a{
     font-size: 1.3vw;
   }
@@ -143,7 +148,9 @@
   }
 
   .main_searchBar {
-    width: 30vw;
+    border: 0.3vw #2748b0 solid;
+    width: 28vw;
+    height: 4vw;
     overflow: hidden;
     text-overflow: ellipsis;
   }
