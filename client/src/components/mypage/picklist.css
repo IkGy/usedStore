@@ -39,7 +39,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  z-index: 3;
+  /* z-index: 3; */
   
 }
 
@@ -87,6 +87,26 @@
   z-index: 2;
 }
 
+.JSW_list_edit_delete {
+  border-top: 1px solid #000;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.JSW_listedit {
+  border-right: 1px solid #000;
+}
+
+.JSW_listedit:hover {
+  background-color: #03C75A;
+  color: white;
+}
+.JSW_listdelete:hover {
+  background-color: #03C75A;
+  color: white;
+}
+
 @media (max-width: 1024px) {
   .JSW_Aname {
     font-size: 90%;
@@ -128,7 +148,7 @@
   .JSW_conentGridBox {
     gap: 5vw;
     grid-template-columns: 1fr;
-    z-index: 5;
+    /* z-index: 5; */
     
   }
 
@@ -144,7 +164,7 @@
   
   .JSW_liststart{
     height: 70vw;
-    z-index: 2;
+    /* z-index: 2; */
     margin-left: 10%;
   }
 }
