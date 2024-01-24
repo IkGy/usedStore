@@ -151,6 +151,10 @@
     list-style: none;
 }
 
+.KJH_if_left_bottom_single-product {
+    width: 40vw;
+}
+
 .KJH_if_left_bottom_content_link_section {
     display: flex;
     color: rgb(33, 33, 33);

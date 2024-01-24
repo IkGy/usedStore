@@ -180,8 +180,7 @@
     height: 3.5vh;
     border-radius: 0.2vw;
     padding: 0.2vw;
-    border: 0.15em solid rgb(200, 200, 200);
-    width: 2vw;
+    width: 1.6vw;
 }
 
 .KJH_item_info_share_section > svg:hover {

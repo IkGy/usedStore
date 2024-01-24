@@ -1,6 +1,7 @@
 /*** 이미지 관련 ***/
 
 .sliderContainer {
+    position: relative;
     margin: 2vh 0;
     min-width: 25vw;
     width: 25vw;
