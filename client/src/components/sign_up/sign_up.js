@@ -68,8 +68,6 @@ export default function SignUp() {
     }
   }, []);
 
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const id = e.target.id.value;
@@ -79,7 +77,7 @@ export default function SignUp() {
     const password = e.target.password.value;
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
-    
+
     const data = {
       id: id,
       nickname: nickname,
