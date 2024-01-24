@@ -24,6 +24,17 @@ router.post("/register", async (req, res) => {
   try {
     const db = getDB();
     let { name, id, nickname, email, password, address, phone_number } = req.body;
+    
+    // email과 nickname 중복 확인
+    const existingEmailUser = await db.collection("user").findOne({ email: email });
+    const existingNicknameUser = await db.collection("user").findOne({ nickname: nickname });
+
+    if (existingEmailUser) {
+      return res.status(400).send("이미 사용 중인 이메일입니다");
+    }
+    if (existingNicknameUser) {
+      return res.status(400).send("이미 사용 중인 닉네임입니다");
+    }
 
     // email과 nickname 중복 확인
     const existingEmailUser = await db.collection("user").findOne({ email: email });
@@ -73,6 +84,7 @@ router.post("/edit", async (req, res) => {
     res.status(500).end();
   })
 })
+
 router.post("/findpw", async (req, res) => {
   try {
     const db = getDB();
@@ -90,6 +102,7 @@ router.post("/findpw", async (req, res) => {
   }
 });
 // 보안상의 이유로 권장되지 않는 방식입니다...
+
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
