@@ -1,7 +1,12 @@
 /*** 전체 설정 ***/
 
-.KJH_item_section {
+.KJH_detail_slide_section {
     position: relative;
+    display: flex;
+    height: 40vh;
+}
+
+.KJH_item_section {
     display: flex;
     padding: 2vh 0;
     width: 100%;
@@ -11,12 +16,10 @@
 /*** 상품정보 ***/
 
 .KJH_item_info_section {
-    position: relative;
     flex-grow: 1;
 }
 
 .KJH_item_info {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
