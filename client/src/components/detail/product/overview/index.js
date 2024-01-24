@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './overview.css';
 import { API_URL } from '../../../config/contansts';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { GoHeartFill } from "react-icons/go";
 import { IoIosEye } from "react-icons/io";
@@ -41,9 +41,9 @@ function formatTimeAgo(createdDate) {
 }
 
 function Item(props) {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [like, setLike] = useState(false);
-    const [isRequesting, setIsRequesting] = useState(false); // 요청 중 상태 관리
 
     const fetchlike = async () => {
         try {
@@ -58,24 +58,22 @@ function Item(props) {
     }, [id]);
 
     const toggleLike = async () => {
-
-        if (isRequesting) return; // 이미 요청 중이면 동작하지 않음
-
-        setIsRequesting(true); // 요청 시작
-
-        try {
-            if (like) {
-                // 찜 삭제
-                await axios.delete(`${API_URL}/prod/like/remove`, {params: {userid: getCookie('login')}});
-            } else {
-                // 찜 추가
-                await axios.post(`${API_URL}/prod/like/add`, {userid: getCookie('login'), prodid: id});
+        if (getCookie('login')){
+            try {
+                if (like) {
+                    // 찜 삭제
+                    await axios.delete(`${API_URL}/prod/like/remove`, {params: {userid: getCookie('login'), prodid: id}});
+                } else {
+                    // 찜 추가
+                    await axios.post(`${API_URL}/prod/like/add`, {userid: getCookie('login'), prodid: id});
+                }
+                setLike(!like); // 찜 상태 토글
+            } catch (error) {
+                console.error('toggle 기능 에러:', error);
             }
-            setLike(!like); // 찜 상태 토글
-        } catch (error) {
-            console.error('toggle 기능 에러:', error);
+        } else {
+            navigate('/login');
         }
-        setIsRequesting(false); // 요청 완료
     };
 
 

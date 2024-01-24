@@ -107,7 +107,7 @@ router.post('/like/add', async (req, res) => {
 router.delete('/like/remove', async (req, res) => {
   try {
     const db = getDB();
-    const prodid = req.params.prodid;
+    const prodid = req.query.prodid;
     const userid = req.query.userid;
     await db.collection("like").deleteOne({
       product_id: prodid,
