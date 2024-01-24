@@ -7,7 +7,7 @@ import { API_URL } from "../config/contansts";
 const NaverLoginButton = () => {   
 	const navigate = useNavigate();
 
-	const [naverLoginButton, setNaverLoginButton] = useState();
+	const [naverLoginButton, setNaverLoginButton] = useState();	
 
 	const createMarkup = (html) => {
 		return {__html: html};
