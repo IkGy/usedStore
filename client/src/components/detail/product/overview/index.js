@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './overview.css';
+import { API_URL } from '../../../config/contansts';
+import axios from 'axios';
+import { useParams } from "react-router-dom";
 
 import { GoHeartFill } from "react-icons/go";
 import { IoIosEye } from "react-icons/io";
@@ -11,6 +14,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { getCookie } from '../../../../useCookies';
 
 
 // 시간 계산
@@ -37,7 +41,44 @@ function formatTimeAgo(createdDate) {
 }
 
 function Item(props) {
-    
+    const { id } = useParams();
+    const [like, setLike] = useState(false);
+    const [isRequesting, setIsRequesting] = useState(false); // 요청 중 상태 관리
+
+    const fetchlike = async () => {
+        try {
+            const res = await axios.get(`${API_URL}/prod/like/check`, {params: {userid: getCookie('login'), prodid: id}});
+            setLike(res.data);
+        } catch (error) {
+            console.error('조회 에러', error);
+        }
+    };
+    useEffect(() => {
+        fetchlike();
+    }, [id]);
+
+    const toggleLike = async () => {
+
+        if (isRequesting) return; // 이미 요청 중이면 동작하지 않음
+
+        setIsRequesting(true); // 요청 시작
+
+        try {
+            if (like) {
+                // 찜 삭제
+                await axios.delete(`${API_URL}/prod/like/remove`, {params: {userid: getCookie('login')}});
+            } else {
+                // 찜 추가
+                await axios.post(`${API_URL}/prod/like/add`, {userid: getCookie('login'), prodid: id});
+            }
+            setLike(!like); // 찜 상태 토글
+        } catch (error) {
+            console.error('toggle 기능 에러:', error);
+        }
+        setIsRequesting(false); // 요청 완료
+    };
+
+
     // 주소 복사
     const [showCopyMessage, setShowCopyMessage] = useState(false);
     const handleCopyClipBoard = async () => {
@@ -147,8 +188,8 @@ function Item(props) {
                             </div>
                             {/* 찜 / 실시간 메세지 / 바로구매 버튼 */}
                             <div className='KJH_item_btn_section'>
-                                <div className='KJH_item_like_section'>
-                                    <FaHeart />
+                                <div className={`KJH_item_like_section_${like ? 'true' : 'false'}`}>
+                                    <FaHeart onClick={toggleLike} />
                                 </div>
                                 <div className='KJH_item_btn_select_section'>
                                     <div className='KJH_item_btn_select_talk'>

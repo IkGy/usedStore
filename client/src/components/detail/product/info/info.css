@@ -1108,6 +1108,7 @@
         }
         
         .KJH_if_right_top_content_user_review {
+            margin-top: 1vh;
             padding: 1vh 0;
             border-top: 0.1em solid rgb(238, 238, 238);
             border-bottom: 0.1em solid rgb(238, 238, 238);

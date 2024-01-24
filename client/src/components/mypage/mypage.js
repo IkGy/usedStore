@@ -1,7 +1,10 @@
-import { getCookie } from "../../useCookies";
+import { Link, useNavigate } from "react-router-dom";
+import { setCookie, getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import Modal from "react-modal";
+
 import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
@@ -11,9 +14,66 @@ import EK from "./image/이크.png"
 
 
 function Mypage() {
+  /* */
+  const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
   const [menu, setMenu] = useState("판매 내역");
   const [end, setEnd] = useState("");
+
+  let [modalIsOpen, setModalIsOpen] = useState(false); 
+  let [zIndex, setZindex] = useState(1);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setEnd("end");
+    }, 100);
+    return setEnd("");
+  }, [modalIsOpen]); // 로그인 모달창 등장시 등장애내메이션을 담당하는 useEffect
+
+  const editUser = async(e) => {
+    e.preventDefault();
+    const nickname = e.target.nickname.value;
+    const about = e.target.about.value;
+    const address = e.target.address.value;
+    const id = getCookie("login");
+    
+    console.log("test", nickname, about, id);
+
+    await axios.post(`${API_URL}/user/edit`, {
+      id,
+      nickname,
+      about,
+      address
+    }).then(() => {
+      setModalIsOpen(false);
+    })
+    .catch(() => {
+
+    })
+  }
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ''}`;
+        setSelectedAddress(fullAddress);
+        console.log(data);
+      },
+    }).open();
+  };
+  
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
@@ -113,16 +173,113 @@ function Mypage() {
                       key={data.id}
                       >
                         <div className="JSW_userlist">이름 : {data.real_name}</div>
+                        <div className="JSW_userlist">별명 : {data.nickname}</div>
                         <div className="JSW_userlist">전화번호 : {data.phone_number}</div>
                         <div className="JSW_userlist">이메일 : {data.email}</div>
                         <div className="JSW_userlist">주소지 : {data.address}</div>
+                        <div className="JSW_userlist">상점 설명 : {data.about}</div>
                       </div>
                 </div>
-                {/* <label className="JSW_Cristal">
+                <Link
+                className="loginBtn"
+                style={{ textDecoration: "none" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalIsOpen(true);
+                  setZindex(0);
+                }}>
+                <label className="JSW_Cristal">
                   프로필 수정
-                </label> */}
+                </label>
+                </Link>
               </div>
             </div>
+            <div>
+              <Modal
+              className={"loginModal"}
+              isOpen={modalIsOpen}
+              bodyOpenClassName="modal-open"
+              onRequestClose={() => {
+                console.log('test');
+                setModalIsOpen(false);
+                setZindex(1);
+              }}
+            > {/* 로그인버튼 클릭시 보여주는 모달창 */}
+            <form onSubmit={editUser} className={"start " + end} id="JSW_modalALL">
+            <div
+              className="JSW_modal_loginCloseBtn"
+              onClick={() => {
+                setModalIsOpen(false);
+                setZindex(1);
+              }}
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div className="JSW_modal_mainTitle">내 정보</div>
+            <div className="JSW_modal_loginInputBox">
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="real_name" 
+                type="text" 
+                value={data.real_name}
+                placeholder="이름"
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="nickname"
+                type="text"
+                defaultValue={data.nickname}
+                placeholder="별명을 정해주세요."
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="phone_number"
+                type="tel"
+                value={data.phone_number}
+                placeholder="전화번호"
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="email"
+                type="text"
+                value={data.email}
+                placeholder="이메일"
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="address"
+                type="text"
+                // value={selectedAddress}
+                onClick={handleAddressClick}
+                defaultValue={data.address}
+                placeholder="변경을 원하시면 클릭해주세요."
+              ></input>
+              <input
+                style={{overflowY:"scroll",width:"12vw"}}
+                className="JSW_modal_loginInputBox_s" 
+                id="about"
+                type="text"
+                defaultValue={data.about}
+                placeholder="상점 설명을 적어주세요."
+              ></input>
+
+              {/* <input
+                className="JSW_modal_loginInputBox_s" 
+                id="about"
+                type="text"
+                defaultValue={data.img}
+                placeholder={data.password}
+              ></input> */}
+              </div>
+              <button type="submit" className="JSW_mypagewater"
+              onClick={()=>{
+                window.location.reload();
+              }}
+              >수정 완료</button>
+              </form>
+            </Modal>
+            </div>
+
             <div className="JSW_Sec2-2">
               {menu === "구매 내역" && (
                 <div className={"start " + end}>

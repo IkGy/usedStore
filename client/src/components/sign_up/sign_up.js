@@ -4,15 +4,12 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { API_URL } from '../config/contansts';
-import GoogleLoginButton from "../login/goolge";
-import NaverLoginButton from "../login/NaverLoginButton"; 
 
 
 const defaultTheme = createTheme();
@@ -21,7 +18,9 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState('');
   const [kakaoAccount, setKakaoAccount] = useState(null);
-  const [googleInfo, setGoogleInfo] = useState(null);
+  const [Naver_InfoN, setNaver_InfoN] = useState(''); //name
+  const [Naver_InfoE, setNaver_InfoE] = useState(''); //email
+  const [userData, setUserData] = useState('');
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -34,39 +33,34 @@ export default function SignUp() {
     };
   }, []);
 
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ''}`;
+        setSelectedAddress(fullAddress);
+        console.log(data);
+      },
+    }).open();
+  };
+
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
-    script.async = true;
-    document.head.appendChild(script);
+    const storedNaver_InfoN = localStorage.getItem('naver_infoN');
 
-    script.onload = () => {
-      window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
-    };
-
-    return () => {
-      document.head.removeChild(script);
-    };
+    if (storedNaver_InfoN) {
+      const parsedNaver_InfoN = storedNaver_InfoN;
+      setNaver_InfoN(parsedNaver_InfoN);
+    }
   }, []);
 
-  function KakaoLogin() {
-    window.Kakao.Auth.login({
-      scope:'profile_nickname',
-      success: function(authObj) {
-        console.log(authObj);
-        window.Kakao.API.request({
-          url:'/v2/user/me', 
-          success: res => {
+  useEffect(() => {
+    const storedNaver_InfoE = localStorage.getItem('naver_infoE');
 
-            const kakao_account = res.kakao_account;
-            console.log(kakao_account);
-            localStorage.setItem('kakao_account', JSON.stringify(kakao_account.profile));
-            setKakaoAccount(kakao_account.profile);
-          }
-        })
-      }
-    });
-  };
+    if (storedNaver_InfoE) {
+      const parsedNaver_InfoE = storedNaver_InfoE;
+      setNaver_InfoE(parsedNaver_InfoE);
+    }
+  }, []);
 
   useEffect(() => {
     const storedKakaoAccount = localStorage.getItem('kakao_account');
@@ -77,21 +71,45 @@ export default function SignUp() {
     }
   }, []);
 
-  const handleGoogleLogin = (info) => {
-    setGoogleInfo(info); // Google 로그인 정보 업데이트
-  };
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('userData');
+
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      setUserData(parsedUserData);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const id = e.target.id.value;
+    const nickname = e.target.nickname.value;
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
+
+    if (!nickname || !name || !email || !password || !address || !phone_number) {
+      alert("모든 항목을 채워주세요.");
+      return;
+    }
+
+    const existingEmailResponse = await axios.get(`${API_URL}/user/check-email?email=${email}`);
+    if (existingEmailResponse.data === true) {
+      alert("이미 사용 중인 이메일입니다.");     // 이메일 중복 확인
+      return;
+    } 
+
+    const existingNicknameResponse = await axios.get(`${API_URL}/user/check-nickname?nickname=${nickname}`);
+    if (existingNicknameResponse.data === true) {
+      alert("이미 사용 중인 닉네임입니다.");  // 닉네임 중복 확인
+      return;
+    }
     
     const data = {
       id: id,
+      nickname: nickname,
       name: name,
       email: email,
       password: password,
@@ -110,17 +128,6 @@ export default function SignUp() {
     });
   };
 
-  const handleAddressClick = () => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        // 주소 선택 후 state에 저장
-        const fullAddress = `${data.address} ${data.buildingName || ''}`;
-        setSelectedAddress(fullAddress);
-        console.log(data);
-      },
-    }).open();
-  };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -134,59 +141,16 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5" sx={{ mt: 5 }}>
-            리셀마켓에 오신 여러분 환영합니다!
+            회원가입
           </Typography>
-          <Typography component="h1" variant="h6" sx={{ mt: 2 }}>
-            연결할 플랫폼을 선택해주세요.
-          </Typography>
-          <Typography component="h1" variant="h6" sx={{ mb: 2 }}>
-            반드시 하나를 선택하셔야 합니다.
-          </Typography>
-          <Button>
-            <GoogleLoginButton
-              onGoogleLogin={handleGoogleLogin}
-              fullWidth
-              sx={{ 
-                mb: 2,
-                backgroundColor: "#A9E2F3",
-                color: "black",
-              }}
-            >
-              구글 계정으로 로그인
-            </GoogleLoginButton>
-          </Button>
-          <Button
-            onClick={KakaoLogin}
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "yellow",
-              color: "black",
-            }}
-          >
-            카카오톡 계정으로 로그인
-          </Button>
-          <NaverLoginButton/>
-          {/* <Button
-            fullWidth
-            sx={{ 
-              mb: 2,
-              backgroundColor: "#40FF00",
-              color: "black",
-            }}
-          >
-            네이버 계정으로 로그인
-          </Button> */}
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   name="id"
-                  required // 반드시 작성
                   fullWidth
                   id="id"
-                  label="아이디"
-                  autoFocus
+                  label="아이디 (비워두셔도 됩니다)"
                   value={kakaoAccount ? kakaoAccount.nickname : ''}
                   onChange={(e) => setKakaoAccount((prev) => ({ ...prev, nickname: e.target.value }))}
                 />
@@ -195,11 +159,26 @@ export default function SignUp() {
                 <TextField
                   autoComplete="given-name"
                   name="name"
-                  required
+                  required  // 반드시 작성
                   fullWidth
                   id="real_name"
                   label="성명"
-                  value={(googleInfo && googleInfo.name) || ''}
+                  value={userData.name || Naver_InfoN || ''}
+                  onChange={(e) => {
+                    setUserData((prev) => ({ ...prev, name: e.target.value }));
+                    setNaver_InfoN((prev) => ({ ...prev, name: e.target.value }));
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="nickname"
+                  required
+                  fullWidth
+                  id="nickname"
+                  label="닉네임"
+                  type="text"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -211,7 +190,11 @@ export default function SignUp() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  value={(googleInfo && googleInfo.email) || ''}
+                  value={userData.email || Naver_InfoE || ''}
+                  onChange={(e) => {
+                    setUserData((prev) => ({ ...prev, email: e.target.value }));
+                    setNaver_InfoE((prev) => ({ ...prev, email: e.target.value }));
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -256,13 +239,6 @@ export default function SignUp() {
             >
               가입하기
             </Button>
-            <Grid container justifyContent="flex-end" sx={{mb: 20}}>
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  계정이 이미 있나요?  로그인
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

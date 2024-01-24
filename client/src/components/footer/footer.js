@@ -35,6 +35,7 @@ function Footer(){
         </div>
 
         <div className="ymj_footer_right">
+<<<<<<< HEAD
           
           <Link to="https://github.com/IkGy/usedStore">깃 주소 : https://github.com/IkGy/usedStore</Link>
           <div>
@@ -45,6 +46,12 @@ function Footer(){
             <p>허준영 | jyhhg@naver.com</p>
             <p>실시간채팅, 백엔드 제작</p>
           </div>
+=======
+          <h3>고객센터(1688-8282)</h3>
+          <p>운영시간 9시 ~ 18시(주말/공휴일 휴무, 점심시간 12시 ~ 13시)</p>
+          <p>리셀마켓(주)더현대안산점   |   곽구, 박사   |   335-55-08282</p>
+          <p>안산특별시 홍대 기미로 88, 지하6층(여의도동, 아이즈원)</p>
+>>>>>>> 8f268c6efe67738e18dfd0be19745082055b1282
         </div>
 
       

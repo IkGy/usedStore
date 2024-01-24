@@ -22,28 +22,34 @@ function Regi_category(props) {
       </div>
       <div className="regi_category">
         <div className="regi_category1">
-          {["패션의류", "패션잡화", "카드"].map((category, index) => (
-            <div
-              key={index}
-              style={props.category1 === category ? { color: "green" } : {}}
-              onClick={() => setCategory(category)}
-            >
-              {category}
-            </div>
-          ))}
+          {["패션의류", "패션잡화", "디지털", "가전제품"].map(
+            (category, index) => (
+              <div
+                key={index}
+                style={props.category1 === category ? { color: "green" } : {}}
+                onClick={() => setCategory(category)}
+              >
+                {category}
+              </div>
+            )
+          )}
         </div>
         <div className="regi_category2">
           {props.category1 === "패션의류" && (
             <>
-              {["남성의류", "여성의류", "아동의류"].map((subCategory, index) => (
-                <div
-                  key={index}
-                  style={props.category2 === subCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, subCategory)}
-                >
-                  {subCategory}
-                </div>
-              ))}
+              {["남성의류", "여성의류", "아동의류"].map(
+                (subCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category2 === subCategory ? { color: "green" } : {}
+                    }
+                    onClick={() => setCategory(props.category1, subCategory)}
+                  >
+                    {subCategory}
+                  </div>
+                )
+              )}
             </>
           )}
           {props.category1 === "패션잡화" && (
@@ -51,7 +57,9 @@ function Regi_category(props) {
               {["악세사리", "신발"].map((subCategory, index) => (
                 <div
                   key={index}
-                  style={props.category2 === subCategory ? { color: "green" } : {}}
+                  style={
+                    props.category2 === subCategory ? { color: "green" } : {}
+                  }
                   onClick={() => setCategory(props.category1, subCategory)}
                 >
                   {subCategory}
@@ -59,12 +67,48 @@ function Regi_category(props) {
               ))}
             </>
           )}
-          {props.category1 === "카드" && (
+          {props.category1 === "디지털" && (
             <>
-              {['하스스톤', "유희왕"].map((subCategory, index) => (
+              {[
+                "휴대폰",
+                "태블릿",
+                "웨어러블(워치/밴드)",
+                "오디오/영상/관련기기",
+                "PC/노트북",
+                "게임/타이틀",
+                "카메라/DSLR",
+                "PC부품/저장장치",
+              ].map((subCategory, index) => (
                 <div
                   key={index}
-                  style={props.category2 === subCategory ? { color: "green" } : {}}
+                  style={
+                    props.category2 === subCategory ? { color: "green" } : {}
+                  }
+                  onClick={() => setCategory(props.category1, subCategory)}
+                >
+                  {subCategory}
+                </div>
+              ))}
+            </>
+          )}
+          {props.category1 === "가전제품" && (
+            <>
+              {[
+                "생활가전",
+                "주방가전",
+                "미용가전",
+                "냉장고",
+                "에어컨",
+                "세탁기/건조기",
+                "TV",
+                "사무기기(복사기/팩스 등)",
+                "기타 가전제품",
+              ].map((subCategory, index) => (
+                <div
+                  key={index}
+                  style={
+                    props.category2 === subCategory ? { color: "green" } : {}
+                  }
                   onClick={() => setCategory(props.category1, subCategory)}
                 >
                   {subCategory}
@@ -79,8 +123,16 @@ function Regi_category(props) {
               {["상의", "하의", "한벌옷"].map((subSubCategory, index) => (
                 <div
                   key={index}
-                  style={props.category3 === subSubCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, props.category2, subSubCategory)}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
                 >
                   {subSubCategory}
                 </div>
@@ -89,15 +141,27 @@ function Regi_category(props) {
           )}
           {props.category1 === "패션잡화" && props.category2 === "악세사리" && (
             <>
-              {["귀고리", "장갑", "망토", "모자"].map((subSubCategory, index) => (
-                <div
-                  key={index}
-                  style={props.category3 === subSubCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, props.category2, subSubCategory)}
-                >
-                  {subSubCategory}
-                </div>
-              ))}
+              {["귀고리", "장갑", "망토", "모자"].map(
+                (subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                )
+              )}
             </>
           )}
           {props.category1 === "패션잡화" && props.category2 === "신발" && (
@@ -105,34 +169,347 @@ function Regi_category(props) {
               {["운동화", "슬리퍼"].map((subSubCategory, index) => (
                 <div
                   key={index}
-                  style={props.category3 === subSubCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, props.category2, subSubCategory)}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
                 >
                   {subSubCategory}
                 </div>
               ))}
             </>
           )}
-          {props.category1 === "카드" && props.category2 === "하스스톤" && (
+          {props.category1 === "디지털" && props.category2 === "휴대폰" && (
             <>
-              {["전설", "특급", "희귀", "일반", "무료"].map((subSubCategory, index) => (
+              {[
+                "스마트폰",
+                "일반폰(피쳐폰)",
+                "케이스/보호필름/액세서리",
+                "케이블/충전기/주변기기",
+                "기타 휴대폰",
+              ].map((subSubCategory, index) => (
                 <div
                   key={index}
-                  style={props.category3 === subSubCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, props.category2, subSubCategory)}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
                 >
                   {subSubCategory}
                 </div>
               ))}
             </>
           )}
-          {props.category1 === "카드" && props.category2 === "유희왕" && (
+          {props.category1 === "디지털" && props.category2 === "태블릿" && (
             <>
-              {["몬스터", "마법", "함정"].map((subSubCategory, index) => (
+              {[
+                "태블릿",
+                "케이스/보호필름/액세서리",
+                "케이블/충전기/주변기기",
+              ].map((subSubCategory, index) => (
                 <div
                   key={index}
-                  style={props.category3 === subSubCategory ? { color: "green" } : {}}
-                  onClick={() => setCategory(props.category1, props.category2, subSubCategory)}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
+                >
+                  {subSubCategory}
+                </div>
+              ))}
+            </>
+          )}
+          {props.category1 === "디지털" &&
+            props.category2 === "웨어러블(워치/밴드)" && (
+              <>
+                {[
+                  "스마트워치/밴드",
+                  "케이스/보호필름/액세서리",
+                  "케이블/충전기/주변기기",
+                ].map((subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                ))}
+              </>
+            )}
+          {props.category1 === "디지털" &&
+            props.category2 === "오디오/영상/관련기기" && (
+              <>
+                {[
+                  "이어폰",
+                  "헤드폰",
+                  "스피커/앰프",
+                  "MP3/PMP",
+                  "비디오/프로젝터",
+                  "오디오/홈시어터",
+                  "기타 오디오/영상/관련기기",
+                ].map((subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                ))}
+              </>
+            )}
+          {props.category1 === "디지털" && props.category2 === "PC/노트북" && (
+            <>
+              {[
+                "데스크탑",
+                "노트북/넷북",
+                "모니터",
+                "키보드",
+                "마우스",
+                "기타 PC 주변기기",
+                "노트북 가방/액세서리",
+                "기타 PC/노트북",
+              ].map((subSubCategory, index) => (
+                <div
+                  key={index}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
+                >
+                  {subSubCategory}
+                </div>
+              ))}
+            </>
+          )}
+          {props.category1 === "디지털" &&
+            props.category2 === "게임/타이틀" && (
+              <>
+                {[
+                  "닌텐도/NDS/Wii",
+                  "소니/플레이스테이션",
+                  "XBOX",
+                  "PC게임",
+                  "기타 게임/타이틀",
+                ].map((subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                ))}
+              </>
+            )}
+          {props.category1 === "디지털" &&
+            props.category2 === "카메라/DSLR" && (
+              <>
+                {[
+                  "필름카메라/중형카메라",
+                  "DSLR/미러리스",
+                  "렌즈/필터/컨버터",
+                  "일반디카/토이카메라",
+                  "삼각대/플래시/조명",
+                  "디지털 캠코더",
+                  "메모리/베터리/가방",
+                  "기타 카메라",
+                ].map((subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                ))}
+              </>
+            )}
+          {props.category1 === "디지털" &&
+            props.category2 === "PC부품/저장장치" && (
+              <>
+                {[
+                  "CPU/메인보드",
+                  "HDD/ODD/SSD",
+                  "USB/케이블/스피커",
+                  "복합기/프린터",
+                  "네트워크장비",
+                  "쿨러/파워서플라이",
+                  "메모리/VGA",
+                  "소모품",
+                ].map((subSubCategory, index) => (
+                  <div
+                    key={index}
+                    style={
+                      props.category3 === subSubCategory
+                        ? { color: "green" }
+                        : {}
+                    }
+                    onClick={() =>
+                      setCategory(
+                        props.category1,
+                        props.category2,
+                        subSubCategory
+                      )
+                    }
+                  >
+                    {subSubCategory}
+                  </div>
+                ))}
+              </>
+            )}
+          {props.category1 === "가전제품" && props.category2 === "생활가전" && (
+            <>
+              {[
+                "마사지기",
+                "청소기",
+                "공기청정기",
+                "가습기",
+                "제습기",
+                "선풍기/냉풍기",
+                "히터/온풍기",
+                "전기매트/장판",
+                "다리미",
+                "미싱/재봉틀",
+              ].map((subSubCategory, index) => (
+                <div
+                  key={index}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
+                >
+                  {subSubCategory}
+                </div>
+              ))}
+            </>
+          )}
+          {props.category1 === "가전제품" && props.category2 === "주방가전" && (
+            <>
+              {[
+                "인덕션/전기레인지",
+                "전기밥솥",
+                "커피머신",
+                "에어프라이어",
+                "믹서기/블렌더",
+                "식기세척기",
+                "정수기",
+                "오븐",
+                "전기포트",
+                "토스터",
+                "전자레인지",
+                "음식물 처리기",
+              ].map((subSubCategory, index) => (
+                <div
+                  key={index}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
+                >
+                  {subSubCategory}
+                </div>
+              ))}
+            </>
+          )}
+          {props.category1 === "가전제품" && props.category2 === "미용가전" && (
+            <>
+              {[
+                "피부케어기기",
+                "고데기",
+                "드라이기",
+                "면도기/이발기",
+                "제모기",
+              ].map((subSubCategory, index) => (
+                <div
+                  key={index}
+                  style={
+                    props.category3 === subSubCategory ? { color: "green" } : {}
+                  }
+                  onClick={() =>
+                    setCategory(
+                      props.category1,
+                      props.category2,
+                      subSubCategory
+                    )
+                  }
                 >
                   {subSubCategory}
                 </div>

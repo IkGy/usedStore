@@ -2,6 +2,7 @@ import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Registered(props) {
 
@@ -50,12 +51,14 @@ function Registered(props) {
           return(
             <div className="JSW_liststart"
             key={data.id}>
-              <div className="JSW_contentGridBox_img">
-                <img src={data.images[0]} width="100%"></img>
-              </div>
-              <div className="JSW_Aname">{data.title}</div>
-              <div className="JSW_Aname">{data.comment}</div>
-              <div className="JSW_Aname">{data.price}</div>
+              <Link to={`/detail/${data._id}`}>
+                <div className="JSW_contentGridBox_img">
+                  <img src={data.images[0]} width="100%"></img>
+                </div>
+                <div className="JSW_Aname">{data.title}</div>
+                <div className="JSW_Aname">{data.comment}</div>
+                <div className="JSW_Aname">{data.price}</div>
+              </Link>
             </div>
           )
         })}

@@ -2,6 +2,7 @@ import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import img2 from "./image/g102.jpg"
 import img1 from "./image/img_mouse.jpg"
@@ -48,12 +49,14 @@ function Buylist() {
           return(
             <div className="JSW_liststart"
             key={data.id}>
-              <div className="JSW_contentGridBox_img">
-                <img src={data.images} width="100%"></img>
-              </div>
-              <div className="JSW_Aname">{data.title}</div>
-              <div className="JSW_Aname">{data.comment}</div>
-              <div className="JSW_Aname">{data.price}</div>
+              <Link to={`/detail/${data._id}`}>
+                <div className="JSW_contentGridBox_img">
+                  <img src={data.images[0]} width="100%"></img>
+                </div>
+                <div className="JSW_Aname">{data.title}</div>
+                <div className="JSW_Aname">{data.comment}</div>
+                <div className="JSW_Aname">{data.price}</div>
+              </Link>
             </div>
           )
         })}
