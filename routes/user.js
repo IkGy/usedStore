@@ -57,7 +57,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 router.post("/edit", async (req, res) => {
   const db = getDB();
   await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
@@ -74,7 +73,8 @@ router.post("/edit", async (req, res) => {
     res.status(500).end();
   })
 })
-=======
+
+
 // router.post("/findpw", async (req, res) => {
 //   try {
 //     const db = getDB();
@@ -94,8 +94,6 @@ router.post("/edit", async (req, res) => {
 //   }
 // });
 // 보안상의 이유로 권장되지 않는 방식입니다...
-
->>>>>>> 11b9ce87af7af6f738f856434ec42d877f8d2c1d
 
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
