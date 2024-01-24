@@ -20,7 +20,9 @@ function Detail() {
     const [products, setProducts] = useState([]); // 판매자가 등록한 상품들 정보 전부
     const [error, setError] = useState(false);  // 에러 상태 추가
 
-    const fetchProduct = async () => {   
+    console.log(save);    
+
+    const fetchProduct = async () => {
         try {
             const res = await axios.get(`${API_URL}/prod/detail/${id}`);
             if (res.data.product) {
@@ -39,6 +41,8 @@ function Detail() {
     useEffect(() => {
         fetchProduct();
     }, [id]);
+
+
 
     // 나중에 주석풀거임
     // 기능 : 존재하지 않는 상품일시 상품에러 페이지로 이동
