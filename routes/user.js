@@ -95,6 +95,8 @@ router.post("/edit", async (req, res) => {
 // });
 // 보안상의 이유로 권장되지 않는 방식입니다...
 
+router.get("/productedit")
+
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);

@@ -17,7 +17,7 @@ function Mypage() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("판매 내역");
+  const [menu, setMenu] = useState("등록된 상품");
   const [end, setEnd] = useState("");
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
@@ -32,18 +32,20 @@ function Mypage() {
 
   const editUser = async(e) => {
     e.preventDefault();
-    const nickname = e.target.nickname.value;
-    const about = e.target.about.value;
-    const address = e.target.address.value;
+    const nickname = e.target?.nickname?.value || ''; // 값이 없을 때 빈 문자열로 설정
+    const about = e.target?.about?.value || '';
+    const address = e.target?.address?.value || '';
+    const profileIMG = e.target?.profileIMG?.value || '';
     const id = getCookie("login");
     
-    console.log("test", nickname, about, id);
+    console.log("test", nickname, about, id, address, profileIMG);
 
     await axios.post(`${API_URL}/user/edit`, {
       id,
       nickname,
       about,
-      address
+      address,
+      profileIMG
     }).then(() => {
       setModalIsOpen(false);
     })
@@ -164,7 +166,7 @@ function Mypage() {
           <div className='JSW_Sec2'>
             <div className="JSW_Sec2-1">
               <div className="JSW_Sec2-1_left">
-                <img src={EK}></img>
+                <img src={data.profileIMG}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
                 <div className="JSW_myname">내 정보 </div>
@@ -255,7 +257,7 @@ function Mypage() {
                 placeholder="변경을 원하시면 클릭해주세요."
               ></input>
               <input
-                style={{overflowY:"scroll",width:"12vw"}}
+                // style={{overflowY:"scroll",width:"12vw"}}
                 className="JSW_modal_loginInputBox_s" 
                 id="about"
                 type="text"
@@ -265,10 +267,11 @@ function Mypage() {
 
               {/* <input
                 className="JSW_modal_loginInputBox_s" 
-                id="about"
-                type="text"
-                defaultValue={data.img}
-                placeholder={data.password}
+                id="profileIMG"
+                type = "file" 
+                accept = "image/jpg, image/jpeg, image/png"
+                defaultValue={data.profileIMG}
+                placeholder={EK}
               ></input> */}
               </div>
               <button type="submit" className="JSW_mypagewater"
