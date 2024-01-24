@@ -7,7 +7,7 @@ function Rules() {
     <div className="ymj_rules_all">
       <div className="ymj_rules_link">
         <div className="ymj_rules_link1">
-          <Link to={'/rules'}>번개장터</Link>
+          <Link to={'/rules'}>리셀마켓</Link>
         </div>
         <div className="ymj_rules_link2">       
           <Link to={'/pro'}>프로상점</Link>

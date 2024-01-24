@@ -40,7 +40,6 @@
 }
 
 .KJH_if_left_content_bottom {
-    height: 10vh;
     border-top: 0.1em solid rgb(238, 238, 238);
     border-bottom: 0.1em solid rgb(238, 238, 238);
     display: flex;
@@ -48,8 +47,10 @@
 }
 
 .KJH_if_left_content_div {
+    position: relative;
+    padding: 2vh 0;
     width: 15vw;
-    border-right: 0.1em solid rgb(238, 238, 238);
+    height: 100%;
 }
 
 .KJH_if_left_content_div:last-child {
@@ -61,12 +62,12 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
-    font-size: 0.8vw;
+    font-size: 1vw;
     font-weight: 700;
     color: rgb(178, 178, 178);
 }
 
-.KJH_if_left_content_div_top > img {
+.KJH_if_left_content_div_top > svg {
     margin-right: 5px;
 }
 
@@ -100,7 +101,7 @@
     display: flex;
     align-items: center;
     color: rgb(102, 102, 102);
-    font-size: 0.9vw;
+    font-size: 0.8vw;
 }
 
 .KJH_if_left_content_div_link_span {
@@ -485,7 +486,7 @@
         color: rgb(178, 178, 178);
     }
     
-    .KJH_if_left_content_div_top > img {
+    .KJH_if_left_content_div_top > svg {
         margin-right: 5px;
     }
     
@@ -901,7 +902,7 @@
             color: rgb(178, 178, 178);
         }
         
-        .KJH_if_left_content_div_top > img {
+        .KJH_if_left_content_div_top > svg {
             margin-right: 5px;
         }
         
@@ -1108,6 +1109,7 @@
         }
         
         .KJH_if_right_top_content_user_review {
+            margin-top: 1vh;
             padding: 1vh 0;
             border-top: 0.1em solid rgb(238, 238, 238);
             border-bottom: 0.1em solid rgb(238, 238, 238);

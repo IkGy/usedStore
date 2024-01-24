@@ -68,8 +68,8 @@
 
 .KJH_cg_dropdown {
     position: absolute;
-    top: 1.9vw;
-    left: -0.1vw;
+    top: 100%;
+    left: -0.5%;
     width: calc(100% + 1.3%);
     background: rgb(255, 255, 255);
     max-height: 0; /* 초기 상태에서는 max-height를 0으로 설정 */
@@ -160,7 +160,7 @@
     .KJH_cg_filter {
         border: 0.1vw solid rgb(238, 238, 238);
         display: flex;
-        width: 18vw;
+        width: 6.2em;
         height: auto;
         align-items: center;
         position: relative;
@@ -184,7 +184,7 @@
     
     .KJH_cg_dropdown {
         position: absolute;
-        top: 4vw;
+        top: 100%;
         left: -0.1vw;
         width: calc(100% + 0.1);
         background: rgb(255, 255, 255);
@@ -277,7 +277,7 @@
         .KJH_cg_filter {
             border: 0.1vw solid rgb(238, 238, 238);
             display: flex;
-            width: 18vw;
+            width: 8em;
             height: auto;
             align-items: center;
             position: relative;
@@ -301,8 +301,8 @@
         
         .KJH_cg_dropdown {
             position: absolute;
-            top: 4vh;
-            left: -0.1vw;
+            top: 100%;
+            left: -1px;
             width: calc(100% + 0.15em);
             background: rgb(255, 255, 255);
             max-height: 0; /* 초기 상태에서는 max-height를 0으로 설정 */

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -31,6 +32,17 @@ export default function SignUp() {
       document.body.removeChild(script);
     };
   }, []);
+
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ''}`;
+        setSelectedAddress(fullAddress);
+        console.log(data);
+      },
+    }).open();
+  };
 
   useEffect(() => {
     const storedNaver_InfoN = localStorage.getItem('naver_infoN');
@@ -68,8 +80,6 @@ export default function SignUp() {
     }
   }, []);
 
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const id = e.target.id.value;
@@ -79,6 +89,23 @@ export default function SignUp() {
     const password = e.target.password.value;
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
+
+    if (!nickname || !name || !email || !password || !address || !phone_number) {
+      alert("모든 항목을 채워주세요.");
+      return;
+    }
+
+    const existingEmailResponse = await axios.get(`${API_URL}/user/check-email?email=${email}`);
+    if (existingEmailResponse.data === true) {
+      alert("이미 사용 중인 이메일입니다.");     // 이메일 중복 확인
+      return;
+    } 
+
+    const existingNicknameResponse = await axios.get(`${API_URL}/user/check-nickname?nickname=${nickname}`);
+    if (existingNicknameResponse.data === true) {
+      alert("이미 사용 중인 닉네임입니다.");  // 닉네임 중복 확인
+      return;
+    }
     
     const data = {
       id: id,
@@ -101,17 +128,6 @@ export default function SignUp() {
     });
   };
 
-  const handleAddressClick = () => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        // 주소 선택 후 state에 저장
-        const fullAddress = `${data.address} ${data.buildingName || ''}`;
-        setSelectedAddress(fullAddress);
-        console.log(data);
-      },
-    }).open();
-  };
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -124,15 +140,17 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
+          <Typography component="h1" variant="h5" sx={{ mt: 5 }}>
+            회원가입
+          </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   name="id"
-                  required // 반드시 작성
                   fullWidth
                   id="id"
-                  label="아이디"
+                  label="아이디 (비워두셔도 됩니다)"
                   value={kakaoAccount ? kakaoAccount.nickname : ''}
                   onChange={(e) => setKakaoAccount((prev) => ({ ...prev, nickname: e.target.value }))}
                 />
@@ -141,7 +159,7 @@ export default function SignUp() {
                 <TextField
                   autoComplete="given-name"
                   name="name"
-                  required
+                  required  // 반드시 작성
                   fullWidth
                   id="real_name"
                   label="성명"
@@ -160,6 +178,7 @@ export default function SignUp() {
                   fullWidth
                   id="nickname"
                   label="닉네임"
+                  type="text"
                 />
               </Grid>
               <Grid item xs={12}>
