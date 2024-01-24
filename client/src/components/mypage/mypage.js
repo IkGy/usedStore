@@ -14,6 +14,11 @@ import EK from "./image/이크.png"
 
 
 function Mypage() {
+  /* */
+  const [selectedAddress, setSelectedAddress] = useState('');
+  const [data, setData] = useState({})
+  const [menu, setMenu] = useState("판매 내역");
+  const [end, setEnd] = useState("");
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
   let [zIndex, setZindex] = useState(1);
@@ -25,20 +30,50 @@ function Mypage() {
     return setEnd("");
   }, [modalIsOpen]); // 로그인 모달창 등장시 등장애내메이션을 담당하는 useEffect
 
-  const onLogin = (e) => {
+  const editUser = async(e) => {
     e.preventDefault();
-    const id = e.target.user_id.value;
-    const pwd = e.target.user_pwd.value;
-    console.log("test", id, pwd);
-    if (id === "" || pwd === "") {
-      return alert("아이디 또는 비밀번호를 입력해주세요");
-    }
+    const nickname = e.target.nickname.value;
+    const about = e.target.about.value;
+    const address = e.target.address.value;
+    const id = getCookie("login");
+    
+    console.log("test", nickname, about, id);
+
+    await axios.post(`${API_URL}/user/edit`, {
+      id,
+      nickname,
+      about,
+      address
+    }).then(() => {
+      setModalIsOpen(false);
+    })
+    .catch(() => {
+
+    })
   }
 
-/* */
-  const [data, setData] = useState({})
-  const [menu, setMenu] = useState("판매 내역");
-  const [end, setEnd] = useState("");
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const handleAddressClick = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 주소 선택 후 state에 저장
+        const fullAddress = `${data.address} ${data.buildingName || ''}`;
+        setSelectedAddress(fullAddress);
+        console.log(data);
+      },
+    }).open();
+  };
+  
 
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
@@ -138,9 +173,11 @@ function Mypage() {
                       key={data.id}
                       >
                         <div className="JSW_userlist">이름 : {data.real_name}</div>
+                        <div className="JSW_userlist">별명 : {data.nickname}</div>
                         <div className="JSW_userlist">전화번호 : {data.phone_number}</div>
                         <div className="JSW_userlist">이메일 : {data.email}</div>
                         <div className="JSW_userlist">주소지 : {data.address}</div>
+                        <div className="JSW_userlist">상점 설명 : {data.about}</div>
                       </div>
                 </div>
                 <Link
@@ -168,7 +205,7 @@ function Mypage() {
                 setZindex(1);
               }}
             > {/* 로그인버튼 클릭시 보여주는 모달창 */}
-            <form onSubmit={onLogin} className={"start " + end} id="JSW_modalALL">
+            <form onSubmit={editUser} className={"start " + end} id="JSW_modalALL">
             <div
               className="JSW_modal_loginCloseBtn"
               onClick={() => {
@@ -184,34 +221,61 @@ function Mypage() {
                 className="JSW_modal_loginInputBox_s" 
                 id="real_name" 
                 type="text" 
-                placeholder={data.real_name}
+                value={data.real_name}
+                placeholder="이름"
+              ></input>
+              <input
+                className="JSW_modal_loginInputBox_s" 
+                id="nickname"
+                type="text"
+                defaultValue={data.nickname}
+                placeholder="별명을 정해주세요."
               ></input>
               <input
                 className="JSW_modal_loginInputBox_s" 
                 id="phone_number"
-                type="password"
-                placeholder={data.phone_number}
+                type="tel"
+                value={data.phone_number}
+                placeholder="전화번호"
               ></input>
               <input
                 className="JSW_modal_loginInputBox_s" 
                 id="email"
                 type="text"
-                placeholder={data.email}
+                value={data.email}
+                placeholder="이메일"
               ></input>
               <input
                 className="JSW_modal_loginInputBox_s" 
-                id="adress"
+                id="address"
                 type="text"
-                placeholder={data.address}
+                // value={selectedAddress}
+                onClick={handleAddressClick}
+                defaultValue={data.address}
+                placeholder="변경을 원하시면 클릭해주세요."
               ></input>
               <input
+                style={{overflowY:"scroll",width:"12vw"}}
                 className="JSW_modal_loginInputBox_s" 
                 id="about"
                 type="text"
-                placeholder={data.about}
+                defaultValue={data.about}
+                placeholder="상점 설명을 적어주세요."
               ></input>
+
+              {/* <input
+                className="JSW_modal_loginInputBox_s" 
+                id="about"
+                type="text"
+                defaultValue={data.img}
+                placeholder={data.password}
+              ></input> */}
               </div>
-              <button className="JSW_mypagewater">수정하기</button>
+              <button type="submit" className="JSW_mypagewater"
+              onClick={()=>{
+                window.location.reload();
+              }}
+              >수정 완료</button>
               </form>
             </Modal>
             </div>
