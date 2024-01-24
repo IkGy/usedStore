@@ -1,7 +1,12 @@
 /*** 전체 설정 ***/
 
-.KJH_item_section {
+.KJH_detail_slide_section {
     position: relative;
+    display: flex;
+    height: 40vh;
+}
+
+.KJH_item_section {
     display: flex;
     padding: 2vh 0;
     width: 100%;
@@ -11,12 +16,10 @@
 /*** 상품정보 ***/
 
 .KJH_item_info_section {
-    position: relative;
     flex-grow: 1;
 }
 
 .KJH_item_info {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -227,24 +230,34 @@
     outline: none;
 }
 
-.KJH_item_like_section {
+.KJH_item_like_section_true, .KJH_item_like_section_false {
     display: flex;
     align-items: center;
     margin-right: 20px;
 }
 
-.KJH_item_like_section > svg {
-    background-color: #dddddd;
-    border: 0.15em solid #dddddd;
+.KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
     border-radius: 0.2vw;
     padding: 0.5vw;
-    color: white;
-    width: 3.4vw;
+    width: 3.8vw;
     height: 7.2vh;
     transition: all 0.3s ease;
 }
 
-.KJH_item_like_section > svg:hover {
+.KJH_item_like_section_false > svg {
+    background-color: #dddddd;
+    border: 0.15em solid #dddddd;
+    color: white;
+}
+
+.KJH_item_like_section_false > svg:hover {
+    color: #ff4c4c;
+    background-color: #fff09b;
+    cursor: pointer;
+    border: 0.15em solid #ff4c4c;
+}
+
+.KJH_item_like_section_true > svg {
     color: #ff4c4c;
     background-color: #fff09b;
     cursor: pointer;
@@ -532,28 +545,27 @@
     outline: none;
 }
 
-.KJH_item_like_section {
+.KJH_item_like_section_true, .KJH_item_like_section_false {
     display: flex;
     align-items: center;
-    margin-right: 2vw;
-    min-height: 22px;
-    min-width: 22px;
+    margin-right: 20px;
 }
 
-.KJH_item_like_section > svg {
-    background-color: #dddddd;
-    border: 0.15em solid #dddddd;
-    border-radius: 1vw;
-    padding: 1vw;
-    color: white;
-    min-width: 10px;
-    min-height: 10px;
-    width: 7vw;
+.KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
+    border-radius: 0.8vw;
+    padding: 0.5vw;
+    width: 8vw;
     height: 7.2vh;
     transition: all 0.3s ease;
 }
 
-.KJH_item_like_section > svg:hover {
+.KJH_item_like_section_false > svg {
+    background-color: #dddddd;
+    border: 0.15em solid #dddddd;
+    color: white;
+}
+
+.KJH_item_like_section_false > svg:hover {
     color: #ff4c4c;
     background-color: #fff09b;
     cursor: pointer;
