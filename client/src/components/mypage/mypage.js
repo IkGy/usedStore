@@ -32,6 +32,7 @@ function Mypage() {
 
   const editUser = async(e) => {
     e.preventDefault();
+
     const nickname = e.target?.nickname?.value || ''; // 값이 없을 때 빈 문자열로 설정
     const about = e.target?.about?.value || '';
     const address = e.target?.address?.value || '';
@@ -257,7 +258,9 @@ function Mypage() {
                 placeholder="변경을 원하시면 클릭해주세요."
               ></input>
               <input
+
                 // style={{overflowY:"scroll",width:"12vw"}}
+
                 className="JSW_modal_loginInputBox_s" 
                 id="about"
                 type="text"
@@ -267,6 +270,7 @@ function Mypage() {
 
               {/* <input
                 className="JSW_modal_loginInputBox_s" 
+
                 id="profileIMG"
                 type = "file" 
                 accept = "image/jpg, image/jpeg, image/png"

@@ -19,11 +19,11 @@ function RegiImage(props) {
   };
 
   const handleImageClick = (index) => {
+    console.log("qwefijsaoifaf");
     const updatedFiles = [...props.imageFile];
-    props.imageFile.splice(index, 1);
+    updatedFiles.splice(index, 1);
     props.setImageFile(updatedFiles);
   };
-
 
   const openmodal = (img) => {
     if (modal === false) {
@@ -85,7 +85,7 @@ function RegiImage(props) {
             )}
           </div>
         </div>
-        
+
         <div className="regi_imageform">
           {props.imageFile.length < 3 && (
             <>
