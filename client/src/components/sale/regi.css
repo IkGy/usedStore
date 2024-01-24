@@ -111,12 +111,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 1.2vw;
-  height: 10vw;
+  height: 15vw;
   border: 0.1vw solid rgba(0, 0, 0, 0.264);
 }
 
 .regi_category1 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .regi_category2 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
   border-right: 0.1vw solid rgba(0, 0, 0, 0.264);
   border-left: 0.1vw solid rgba(0, 0, 0, 0.264);
@@ -138,7 +138,7 @@
 }
 
 .regi_category3 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
 }
 
