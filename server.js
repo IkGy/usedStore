@@ -55,7 +55,7 @@ const { log } = require("console");
 app.use(cors());
 
 const url = process.env.DB_URL;
-
+const port = process.env.PORT
 new MongoClient(url)
   .connect({ useUnifiedTopology: true })
   .then((client) => {
@@ -233,6 +233,10 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
   res.json({ fileUrl });
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a490a217d0a1e7dc1c0ea25bceac1458d1201e65
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);

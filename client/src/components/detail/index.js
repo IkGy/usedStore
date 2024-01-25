@@ -6,7 +6,7 @@ import axios from 'axios';
 import { API_URL } from '../config/contansts';
 
 import Slide from './product/slide';
-import Category from './product/category';
+// import Category from './product/category';
 import Info from './product/info';
 import Overview from './product/overview';
 
@@ -50,7 +50,7 @@ function Detail() {
     return (
         <>
             <div className='KJH_detail_container'>
-                <Category info={item} />
+                {/* <Category info={item} /> */}
                 <div className='KJH_detail_slide_section'>
                     <Slide info={item} />
                     <Overview info={item} heart={save} />
