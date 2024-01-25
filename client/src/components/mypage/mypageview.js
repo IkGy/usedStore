@@ -10,6 +10,8 @@ import Hoogi from "./hoogi";
 import "./mypage.css";
 
 
+
+
 function Mypageview() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
@@ -61,13 +63,30 @@ function Mypageview() {
     });
   }, []);
 
+  const [getReview, setGetReview] = useState([]);
+  
+  useEffect(() => {
+    const fetchGetReview = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
+        setGetReview(res.data.review);
+        console.log("--------리뷰정보--------");
+        console.log(res.data.review);
+        console.log("----------------");
+      } catch (error) {
+        console.error('데이터를 불러오지 못했습니다:', error.response?.data);
+      }
+    };
+    fetchGetReview();
+  }, []);
+  
+
   useEffect(() => {
     setTimeout(() => {
       setEnd("end");
     }, 100);
     return setEnd("");
   }, [menu]);
-
   
 
   let [userInfo, setUSerInfo] = useState({
