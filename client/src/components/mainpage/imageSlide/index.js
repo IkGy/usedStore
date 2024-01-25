@@ -55,24 +55,27 @@ const Contain = styled.div`
   display:flex;
   align-items:center;
   margin:0 auto;
+  height: 15vw;
 `
 
 const ItemsContain = styled.div`
   width:100%;
   height:100%;
   padding: 0 10px;
+  height: 15vw;
 `
 
 const ItemsWrap = styled.div`
   width:100%;
-  height:180px;
-  border-radius:20px;
+  border-radius:1vw;
   overflow:hidden;
-  margin:0 20px;
+  margin:0 2vw;
+  height: 15vw;
 
   img{
     width:100%;
     height:100%;
     object-fit:cover;
+    height: 15vw;
   }
  `

@@ -161,7 +161,7 @@
 
   .main_searchBar {
     border: 0.3vw #2748b0 solid;
-    width: 28vw;
+    width: 30vw;
     height: 4vw;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -202,7 +202,7 @@
 
   .main_searchBar{
     border: 0.5vw #2748b0 solid;
-    width: 40vw;
+    width: 100%;
     height: 5vw;
     overflow:hidden;
     text-overflow:ellipsis;
