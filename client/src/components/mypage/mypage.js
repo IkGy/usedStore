@@ -249,12 +249,11 @@ function Mypage() {
                 defaultValue={data.nickname}
                 placeholder="별명을 정해주세요."
               ></input>
-            
               <input
                 className="JSW_modal_loginInputBox_s" 
                 id="address"
                 type="text"
-                value={data.address||selectedAddress}
+                value={selectedAddress}
                 onClick={handleAddressClick}
                 placeholder={data.address}
               ></input>
