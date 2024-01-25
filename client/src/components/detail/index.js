@@ -19,25 +19,27 @@ function Detail() {
     const [products, setProducts] = useState([]); // 판매자가 등록한 상품들 정보 전부
     const [error, setError] = useState(false);  // 에러 상태 추가 
 
-    const fetchProduct = async () => {
-        try {
-            const res = await axios.get(`${API_URL}/prod/detail/${id}`);
-            if (res.data.product) {
-                setItem(res.data.product);
-                setSave(res.data.likes);
-                setUserInfo(res.data.user);
-                setReview(res.data.review);
-                setProducts(res.data.products);
-            } else {
-                setError(true);  // 유효하지 않은 id에 대한 처리
-            }
-        } catch (error) {
-            setError(true);  // 에러 처리
-        }
-    };
     useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/prod/detail/${id}`);
+                if (res.data.product) {
+                    setItem(res.data.product);
+                    setSave(res.data.likes);
+                    setUserInfo(res.data.user);
+                    setReview(res.data.review);
+                    setProducts(res.data.products);
+                } else {
+                    setError(true);  // 유효하지 않은 id에 대한 처리
+                }
+            } catch (error) {
+                setError(true);  // 에러 처리
+            }
+        };
+    
         fetchProduct();
     }, [id]);
+    
 
     if (error) {
         return <Navigate to="/detail/error" />;
