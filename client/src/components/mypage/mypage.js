@@ -185,18 +185,13 @@ function Mypage() {
                       </div>
                 </div>
                 
-                {/* <Link
+                <Link to="/makenewpw"
                 className="loginBtn"
-                style={{ textDecoration: "none" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setModalIsOpen(true);
-                  setZindex(0);
-                }}>
+                style={{ textDecoration: "none" }}>
                 <label className="JSW_Cristal">
                   비밀번호 변경
                 </label>
-                </Link> */}
+                </Link>
                 <Link
                 className="loginBtn"
                 style={{ textDecoration: "none" }}

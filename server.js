@@ -233,10 +233,6 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
   res.json({ fileUrl });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
