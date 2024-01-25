@@ -1,0 +1,591 @@
+.sale_select {
+  display: flex;
+  column-gap: 3vw;
+}
+
+.sale_select button {
+  margin-top: 2vw;
+  padding: 0.5vw 0vw;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.regi_status label {
+  height: 3vw;
+}
+
+.MuiFormGroup-root label {
+  margin: 0;
+}
+
+.regi {
+  font-family: "seolleimcool-SemiBold";
+  padding: 1vw;
+  padding-bottom: 7vw;
+}
+
+.regi input,
+.regi span,
+.regi button {
+  font-family: "seolleimcool-SemiBold";
+}
+
+.regi_start {
+  font-family: "JalnanGothic";
+  border-bottom: 0.2vw solid black;
+  padding: 1.5vw 0vw;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+}
+
+.regi_start span {
+  font-family: "JalnanGothic";
+}
+
+.regi_start > span:last-child {
+  color: red;
+  font-size: 1vw;
+  margin-left: 1vw;
+}
+
+.regi_select {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  border-bottom: 0.1vw solid rgba(128, 128, 128, 0.196);
+  padding: 2vw 0;
+}
+
+.regi_select > div:first-child {
+  font-size: 1.3vw;
+  font-family: "JalnanGothic";
+}
+
+.regi_title span {
+  font-family: "JalnanGothic";
+}
+
+.regi_image {
+  width: 100%;
+  height: 15vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.7vw;
+  cursor: pointer;
+}
+
+.regi_img {
+  width: 20vw;
+  height: 20vw;
+}
+
+.regi_image i {
+  font-size: 3vw;
+  color: rgba(128, 128, 128, 0.678);
+}
+
+.regi_image div {
+  font-size: 1.2vw;
+  color: rgb(128, 128, 128);
+}
+
+.regi_title input {
+  width: 90%;
+  font-size: 1.2vw;
+  padding: 0.7vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  display: block;
+}
+
+.regi_selecttag > div {
+  display: flex;
+  align-items: center;
+}
+
+.regi_category {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 1.2vw;
+  height: 15vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+}
+
+.regi_category1 {
+  max-height: 15vw;
+  overflow-y: auto;
+}
+
+.regi_category1 div {
+  padding: 0.6vw;
+  cursor: pointer;
+}
+
+.regi_category2 {
+  max-height: 15vw;
+  overflow-y: auto;
+  border-right: 0.1vw solid rgba(0, 0, 0, 0.264);
+  border-left: 0.1vw solid rgba(0, 0, 0, 0.264);
+}
+
+.regi_category2 div {
+  padding: 0.6vw;
+  cursor: pointer;
+}
+
+.regi_category3 {
+  max-height: 15vw;
+  overflow-y: auto;
+}
+
+.regi_category3 div {
+  padding: 0.6vw;
+  cursor: pointer;
+}
+
+.regi_category1 div:hover,
+.regi_category2 div:hover,
+.regi_category3 div:hover {
+  background-color: rgba(128, 128, 128, 0.238);
+}
+
+.regi_address button {
+  display: block;
+  background-color: white;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  padding: 0.7vw;
+  font-size: 1vw;
+  width: 6vw;
+  cursor: pointer;
+  margin-bottom: 1vw;
+}
+
+.regi_address > button:first-child {
+  margin-right: 1vw;
+}
+
+.regi_address input {
+  display: block;
+  background-color: rgba(128, 128, 128, 0.142);
+  width: 90%;
+  padding: 0.7vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  font-size: 1.2vw;
+  color: rgb(69, 69, 69);
+  cursor: default;
+}
+
+.regi_status span {
+  font-size: 1.2vw;
+}
+
+.regi_change span {
+  font-size: 1.2vw;
+}
+
+.regi_change .MuiFormGroup-root {
+  flex-direction: row;
+  column-gap: 2vw;
+}
+
+.regi_price {
+  position: relative;
+  width: 30%;
+}
+
+.regi_price input {
+  display: block;
+  font-size: 1.2vw;
+  padding: 0.5vw;
+  width: 100%;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+}
+
+.regi_price span {
+  position: absolute;
+  font-size: 1.2vw;
+  color: gray;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+}
+
+.regi_postprice span {
+  font-size: 1.2vw;
+}
+
+.regi_postprice .MuiFormGroup-root {
+  flex-direction: row;
+  column-gap: 2vw;
+}
+
+.regi_content textarea {
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  width: 90%;
+  height: 13vw;
+  padding: 0.5vw 1vw;
+  font-size: 1.2vw;
+  resize: none;
+  letter-spacing: -0.05em;
+  font-family: inherit;
+}
+
+.regi_tag input {
+  display: block;
+  width: 90%;
+  font-size: 1.2vw;
+  padding: 0.7vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+}
+
+.regi_register {
+  display: flex;
+  justify-content: end;
+}
+
+.regi_register button {
+  padding: 0.7vw 1vw;
+  border: none;
+  background-color: rgba(1, 148, 1, 0.795);
+  color: white;
+  cursor: pointer;
+  font-size: 1.5vw;
+  transition: 0.3s;
+}
+
+.regi_register button:hover {
+  background-color: rgba(0, 164, 0, 0.795);
+}
+
+.regi_selecttags {
+  display: grid;
+  margin-top: 1vw;
+  font-size: 1vw;
+  grid-template-columns: 12% 88%;
+}
+
+.regi_selecttag {
+  border: 0.15vw solid rgb(73, 185, 73);
+  background-color: white;
+  padding: 0.2vw 0.5vw;
+  border-radius: 0.3vw;
+  display: inline-block;
+  align-items: center;
+  margin-left: 0.5vw;
+  font-size: 1.2vw;
+  margin-bottom: 0.5vw;
+}
+
+.regi_deltag {
+  color: red;
+  padding-left: 0.4vw;
+  cursor: pointer;
+  font-size: 1.5vw;
+}
+
+.regi_selcetcategory {
+  font-size: 1.2vw;
+}
+
+.regi_contentlength {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  margin-top: 0.5vw;
+  font-size: 1vw;
+}
+
+.regi_imageform {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1vw;
+  height: 15vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.regi_imageform img {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  object-fit: contain;
+  width: 100%;
+  max-height: 15vw; /* 최대 높이를 15vw로 설정 */
+}
+
+.regi_image-container {
+  position: relative;
+  border: 0.1vw solid rgba(0, 0, 0, 0.264);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#regi_delete-button {
+  width: 2vw;
+  height: 2vw;
+  position: absolute;
+  top: 0.4vw;
+  right: 0.4vw;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.regi_selcetcategory span {
+  font-size: 1vw;
+}
+
+.regi_addressbtnbox {
+  display: flex;
+  column-gap: 1vw;
+}
+
+.modalbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.751);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalimg {
+  position: absolute;
+  display: block;
+  z-index: 3;
+  max-height: 40vw;
+  max-width: 90vw;
+}
+
+#regi_delete-modal {
+  width: 3vw;
+  height: 3vw;
+  position: absolute;
+  top: 1vw;
+  right: 1.5vw;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1vw;
+}
+
+.regi_firstimg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1vw;
+  background-color: green;
+  color: white;
+  padding: 0.5vw;
+}
+
+.regi_nofirstimg {
+  display: none;
+}
+
+
+
+@media (max-width: 500px) {
+  .regi_start {
+    font-family: "JalnanGothic";
+    border-bottom: 0.5vw solid black;
+    padding: 3vw 0vw;
+    font-size: 3.5vw;
+  }
+
+  .regi_start > span:last-child {
+    font-size: 2vw;
+    margin-left: 1.5vw;
+  }
+
+  .regi_selecttags {
+    grid-template-columns: 18% 82%;
+    font-size: 2vw;
+  }
+
+  .regi_select {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .regi_select > div:first-child {
+    font-size: 2vw;
+    font-family: "JalnanGothic";
+  }
+
+  .regi_image {
+    height: 20vw;
+  }
+
+  .regi_image i {
+    font-size: 5vw;
+  }
+
+  .regi_image div {
+    font-size: 1.5vw;
+  }
+
+  .regi_imageform img {
+    max-height: 20vw;
+  }
+
+  #regi_delete-button {
+    width: 4vw;
+    height: 4vw;
+    top: 0.3vw;
+    right: 0.5vw;
+  }
+
+  .regi_select {
+    padding: 5vw 0;
+  }
+
+  .regi_title input {
+    width: 90%;
+    font-size: 2vw;
+    padding: 1vw;
+    border: 0.1vw solid rgba(0, 0, 0, 0.264);
+    display: block;
+  }
+
+  .regi_category {
+    height: 15vw;
+    font-size: 2vw;
+  }
+
+  .regi_category1,
+  .regi_category2,
+  .regi_category3 {
+    max-height: 15vw;
+  }
+
+  .regi_category1 div {
+    padding: 1vw;
+  }
+
+  .regi_selcetcategory {
+    font-size: 2vw;
+  }
+
+  .regi_selcetcategory span {
+    font-size: 1.5vw;
+  }
+
+  .regi_address button {
+    padding: 1vw;
+    font-size: 2vw;
+    width: 12vw;
+    margin-bottom: 2vw;
+  }
+
+  .regi_address input {
+    padding: 1vw;
+    font-size: 2vw;
+  }
+
+  .regi_status span {
+    font-size: 2vw;
+  }
+
+  .css-hyxlzm {
+    scale: 1.5;
+  }
+
+  .regi_change span {
+    font-size: 2vw;
+  }
+
+  .regi_price {
+    position: relative;
+    width: 30%;
+  }
+
+  .regi_price input {
+    display: block;
+    font-size: 2vw;
+    padding: 1vw;
+  }
+
+  .regi_price span {
+    font-size: 2vw;
+  }
+
+  .regi_postprice span {
+    font-size: 2vw;
+  }
+
+  .regi_content textarea {
+    height: 20vw;
+    padding: 1vw 2vw;
+    font-size: 2vw;
+    letter-spacing: -0.01em;
+  }
+
+  .regi_contentlength {
+    margin-top: 1vw;
+    font-size: 1.9vw;
+  }
+
+  .MuiFormGroup-root label {
+    margin: 0.5vw 0;
+  }
+
+  .regi_tag input {
+    font-size: 2vw;
+    padding: 1vw;
+  }
+
+  .regi_selecttag {
+    padding: 0.4vw 1vw;
+    border-radius: 0.5vw;
+    margin-left: 0vw;
+    font-size: 2vw;
+    margin-bottom: 0vw;
+  }
+
+  .regi_deltag {
+    padding-left: 0.8vw;
+    font-size: 2.2vw;
+  }
+
+  .regi_register button {
+    padding: 1.5vw 1.5vw;
+    font-size: 2vw;
+  }
+
+  .regi_imageform {
+    height: 20vw;
+  }
+
+  .modalimg {
+    max-height: 60vw;
+    max-width: 90vw;
+  }
+
+  #regi_delete-modal {
+    width: 6vw;
+    height: 6vw;
+    top: 4vw;
+    right: 3vw;
+  }
+
+  .regi_firstimg {
+    font-size: 1.7vw;
+    padding: 1vw;
+  }
+}
