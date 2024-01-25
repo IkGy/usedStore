@@ -39,7 +39,7 @@ function Mypage() {
     const about = e.target?.about?.value || '';
     const address = e.target?.address?.value || '';
     const id = getCookie("login");
-    
+
     const fromdata = new FormData();
 
     fromdata.append("nickname", nickname)
@@ -47,8 +47,6 @@ function Mypage() {
     fromdata.append("address", address)
     fromdata.append("profileIMG", profileIMG)
     fromdata.append("id", id)
-
-    console.log("test", nickname, about, id, address, profileIMG);
 
 
     await axios.post(`${API_URL}/user/edit`, fromdata).then(() => {
