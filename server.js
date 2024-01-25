@@ -55,7 +55,7 @@ const { log } = require("console");
 app.use(cors());
 
 const url = process.env.DB_URL;
-
+const port = process.env.PORT
 new MongoClient(url)
   .connect({ useUnifiedTopology: true })
   .then((client) => {
@@ -232,6 +232,7 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
   const fileUrl = `https://popol5.s3.ap-northeast-2.amazonaws.com/${file.filename}`;
   res.json({ fileUrl });
 });
+
 
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
