@@ -123,7 +123,7 @@ function Header() {
                     <span>
                       <LuUserCircle2 className="main_loginIcon" />
                     </span>
-                    <Link to={"/mypage"}>내정보</Link>
+                    <Link to={"/mypage"} >내정보</Link>
                     <span>
                       <AiOutlineAliwangwang className="main_loginIcon" />
                     </span>
