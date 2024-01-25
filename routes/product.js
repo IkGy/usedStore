@@ -3,19 +3,6 @@ const router = express.Router();
 const { getDB } = require('../db');
 const { ObjectId } = require('mongodb');
 
-router.get('/test', async (req, res) => {
-    try {
-        const db = getDB();
-        let list = await db.collection("product").find().toArray();
-        console.log("---list---")
-        console.log(list);
-        res.status(201).send(list);
-    } catch(error) {
-        console.error(error);
-        res.status(500).send('list 조회오류')
-    }
-});
-
 router.get('/', async (req, res) => {
     try {
         const db = getDB();
@@ -74,84 +61,6 @@ router.delete('/delete/:id', async (req, res) => {
     res.status(500).send('삭제 오류');
   }
 })
-router.get('/like/check', async (req, res) => {
-  try {
-    const db = getDB();
-    let likerid = await db.collection("like").findOne({
-      product_id : req.query.prodid,
-      liker : req.query.userid
-    });
-    console.log(likerid);
-    res.status(201).send(likerid)
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('찜 값을 불러오지 못했습니다');
-  }
-});
-
-router.post('/like/add', async (req, res) => {
-  try {
-    const db = getDB();
-    const { userid, prodid } = req.body;
-
-    // 이미 찜이 되어있는지 확인
-    const existingLike = await db.collection("like").findOne({
-      product_id: prodid,
-      liker: userid
-    });
-
-    // 이미 찜한 경우, 중복 추가 방지
-    if (existingLike) {
-      return res.status(409).send('이미 찜한 상품입니다');
-    }
-
-    // 찜 추가
-    const newLike = {
-      product_id: prodid,
-      liker: userid
-    };
-    await db.collection("like").insertOne(newLike);
-    res.status(201).send('찜이 추가되었습니다');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('찜 추가에 실패했습니다');
-  }
-});
-
-
-
-router.delete('/like/remove', async (req, res) => {
-  try {
-    const db = getDB();
-    const prodid = req.query.prodid;
-    const userid = req.query.userid;
-    await db.collection("like").deleteOne({
-      product_id: prodid,
-      liker: userid
-    });
-    res.status(200).send('찜이 제거되었습니다');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('찜 제거에 실패했습니다');
-  }
-});
-
-router.delete('/delete/:id', async (req, res) => {
-  try {
-    console.log(req.params);
-    const db = getDB();
-    await db.collection("product").deleteOne({_id: new ObjectId(req.params.id)})
-    .then(()=>{
-      res.status(201).end();
-    })
-    .catch(()=>{
-      res.status(501).send("삭제 실패")
-    })
-  }catch(err) {
-    console.error(err);
-    res.status(500).send('삭제 오류');
-  }
-})
 
 router.get('/like/check', async (req, res) => {
   try {
@@ -197,8 +106,6 @@ router.post('/like/add', async (req, res) => {
   }
 });
 
-
-
 router.delete('/like/remove', async (req, res) => {
   try {
     const db = getDB();
@@ -215,6 +122,21 @@ router.delete('/like/remove', async (req, res) => {
   }
 });
 
+router.get('/like/getlike', async (req, res) => {
+  try {
+    const db = getDB();
+    const prodid = req.query.prodid;
+    await db.collection("like").find({
+      product_id: prodid
+    }).toArray()
+    .then ((result)=> {
+      res.status(200).send(result);
+    })
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('조회 오류');
+  }
+});
 
 // router.post('/product/new'.upload.single('image'), (요청, 응답) => {
 //         console.log(요청.file)

@@ -156,6 +156,11 @@
 .KJH_if_left_bottom_content_section > li:hover {
     list-style: none;
     background-color: #ffd0d0;
+
+    .KJH_if_left_bottom_content_link_section > img {
+        border: 0;
+    }
+
 }
 
 .KJH_if_left_bottom_single-product {
@@ -171,7 +176,10 @@
 .KJH_if_left_bottom_content_link_section > img {
     width: 8vw;
     height: 22vh;
-    border-radius: 0.6vw;
+    margin-right: 0.5vw;
+    padding: 1vw;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.3vw;
 }
 
 .KJH_if_left_bottom_content_link_info {
@@ -231,6 +239,11 @@
     border-radius: 0.2vw;
     font-size: 0.8vw;
     padding: 0.6vh 0;
+    transition: all 0.3s;
+}
+
+.KJH_if_right_top_content_top:hover {
+    background-color: #fff9c4;
 }
 
 .KJH_if_right_top_seller {
@@ -362,7 +375,7 @@
 
 .KJH_if_right_review_more:hover {
     cursor: pointer;
-    background-color: rgb(253, 255, 185);
+    background-color: #fff9c4;
 }
 
 .KJH_if_right_bottom_section {
@@ -490,7 +503,7 @@
     .KJH_if_left_content_div {
         width: 100%;
         border-right: 0;
-        margin: 2.5vh 0;
+        margin: 0;
     }
     
     .KJH_if_left_content_div:last-child {
@@ -660,7 +673,6 @@
     }
     
     .KJH_if_right_top_seller {
-        padding: 0 1vw;
         font-size: 3vw;
         font-weight: 700;
     }
@@ -689,7 +701,7 @@
     }
     
     .KJH_if_right_top_content_user_name {
-        display: flex;
+        display: block;
         align-items: center;
     }
     
@@ -714,9 +726,10 @@
     .KJH_if_right_top_content_user_review {
         padding: 2vh 0;
         border-top: 0.1em solid rgb(238, 238, 238);
-        border-bottom: 0.1em solid rgb(238, 238, 238);
+        border-bottom: 0;
         font-weight: 700;
         font-size: 2.2vw;
+        margin: 2vh 0 0;
     }
     
     .KJH_if_right_top_content_user_review > span {
@@ -1077,7 +1090,6 @@
         }
         
         .KJH_if_right_top_seller {
-            padding: 0 1vw;
             font-size: 5vw;
             font-weight: 700;
         }
@@ -1106,7 +1118,7 @@
         }
         
         .KJH_if_right_top_content_user_name {
-            display: flex;
+            display: block;
             align-items: center;
         }
         
@@ -1130,7 +1142,7 @@
         }
         
         .KJH_if_right_top_content_user_review {
-            margin-top: 1vh;
+            margin-top: 2vh;
             padding: 1vh 0;
             border-top: 0.1em solid rgb(238, 238, 238);
             border-bottom: 0.1em solid rgb(238, 238, 238);
