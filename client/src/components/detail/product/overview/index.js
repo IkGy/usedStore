@@ -76,6 +76,11 @@ function Item(props) {
         }
     };
 
+    // 신고 알림창
+    const handleReportClick = () => {
+        alert('신고되었습니다.');
+    };
+
 
     // 주소 복사
     const [showCopyMessage, setShowCopyMessage] = useState(false);
@@ -139,9 +144,9 @@ function Item(props) {
                                         {formattedCreatedAt}전
                                     </div>
                                 </div>
-                                <button className='KJH_item_info_report'>
+                                <button className='KJH_item_info_report' onClick={handleReportClick}>
                                     <MdReport />
-                                    <div className='KJH_item_info_report_text'>신고하기</div>
+                                <div className='KJH_item_info_report_text'>신고하기</div>
                                 </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>

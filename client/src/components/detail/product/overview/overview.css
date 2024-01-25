@@ -542,13 +542,13 @@
 .KJH_item_like_section_true, .KJH_item_like_section_false {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 1vw;
 }
 
 .KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
     border-radius: 0.8vw;
     padding: 0.5vw;
-    width: 8vw;
+    width: 9vw;
     height: 7.2vh;
     transition: all 0.3s ease;
 }

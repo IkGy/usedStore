@@ -149,10 +149,17 @@
 
 .KJH_if_left_bottom_content_section > li {
     list-style: none;
+    border-radius: 0.4vw;
+    transition: all 0.3s;
+}
+
+.KJH_if_left_bottom_content_section > li:hover {
+    list-style: none;
+    background-color: #ffd0d0;
 }
 
 .KJH_if_left_bottom_single-product {
-    width: 40vw;
+    margin-right: 21.8vw;
 }
 
 .KJH_if_left_bottom_content_link_section {
@@ -223,10 +230,10 @@
     border: 0.1em solid black;
     border-radius: 0.2vw;
     font-size: 0.8vw;
+    padding: 0.6vh 0;
 }
 
 .KJH_if_right_top_seller {
-    padding: 0 0.5vw;
     min-width: 40px;
     font-size: 1vw;
     font-weight: 700;
@@ -236,7 +243,7 @@
     padding: 0 0.5vw;
     color: red;
     font-weight: 700;
-    font-size: 0.6vw;
+    font-size: 0.8vw;
 }
 
 .KJH_if_right_shop_icon {
@@ -256,7 +263,7 @@
 }
 
 .KJH_if_right_top_content_user_name {
-    display: flex;
+    display: block;
     align-items: center;
     padding-right: 0.5vw;
 }
@@ -280,7 +287,7 @@
 }
 
 .KJH_if_right_top_content_user_review {
-    padding: 1.0vw 0 1.1vw;
+    padding: 1.2vh 0;
     border-top: 0.1em solid rgb(238, 238, 238);
     border-bottom: 0.1em solid rgb(238, 238, 238);
     font-weight: 700;
@@ -369,6 +376,12 @@
 
 .KJH_if_right_bottom_section > button {
     border-radius: 0.7vw;
+    transition: all 0.3s;
+}
+
+.KJH_if_right_bottom_section > button:hover {
+    background-color: transparent;
+    color: black;
 }
 
 .KJH_if_right_bottom_talk, .KJH_if_right_bottom_buy {
@@ -767,7 +780,7 @@
         border-bottom: 0.1em solid #e6e6e6;
         padding: 2.5vh 0;
         text-align: center;
-        font-size: 3vw;
+        font-size: 2.2vw;
         font-weight: 700;
         transition: all 0.3s;
     }
