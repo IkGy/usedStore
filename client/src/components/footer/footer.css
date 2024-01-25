@@ -87,3 +87,9 @@
 .ymj_footer_right > p {
   font-size: 1vw;
 }
+
+@media (max-width: 1024px) {
+  .footer_container {
+    display: none;
+  }
+}
