@@ -19,6 +19,7 @@ function Mypage() {
   const [data, setData] = useState({})
   const [menu, setMenu] = useState("등록된 상품");
   const [end, setEnd] = useState("");
+  const [profileIMG, setImage] = useState("")
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
   let [zIndex, setZindex] = useState(1);
@@ -35,18 +36,19 @@ function Mypage() {
     const nickname = e.target?.nickname?.value || ''; // 값이 없을 때 빈 문자열로 설정
     const about = e.target?.about?.value || '';
     const address = e.target?.address?.value || '';
-    const profileIMG = e.target?.profileIMG?.value || '';
     const id = getCookie("login");
     
+    const fromdata = new FormData();
+
+    fromdata.append("nickname", nickname)
+    fromdata.append("about", about)
+    fromdata.append("address", address)
+    fromdata.append("profileIMG", profileIMG)
+    fromdata.append("id", id)
+
     console.log("test", nickname, about, id, address, profileIMG);
 
-    await axios.post(`${API_URL}/user/edit`, {
-      id,
-      nickname,
-      about,
-      address,
-      profileIMG
-    }).then(() => {
+    await axios.post(`${API_URL}/user/edit`, fromdata).then(() => {
       setModalIsOpen(false);
     })
     .catch(() => {
@@ -266,15 +268,11 @@ function Mypage() {
                   </div>
                   <input
                     className="JSW_modal_loginInputBox_s" 
-                    id="profileIMG"
+                    name="profileIMG"
                     type = "file" 
-                    accept = "image/jpg, image/jpeg, image/png"
-                    placeholder={EK}
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
                     ></input>
-                  <input
-                  type="imgage"
-                  defaultValue={data.profileIMG}
-                  ></input>
                 </div>
               </div>
               <button type="submit" className="JSW_mypagewater"

@@ -25,7 +25,7 @@ import Test from './components/test';
 import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
-import Sellitemedit from './components/mypage/sellitemedit';
+import Sellitemedit from './components/mypage/sale/regi';
 import Picklist from './components/mypage/picklist';
 import MakeNewPW from './components/login/makenewpw';
 

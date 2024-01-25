@@ -87,7 +87,7 @@ function Header() {
           deleteCookie();
         })
         .catch(function () {
-          // alert("Not logged in");
+          alert("Not logged in");
         });
     }
     navigate("/");
@@ -101,7 +101,8 @@ function Header() {
           <img src={Logo} className="main_logoIcon" />
           <span className="main_titleName">리셀 마켓</span>
         </Link>
-        <div className="main_searchBar">
+        <div className="header_position">
+          <div className="main_searchBar">
             <input
               className="searchBar_input"
               placeholder="상품명, 태그 입력"
@@ -111,8 +112,6 @@ function Header() {
             />
             <FaSearch className="main_searchIcon" onClick={navi} />
           </div>
-        <div className="header_position">
-          
           <div className="main_login">
             {getCookie("login") ? (
               <nav>
@@ -139,7 +138,7 @@ function Header() {
                 </ul>
               </nav>
             ) : (
-              <ul className="header_login">
+              <ul className="header_login2" style={{paddingLeft: "10vw"}}>
                 <li>
                   <CiLogin className="main_mainIcon" />
                   <Link to={"/login"}>로그인</Link>
