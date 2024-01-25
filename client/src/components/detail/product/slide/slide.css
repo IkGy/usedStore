@@ -2,38 +2,23 @@
 
 .sliderContainer {
     margin: 2vh 0;
-    position: relative;
     min-width: 25vw;
     width: 25vw;
-    height: 100%;
     border: 0.1em solid black;
     border-radius: 5px;
     padding: 20px; 
 }
 
-.KJH_item_plus-image {
-    position: absolute;
-    bottom: 1vh;
-    right: 1vw;
-}
-
-.KJH_item_plus-image > svg {
-    cursor: pointer;
-    width: 1.7vw;
-    height: 1.7vw;
-    border-radius: 5px;
-    background-color: #b8b8b8;
-    color: white;
-    opacity: 0.7;
-    transition: all 0.3s;
-}
-
-.KJH_item_plus-image > svg:hover {
-    background-color: #444444;
-}
-
 .slick-slider {
     margin: 0 2vw;
+}
+
+.slick-list {
+    height: 40vh;
+}
+
+.slick-dots {
+    border-top: 0.1em solid black;
 }
 
 .slick-slider > button {
@@ -58,7 +43,8 @@
 
 .sliderImg > img {
     width: 100%;
-    height: 35vh;
+    height: 100%;
+    max-height: 40vh;
     padding-bottom: 2vh;
 }
 
@@ -70,27 +56,6 @@
         border: 0.1em solid black;
         border-radius: 5px;
         padding: 20px;  
-    }
-    
-    .KJH_item_plus-image {
-        position: absolute;
-        bottom: 6vh;
-        right: 5.5vw;
-    }
-    
-    .KJH_item_plus-image > svg {
-        cursor: pointer;
-        width: 5vw;
-        height: 5vw;
-        border-radius: 5px;
-        background-color: #b8b8b8;
-        color: white;
-        opacity: 0.7;
-        transition: all 0.3s;
-    }
-    
-    .KJH_item_plus-image > svg:hover {
-        background-color: #444444;
     }
     
     .slick-slider {
@@ -111,4 +76,36 @@
         height: 35vh;
         padding-bottom: 2vh;
     }
+
+    @media (max-width: 500px) {
+        .sliderContainer {
+            margin: 2vh 0;
+            position: relative;
+            width: 100%;
+            border: 0.1em solid black;
+            border-radius: 5px;
+            padding: 7vw 2vh;  
+        }
+        
+        .slick-slider {
+            margin: 0 2vw;
+        }
+        
+        .slick-dots {
+            border-top: 0.1em solid black;
+        }
+        
+        .slick-dots > li > button {
+            width: 1vw;
+            height: 1vh;
+        }
+    
+        .sliderImg > img {
+            width: 100%;
+            height: 35vh;
+            padding-bottom: 2vh;
+        }
+    }
+    
+
 }

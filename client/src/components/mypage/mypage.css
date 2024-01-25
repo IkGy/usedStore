@@ -132,11 +132,14 @@
 .JSW_userinfo {
   position: absolute;
 
-  margin-top: 3%;
+  margin-top: 1%;
   left: 10px;
   box-shadow: 0 0 2px 1px;
   padding: 1%;
+  width: 25vw;
+  height: 23vh;
 
+  overflow-y: scroll;
 }
 
 
@@ -182,6 +185,67 @@
   padding-top: 2%;
   font-size: 1vw;
   font-weight: 500;
+}
+
+
+#JSW_modalALL {
+  background-color: #03C75A;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 15vw;
+  height: 45vh;
+  
+  border: 1px solid #000;
+  border-radius: 15px;
+
+  z-index: 7;
+}
+
+
+
+
+.JSW_modal_loginInputBox {
+  padding-top: 3%;
+  margin: 0 auto;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  
+  width: 80%;
+  
+}
+
+.JSW_modal_loginInputBox_s {
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.JSW_modal_mainTitle {
+  padding-left: 10%;
+  font-size: 1vw;
+  font-weight: 900;
+  color: white;
+}
+
+.JSW_modal_loginCloseBtn {
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.JSW_mypagewater {
+  width: 4vw;
+  height: 4vh;
+
+  background-color: #CCF4DC;
+  border-color: #CCF4DC;
+
+  position:fixed;
+  right: 1.5vw;
+  bottom: 1.5vh;
+
 }
 
 
@@ -294,6 +358,8 @@
 
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
+
+  width: 30vw;
 }
 
 .JSW_Cristal {  
@@ -333,6 +399,67 @@
 .JSW_Sec2-2_Right {
   border: 1px solid #000;
 }
+
+/* 수정창 */
+
+#JSW_modalALL {
+  background-color: #03C75A;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 25vw;
+  height: 45vh;
+  
+  border: 1px solid #000;
+  border-radius: 15px;
+
+  z-index: 7;
+}
+
+
+.JSW_modal_loginInputBox {
+  padding-top: 3%;
+  margin: 0 auto;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  
+  width: 80%;
+  
+}
+
+.JSW_modal_loginInputBox_s {
+  /* background-color: #CCF4DC; */
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.JSW_modal_mainTitle {
+  padding-left: 10%;
+  font-size: 2vw;
+  font-weight: 900;
+  color: white;
+}
+
+.JSW_modal_loginCloseBtn {
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.JSW_mypagewater {
+  width: 8vw;
+  height: 4vh;
+
+  background-color: #CCF4DC;
+  border-color: #CCF4DC;
+
+  position:fixed;
+  right: 2.5vw;
+  bottom: 1vh;
+
+}
   
 }
 
@@ -361,6 +488,7 @@
   margin-top: 3%;
   box-shadow: 0 0 2px 1px;
   padding: 1%;
+  width: 45vw;
 
 }
 
@@ -400,4 +528,67 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
 }
+
+/* 수정창 */
+
+#JSW_modalALL {
+  background-color: #03C75A;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 45vw;
+  height: 45vh;
+  
+  border: 1px solid #000;
+  border-radius: 15px;
+
+  z-index: 7;
+}
+
+
+.JSW_modal_loginInputBox {
+  padding-top: 3%;
+  margin: 0 auto;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  
+  width: 80%;
+  
+}
+
+.JSW_modal_loginInputBox_s {
+  /* background-color: #CCF4DC; */
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.JSW_modal_mainTitle {
+  padding-left: 10%;
+  font-size: 4vw;
+  font-weight: 900;
+  color: white;
+}
+
+.JSW_modal_loginCloseBtn {
+  padding-left: 5%;
+  padding-top: 5%;
+}
+
+.JSW_mypagewater {
+  width: 15vw;
+  height: 4vh;
+
+  background-color: #CCF4DC;
+  border-color: #CCF4DC;
+
+  position:fixed;
+  right: 5vw;
+  bottom: 1vh;
+
+}
+
+
 }

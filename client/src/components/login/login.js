@@ -103,10 +103,10 @@ function Login() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link>비밀번호 찾기</Link>
+              <Link href="/findpw">비밀번호 찾기</Link>
             </Grid>
             <Grid item>
-              <Link href="/sign_up">회원가입</Link>
+              <Link href="/sign_up1">회원가입</Link>
             </Grid>
           </Grid>
         </Box>

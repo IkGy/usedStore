@@ -53,6 +53,7 @@ function Searchpage() {
   useEffect(() => {
     axios.get(`${API_URL}/search/${search}`).then((result) => {
       setScoredata(result.data);
+      console.log(result.data);
     });
   }, []);
 

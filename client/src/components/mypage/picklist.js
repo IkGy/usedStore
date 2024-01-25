@@ -2,6 +2,8 @@ import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 import "./picklist.css"
 
 import img3 from "./image/noimg.png"
@@ -56,12 +58,18 @@ function Picklist() {
           return(
             <div className="JSW_liststart"
               key={data.id}>
+            <Link to={`/detail/${data._id}`}>
               <div className="JSW_contentGridBox_img">
                 <img src={img0} width="100%"></img>
               </div>
               <div className="JSW_Aname">{data.title}</div>
               <div className="JSW_Aname">{data.comment}</div>
               <div className="JSW_Aname">{data.liker}</div>
+            </Link>
+              <div className="JSW_list_edit_delete">
+                <div className="JSW_listedit"></div>
+                <div className="JSW_listdelete"></div>
+              </div>
             </div>
           )
         })}

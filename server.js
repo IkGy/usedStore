@@ -56,7 +56,7 @@ app.use(express.json());
 var cors = require("cors");
 const { log } = require('console');
 app.use(cors());
-let db;
+
 const url = process.env.DB_URL;
 
 new MongoClient(url)

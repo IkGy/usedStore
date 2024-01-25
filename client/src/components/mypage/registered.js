@@ -2,12 +2,15 @@ import { getCookie } from "../../useCookies";
 import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Registered(props) {
-
+  const navigate = useNavigate();
   const [data, setData] = useState([])
 
   console.log(data);
+
+
 
   useEffect(() => {
     axios.get(`${API_URL}/product/registered`,{params:{id:getCookie('login')}})
@@ -21,6 +24,20 @@ function Registered(props) {
       console.log("실패");
     });
   }, []);
+
+  const handleDelete = (productId) => {
+    console.log(productId);
+    axios.delete(`${API_URL}/prod/delete/${productId}`,)
+      .then((res) => {
+        console.log("상품 삭제 완료");
+        // alert('상품이 삭제되었습니다');
+        navigate('/mypage');
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log("상품 삭제 실패");
+      });
+  };
 
   const Regi = props.data;
 
@@ -50,12 +67,27 @@ function Registered(props) {
           return(
             <div className="JSW_liststart"
             key={data.id}>
-              <div className="JSW_contentGridBox_img">
-                <img src={data.images[0]} width="100%"></img>
+              <Link to={`/detail/${data._id}`}>
+                <div className="JSW_contentGridBox_img">
+                  <img src={data.images[0]} width="100%"></img>
+                </div>
+                <div className="JSW_Aname">{data.title}</div>
+                <div className="JSW_Aname">{data.comment}</div>
+                <div className="JSW_Aname">{data.price}</div>
+              </Link>
+              <div className="JSW_list_edit_delete">
+                <div className="JSW_listedit">
+                  <Link to={`/sellitemedit/${data._id}`}>
+                  수정 하기
+                  </Link>
+                </div>
+                <div className="JSW_listdelete" onClick={() =>{window.location.reload();
+                 handleDelete(data._id);
+                 alert("상품이 삭제되었습니다.")
+                 }}>
+                  삭제하기
+                </div>
               </div>
-              <div className="JSW_Aname">{data.title}</div>
-              <div className="JSW_Aname">{data.comment}</div>
-              <div className="JSW_Aname">{data.price}</div>
             </div>
           )
         })}

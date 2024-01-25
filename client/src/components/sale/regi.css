@@ -111,12 +111,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-size: 1.2vw;
-  height: 10vw;
+  height: 15vw;
   border: 0.1vw solid rgba(0, 0, 0, 0.264);
 }
 
 .regi_category1 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .regi_category2 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
   border-right: 0.1vw solid rgba(0, 0, 0, 0.264);
   border-left: 0.1vw solid rgba(0, 0, 0, 0.264);
@@ -138,7 +138,7 @@
 }
 
 .regi_category3 {
-  max-height: 10vw;
+  max-height: 15vw;
   overflow-y: auto;
 }
 
@@ -341,6 +341,7 @@
   align-items: center;
   color: black;
   opacity: 0.7;
+  z-index: 2;
 }
 
 .regi_selcetcategory span {
@@ -384,19 +385,21 @@
   font-size: 1vw;
 }
 
-.regi_firstimg{
+.regi_firstimg {
   position: absolute;
   top: 0;
-  left:  0;
+  left: 0;
   font-size: 1vw;
   background-color: green;
   color: white;
   padding: 0.5vw;
 }
 
-.regi_nofirstimg{
+.regi_nofirstimg {
   display: none;
 }
+
+
 
 @media (max-width: 500px) {
   .regi_start {
@@ -581,7 +584,7 @@
     right: 3vw;
   }
 
-  .regi_firstimg{
+  .regi_firstimg {
     font-size: 1.7vw;
     padding: 1vw;
   }
