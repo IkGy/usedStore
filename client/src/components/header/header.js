@@ -14,6 +14,7 @@ let currentPath = "";
 function Header() {
   let location = useLocation();
   console.log("location pathname: ", location.pathname);
+
   useEffect(() => {
     if (currentPath === location.pathname) window.location.reload();
     currentPath = location.pathname;
