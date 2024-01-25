@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
   try {
     const db = getDB();
     let { name, id, nickname, email, password, address, phone_number } = req.body;
-    
+
     // email과 nickname 중복 확인
     const existingEmailUser = await db.collection("user").findOne({ email: email });
     const existingNicknameUser = await db.collection("user").findOne({ nickname: nickname });
@@ -108,6 +108,33 @@ function MakeRandomPW() {
 
   return newPassword;
 }
+
+router.post("/makenewpw", async (req, res) => {
+  try {
+    const db = getDB();
+    const { currentPW, newPW, id } = req.body;
+    const user = await db.collection("user").findOne({ _id: new ObjectId(id) });
+
+    if (!user) {
+      res.status(400).send("사용자를 찾을 수 없습니다.");
+      return;
+    }
+
+    if (newPW !== req.body.newPW) {
+      res.status(400).send("새로운 비밀번호와 확인된 비밀번호가 일치하지 않습니다.");
+      return;
+    }
+    if (user.password === currentPW) {
+      await db.collection("user").updateOne({ _id: new ObjectId(id) }, { $set: { password: newPW } });
+      res.status(200).send("비밀번호가 성공적으로 변경되었습니다.");
+    } else {
+      res.status(400).send("현재 비밀번호가 일치하지 않습니다.");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("서버 오류");
+  }
+});
 
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();

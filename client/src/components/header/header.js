@@ -87,7 +87,7 @@ function Header() {
           deleteCookie();
         })
         .catch(function () {
-          alert("Not logged in");
+          // alert("Not logged in");
         });
     }
     navigate("/");
