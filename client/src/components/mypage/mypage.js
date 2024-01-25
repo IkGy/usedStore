@@ -124,40 +124,40 @@ function Mypage() {
                       </span>
                     <ul>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "구매 내역" ? "active" : "noactive"}
                           onClick={() => MenuClick("구매 내역")}
                         >
                           구매 내역
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "판매 내역" ? "active" : "noactive"}
                           onClick={() => MenuClick("판매 내역")}
                         >
                           판매 내역
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
                           등록된 상품 
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "찜 목록" ? "active" : "noactive"}
                           onClick={() => MenuClick("찜 목록")}
                         >
                           찜 목록
-                        </a>
+                        </p>
                       </li>
                     </ul>
                   </nav>

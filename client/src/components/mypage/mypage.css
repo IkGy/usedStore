@@ -89,6 +89,10 @@
   text-decoration: none;
   font-size: 100%;
 }
+.JSW_nav1 > ul > li > p {
+  cursor: pointer;
+  font-size: 100%;
+}
 
 
 
