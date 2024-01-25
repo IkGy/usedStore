@@ -215,15 +215,15 @@ app.get("/address/:cookie", async (req, res) => {
   res.status(201).send(result.address);
 });
 
-app.get("/mypage", async (요청, 응답) => {
-  const db = getDB();
-  console.log(요청.query);
-  let list = await db
-    .collection("user")
-    .findOne({ _id: new ObjectId(요청.query.id) });
-  console.log("test", list);
-  응답.send(list);
-});
+// app.get("/mypage", async (요청, 응답) => {
+//   const db = getDB();
+//   console.log(요청.query);
+//   let list = await db
+//     .collection("user")
+//     .findOne({ _id: new ObjectId(요청.query.id) });
+//   console.log("test", list);
+//   응답.send(list);
+// });
 
 app.post('/upload', upload.single('profileIMG'), (req, res) => {
   const file = req.file;
