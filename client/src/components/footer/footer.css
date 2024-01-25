@@ -11,14 +11,22 @@
 .ymj_footer_link_all {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  font-size: 1vw;
+  font-size: 1.2vw;
   justify-content: center;
   align-items: center;
 }
 
+.footer_giturl{
+  font-size: 1.2vw;
+  font-family: none;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.893)
+}
+
 .ymj_footer_all h3 {
-  font-size: 1.5vw;
-  margin: 0.5vw 0;
+  font-size: 1.2vw;
+  margin-bottom: 1.5vw;
+  color: rgba(0, 0, 0, 0.893)
 }
 
 .ymj_footer_link {
@@ -38,7 +46,7 @@
 }
 
 .ymj_footer_link:hover {
-  background-color: rgb(17, 180, 131);
+  background-color: #2748b0;
   color: white;
 }
 
@@ -51,32 +59,21 @@
 .ymj_footer_all {
   display: flex;
   margin: 0 auto;
-  margin-top: 20px;
-  justify-content: center;
-  color: gray;
+  margin-top: 1.5vw;
+  justify-content: space-around;
+  color: rgb(0, 0, 0);
 }
 
-.ymj_footer_all > p {
- font-size: 12px;
-}
-
-.ymj_footer_right {
-  margin-left: 170px;
-}
-
-.ymj_footer_left > p{
-  font-size: 15pt;
-}
 .ymj_footer_right > div {
-  margin-top: 40px;
+  margin-top: 1vw;
 }
 
 .ymj_footer_right > div > p{
-  font-size: 15pt;
+  font-size: 1vw;
   }
 
 .ymj_footer_right{
-  font-size: 30px;
+  font-size: 1vw;
 }
 
 
@@ -85,5 +82,91 @@
 }
 
 .ymj_footer_right > p {
-  font-size: 1vw;
+  font-size: 1.2vw;
+}
+
+.footer_colorbl{
+  color:rgba(0, 0, 0, 0.995);
+  font-size: 1.6vw;
+  font-weight: 900;
+}
+
+
+@media (max-width: 500px) {
+  .footer_container {
+    margin: 3vw 0;
+  }
+  
+  .ymj_footer_link_all {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-size: 2vw;
+    height: 8vw;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer_giturl{
+    font-size: 2vw;
+    font-family: none;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.893)
+  }
+  
+  .ymj_footer_all h3 {
+    font-size: 2vw;
+    margin-bottom: 2vw;
+    color: rgba(0, 0, 0, 0.893)
+  }
+  
+  .ymj_footer_link {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    background-color: white;
+    height: 100%;
+    color: black;
+  }
+  
+  .ymj_footer_link:hover a {
+    color: white;
+  }
+  
+  .ymj_footer_link:hover {
+    background-color: #2748b0;
+    color: white;
+  }
+  
+  .ymj_footer_link a {
+    width: 100%;
+    color: black;
+    padding: 1vw 1.5vw;
+  }
+  
+  .ymj_footer_all {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 2vw;
+    justify-content: space-around;
+    color: gray;
+  }
+  
+
+  .ymj_footer_right > div {
+    margin-top: 2vw;
+  }
+  
+  .ymj_footer_right > div > p{
+    font-size: 1.8vw;
+    }
+    
+  .ymj_footer_left > p {
+    font-size: 1.8vw;
+  }
+  
+  .ymj_footer_right > p {
+    font-size: 1.2vw;
+  }
 }

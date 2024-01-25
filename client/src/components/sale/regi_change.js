@@ -3,7 +3,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { grey } from "@mui/material/colors";
-import { green } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 
 function Regi_change(props) {
   return (
@@ -12,7 +12,7 @@ function Regi_change(props) {
         교환
         {props.change ? (
           <i
-            style={{ color: "green", paddingLeft: "0.5vw" }}
+            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
             class="fa-solid fa-check"
           ></i>
         ) : (
@@ -37,7 +37,7 @@ function Regi_change(props) {
                     },
                     color: grey[600],
                     "&.Mui-checked": {
-                      color: green[600],
+                      color: blue[900],
                     },
                   }}
                 />
@@ -55,7 +55,7 @@ function Regi_change(props) {
                     },
                     color: grey[600],
                     "&.Mui-checked": {
-                      color: green[600],
+                      color: blue[900],
                     },
                   }}
                 />

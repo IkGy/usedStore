@@ -1,3 +1,8 @@
+.prod_title{
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
 .main_prod_grid {
   /* border: 1px solid; */
   display: grid;
@@ -5,6 +10,7 @@
   gap: 1vw;
   justify-content: center;
   margin-top: 2vw;
+  
 }
 
 .main_prod_detail {
@@ -44,6 +50,37 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.plus_btn{
+  width: 100%;
+  text-align: center;
+  margin-top: 1vw;
+}
+.load_more_button{
+  width: 13vw;
+  height: 2.5vw;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 1vw;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+.btn_1 {
+  background: rgb(6,14,131);
+  background: linear-gradient(0deg, #2748b0 0%, #2748b0 100%);
+  border: none;
 }
 
 @media (max-width: 500px) {

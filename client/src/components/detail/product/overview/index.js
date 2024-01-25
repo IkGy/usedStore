@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './overview.css';
 import { API_URL } from '../../../config/contansts';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { GoHeartFill } from "react-icons/go";
-import { IoIosEye } from "react-icons/io";
 import { FaClock } from "react-icons/fa6";
 
 import { MdReport } from "react-icons/md";
@@ -44,18 +43,33 @@ function Item(props) {
     const navigate = useNavigate();
     const { id } = useParams();
     const [like, setLike] = useState(false);
+    const [likecount, setLikeCount] = useState(props.heart)
 
-    const fetchlike = async () => {
-        try {
-            const res = await axios.get(`${API_URL}/prod/like/check`, {params: {userid: getCookie('login'), prodid: id}});
-            setLike(res.data);
-        } catch (error) {
-            console.error('조회 에러', error);
-        }
-    };
     useEffect(() => {
+        const fetchlike = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/prod/like/check`, {params: {userid: getCookie('login'), prodid: id}});
+                setLike(res.data);
+            } catch (error) {
+                console.error('조회 에러', error);
+            }
+        };
+    
         fetchlike();
     }, [id]);
+    
+    useEffect(() => {
+        const getlikecount = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/prod/like/getlike`, {params: {prodid: id}})
+                setLikeCount(res.data);
+            } catch (error) {
+                console.error('찜하기 조회 에러')
+            }
+        }
+    
+        getlikecount();
+    }, [like, id]);
 
     const toggleLike = async () => {
         if (getCookie('login')){
@@ -68,12 +82,18 @@ function Item(props) {
                     await axios.post(`${API_URL}/prod/like/add`, {userid: getCookie('login'), prodid: id});
                 }
                 setLike(!like); // 찜 상태 토글
+
             } catch (error) {
                 console.error('toggle 기능 에러:', error);
             }
         } else {
             navigate('/login');
         }
+    };
+
+    // 신고 알림창
+    const handleReportClick = () => {
+        alert('신고되었습니다.');
     };
 
 
@@ -93,13 +113,9 @@ function Item(props) {
     };
 
     const Info = props.info
-    const Like = props.heart
     
     // 생성 날짜 형식화`
     const formattedCreatedAt = formatTimeAgo(Info.created_at);
-
-
-    // console.log(sliderImage);
 
     return (
         <>
@@ -129,7 +145,7 @@ function Item(props) {
                                     </div>
                                     <div className='KJH_item_info_detail_status_num'>
                                         {/* 찜 데이터 */}
-                                        {Like.length}
+                                        {likecount.length}
                                     </div>
                                     <div className='KJH_item_info_detail_status_icon'>
                                         <FaClock />
@@ -139,9 +155,9 @@ function Item(props) {
                                         {formattedCreatedAt}전
                                     </div>
                                 </div>
-                                <button className='KJH_item_info_report'>
+                                <button className='KJH_item_info_report' onClick={handleReportClick}>
                                     <MdReport />
-                                    <div className='KJH_item_info_report_text'>신고하기</div>
+                                <div className='KJH_item_info_report_text'>신고하기</div>
                                 </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>

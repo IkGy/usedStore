@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { getCookie } from "../../useCookies";
-import { API_URL } from "../config/contansts";
+import { getCookie } from "../../../useCookies";
+import { API_URL } from "../../config/contansts";
 
 function Regi_address(props) {
   useEffect(() => {
@@ -40,7 +40,7 @@ function Regi_address(props) {
         거래지역
         {props.selectedAddress ? (
           <i
-            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
+            style={{ color: "green", paddingLeft: "0.5vw" }}
             class="fa-solid fa-check"
           ></i>
         ) : (

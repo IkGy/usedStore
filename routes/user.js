@@ -64,7 +64,8 @@ router.post("/edit", async (req, res) => {
     $set:{
       nickname:req.body.nickname,
       about:req.body.about,
-      address:req.body.address
+      address:req.body.address,
+      profileIMG:req.body.profileIMG
     }})
   .then(()=>{
     res.status(201).end();
@@ -78,27 +79,59 @@ router.post("/edit", async (req, res) => {
 router.post("/findpw", async (req, res) => {
   try {
     const db = getDB();
-    const { email } = req.body;
-    const user = await db.collection("user").findOne({ email: email });
+    const { email, real_name } = req.body;
+    const user = await db.collection("user").findOne({ email: email, real_name: real_name });
 
     if (!user) {
-      return res.status(400).send("등록되지 않은 이메일입니다");
+      return res.status(400).send("이메일 또는 이름이 일치하지 않습니다.");
     }
 
-    res.status(200).send({ password: user.password });
+    const newPassword = MakeRandomPW();
+
+    await db.collection("user").updateOne({ email: email }, { $set: { password: newPassword  } })
+    
+    res.status(200).send({ newPassword });
   } catch (error) {
     console.error(error);
     res.status(500).send("서버 오류");
   }
 });
-// 보안상의 이유로 권장되지 않는 방식입니다...
+
+function MakeRandomPW() {
+  const length = 12; // 원하는 비밀번호 길이
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let newPassword = '';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    newPassword += characters.charAt(randomIndex);
+  } // 무작위 비밀번호 생성
+
+  return newPassword;
+}
 
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
+  // console.log(요청.query);
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
-  console.log('test',list);
+  // console.log('test',list);
   응답.send(list);
 })
+
+router.get("/mypageview/:id", async (req, res) => {
+  try {
+    const db = getDB();
+    let getreview = await db.collection("review").find({ resiver: req.params.id }).toArray();
+    // console.log("----리뷰정보----");
+    // console.log(getreview);
+    // console.log("----------------");
+    res.status(201).send({
+      review: getreview
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('리뷰를 불러오지 못했습니다');
+  }
+});
 
 module.exports = router;

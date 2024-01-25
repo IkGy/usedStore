@@ -9,10 +9,7 @@ import { FaLocationDot } from "react-icons/fa6";  // 거래지역 아이콘
 import { BiSolidCategory } from "react-icons/bi"; // 카테고리 아이콘
 import { IoMdPricetags } from "react-icons/io";   // 상품태그 아이콘
 
-import Image1 from './images/image1.jpg';
 import { CiShop } from "react-icons/ci"; // 상점 아이콘
-// import Profile from './images/profile_image.svg';
-
 
 // 시간 계산
 function formatDate(dateString) {
@@ -46,21 +43,16 @@ function formatDate(dateString) {
 function Info(props) {
 
     const info = props.info;
-    // console.log(info);
     const seller = props.seller;
-    // console.log(props.seller);
     const review = props.review;
-    // console.log(props.review);
-    // console.log(review[0]);
     const products = props.products;
-    // console.log(products);
 
     // 판매자의 최근에 게시한 상품 2개 뽑기
     const lastTwoProducts = products.slice(-2);
 
 
     if (!info || !seller || !review) {
-        return <div>Loading...</div>; // 여기서는 간단한 텍스트를 사용했지만, 실제 애플리케이션에서는 스피너나 로딩 애니메이션을 사용할 수 있습니다.
+        return <div>Loading...</div>;
     }
     
 
@@ -140,7 +132,7 @@ function Info(props) {
                             </div>
                             <ul className='KJH_if_left_bottom_content_section'>
                                 {lastTwoProducts.map((product, index) => (
-                                    <li key={index}>
+                                    <li key={index} className={lastTwoProducts.length === 1 ? 'KJH_if_left_bottom_single-product' : ''}>
                                         <Link to={`/detail/${product._id}`} target='black' className='KJH_if_left_bottom_content_link_section'>
                                             <img src={product.images[0]} alt={product.title} />
                                             <div className='KJH_if_left_bottom_content_link_info'>
@@ -168,7 +160,7 @@ function Info(props) {
                                 상점정보
                             </div>
                             <div className='KJH_if_right_top_content_section'>
-                                <Link to='/' className='KJH_if_right_shop-link'>
+                                <Link to={`/mypageview/${seller._id}`} className='KJH_if_right_shop-link'>
                                     <div className='KJH_if_right_top_content_top'>
                                         {/* 판매자 상점으로 가는 링크 */}
                                         <div className='KJH_if_right_shop_icon'>
@@ -216,15 +208,19 @@ function Info(props) {
                                                 </div>
                                                 </div>
                                             ))}
-                                            <div className='KJH_if_right_review_more'>
-                                                상점후기 더보기
-                                            </div>
+                                            <Link to={`/mypage/${seller._id}`}>
+                                                <div className='KJH_if_right_review_more'>
+                                                    상점후기 더보기
+                                                </div>
+                                            </Link>
                                             </>
                                         ) : (
-                                            <div className='KJH_if_right_review_more'>
-                                                <div>상점후기가 없습니다.</div>
-                                                <div>첫 후기를 작성해주세요!</div>
-                                            </div>
+                                            <Link to={`/mypage/${seller._id}`}>
+                                                <div className='KJH_if_right_review_more'>
+                                                    <div>상점후기가 없습니다.</div>
+                                                    <div>첫 후기를 작성해주세요!</div>
+                                                </div>
+                                            </Link>
                                         )}
                                         </div>
                                     </div>

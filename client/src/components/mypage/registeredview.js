@@ -2,18 +2,19 @@ import { getCookie } from "../../useCookies";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-function Registered(props) {
+function Registeredview(props) {
   const navigate = useNavigate();
   const [data, setData] = useState([])
+  const useId = useParams();
 
-  console.log(data);
+  console.log("test",useId);
 
 
 
   useEffect(() => {
-    axios.get(`${API_URL}/product/registered`,{params:{id:getCookie('login')}})
+    axios.get(`${API_URL}/product/registered`,{params:{id:useId.id}})
     .then((res) => {
       console.log("DB 조회 완료");
       console.log(res.data);
@@ -25,21 +26,7 @@ function Registered(props) {
     });
   }, []);
 
-  const handleDelete = (productId) => {
-    console.log(productId);
-    axios.delete(`${API_URL}/prod/delete/${productId}`,)
-      .then((res) => {
-        console.log("상품 삭제 완료");
-        // alert('상품이 삭제되었습니다');
-        navigate('/mypage');
-      })
-      .catch((err) => {
-        console.error(err);
-        console.log("상품 삭제 실패");
-      });
-  };
 
-  const Regi = props.data;
 
   const [end ,setEnd] = useState("");
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -75,19 +62,7 @@ function Registered(props) {
                 <div className="JSW_Aname">{data.comment}</div>
                 <div className="JSW_Aname">{data.price}</div>
               </Link>
-              <div className="JSW_list_edit_delete">
-                <div className="JSW_listedit">
-                  <Link to={`/sellitemedit/${data._id}`}>
-                  수정 하기
-                  </Link>
-                </div>
-                <div className="JSW_listdelete" onClick={() =>{window.location.reload();
-                 handleDelete(data._id);
-                 alert("상품이 삭제되었습니다.")
-                 }}>
-                  삭제하기
-                </div>
-              </div>
+             
             </div>
           )
         })}
@@ -96,4 +71,4 @@ function Registered(props) {
   )
 }
 
-export default Registered
+export default Registeredview

@@ -20,7 +20,7 @@
 
   width: 100%;
   height: 8vw;
-  background-color: #03C75A;
+  background-color: #2748b0;
   margin-bottom: 2%;
 }
 
@@ -34,6 +34,17 @@
   padding-bottom: 5%;
 
   /* border: 1px solid #000; */
+}
+
+.JSW_Main_view {
+  max-width: 100%;
+  max-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  
+  padding-bottom: 5%;
+
 }
 
 /* .JSW_Sec1 {
@@ -78,11 +89,19 @@
   text-decoration: none;
   font-size: 100%;
 }
+.JSW_nav1 > ul > li > p {
+  cursor: pointer;
+  font-size: 100%;
+}
 
 
 
 .JSW_Sec2 {
   height: 70vh;
+}
+
+.JSW_Sec2_view {
+  height: 100vh;
 }
 
 .JSW_Sec2-1 {
@@ -142,6 +161,21 @@
   overflow-y: scroll;
 }
 
+.JSW_mypage_img {
+  padding: 2%;
+  background-color: lightgray;
+  border-radius: 10px;
+
+  position: absolute;
+  right: 5px;
+  bottom: 75px;
+
+  cursor: pointer;
+}
+
+.JSW_mypage_img:hover {
+  box-shadow: 0px 0px 2px 1px;
+}
 
 .JSW_Cristal {  
   padding: 2%;
@@ -156,6 +190,21 @@
 }
 
 .JSW_Cristal:hover {
+  box-shadow: 0px 0px 2px 1px;
+}
+.JSW_Cristal2 {  
+  padding: 2%;
+  background-color: lightgray;
+  border-radius: 10px;
+  position: absolute;
+  right: 5px;
+  bottom: 75px;
+
+  cursor: pointer;
+  
+}
+
+.JSW_Cristal2:hover {
   box-shadow: 0px 0px 2px 1px;
 }
 
@@ -189,7 +238,7 @@
 
 
 #JSW_modalALL {
-  background-color: #03C75A;
+  background-color: #2748b0;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -220,6 +269,7 @@
 
 .JSW_modal_loginInputBox_s {
   border-radius: 5px;
+  width: 100%;
   height: 5vh;
 }
 
@@ -239,12 +289,22 @@
   width: 4vw;
   height: 4vh;
 
-  background-color: #CCF4DC;
-  border-color: #CCF4DC;
+  background-color: white;
+  border-color: white;
 
   position:fixed;
   right: 1.5vw;
   bottom: 1.5vh;
+
+}
+
+.JSW_imgupload {
+  background-color: #CCF4DC;
+  padding-top: 1%;
+  padding-left: 3%;
+  width: 6vw;
+  height: 3vh;
+
 
 }
 
