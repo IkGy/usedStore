@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './overview.css';
 import { API_URL } from '../../../config/contansts';
 import axios from 'axios';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { GoHeartFill } from "react-icons/go";
-import { IoIosEye } from "react-icons/io";
 import { FaClock } from "react-icons/fa6";
 
 import { MdReport } from "react-icons/md";
@@ -46,30 +45,31 @@ function Item(props) {
     const [like, setLike] = useState(false);
     const [likecount, setLikeCount] = useState(props.heart)
 
-    const fetchlike = async () => {
-        try {
-            const res = await axios.get(`${API_URL}/prod/like/check`, {params: {userid: getCookie('login'), prodid: id}});
-            setLike(res.data);
-        } catch (error) {
-            console.error('조회 에러', error);
-        }
-    };
-    const getlikecount = async () => {
-        try {
-            const res = await axios.get(`${API_URL}/prod/like/getlike`, {params: {prodid:id}})
-            setLikeCount(res.data);
-        } catch (error) {
-            console.error('찜하기 조회 에러')
-        }
-    }
-
     useEffect(() => {
+        const fetchlike = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/prod/like/check`, {params: {userid: getCookie('login'), prodid: id}});
+                setLike(res.data);
+            } catch (error) {
+                console.error('조회 에러', error);
+            }
+        };
+    
         fetchlike();
     }, [id]);
-
+    
     useEffect(() => {
+        const getlikecount = async () => {
+            try {
+                const res = await axios.get(`${API_URL}/prod/like/getlike`, {params: {prodid: id}})
+                setLikeCount(res.data);
+            } catch (error) {
+                console.error('찜하기 조회 에러')
+            }
+        }
+    
         getlikecount();
-    }, [like]);
+    }, [like, id]);
 
     const toggleLike = async () => {
         if (getCookie('login')){
@@ -116,9 +116,6 @@ function Item(props) {
     
     // 생성 날짜 형식화`
     const formattedCreatedAt = formatTimeAgo(Info.created_at);
-
-
-    // console.log(sliderImage);
 
     return (
         <>

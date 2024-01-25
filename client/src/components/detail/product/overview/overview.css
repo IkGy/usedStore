@@ -1,7 +1,5 @@
 /*** 전체 설정 ***/
 
-
-
 .KJH_item_section {
     display: flex;
     padding: 2vh 0;
@@ -496,7 +494,6 @@
     padding: 5px;
     border: 0;
     width: 2.8vw;
-    height: 5vh;
 }
 
 .KJH_item_info_share_section > svg:hover {
@@ -532,6 +529,7 @@
     justify-content: space-between;
     border-top: 0;
     padding-top: 1.2vh;
+    margin-top: 0;
 }
 
 .KJH_item_btn_section > button {
@@ -1463,7 +1461,7 @@
         display: flex;
         justify-content: space-between;
         border-top: 0;
-        padding-top: 1.2vh;
+        padding-top: 0;
     }
     
     .KJH_item_btn_section > button {
