@@ -184,7 +184,8 @@ function Mypage() {
                         <div className="JSW_userlist">상점 설명 : {data.about}</div>
                       </div>
                 </div>
-                <Link
+                
+                {/* <Link
                 className="loginBtn"
                 style={{ textDecoration: "none" }}
                 onClick={(e) => {
@@ -193,6 +194,18 @@ function Mypage() {
                   setZindex(0);
                 }}>
                 <label className="JSW_Cristal">
+                  비밀번호 변경
+                </label>
+                </Link> */}
+                <Link
+                className="loginBtn"
+                style={{ textDecoration: "none" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalIsOpen(true);
+                  setZindex(0);
+                }}>
+                <label className="JSW_Cristal2">
                   프로필 수정
                 </label>
                 </Link>
