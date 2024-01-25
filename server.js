@@ -381,6 +381,26 @@ app.post("/productedit", async (req, res) => {
   );
   res.status(201).send("수정완료")
 });
+
+app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
+  const db = getDB();
+  console.log("aaaaaaa",req.file.location);
+  console.log(req.body);
+  await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
+    $set:{
+      nickname:req.body.nickname,
+      about:req.body.about,
+      address:req.body.address,
+      profileIMG:req.file.location
+    }})
+  .then(()=>{
+    res.status(201).end();
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(500).end();
+  })
+})
 // ---------실시간채팅------------- //
 
 io.on("connection", (socket) => {

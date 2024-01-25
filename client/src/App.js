@@ -25,7 +25,7 @@ import Test from './components/test';
 import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
-import Sellitemedit from './components/mypage/sellitemedit';
+import Sellitemedit from './components/mypage/sale/regi';
 import Picklist from './components/mypage/picklist';
 import MakeNewPW from './components/login/makenewpw';
 
@@ -67,7 +67,7 @@ function App() {
           <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/sellitemedit/:id' element={<Sellitemedit />}></Route>
           <Route path='/test' element={<Test />}></Route>
-          <Route path='/product/new' element={<Test2 />}></Route>
+          <Route path='/product/new' element={<Test2 />}></Route> 
           <Route path='/main/:search' element={<Searchpage />}></Route>
           <Route path='/detailsearch/:category' element={<Categorysc />}></Route>
           
