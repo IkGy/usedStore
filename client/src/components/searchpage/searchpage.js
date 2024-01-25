@@ -72,28 +72,28 @@ function Searchpage() {
         </div>
         <div className="searchpage_statussel">
           <div
-            style={status === "관련순" ? { color: "green" } : {}}
+            style={status === "관련순" ? { color: "#2748b0" } : {}}
             onClick={() => highscore(data)}
           >
             관련순
           </div>
           <div style={{ margin: "0 0.5vw" }}>|</div>
           <div
-            style={status === "최신순" ? { color: "green" } : {}}
+            style={status === "최신순" ? { color: "#2748b0" } : {}}
             onClick={() => highdate(data)}
           >
             최신순
           </div>
           <div style={{ margin: "0 0.5vw" }}>|</div>
           <div
-            style={status === "저가순" ? { color: "green" } : {}}
+            style={status === "저가순" ? { color: "#2748b0" } : {}}
             onClick={() => lowprice(data)}
           >
             저가순
           </div>
           <div style={{ margin: "0 0.5vw" }}>|</div>
           <div
-            style={status === "고가순" ? { color: "green" } : {}}
+            style={status === "고가순" ? { color: "#2748b0" } : {}}
             onClick={() => highprice(data)}
           >
             고가순

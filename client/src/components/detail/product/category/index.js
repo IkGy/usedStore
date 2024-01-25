@@ -21,6 +21,7 @@ function Category(props) {
 
   const updateDropCategories = () => {
     const newDropCategories = { ...dropcategories };
+    console.log("newDropCategories: ", newDropCategories);
 
     switch (category[0]) {
       case "디지털":

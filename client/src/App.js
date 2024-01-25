@@ -9,6 +9,7 @@ import Footer from './components/footer/footer';
 import Detail from './components/detail';
 import Detail_Error from './components/detail/error';
 import Mypage from './components/mypage/mypage';
+import Mypageview from './components/mypage/mypageview';
 import Login from './components/login/login';
 import Sign_Up from './components/sign_up/sign_up';
 import Sign_Up1 from './components/sign_up/sign_up1';
@@ -51,6 +52,7 @@ function App() {
           <Route path='/mypage' element={<Mypage/>}></Route>
           <Route path='/mypage/:id' element={<Mypage/>}></Route>
           <Route path='/mypage/:id/:picklist' element={<Mypage/>}></Route>
+          <Route path='/mypageview/:id' element={<Mypageview/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/makenewpw' element={<MakeNewPW />}></Route>

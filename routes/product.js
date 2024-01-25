@@ -14,6 +14,12 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/header',async (req,res)=>{
+
+    const db = getDB();
+    let result = await db.collection("product").findOne({_id: new ObjectId(req.params.id)});
+    res.status(201).send({product:result})
+})
 router.get('/detail/:id', async (req, res) => {
   try {
     const db = getDB();
@@ -137,38 +143,5 @@ router.get('/like/getlike', async (req, res) => {
     res.status(500).send('조회 오류');
   }
 });
-
-// router.post('/product/new'.upload.single('image'), (요청, 응답) => {
-//         console.log(요청.file)
-// })
-
-// router.post('/product/new', upload.single('image'), async (요청, 응답) => {
-
-//     console.log(요청.file)
-
-//     // try {
-//     //     if (
-//     //         요청.body.title == '',
-//     //         요청.body.comment == ''
-//     //         ) {
-//     //         응답.send('데이터를 모두 넣어주세요')
-//     //     } else {
-//     //         await db.collection('product').insertOne (
-//     //             {
-//     //                 title : 요청.body.title,
-//     //                 comment : 요청.body.comment
-//     //             }
-//     //         )
-//     //         응답.redirect('/product/new')
-//     //     }
-//     // } catch(error) {
-//     //     console.log(error)
-//     //     응답.status(500).send('서버에러')
-//     // }
-// })
-
-
-
-
 
 module.exports = router;

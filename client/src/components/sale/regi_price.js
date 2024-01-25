@@ -15,7 +15,7 @@ function Regi_price(props) {
         가격
         {props.price ? (
           <i
-            style={{ color: "green", paddingLeft: "0.5vw" }}
+            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
             class="fa-solid fa-check"
           ></i>
         ) : (

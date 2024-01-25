@@ -230,7 +230,7 @@ function Mypage() {
             <div className="JSW_modal_mainTitle">내 정보</div>
             <div className="JSW_modal_loginInputBox">
               <input
-                style={{backgroundColor:"#CCF4DC"}}
+                style={{backgroundColor:"#3F9DEB"}}
                 className="JSW_modal_loginInputBox_s" 
                 id="real_name" 
                 type="text" 
@@ -251,7 +251,6 @@ function Mypage() {
                 type="text"
                 value={data.address||selectedAddress}
                 onClick={handleAddressClick}
-                // defaultValue={data.address}
                 placeholder={data.address}
               ></input>
               <input
