@@ -160,7 +160,7 @@ function Info(props) {
                                 상점정보
                             </div>
                             <div className='KJH_if_right_top_content_section'>
-                                <Link to='/' className='KJH_if_right_shop-link'>
+                                <Link to={`/mypage/${seller._id}`} className='KJH_if_right_shop-link'>
                                     <div className='KJH_if_right_top_content_top'>
                                         {/* 판매자 상점으로 가는 링크 */}
                                         <div className='KJH_if_right_shop_icon'>
@@ -208,15 +208,19 @@ function Info(props) {
                                                 </div>
                                                 </div>
                                             ))}
-                                            <div className='KJH_if_right_review_more'>
-                                                상점후기 더보기
-                                            </div>
+                                            <Link to={`/mypage/${seller._id}`}>
+                                                <div className='KJH_if_right_review_more'>
+                                                    상점후기 더보기
+                                                </div>
+                                            </Link>
                                             </>
                                         ) : (
-                                            <div className='KJH_if_right_review_more'>
-                                                <div>상점후기가 없습니다.</div>
-                                                <div>첫 후기를 작성해주세요!</div>
-                                            </div>
+                                            <Link to={`/mypage/${seller._id}`}>
+                                                <div className='KJH_if_right_review_more'>
+                                                    <div>상점후기가 없습니다.</div>
+                                                    <div>첫 후기를 작성해주세요!</div>
+                                                </div>
+                                            </Link>
                                         )}
                                         </div>
                                     </div>
