@@ -42,11 +42,37 @@
   /* z-index: 3; */
   
 }
+.JSW_liststart_hoogi {
+  width: 10vw;
+  text-align: left;
+  
+
+  border: 1px solid #CCC;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* z-index: 3; */
+  
+}
 
 .JSW_liststart:hover {
   box-shadow: 0px 0px 5px 1px ;
   top: 5%;
 }
+
+
+.JSW_liststart_hoogi:hover {
+  box-shadow: 0px 0px 5px 1px ;
+  top: 5%;
+}
+
+
 
 .JSW_contentGridBox_img {
   width: 100%;
@@ -71,12 +97,31 @@
   font-weight: 700;
   text-align: center;
   
-  /* border-top: 1px solid #000; */
+}
+.JSW_Aname_hoogi {
+  font-weight: 700;
+  position: relative;
+  left: 15%;
+  text-align: left;
+
+  font-size: 0.8vw;
+  
 }
 
-/* .JSW_Kname {
+.JSW_listhoogi {
+  border-top: 1px solid #000;
+  text-align: center;
+}
+
+.JSW_listhoogi:hover {
+  background-color: #03C75A;
   color: white;
-} */
+}
+
+.JSW_hoogiGridBox_img {
+  padding-top: 10%;
+  height: 5vh;
+}
 
 .JSW_contentGridBox_img > img {
   border-top-left-radius: 15px;
@@ -110,6 +155,16 @@
 @media (max-width: 1024px) {
   .JSW_Aname {
     font-size: 90%;
+  }
+
+  .JSW_Aname_hoogi {
+    font-weight: 700;
+    position: relative;
+    left: 5px;
+    text-align: left;
+  
+    font-size: 1.5vw;
+    
   }
 
   .JSW_conentGridBox {
@@ -167,4 +222,20 @@
     /* z-index: 2; */
     margin-left: 10%;
   }
+}
+
+.JSW_hoogiGridBox_img {
+  position: relative;
+  top: 15%;
+}
+
+.JSW_Aname_hoogi {
+  font-weight: 700;
+  position: relative;
+  left: 23%;
+  top: 35%;
+  text-align: left;
+
+  font-size: 5vw;
+  
 }

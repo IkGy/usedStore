@@ -9,6 +9,8 @@ import Buylist from "./buylist";
 import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
+import Mypagehoogi from "./mypagehoogi";
+import Mypagehoogi2 from "./mypagehoogi2";
 import "./mypage.css";
 import EK from "./image/이크.png"
 
@@ -17,7 +19,7 @@ function Mypage() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("등록된 상품");
+  const [menu, setMenu] = useState("구매 후기");
   const [end, setEnd] = useState("");
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
@@ -38,7 +40,7 @@ function Mypage() {
     const profileIMG = e.target?.profileIMG?.value || '';
     const id = getCookie("login");
     
-    console.log("test", nickname, about, id, address, profileIMG);
+    // console.log("test", nickname, about, id, address, profileIMG);
 
     await axios.post(`${API_URL}/user/edit`, {
       id,
@@ -103,6 +105,8 @@ function Mypage() {
 
   
 
+  
+
   let [userInfo, setUSerInfo] = useState({
     // nickName: "??",
     // userName: "KDT",
@@ -123,6 +127,7 @@ function Mypage() {
                       <span id="JSW_Mypage_tag">
                       </span>
                     <ul>
+                      {/* <hr/> */}
                       <li>
                         <p
                           href="#"
@@ -150,6 +155,8 @@ function Mypage() {
                           등록된 상품 
                         </p>
                       </li>
+                      {/* <br/> */}
+                      {/* <hr/> */}
                       <li>
                         <p
                           href="#"
@@ -157,6 +164,24 @@ function Mypage() {
                           onClick={() => MenuClick("찜 목록")}
                         >
                           찜 목록
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          href="#"
+                          className={menu === "구매 후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("구매 후기")}
+                        >
+                          구매 후기
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          href="#"
+                          className={menu === "판매 후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("판매 후기")}
+                        >
+                          판매 후기
                         </p>
                       </li>
                     </ul>
@@ -212,7 +237,7 @@ function Mypage() {
               isOpen={modalIsOpen}
               bodyOpenClassName="modal-open"
               onRequestClose={() => {
-                console.log('test');
+                // console.log('test');
                 setModalIsOpen(false);
                 setZindex(1);
               }}
@@ -249,7 +274,7 @@ function Mypage() {
                 className="JSW_modal_loginInputBox_s" 
                 id="address"
                 type="text"
-                value={data.address||selectedAddress}
+                value={selectedAddress}
                 onClick={handleAddressClick}
                 placeholder={data.address}
               ></input>
@@ -271,10 +296,10 @@ function Mypage() {
                     accept = "image/jpg, image/jpeg, image/png"
                     placeholder={EK}
                     ></input>
-                  <input
+                  {/* <input
                   type="imgage"
                   defaultValue={data.profileIMG}
-                  ></input>
+                  ></input> */}
                 </div>
               </div>
               <button type="submit" className="JSW_mypagewater"
@@ -307,6 +332,16 @@ function Mypage() {
               {menu === "찜 목록" && (
                 <div className={"start " + end}>
                   <Picklist menu={menu} userInfo={userInfo}></Picklist>
+                </div>
+              )}
+              {menu === "구매 후기" && (
+                <div className={"start " + end}>
+                  <Mypagehoogi menu={menu} userInfo={userInfo}></Mypagehoogi>
+                </div>
+              )}
+              {menu === "판매 후기" && (
+                <div className={"start " + end}>
+                  <Mypagehoogi2 menu={menu} userInfo={userInfo}></Mypagehoogi2>
                 </div>
               )}
             </div>
