@@ -225,6 +225,18 @@ app.get("/mypage", async (요청, 응답) => {
   응답.send(list);
 });
 
+app.post('/upload', upload.single('profileIMG'), (req, res) => {
+  const file = req.file;
+
+  // 업로드된 파일의 경로를 클라이언트에게 전송
+  const fileUrl = `https://popol5.s3.ap-northeast-2.amazonaws.com/${file.filename}`;
+  res.json({ fileUrl });
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -369,6 +381,7 @@ io.on("connection", (socket) => {
 });
 
 // ------------------------------- //
+
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });

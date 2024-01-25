@@ -1,7 +1,7 @@
 import { getCookie } from "../../useCookies";
-import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
 function Registered(props) {
