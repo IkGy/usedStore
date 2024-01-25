@@ -77,7 +77,7 @@ function RegiImage(props) {
             <span>({props.imageFile.length}/3)</span>
             {props.imageFile.length !== 0 ? (
               <i
-                style={{ color: "green", paddingLeft: "0.5vw" }}
+                style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
                 className="fa-solid fa-check"
               ></i>
             ) : (

@@ -13,7 +13,7 @@ function Regi_category(props) {
         카테고리
         {props.category1 ? (
           <i
-            style={{ color: "green", paddingLeft: "0.5vw" }}
+            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
             className="fa-solid fa-check"
           ></i>
         ) : (
@@ -26,7 +26,7 @@ function Regi_category(props) {
             (category, index) => (
               <div
                 key={index}
-                style={props.category1 === category ? { color: "green" } : {}}
+                style={props.category1 === category ? { color: "#2748b0" } : {}}
                 onClick={() => setCategory(category)}
               >
                 {category}
@@ -42,7 +42,7 @@ function Regi_category(props) {
                   <div
                     key={index}
                     style={
-                      props.category2 === subCategory ? { color: "green" } : {}
+                      props.category2 === subCategory ? { color: "#2748b0" } : {}
                     }
                     onClick={() => setCategory(props.category1, subCategory)}
                   >
@@ -58,7 +58,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category2 === subCategory ? { color: "green" } : {}
+                    props.category2 === subCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() => setCategory(props.category1, subCategory)}
                 >
@@ -82,7 +82,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category2 === subCategory ? { color: "green" } : {}
+                    props.category2 === subCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() => setCategory(props.category1, subCategory)}
                 >
@@ -107,7 +107,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category2 === subCategory ? { color: "green" } : {}
+                    props.category2 === subCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() => setCategory(props.category1, subCategory)}
                 >
@@ -124,7 +124,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -147,7 +147,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -170,7 +170,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -197,7 +197,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -222,7 +222,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -249,7 +249,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -281,7 +281,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -312,7 +312,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -341,7 +341,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -374,7 +374,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -407,7 +407,7 @@ function Regi_category(props) {
                     key={index}
                     style={
                       props.category3 === subSubCategory
-                        ? { color: "green" }
+                        ? { color: "#2748b0" }
                         : {}
                     }
                     onClick={() =>
@@ -440,7 +440,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -474,7 +474,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
@@ -501,7 +501,7 @@ function Regi_category(props) {
                 <div
                   key={index}
                   style={
-                    props.category3 === subSubCategory ? { color: "green" } : {}
+                    props.category3 === subSubCategory ? { color: "#2748b0" } : {}
                   }
                   onClick={() =>
                     setCategory(
