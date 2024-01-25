@@ -222,20 +222,20 @@
     /* z-index: 2; */
     margin-left: 10%;
   }
-}
-
-.JSW_hoogiGridBox_img {
-  position: relative;
-  top: 15%;
-}
-
-.JSW_Aname_hoogi {
-  font-weight: 700;
-  position: relative;
-  left: 23%;
-  top: 35%;
-  text-align: left;
-
-  font-size: 5vw;
   
+  .JSW_hoogiGridBox_img {
+    position: relative;
+    top: 15%;
+  }
+  
+  .JSW_Aname_hoogi {
+    font-weight: 700;
+    position: relative;
+    left: 23%;
+    top: 35%;
+    text-align: left;
+  
+    font-size: 5vw;
+    
+  }
 }
