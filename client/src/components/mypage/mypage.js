@@ -19,7 +19,7 @@ function Mypage() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("구매 후기");
+  const [menu, setMenu] = useState("구매 내역");
   const [end, setEnd] = useState("");
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
