@@ -12,16 +12,13 @@ function Category(props) {
     category3: [],
   });
 
-  useEffect(() => {
-    if (props.info.category) {
-      setCategory(props.info.category);
-      updateDropCategories();
-    }
-  }, [props.info.category, category]);
+  // useEffect(() => {
+  //     setCategory();
+  //     updateDropCategories();
+  // }, []);
 
   const updateDropCategories = () => {
     const newDropCategories = { ...dropcategories };
-    console.log("newDropCategories: ", newDropCategories);
 
     switch (category[0]) {
       case "디지털":

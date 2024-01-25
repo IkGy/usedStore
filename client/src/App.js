@@ -1,5 +1,5 @@
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -25,6 +25,7 @@ import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
 import Sellitemedit from './components/mypage/sellitemedit';
+import Picklist from './components/mypage/picklist';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,15 +39,17 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className='total_display'>
+    <div className="total_display">
       <ScrollToTop />
-      <div className='display_section'>
+      <div className="display_section">
         <Header />
         <Routes>
           <Route path='/' element={<Main></Main>}></Route>
           <Route path='/detail/:id' element={<Detail />}></Route>
           <Route path='/detail/error' element={<Detail_Error />}></Route>
           <Route path='/mypage' element={<Mypage/>}></Route>
+          <Route path='/mypage/:id' element={<Mypage/>}></Route>
+          <Route path='/mypage/:id/:picklist' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>

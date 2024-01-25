@@ -1,6 +1,6 @@
 .main_header {
   margin-top: 5vh;
-  height: 80px;
+  height: 4vw;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -126,7 +126,17 @@
 .header_list ol li {
   padding: 5px;
 }
-
+@media (max-width: 1200px) {
+  .main_header{
+    height: 6vw;
+  }
+  .main_logoIcon{
+    width: 5vw;
+  }
+  .main_titleName{
+    display: none;
+  }
+}
 @media (max-width: 1024px) {
 
   .header_login{
@@ -161,8 +171,12 @@
 }
 
 @media (max-width: 500px) {
+  .main_header{
+    height: 15vw;
+    margin-top: 2vh;
+  }
   .main_logoIcon {
-    width: 7vw;
+    width: 13vw;
   }
   .main_loginIcon{
     font-size: 2.5vw;

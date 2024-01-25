@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
+import Category from './category';
+
 
 let currentPath = "";
 function Header() {
@@ -35,8 +37,7 @@ function Header() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
+    axios.get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
       .then((result) => {
         console.log(result.data);
       });
@@ -123,7 +124,7 @@ function Header() {
                     <span>
                       <LuUserCircle2 className="main_loginIcon" />
                     </span>
-                    <Link to={"/mypage"}>내정보</Link>
+                    <Link to={"/mypage"} >내정보</Link>
                     <span>
                       <AiOutlineAliwangwang className="main_loginIcon" />
                     </span>
@@ -151,7 +152,10 @@ function Header() {
             )}
           </div>
         </div>
-        </div>
+      </div>
+      <div>
+        <Category/>
+      </div>
     </div>
   );
 }
