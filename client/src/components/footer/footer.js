@@ -24,7 +24,7 @@ function Footer(){
         <div className="ymj_footer_left">
           <h3> 리셀마켓(주) 개발자정보 </h3>
           <p>조장 : 조경익 | gmldi10009@gmail.com</p>
-          <p> 메인페이지랑 백엔드 보조 제작 </p>
+          <p> 메인페이지, 백엔드 보조 제작 </p>
           <p> 김정훈 | projdevhun@gmail.com </p>
           <p> 상세페이지 구현 </p>
           <p> 박준호 | junho2088@naver.com </p>

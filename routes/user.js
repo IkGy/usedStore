@@ -77,20 +77,36 @@ router.post("/edit", async (req, res) => {
 router.post("/findpw", async (req, res) => {
   try {
     const db = getDB();
-    const { email } = req.body;
-    const user = await db.collection("user").findOne({ email: email });
+    const { email, real_name } = req.body;
+    const user = await db.collection("user").findOne({ email: email, real_name: real_name });
 
     if (!user) {
-      return res.status(400).send("등록되지 않은 이메일입니다");
+      return res.status(400).send("이메일 또는 이름이 일치하지 않습니다.");
     }
 
-    res.status(200).send({ password: user.password });
+    const newPassword = MakeRandomPW();
+
+    await db.collection("user").updateOne({ email: email }, { $set: { password: newPassword  } })
+    
+    res.status(200).send({ newPassword });
   } catch (error) {
     console.error(error);
     res.status(500).send("서버 오류");
   }
 });
-// 보안상의 이유로 권장되지 않는 방식입니다...
+
+function MakeRandomPW() {
+  const length = 12; // 원하는 비밀번호 길이
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let newPassword = '';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    newPassword += characters.charAt(randomIndex);
+  } // 무작위 비밀번호 생성
+
+  return newPassword;
+}
 
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
