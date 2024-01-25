@@ -148,9 +148,9 @@ router.get("/mypageview/:id", async (req, res) => {
   try {
     const db = getDB();
     let getreview = await db.collection("review").find({ resiver: req.params.id }).toArray();
-    // console.log("----리뷰정보----");
-    // console.log(getreview);
-    // console.log("----------------");
+    console.log("----리뷰정보----");
+    console.log(getreview);
+    console.log("----------------");
     res.status(201).send({
       review: getreview
     });
@@ -159,5 +159,7 @@ router.get("/mypageview/:id", async (req, res) => {
     res.status(500).send('리뷰를 불러오지 못했습니다');
   }
 });
+
+
 
 module.exports = router;
