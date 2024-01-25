@@ -6,16 +6,19 @@ import { Link } from "react-router-dom";
 
 function Category(props) {
   const [category, setCategory] = useState([]);
+  const [category1, setCategory1] = useState([]);
+  const [category2, setCategory2] = useState([]);
+  const [category3, setCategory3] = useState([]);
   const [dropcategories, setDropCategories] = useState({
     category1: ["패션의류", "패션잡화", "디지털", "가전제품"],
     category2: [],
     category3: [],
   });
 
-  // useEffect(() => {
-  //     setCategory();
-  //     updateDropCategories();
-  // }, []);
+  useEffect(() => {
+      setCategory(["디지털", "둘째", "셋째"]);
+      updateDropCategories();
+  }, []);
 
   const updateDropCategories = () => {
     const newDropCategories = { ...dropcategories };

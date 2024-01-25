@@ -256,7 +256,6 @@ function Mypage() {
                 type="text"
                 value={data.address||selectedAddress}
                 onClick={handleAddressClick}
-                // defaultValue={data.address}
                 placeholder={data.address}
               ></input>
               <input
