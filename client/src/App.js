@@ -25,6 +25,7 @@ import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
 import Sellitemedit from './components/mypage/sellitemedit';
+import Picklist from './components/mypage/picklist';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +48,8 @@ function App() {
           <Route path='/detail/:id' element={<Detail />}></Route>
           <Route path='/detail/error' element={<Detail_Error />}></Route>
           <Route path='/mypage' element={<Mypage/>}></Route>
+          <Route path='/mypage/:id' element={<Mypage/>}></Route>
+          <Route path='/mypage/:id/:picklist' element={<Mypage/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>

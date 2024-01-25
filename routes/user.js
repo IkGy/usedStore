@@ -63,7 +63,8 @@ router.post("/edit", async (req, res) => {
     $set:{
       nickname:req.body.nickname,
       about:req.body.about,
-      address:req.body.address
+      address:req.body.address,
+      profileIMG:req.body.profileIMG
     }})
   .then(()=>{
     res.status(201).end();

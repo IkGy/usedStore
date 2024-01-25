@@ -32,7 +32,6 @@ function Mypage() {
 
   const editUser = async(e) => {
     e.preventDefault();
-
     const nickname = e.target?.nickname?.value || ''; // 값이 없을 때 빈 문자열로 설정
     const about = e.target?.about?.value || '';
     const address = e.target?.address?.value || '';
@@ -166,7 +165,9 @@ function Mypage() {
           </div>
           <div className='JSW_Sec2'>
             <div className="JSW_Sec2-1">
-              <div className="JSW_Sec2-1_left">
+              <div className="JSW_Sec2-1_left"
+              // key={data.id}
+              >
                 <img src={data.profileIMG}></img>
               </div>
               <div className="JSW_Sec2-1_Right">
@@ -221,6 +222,7 @@ function Mypage() {
             <div className="JSW_modal_mainTitle">내 정보</div>
             <div className="JSW_modal_loginInputBox">
               <input
+                style={{backgroundColor:"#CCF4DC"}}
                 className="JSW_modal_loginInputBox_s" 
                 id="real_name" 
                 type="text" 
@@ -234,49 +236,39 @@ function Mypage() {
                 defaultValue={data.nickname}
                 placeholder="별명을 정해주세요."
               ></input>
-              <input
-                className="JSW_modal_loginInputBox_s" 
-                id="phone_number"
-                type="tel"
-                value={data.phone_number}
-                placeholder="전화번호"
-              ></input>
-              <input
-                className="JSW_modal_loginInputBox_s" 
-                id="email"
-                type="text"
-                value={data.email}
-                placeholder="이메일"
-              ></input>
+            
               <input
                 className="JSW_modal_loginInputBox_s" 
                 id="address"
                 type="text"
-                // value={selectedAddress}
+                value={data.address||selectedAddress}
                 onClick={handleAddressClick}
-                defaultValue={data.address}
-                placeholder="변경을 원하시면 클릭해주세요."
+                // defaultValue={data.address}
+                placeholder={data.address}
               ></input>
               <input
-
-                // style={{overflowY:"scroll",width:"12vw"}}
-
                 className="JSW_modal_loginInputBox_s" 
                 id="about"
                 type="text"
                 defaultValue={data.about}
                 placeholder="상점 설명을 적어주세요."
               ></input>
-
-              {/* <input
-                className="JSW_modal_loginInputBox_s" 
-
-                id="profileIMG"
-                type = "file" 
-                accept = "image/jpg, image/jpeg, image/png"
-                defaultValue={data.profileIMG}
-                placeholder={EK}
-              ></input> */}
+                <div>
+                  <div className="JSW_imgupload">
+                    <span>이미지 업로드</span>
+                  </div>
+                  <input
+                    className="JSW_modal_loginInputBox_s" 
+                    id="profileIMG"
+                    type = "file" 
+                    accept = "image/jpg, image/jpeg, image/png"
+                    placeholder={EK}
+                    ></input>
+                  <input
+                  type="imgage"
+                  defaultValue={data.profileIMG}
+                  ></input>
+                </div>
               </div>
               <button type="submit" className="JSW_mypagewater"
               onClick={()=>{
