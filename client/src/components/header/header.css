@@ -101,7 +101,7 @@
   height: 50px;
 }
 .header_login_nav{
-  margin-right: 8vw;
+  margin-right: 3vw;
 }
 
 .header_login_nav > a{
@@ -147,7 +147,9 @@
   .header_login > li{
     width: 9vw;
   }
-
+  .header_login_nav{
+    margin-right: 8vw;
+  }
   .header_login_nav > span{
     font-size: 1.5vw;
   }
