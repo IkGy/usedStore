@@ -1,6 +1,6 @@
 .main_header {
   margin-top: 5vh;
-  height: 4vw;
+  height: 5vw;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -100,8 +100,11 @@
   width: 50px;
   height: 50px;
 }
+.header_login_nav{
+  margin-right: 8vw;
+}
 
-.header_login_nav > span{
+.header_login_nav > a{
   padding-left: 0.8vw;
 }
 
@@ -109,7 +112,6 @@
   display: flex;
   align-items: center;
   padding: 4em;
-  font-size: 1vw;
   white-space: nowrap;
 }
 

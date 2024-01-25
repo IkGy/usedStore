@@ -12,10 +12,12 @@ function Category(props) {
     category3: [],
   });
 
-  // useEffect(() => {
-  //     setCategory();
-  //     updateDropCategories();
-  // }, []);
+  useEffect(() => {
+    if (props.info.category) {
+      setCategory(props.info.category);
+      updateDropCategories();
+    }
+  }, [props.info.category, category]);
 
   const updateDropCategories = () => {
     const newDropCategories = { ...dropcategories };
