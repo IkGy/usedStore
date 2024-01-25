@@ -124,40 +124,40 @@ function Mypage() {
                       </span>
                     <ul>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "구매 내역" ? "active" : "noactive"}
                           onClick={() => MenuClick("구매 내역")}
                         >
                           구매 내역
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "판매 내역" ? "active" : "noactive"}
                           onClick={() => MenuClick("판매 내역")}
                         >
                           판매 내역
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
                           등록된 상품 
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "찜 목록" ? "active" : "noactive"}
                           onClick={() => MenuClick("찜 목록")}
                         >
                           찜 목록
-                        </a>
+                        </p>
                       </li>
                     </ul>
                   </nav>
@@ -185,18 +185,13 @@ function Mypage() {
                       </div>
                 </div>
                 
-                {/* <Link
+                <Link to="/makenewpw"
                 className="loginBtn"
-                style={{ textDecoration: "none" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setModalIsOpen(true);
-                  setZindex(0);
-                }}>
+                style={{ textDecoration: "none" }}>
                 <label className="JSW_Cristal">
                   비밀번호 변경
                 </label>
-                </Link> */}
+                </Link>
                 <Link
                 className="loginBtn"
                 style={{ textDecoration: "none" }}
