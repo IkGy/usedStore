@@ -49,7 +49,7 @@ function Hoogi(props) {
 
   return(
     <div className="JSW_picklist">
-      <div className="JSW_picklistname">등록된 상품</div>
+      <div className="JSW_picklistname">후기</div>
       <div className="JSW_conentGridBox">
         {data.map((data, i)=> {
           return(
@@ -59,9 +59,9 @@ function Hoogi(props) {
                 <div className="JSW_contentGridBox_img">
                   <img src={data.images[0]} width="100%"></img>
                 </div>
-                <div className="JSW_Aname">{data.title}</div>
+                <div className="JSW_Aname">{data.writer}</div>
                 <div className="JSW_Aname">{data.comment}</div>
-                <div className="JSW_Aname">{data.price}</div>
+                {/* <div className="JSW_Aname">{data.price}</div> */}
               </Link>
              
             </div>
