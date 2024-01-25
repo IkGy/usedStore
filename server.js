@@ -233,7 +233,10 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
   res.json({ fileUrl });
 });
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> a490a217d0a1e7dc1c0ea25bceac1458d1201e65
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);

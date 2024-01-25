@@ -36,6 +36,17 @@
   /* border: 1px solid #000; */
 }
 
+.JSW_Main_view {
+  max-width: 100%;
+  max-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 0.5fr 5fr 0.5fr ;
+  
+  padding-bottom: 5%;
+
+}
+
 /* .JSW_Sec1 {
   border: 1px solid #000;
 } */
@@ -83,6 +94,10 @@
 
 .JSW_Sec2 {
   height: 70vh;
+}
+
+.JSW_Sec2_view {
+  height: 100vh;
 }
 
 .JSW_Sec2-1 {
