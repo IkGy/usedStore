@@ -1081,7 +1081,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            height: 8vh;
+            height: auto;
             margin-top: 0;
             margin-bottom: 0;
             border: 0.1em solid black;
@@ -1183,7 +1183,7 @@
         
         .KJH_if_right_review_date {
             position: relative;
-            bottom: 1vw;
+            bottom: 1vh;
             padding: 0 2vw;
             border-radius: 0.7vw;
             display: flex;
