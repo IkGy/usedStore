@@ -66,6 +66,7 @@ function Hoogi(props) {
     <div className="JSW_picklist">
       <div className="JSW_picklistname">후기</div>
       <div className="JSW_conentGridBox">
+        
         {getReview.map((review, i)=> {
           return(
             <div className="JSW_liststart_hoogi" key={review._id}>
