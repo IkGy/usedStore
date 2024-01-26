@@ -133,7 +133,7 @@ function Info(props) {
                             <ul className='KJH_if_left_bottom_content_section'>
                                 {lastTwoProducts.map((product, index) => (
                                     <li key={index} className={lastTwoProducts.length === 1 ? 'KJH_if_left_bottom_single-product' : ''}>
-                                        <Link to={`/detail/${product._id}`} target='black' className='KJH_if_left_bottom_content_link_section'>
+                                        <Link to={`/detail/${product._id}`} className='KJH_if_left_bottom_content_link_section'>
                                             <img src={product.images[0]} alt={product.title} />
                                             <div className='KJH_if_left_bottom_content_link_info'>
                                                 <span className='KJH_if_left_bottom_content_link_price'>
@@ -208,14 +208,14 @@ function Info(props) {
                                                 </div>
                                                 </div>
                                             ))}
-                                            <Link to={`/mypage/${seller._id}`}>
+                                            <Link to={`/mypageview/${seller._id}`}>
                                                 <div className='KJH_if_right_review_more'>
                                                     상점후기 더보기
                                                 </div>
                                             </Link>
                                             </>
                                         ) : (
-                                            <Link to={`/mypage/${seller._id}`}>
+                                            <Link to={`/mypageview/${seller._id}`}>
                                                 <div className='KJH_if_right_review_more'>
                                                     <div>상점후기가 없습니다.</div>
                                                     <div>첫 후기를 작성해주세요!</div>

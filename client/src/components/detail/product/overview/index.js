@@ -15,7 +15,6 @@ import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { getCookie } from '../../../../useCookies';
 
-
 // 시간 계산
 function formatTimeAgo(createdDate) {
     const created = new Date(createdDate);
