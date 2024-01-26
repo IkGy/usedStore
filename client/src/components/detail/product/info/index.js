@@ -128,7 +128,7 @@ function Info(props) {
                         </div>
                         <div className='KJH_if_left_bottom'>
                             <div className='KJH_if_left_bottom_title_section'>
-                                {seller.id} 님의 최근에 올린 상품
+                                {seller.nickname} 님의 최근에 올린 상품
                             </div>
                             <ul className='KJH_if_left_bottom_content_section'>
                                 {lastTwoProducts.map((product, index) => (
@@ -168,7 +168,7 @@ function Info(props) {
                                         </div>
                                         <div className='KJH_if_right_top_content_user_name'>
                                             {/* 해당 판매자 닉네임 데이터 + 판매자 정보로 가는 링크 데이터 */}
-                                            <div className='KJH_if_right_top_seller'>{seller.id}</div>
+                                            <div className='KJH_if_right_top_seller'>{seller.nickname}</div>
                                             <div className='KJH_if_right_top_content_user_info'>
                                                 {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                                 <div>
@@ -229,9 +229,6 @@ function Info(props) {
                             <div className='KJH_if_right_bottom_section'>
                                 <button className='KJH_if_right_bottom_talk'>
                                     <div>실시간톡</div>
-                                </button>
-                                <button className='KJH_if_right_bottom_buy'>
-                                    바로구매
                                 </button>
                             </div>
                         </div>

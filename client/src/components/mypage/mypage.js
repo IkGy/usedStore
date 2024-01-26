@@ -4,19 +4,17 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../config/contansts";
 import axios from "axios";
 import Modal from "react-modal";
-
-import Buylist from "./buylist";
-import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
 import Mypagehoogi from "./mypagehoogi";
-import Mypagehoogi2 from "./mypagehoogi2";
 import "./mypage.css";
+
 
 function Mypage() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState("");
   const [data, setData] = useState({});
+
   const [menu, setMenu] = useState("구매 내역");
   const [end, setEnd] = useState("");
   const [profileIMG, setImage] = useState(null);
@@ -39,7 +37,9 @@ function Mypage() {
 
     const id = getCookie("login");
 
+
     console.log("profileIMG: ", profileIMG);
+
 
     const fromdata = new FormData();
 
@@ -62,6 +62,7 @@ function Mypage() {
         .catch(() => {});
     // }
   };
+
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -91,17 +92,18 @@ function Mypage() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/user/mypage`, { params: { id: getCookie("login") } })
-      .then((res) => {
-        console.log("DB 조회 완료");
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        console.log("실패");
-      });
+
+    axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
+    .then((res) => {
+      console.log("DB 조회 완료");
+      console.log(res.data);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+      console.log("실패");
+    });
+    setMenu('등록된 상품');
   }, []);
 
   useEffect(() => {
@@ -321,7 +323,7 @@ function Mypage() {
             </div>
 
             <div className="JSW_Sec2-2">
-              {menu === "구매 내역" && (
+              {/* {menu === "구매 내역" && (
                 <div className={"start " + end}>
                   <Buylist
                     menu={menu}
@@ -335,7 +337,7 @@ function Mypage() {
                 <div className={"start " + end}>
                   <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
                 </div>
-              )}
+              )} */}
 
               {menu === "등록된 상품" && (
                 <div className={"start " + end}>
@@ -351,14 +353,9 @@ function Mypage() {
                   <Picklist menu={menu} userInfo={userInfo}></Picklist>
                 </div>
               )}
-              {menu === "구매 후기" && (
+              {menu === "후기" && (
                 <div className={"start " + end}>
                   <Mypagehoogi menu={menu} userInfo={userInfo}></Mypagehoogi>
-                </div>
-              )}
-              {menu === "판매 후기" && (
-                <div className={"start " + end}>
-                  <Mypagehoogi2 menu={menu} userInfo={userInfo}></Mypagehoogi2>
                 </div>
               )}
             </div>

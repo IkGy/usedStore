@@ -19,10 +19,10 @@ function Products() {
   const fetchProduct = async () => {
     try {
       const res = await axios.get(`${API_URL}/prod`);
-      console.log("상품 데이터 조회 완료");
-      console.log(res.data);
+      // console.log("상품 데이터 조회 완료");
+      // console.log(res.data);
       const shuffledProducts = shuffleArray(res.data);
-      console.log(shuffledProducts);
+      // console.log(shuffledProducts);
       setProd(shuffledProducts);
     } catch (error) {
       console.log("데이터 조회 실패");

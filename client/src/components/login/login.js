@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { setCookie } from "../../useCookies";
+import { API_URL } from "../config/contansts";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/user/login", {
+      const response = await axios.post(`${API_URL}/user/login`, {
         email: email,
         password: password,
       });

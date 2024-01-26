@@ -270,16 +270,16 @@
     margin-right: 1vw;
     display: flex;
     justify-content: center;
-    height: 7.5vh;
     font-size: 18px;
     align-items: center;
 }
 
-.KJH_item_btn_select_section:last-child {
-    margin-right: 0;
+.KJH_item_btn_select_section > a {
+    height: 7.5vh;
+    width: 100%;
 }
 
-.KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
+.KJH_item_btn_select_talk {
     width: 100%;
     height: 100%;
     font-weight: 700;
@@ -294,7 +294,7 @@
     transition: all 0.3s;
 }
 
-.KJH_item_btn_select_talk:hover, .KJH_item_btn_select_buy:hover {
+.KJH_item_btn_select_talk:hover {
     background-color: transparent;
     color: black;
 }
@@ -305,641 +305,320 @@
 }
 
 .KJH_item_btn_select_talk > svg {
-    margin-right: 1vw;
-}
-
-
-.KJH_item_btn_select_buy {
-    background: #ff4c4c;
-    border: 0.2vw solid #ff3c3c;
+    margin-right: 0.6vw;
+    width: 1.8em;
+    height: 1.8em;
 }
 
 @media (max-width: 1024px) {
 
-.KJH_detail_slide_section {
-    display: block;
-}
+    .KJH_detail_slide_section {
+        display: block;
+    }
 
-.KJH_item_section {
-    position: relative;
-    display: flex;
-    padding: 2vh 0;
-    width: 100%;
-}
+    .KJH_item_section {
+        position: relative;
+        display: flex;
+        padding: 2vh 0;
+        width: 100%;
+    }
 
-/*** 상품정보 ***/
+    /*** 상품정보 ***/
 
-.KJH_item_info_section {
-    position: relative;
-    flex-grow: 1;
-}
+    .KJH_item_info_section {
+        position: relative;
+        flex-grow: 1;
+    }
 
-.KJH_item_info {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+    .KJH_item_info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-.KJH_item_info_top {
-    margin-left: 0;
-    height: 100%;
-}
+    .KJH_item_info_top {
+        margin-left: 0;
+        height: 100%;
+    }
 
-.KJH_item_title_section {
-    padding-bottom: 1.4vw;
-    border-bottom: 0.1em solid #e6e6e6;
-    width: 100%;
-}
+    .KJH_item_title_section {
+        padding-bottom: 1.4vw;
+        border-bottom: 0.1em solid #e6e6e6;
+        width: 100%;
+    }
 
-.KJH_item_title_name {
-    font-size: 2.2vw;
-    margin-bottom: 1vh;
-    font-weight: 700;
-}
+    .KJH_item_title_name {
+        font-size: 2.2vw;
+        margin-bottom: 1vh;
+        font-weight: 700;
+    }
 
-.KJH_item_title_price_section {
-    display: flex;
-    align-items: flex-end;
-}
+    .KJH_item_title_price_section {
+        display: flex;
+        align-items: flex-end;
+    }
 
-.KJH_item_title_price_info {
-    font-size: 4.5vw;
-    font-weight: 700;
-}
+    .KJH_item_title_price_info {
+        font-size: 4.5vw;
+        font-weight: 700;
+    }
 
-.KJH_item_title_price_info > span {
-    padding-left: 5px;
-    font-size: 18px;
-}
-
-
-.KJH_item_info_detail_info {
-    height: 5vh;
-    margin: 2vh 0;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 1vh;
-    border-bottom: 0.1em solid #e6e6e6;
-}
-
-.KJH_item_info_detail_status {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.KJH_item_info_detail_status_icon {
-    display: flex;
-    align-items: center;
-    color: rgb(204, 204, 204);
-    font-size: 1vw;
-    height: 100%;
-}
-
-.KJH_item_info_detail_status_icon > svg {
-    width: 2em;
-    height: 2em;
-    margin-right: 0.8vw;
-}
-
-.KJH_item_info_detail_status_num {
-    display: flex;
-    margin: 0 10px 0 0;
-    padding: 0;
-    border: 0;
-    font-size: 1.6vw;
-    font-weight: 600;
-    align-items: center;
-    color: #666666;
-    height: 100%;
-}
-
-.KJH_item_info_detail_info > button {
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    font-synthesis: none;
-    direction: ltr;
-    text-align: left;
-    color: rgb(33, 33, 33);
-    outline: 0;
-    border: 0;
-}
-
-.KJH_item_info_report, .KJH_item_info_report_text {
-    color: #777777;
-    font-size: 1.5vw;
-    font-weight: 700;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.KJH_item_info_report svg {
-    margin-right: 3px;
-    width: 1.6vw;
-    height: 1.6vw;
-    vertical-align: bottom;
-    border-style: none;
-}
-
-.KJH_item_info_status_section {
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.KJH_item_info_status_info_share {
-    position: relative;
-}
-
-.KJH_item_info_status_info, .KJH_item_info_status_info_share {
-    display: block;
-    margin-bottom: 0;
-    width: 100%;
-}
-
-.KJH_item_info_status_title_section {
-    display: block;
-}
-
-.KJH_item_info_item_status_title {
-    position: relative;
-    padding-left: 0;
-    color: #888888;
-    font-size: 1.6vw;
-    width: 12vw;
-    margin: 0 0.8vw 1vh 0;
-}
-
-.KJH_item_info_item_status {
-    position: relative;
-    display: flex;
-    direction: ltr;
-    text-align: left;
-    width: 15vw;
-    font-size: 2vw;
-    font-weight: 700;
-    color: #333333;
-    outline: 0px;
-}
-
-.KJH_item_info_share_section {
-    text-align: right;
-    margin-bottom: 2vh;
-}
-
-.KJH_item_info_share_section > svg {
-    color: #777777;
-    margin-right: 0;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 4vw;
-    transition: all 0.3s ease;
-    border-radius: 0.4vw;
-    padding: 5px;
-    border: 0;
-    width: 2.8vw;
-}
-
-.KJH_item_info_share_section > svg:hover {
-    background-color: black;
-    color: white;
-}
-
-.KJH_item_info_shear_link {
-    position: absolute;
-    width: 12vw;
-    top: 0;
-    text-align: center;
-    right: 0;
-    background-color: #606060;
-    color: white;
-    font-size: 1.5vw;
-    font-weight: 700;
-    border-radius: 10px;
-    padding: 0.5vw;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.8s;
-}
-
-.KJH_item_info_shear_link.show {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s linear;
-}
-
-.KJH_item_btn_section {
-    display: flex;
-    justify-content: space-between;
-    border-top: 0;
-    padding-top: 1.2vh;
-    margin-top: 0;
-}
-
-.KJH_item_btn_section > button {
-    cursor: pointer;
-    outline: none;
-}
-
-.KJH_item_like_section_true, .KJH_item_like_section_false {
-    display: flex;
-    align-items: center;
-    margin-right: 1vw;
-}
-
-.KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
-    border-radius: 0.8vw;
-    padding: 0.5vw;
-    width: 9vw;
-    height: 7.2vh;
-    transition: all 0.3s ease;
-}
-
-.KJH_item_like_section_false > svg {
-    background-color: #dddddd;
-    border: 0.15em solid #dddddd;
-    color: white;
-}
-
-.KJH_item_like_section_false > svg:hover {
-    color: #ff4c4c;
-    background-color: #fff09b;
-    cursor: pointer;
-    border: 0.15em solid #ff4c4c;
-}
-
-.KJH_item_btn_select_section {
-    position: relative;
-    flex: 1 1 0%;
-    font-weight: 600;
-    margin-right: 1vw;
-    display: flex;
-    justify-content: center;
-    height: 7.5vh;
-    font-size: 18px;
-    align-items: center;
-}
-
-.KJH_item_btn_select_section:last-child {
-    margin-right: 0;
-}
-
-.KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
-    width: 100%;
-    min-height: 25px;
-    height: 100%;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    font-size: 2.6vw;
-    cursor: pointer;
-    border-radius: 0.6vw;
-    transition: all 0.3s;
-}
-
-.KJH_item_btn_select_talk:hover, .KJH_item_btn_select_buy:hover {
-    background-color: transparent;
-    color: black;
-}
-
-.KJH_item_btn_select_talk {
-    background: rgb(255, 164, 37);
-    border: 0.3vw solid rgb(243, 150, 20);
-}
-
-.KJH_item_btn_select_talk > svg {
-    margin-right: 1vw;
-}z
+    .KJH_item_title_price_info > span {
+        padding-left: 5px;
+        font-size: 18px;
+    }
 
 
-.KJH_item_btn_select_buy {
-    background: #ff4c4c;
-    border: 0.3vw solid #ff3c3c;
-}
+    .KJH_item_info_detail_info {
+        height: 5vh;
+        margin: 2vh 0;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1vh;
+        border-bottom: 0.1em solid #e6e6e6;
+    }
 
-@media (max-width: 500px) {
+    .KJH_item_info_detail_status {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
 
-        .KJH_item_section {
-            position: relative;
-            display: flex;
-            padding: 2vh 0;
-            width: 100%;
-        }
-        
-        /*** 상품정보 ***/
-        
-        .KJH_item_info_section {
-            position: relative;
-            flex-grow: 1;
-        }
-        
-        .KJH_item_info {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .KJH_item_info_top {
-            margin-left: 0;
-            height: 100%;
-        }
-        
-        .KJH_item_title_section {
-            padding-bottom: 1.4vw;
-            border-bottom: 0.1em solid #e6e6e6;
-            width: 100%;
-        }
-        
-        .KJH_item_title_name {
-            font-size: 2.2vw;
-            margin-bottom: 1vh;
-            font-weight: 700;
-        }
-        
-        .KJH_item_title_price_section {
-            display: flex;
-            align-items: flex-end;
-        }
-        
-        .KJH_item_title_price_info {
-            font-size: 4.5vw;
-            font-weight: 700;
-        }
-        
-        .KJH_item_title_price_info > span {
-            padding-left: 5px;
-            font-size: 18px;
-        }
-        
-        
-        .KJH_item_info_detail_info {
-            height: 5vh;
-            margin: 2vh 0;
-            display: flex;
-            justify-content: space-between;
-            padding-bottom: 1vh;
-            border-bottom: 0.1em solid #e6e6e6;
-        }
-        
-        .KJH_item_info_detail_status {
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-        
-        .KJH_item_info_detail_status_icon {
-            display: flex;
-            align-items: center;
-            color: rgb(204, 204, 204);
-            font-size: 1vw;
-            height: 100%;
-        }
-        
-        .KJH_item_info_detail_status_icon > svg {
-            width: 2em;
-            height: 2em;
-            margin-right: 0.8vw;
-        }
-        
-        .KJH_item_info_detail_status_num {
-            display: flex;
-            margin: 0 10px 0 0;
-            padding: 0;
-            border: 0;
-            font-size: 1.6vw;
-            font-weight: 600;
-            align-items: center;
-            color: #666666;
-            height: 100%;
-        }
-        
-        .KJH_item_info_detail_info > button {
-            background-color: transparent;
-            cursor: pointer;
-            outline: none;
-            appearance: none;
-            font-synthesis: none;
-            direction: ltr;
-            text-align: left;
-            color: rgb(33, 33, 33);
-            outline: 0;
-            border: 0;
-        }
-        
-        .KJH_item_info_report, .KJH_item_info_report_text {
-            color: #777777;
-            font-size: 1.5vw;
-            font-weight: 700;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-        }
-        
-        .KJH_item_info_report svg {
-            margin-right: 3px;
-            width: 1.6vw;
-            height: 1.6vw;
-            vertical-align: bottom;
-            border-style: none;
-        }
-        
-        .KJH_item_info_status_section {
-            margin: 0px;
-            padding: 0px;
-            border: 0px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .KJH_item_info_status_info_share {
-            position: relative;
-        }
-        
-        .KJH_item_info_status_info, .KJH_item_info_status_info_share {
-            display: block;
-            margin-bottom: 0;
-            width: 100%;
-        }
-        
-        .KJH_item_info_status_title_section {
-            display: block;
-        }
-        
-        .KJH_item_info_item_status_title {
-            position: relative;
-            padding-left: 0;
-            color: #888888;
-            font-size: 1.6vw;
-            width: 12vw;
-            margin: 0 0.8vw 1vh 0;
-        }
-        
-        .KJH_item_info_item_status {
-            position: relative;
-            display: flex;
-            direction: ltr;
-            text-align: left;
-            width: 15vw;
-            font-size: 2vw;
-            font-weight: 700;
-            color: #333333;
-            outline: 0px;
-        }
-        
-        .KJH_item_info_share_section {
-            text-align: right;
-            margin-bottom: 2vh;
-        }
-        
-        .KJH_item_info_share_section > svg {
-            color: #777777;
-            margin-right: 0;
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-            top: 4vw;
-            transition: all 0.3s ease;
-            border-radius: 0.4vw;
-            padding: 5px;
-            border: 0;
-            width: 20px;
-            height: 20px;
-        }
-        
-        .KJH_item_info_share_section > svg:hover {
-            background-color: black;
-            color: white;
-        }
-        
-        .KJH_item_info_shear_link {
-            position: absolute;
-            width: 12vw;
-            top: 0;
-            text-align: center;
-            right: 0;
-            background-color: #606060;
-            color: white;
-            font-size: 1.5vw;
-            font-weight: 700;
-            border-radius: 10px;
-            padding: 0.5vw;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.8s;
-        }
-        
-        .KJH_item_info_shear_link.show {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.5s linear;
-        }
-        
-        .KJH_item_btn_section {
-            display: flex;
-            justify-content: space-between;
-            border-top: 0;
-            padding-top: 1.2vh;
-            margin: 0;
-        }
-        
-        .KJH_item_btn_section > button {
-            cursor: pointer;
-            outline: none;
-        }
-        
-        .KJH_item_like_section_true, .KJH_item_like_section_false {
-            display: flex;
-            align-items: center;
-            margin-right: 1vw;
-        }
-        
-        .KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
-            border-radius: 0.8vw;
-            padding: 0.5vw;
-            width: 11vw;
-            height: 7.2vh;
-            transition: all 0.3s ease;
-        }
-        
-        .KJH_item_like_section_false > svg {
-            background-color: #dddddd;
-            border: 0.15em solid #dddddd;
-            color: white;
-        }
-        
-        .KJH_item_like_section_false > svg:hover {
-            color: #ff4c4c;
-            background-color: #fff09b;
-            cursor: pointer;
-            border: 0.15em solid #ff4c4c;
-        }
-        
-        .KJH_item_btn_select_section {
-            position: relative;
-            flex: 1 1 0%;
-            font-weight: 600;
-            margin-right: 1vw;
-            display: flex;
-            justify-content: center;
-            height: 7.5vh;
-            font-size: 18px;
-            align-items: center;
-        }
-        
-        .KJH_item_btn_select_section:last-child {
-            margin-right: 0;
-        }
-        
-        .KJH_item_btn_select_talk, .KJH_item_btn_select_buy {
-            width: 100%;
-            min-height: 25px;
-            height: 100%;
-            font-weight: 700;
-            color: rgb(255, 255, 255);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: left;
-            font-size: 2.6vw;
-            cursor: pointer;
-            border-radius: 0.6vw;
-            transition: all 0.3s;
-        }
-        
-        .KJH_item_btn_select_talk:hover, .KJH_item_btn_select_buy:hover {
-            background-color: transparent;
-            color: black;
-        }
-        
-        .KJH_item_btn_select_talk {
-            background: rgb(255, 164, 37);
-            border: 0.3vw solid rgb(243, 150, 20);
-        }
-        
-        .KJH_item_btn_select_talk > svg {
-            margin-right: 1vw;
-        }z
-        
-        
-        .KJH_item_btn_select_buy {
-            background: #ff4c4c;
-            border: 0.3vw solid #ff3c3c;
-        }
-        }
-        
-        @media (max-width: 500px) {
-        
+    .KJH_item_info_detail_status_icon {
+        display: flex;
+        align-items: center;
+        color: rgb(204, 204, 204);
+        font-size: 1vw;
+        height: 100%;
+    }
+
+    .KJH_item_info_detail_status_icon > svg {
+        width: 2em;
+        height: 2em;
+        margin-right: 0.8vw;
+    }
+
+    .KJH_item_info_detail_status_num {
+        display: flex;
+        margin: 0 10px 0 0;
+        padding: 0;
+        border: 0;
+        font-size: 1.6vw;
+        font-weight: 600;
+        align-items: center;
+        color: #666666;
+        height: 100%;
+    }
+
+    .KJH_item_info_detail_info > button {
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        font-synthesis: none;
+        direction: ltr;
+        text-align: left;
+        color: rgb(33, 33, 33);
+        outline: 0;
+        border: 0;
+    }
+
+    .KJH_item_info_report, .KJH_item_info_report_text {
+        color: #777777;
+        font-size: 1.5vw;
+        font-weight: 700;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .KJH_item_info_report svg {
+        margin-right: 3px;
+        width: 1.6vw;
+        height: 1.6vw;
+        vertical-align: bottom;
+        border-style: none;
+    }
+
+    .KJH_item_info_status_section {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .KJH_item_info_status_info_share {
+        position: relative;
+    }
+
+    .KJH_item_info_status_info, .KJH_item_info_status_info_share {
+        display: block;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .KJH_item_info_status_title_section {
+        display: block;
+    }
+
+    .KJH_item_info_item_status_title {
+        position: relative;
+        padding-left: 0;
+        color: #888888;
+        font-size: 1.6vw;
+        width: 12vw;
+        margin: 0 0.8vw 1vh 0;
+    }
+
+    .KJH_item_info_item_status {
+        position: relative;
+        display: flex;
+        direction: ltr;
+        text-align: left;
+        width: 15vw;
+        font-size: 2vw;
+        font-weight: 700;
+        color: #333333;
+        outline: 0px;
+    }
+
+    .KJH_item_info_share_section {
+        text-align: right;
+        margin-bottom: 2vh;
+    }
+
+    .KJH_item_info_share_section > svg {
+        color: #777777;
+        margin-right: 0;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 4vw;
+        transition: all 0.3s ease;
+        border-radius: 0.4vw;
+        padding: 5px;
+        border: 0;
+        width: 2.8vw;
+    }
+
+    .KJH_item_info_share_section > svg:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .KJH_item_info_shear_link {
+        position: absolute;
+        width: 12vw;
+        top: 0;
+        text-align: center;
+        right: 0;
+        background-color: #606060;
+        color: white;
+        font-size: 1.5vw;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 0.5vw;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.8s;
+    }
+
+    .KJH_item_info_shear_link.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s linear;
+    }
+
+    .KJH_item_btn_section {
+        display: flex;
+        justify-content: space-between;
+        border-top: 0;
+        padding-top: 1.2vh;
+        margin-top: 0;
+    }
+
+    .KJH_item_btn_section > button {
+        cursor: pointer;
+        outline: none;
+    }
+
+    .KJH_item_like_section_true, .KJH_item_like_section_false {
+        display: flex;
+        align-items: center;
+        margin-right: 1vw;
+    }
+
+    .KJH_item_like_section_true > svg, .KJH_item_like_section_false > svg {
+        border-radius: 0.8vw;
+        padding: 0.5vw;
+        width: 9vw;
+        height: 7.2vh;
+        transition: all 0.3s ease;
+    }
+
+    .KJH_item_like_section_false > svg {
+        background-color: #dddddd;
+        border: 0.15em solid #dddddd;
+        color: white;
+    }
+
+    .KJH_item_like_section_false > svg:hover {
+        color: #ff4c4c;
+        background-color: #fff09b;
+        cursor: pointer;
+        border: 0.15em solid #ff4c4c;
+    }
+
+    .KJH_item_btn_select_section {
+        position: relative;
+        flex: 1 1 0%;
+        font-weight: 600;
+        margin-right: 1vw;
+        display: flex;
+        justify-content: center;
+        height: 7.5vh;
+        font-size: 18px;
+        align-items: center;
+    }
+
+    .KJH_item_btn_select_section:last-child {
+        margin-right: 0;
+    }
+
+    .KJH_item_btn_select_talk {
+        width: 100%;
+        min-height: 25px;
+        height: 100%;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+        font-size: 2.6vw;
+        cursor: pointer;
+        border-radius: 0.6vw;
+        transition: all 0.3s;
+    }
+
+    .KJH_item_btn_select_talk:hover {
+        background-color: transparent;
+        color: black;
+    }
+
+    .KJH_item_btn_select_talk {
+        background: rgb(255, 164, 37);
+        border: 0.3vw solid rgb(243, 150, 20);
+    }
+
+    .KJH_item_btn_select_talk > svg {
+        margin-right: 1vw;
+    }
+
+    @media (max-width: 500px) {
+
         .KJH_item_section {
             position: relative;
             display: flex;

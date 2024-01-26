@@ -1,0 +1,75 @@
+.KJH_shop-review_container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.8em;
+  justify-content: space-between; /* 요소들을 양쪽 끝에 정렬 */
+  gap: 0.5em; /* 요소들 사이의 간격 설정 */
+}
+
+.KJH_shop-review_main {
+  width: 100%;
+  border-bottom: 0.1em solid #cecece;
+  padding-bottom: 0.8em;
+  margin-bottom: 0.4em;
+}
+
+.KJH_shop-review_main_info {
+  display: inline-block;
+  padding: 0.3em 0.5em;
+  border: 2px solid black;
+  border-radius: 0.5em;
+  font-size: 2em;
+}
+
+.KJH_shop-review_info {
+  background-color: #ebf0ff  ;
+  width: calc(51% - 2em); /* 패딩과 마진을 고려한 너비 계산 */
+  padding: 0.8em;
+  border-radius: 0.5em;
+  box-sizing: border-box; /* box-sizing을 border-box로 설정 */
+}
+
+
+/* 리뷰어, 작성일 */
+.KJH_shop-review_writer_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.KJH_shop-review_writer {
+  background-color: #2748b0;
+  color: white;
+  padding: 0.4em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.KJH_shop-review_date {
+  background-color: #98b0ff;
+  color: white;
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em;
+  display: inline-block;
+  white-space: nowrap;
+  margin-left: 1em;
+  font-size: 0.8em;
+}
+
+.KJH_shop-review_comment {
+  background-color: white;
+  border: 0.1em solid black;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+@media (max-width: 1024px) {
+  .KJH_shop-review_info {
+    width: 100%;
+  }
+}

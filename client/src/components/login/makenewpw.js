@@ -61,6 +61,7 @@ function MakeNewPW() {
       });
 
       if (response.status === 200) {
+        logOut();
       } else {
         alert('비밀번호 재설정 실패! 입력란을 다시 확인해주세요');
       }
@@ -112,7 +113,6 @@ function MakeNewPW() {
       />
       <Button variant="contained" color="primary" onClick={() => {
         ResetPW();
-        logOut();
       }}>
         비밀번호 재설정
       </Button>

@@ -11,7 +11,6 @@ import "./mypage.css";
 
 
 
-
 function Mypageview() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
@@ -144,7 +143,6 @@ function Mypageview() {
                       <div
                       key={data.id}
                       >
-                        <div className="JSW_userlist">이름 : {data.real_name}</div>
                         <div className="JSW_userlist">별명 : {data.nickname}</div>
                         <div className="JSW_userlist">상점 설명 : {data.about}</div>
                       </div>
