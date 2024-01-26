@@ -234,6 +234,7 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
 });
 
 
+// 등록된 상품을 받아옴
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -248,6 +249,7 @@ app.get("/product/registered", async (요청, 응답) => {
   응답.send(result);
 });
 
+// 구매한 상품의 목록을 받아옴
 app.get("/product/buylist", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -262,6 +264,7 @@ app.get("/product/buylist", async (요청, 응답) => {
   응답.send(result);
 });
 
+// 자신이 판매했던 목록을 나열
 app.get("/product/soldlist", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -276,6 +279,34 @@ app.get("/product/soldlist", async (요청, 응답) => {
   응답.send(result);
 });
 
+app.get("/review/mypagehoogi", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db
+    .collection("review")
+    .find({
+      resiver: 요청.query.id,
+    })
+    .toArray();
+  console.log(result);
+  응답.send(result);
+});
+
+app.get("/review/mypagehoogi2", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db
+    .collection("review")
+    .find({
+      writer: 요청.query.id,
+    })
+    .toArray();
+  console.log(result);
+  응답.send(result);
+});
+
+
+// 찜해둔 물품목록
 app.get("/like/picklist", async (요청, 응답) => {
   const db = getDB();
   const prodData = [];
@@ -302,6 +333,8 @@ app.get("/like/picklist", async (요청, 응답) => {
   console.log("prodData:", prodData);
   응답.send(prodData);
 });
+
+
 
 app.get("/room_list", async (req, res) => {
   const db = getDB();
@@ -348,6 +381,26 @@ app.post("/productedit", async (req, res) => {
   );
   res.status(201).send("수정완료")
 });
+
+app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
+  const db = getDB();
+  console.log("aaaaaaa",req.file.location);
+  console.log(req.body);
+  await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
+    $set:{
+      nickname:req.body.nickname,
+      about:req.body.about,
+      address:req.body.address,
+      profileIMG:req.file.location
+    }})
+  .then(()=>{
+    res.status(201).end();
+  })
+  .catch((err)=>{
+    console.log(err);
+    res.status(500).end();
+  })
+})
 // ---------실시간채팅------------- //
 
 io.on("connection", (socket) => {

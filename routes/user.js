@@ -57,23 +57,23 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/edit", async (req, res) => {
-  const db = getDB();
-  await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
-    $set:{
-      nickname:req.body.nickname,
-      about:req.body.about,
-      address:req.body.address,
-      profileIMG:req.body.profileIMG
-    }})
-  .then(()=>{
-    res.status(201).end();
-  })
-  .catch((err)=>{
-    console.log(err);
-    res.status(500).end();
-  })
-})
+// router.post("/edit", async (req, res) => {
+//   const db = getDB();
+//   await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
+//     $set:{
+//       nickname:req.body.nickname,
+//       about:req.body.about,
+//       address:req.body.address,
+//       profileIMG:req.body.profileIMG
+//     }})
+//   .then(()=>{
+//     res.status(201).end();
+//   })
+//   .catch((err)=>{
+//     console.log(err);
+//     res.status(500).end();
+//   })
+// })
 
 router.post("/findpw", async (req, res) => {
   try {
@@ -148,9 +148,9 @@ router.get("/mypageview/:id", async (req, res) => {
   try {
     const db = getDB();
     let getreview = await db.collection("review").find({ resiver: req.params.id }).toArray();
-    // console.log("----리뷰정보----");
-    // console.log(getreview);
-    // console.log("----------------");
+    console.log("----리뷰정보----");
+    console.log(getreview);
+    console.log("----------------");
     res.status(201).send({
       review: getreview
     });
@@ -159,5 +159,7 @@ router.get("/mypageview/:id", async (req, res) => {
     res.status(500).send('리뷰를 불러오지 못했습니다');
   }
 });
+
+
 
 module.exports = router;

@@ -110,22 +110,22 @@ function Mypageview() {
                       </span>
                     <ul>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
                           등록된 상품 
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
-                          className={menu === "찜 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("찜 목록")}
+                          className={menu === "후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("후기")}
                         >
                           후기
-                        </a>
+                        </p>
                       </li>
                     </ul>
                   </nav>
@@ -151,7 +151,7 @@ function Mypageview() {
                 </div>
               </div>
             </div>
-     
+    
 
             <div className="JSW_Sec2-2">
               {menu === "등록된 상품" && (
@@ -164,7 +164,7 @@ function Mypageview() {
                   <Hoogi menu={menu} userInfo={userInfo} data={data}></Hoogi>
                 </div>
               )}
-         
+        
             </div>
           </div>
         </div>

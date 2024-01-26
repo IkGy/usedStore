@@ -82,9 +82,9 @@ function Registered(props) {
                   </Link>
                 </div>
                 <div className="JSW_listdelete" onClick={() =>{window.location.reload();
-                 handleDelete(data._id);
-                 alert("상품이 삭제되었습니다.")
-                 }}>
+                handleDelete(data._id);
+                alert("상품이 삭제되었습니다.")
+                }}>
                   삭제하기
                 </div>
               </div>
@@ -92,7 +92,7 @@ function Registered(props) {
           )
         })}
       </div>
-   </div>
+  </div>
   )
 }
 

@@ -14,6 +14,7 @@ let currentPath = "";
 function Header() {
   let location = useLocation();
   console.log("location pathname: ", location.pathname);
+
   useEffect(() => {
     if (currentPath === location.pathname) window.location.reload();
     currentPath = location.pathname;
@@ -86,7 +87,7 @@ function Header() {
           deleteCookie();
         })
         .catch(function () {
-          // alert("Not logged in");
+          alert("Not logged in");
         });
     }
     navigate("/");
@@ -137,7 +138,7 @@ function Header() {
                 </ul>
               </nav>
             ) : (
-              <ul className="header_login">
+              <ul className="header_login2" style={{paddingLeft: "10vw"}}>
                 <li>
                   <CiLogin className="main_mainIcon" />
                   <Link to={"/login"}>로그인</Link>
