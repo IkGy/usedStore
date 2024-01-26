@@ -1,0 +1,213 @@
+.chat_room_Main{
+  /* border: 3px solid crimson; */
+  width: 100%;
+  height: 100%;
+  max-height: 35vw;
+  min-height: 35vw;
+  position: relative;
+}
+.room_Input_component{
+  position: absolute;
+  border: 1px solid #000;
+}
+
+
+/* 미선택시 */
+.please_select{
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+}
+.malpoongseon{
+  margin: 20vh auto 1vh; 
+  font-size: 5vh;
+}
+.please_select > p {
+  font-size: 2vh;
+}
+/* info */
+.chat_room_info_main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2979FF;
+  border-radius: 4px 4px 0 0;
+  height: 6vh;
+  width: 100%;
+}
+
+.InnerContainer {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  color: white;
+}
+
+
+.onlineIcon {
+  margin-right: 5%;
+}
+
+/* 채팅 라인 */
+.messages {
+  min-height: 40vh;
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+  /* border: 1px solid #000; */
+}
+.messageBox {
+  background: #F3F3F3;
+  border-radius: 20px;
+  padding: 5px 20px;
+  color: white;
+  display: inline-block;
+  max-width: 80%;
+}
+
+.messageText {
+  width: 100%;
+  letter-spacing: 0;
+  float: left;
+  font-size: 1.1em;
+  word-wrap: break-word;
+}
+
+.messageText img {
+  vertical-align: middle;
+}
+
+.messageContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 5%;
+  margin-top: 3px;
+}
+
+.sentText {
+  display: flex;
+  align-items: center;
+  font-family: Helvetica;
+  color: #828282;
+  letter-spacing: 0.3px;
+}
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.colorWhite {
+  color: white;
+}
+
+.colorDark {
+  color: #353535;
+}
+
+.backgroundBlue {
+  background: #2979FF;
+}
+
+.backgroundLight {
+  background: #F3F3F3;
+}
+
+/* preview */
+.file-previews-container {
+  padding: 0.8vh;
+  width: 100%;
+  max-width: 100%;
+  max-height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1vh;
+  
+  background-color: rgba(65, 65, 65, 0.1);
+}
+
+
+.file-previews {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.file-previews img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+/* input */
+.chat_room_input_main {
+  display: flex;
+  border-top: 2px solid #D3D3D3;
+  position: relative;
+  align-content: end;
+}
+
+.input_area {
+  border: none;
+  border-radius: 0;
+  padding: 5% 5% 5% 3%;
+  width: 80%;
+  font-size: 1.2em;
+  max-width: calc(100% - 100px);
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+#file-upload{
+  display: none;
+}
+.custom-file-upload{
+  padding-left: 3%;
+  font-size: 30px;
+  margin: auto;
+}
+.sendButton {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979FF;
+  padding: 20px;
+  display: inline-block;
+  border: none;
+  width: 20%;
+  border-radius: 0 0 8px 0;
+}
+
+
