@@ -194,19 +194,19 @@ function Category() {
       
       return(
         <div className="KJH_cg_container">
-      <div className="KJH_cg_home_section">
-        <div className="KJH_cg_home">
-          <Link to="/" className="KJH_cg_home_section">
-            <AiOutlineHome />
-            <div>홈</div>
-          </Link>
+          <div className="KJH_cg_home_section">
+            <div className="KJH_cg_home">
+              <Link to="/" className="KJH_cg_home_section">
+                <AiOutlineHome className="home_icon"/>
+                <div>홈</div>
+              </Link>
+            </div>
+          </div>
+          <SelectBar select={category} data={dropcategories.category1} setSelect={selectCategory} />
+          <SelectBar select={subCategory} data={dropcategories.category2} setSelect={selectSubCategory}/>
+          <SelectBar select={ssubCategory} data={dropcategories.category3} setSelect={selectSSubCategory}/>
         </div>
-      </div>
-      <SelectBar select={category} data={dropcategories.category1} setSelect={selectCategory} />
-      <SelectBar select={subCategory} data={dropcategories.category2} setSelect={selectSubCategory}/>
-      <SelectBar select={ssubCategory} data={dropcategories.category3} setSelect={selectSSubCategory}/>
-    </div>
-  )
+      )
 }
 
 export default Category;
