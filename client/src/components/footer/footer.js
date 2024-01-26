@@ -26,7 +26,7 @@ function Footer(){
           <p className='footer_colorbl'>조장 : 조경익 <span style={{color: "#2748b0"}}>|</span> gmldi10009@gmail.com</p>
           <p style={{marginBottom: "0.7vw"}}> - 메인페이지랑 백엔드 보조 제작 </p>
           <p className='footer_colorbl'> 김정훈 <span style={{color: "#2748b0"}}>|</span> projdevhun@gmail.com </p>
-          <p style={{marginBottom: "0.7vw"}}> - 상세페이지 구현 </p>
+          <p style={{marginBottom: "0.7vw"}}> - 상세페이지 제작 </p>
           <p className='footer_colorbl'> 박준호 <span style={{color: "#2748b0"}}>|</span> junho2088@naver.com </p>
           <p style={{marginBottom: "0.7vw"}}> - 로그인/회원가입/각종 로그인api 제작 </p>
           <p className='footer_colorbl'> 유민재 <span style={{color: "#2748b0"}}>|</span> dbalswo5312@naver.com </p>
