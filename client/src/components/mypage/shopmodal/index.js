@@ -9,29 +9,29 @@ function Modal({ show, onClose }) {
     const { id } = useParams();
     const [seller, setSeller] = useState('');
     const [reviewer, setReviewer] = useState('');
-
     
+    // 리뷰 작성자의 정보를 조회함
+    const fetchReviewer = async () => {
+        try {
+            const reviewe = await axios.get(`${API_URL}/mypage/post/shop`, {params:{id:getCookie('login')}});
+            // console.log('test',reviewe);
+            setReviewer(reviewe.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    // 판매자 닉네임을 조회함
+    const fetchSeller = async () => {
+        try {
+            const res = await axios.get(`${API_URL}/mypage/post/shop/${id}`);
+            setSeller(res.data.nickname);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        // 판매자 닉네임을 조회함
-        const fetchSeller = async () => {
-            try {
-                const res = await axios.get(`${API_URL}/mypage/post/shop/${id}`);
-                setSeller(res.data.nickname);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        // 리뷰 작성자의 정보를 조회함
-        const fetchReviewer = async () => {
-            try {
-                const reviewe = await axios.get(`${API_URL}/mypage/post`, {params:{id:getCookie('login')}});
-                setReviewer(reviewe.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
         if (show) {
             fetchSeller();
             fetchReviewer();
@@ -40,16 +40,20 @@ function Modal({ show, onClose }) {
 
     const submitReview = async (resiverId, writerId, reviewContent) => {
         try {
-            const url = `${API_URL}/mypage/post/shop/${resiverId}`;
+            const url = `${API_URL}/mypage/post/shop`;
             
             const requestBody = {
+                resiverId :resiverId,
                 writerid: writerId,
                 content: reviewContent
             };
-            const response = await axios.post(url, requestBody);
-    
-            console.log('응답 메시지:', response.data.message);
-            return response.data;
+            await axios.post(url, requestBody)
+            .then(()=>{
+                alert('후기작성 완료');
+            })
+            .catch(()=>{
+
+            })
         } catch (error) {
             console.error('후기 작성 에러:', error);
             throw error;
@@ -60,7 +64,8 @@ function Modal({ show, onClose }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const writerId = 'user123';
+        fetchReviewer();
+        const writerId = reviewer.nickname;
         await submitReview(id, writerId, reviewContent);
     };
 

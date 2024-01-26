@@ -22,16 +22,16 @@ router.get('/post/shop/:id', async (req, res) => {
 // 리뷰 작성자의 정보 가져오기
 router.get("/post/shop", async (req, res) => {
   const db = getDB();
-  let reviewer = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
 
+  let reviewer = await db.collection('user').findOne({_id:new ObjectId(req.query.id)});
+//   console.log(reviewer);
   res.send(reviewer);
 })
 
 // 리뷰 작성 모달창의 POST할 데이터
-router.post('/post/shop/:id', async (req, res) => {
+router.post('/post/shop', async (req, res) => {
     try {
-        const resiverId = req.params.id;
-        const { writerid, content } = req.body;
+        const {resiverId, writerid, content } = req.body;
         const db = getDB();
         
         const currentDate = new Date(); // 현재 날짜 및 시간
