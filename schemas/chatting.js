@@ -20,7 +20,7 @@ const chattingSchema = new Schema({
       require: true
     },
     // 채팅 내용
-    text: {
+    chat: {
       type: String,
       require: false
     },

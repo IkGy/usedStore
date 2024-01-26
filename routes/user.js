@@ -141,6 +141,8 @@ router.get("/mypage", async (요청, 응답) => {
   // console.log(요청.query);
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
   // console.log('test',list);
+  console.log('nickname: ',list.nickname);
+
   응답.send(list);
 })
 
@@ -148,9 +150,9 @@ router.get("/mypageview/:id", async (req, res) => {
   try {
     const db = getDB();
     let getreview = await db.collection("review").find({ resiver: req.params.id }).toArray();
-    console.log("----리뷰정보----");
-    console.log(getreview);
-    console.log("----------------");
+    // console.log("----리뷰정보----");
+    // console.log(getreview);
+    // console.log("----------------");
     res.status(201).send({
       review: getreview
     });
@@ -159,6 +161,8 @@ router.get("/mypageview/:id", async (req, res) => {
     res.status(500).send('리뷰를 불러오지 못했습니다');
   }
 });
+
+
 
 
 
