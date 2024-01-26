@@ -3,7 +3,7 @@
   
   margin: 0 auto;
   padding: 1vw;
-
+overflow: hidden;
 
 }
 
@@ -15,26 +15,21 @@
 .JSW_conentGridBox {
   width: 100%;
   height: 100%;
-  
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  
+  overflow: hidden;
   gap: 1vw;
   padding: 1vw 0 0;
   
 }
 
 .JSW_liststart {
-  width: 10vw;
-  
-
+  width: 100%;
   border: 1px solid #CCC;
-  border-radius: 15px;
+  border-radius: 0.5vw;
   position: relative;
   cursor: pointer;
-
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -63,7 +58,6 @@
 
 .JSW_liststart:hover {
   box-shadow: 0px 0px 5px 1px ;
-  top: 5%;
 }
 
 

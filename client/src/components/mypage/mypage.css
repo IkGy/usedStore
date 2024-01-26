@@ -1,22 +1,19 @@
-
 .JSW_container {
-  font-family: 'seolleimcool-SemiBold';
+  font-family: "seolleimcool-SemiBold";
 }
 
 .active {
-  color: #03C75A;
+  color: #2748b0;
 }
-.noactive{
-  color: black
+.noactive {
+  color: black;
 }
-
 
 .JSW_mypage_title {
   padding: 2vw 1.5vw;
   font-size: 3vw;
   font-weight: 900;
   color: white;
-  
 
   width: 100%;
   height: 8vw;
@@ -30,7 +27,7 @@
 
   display: grid;
   grid-template-columns: 1fr 5fr;
-  
+
   padding-bottom: 5%;
 
   /* border: 1px solid #000; */
@@ -42,9 +39,8 @@
 
   display: grid;
   grid-template-columns: 1fr 5fr;
-  
-  padding-bottom: 5%;
 
+  padding-bottom: 5%;
 }
 
 /* .JSW_Sec1 {
@@ -52,11 +48,8 @@
 } */
 
 .JSW_menubar {
-  margin: 0 auto;
-
   width: 90%;
-  height: 90%;
-
+  height: 100%;
   border-right: 0.15vw solid #000;
 }
 
@@ -73,16 +66,17 @@
 
 .JSW_nav1 > ul {
   position: absolute;
+  padding: 0;
+  width: 100%;
   /* left: -20px; */
 }
 
 .JSW_nav1 > ul > li {
   padding-top: 20%;
   list-style: none;
-
+  text-align: center;
   font-size: 1vw;
   font-weight: 700;
-  
 }
 
 .JSW_nav1 > ul > li > a {
@@ -94,10 +88,8 @@
   font-size: 100%;
 }
 
-
-
 .JSW_Sec2 {
-  height: 70vh;
+  border-bottom: 0.1vw solid black;
 }
 
 .JSW_Sec2_view {
@@ -106,15 +98,11 @@
 
 .JSW_Sec2-1 {
   width: 100%;
-  height: 30vh;
-
+  height: 20vw;
   display: grid;
   grid-template-columns: 1.5fr 3fr;
-
-
   padding-bottom: 1%;
   box-shadow: 0 1px 0 0;
-
 
   /* border-bottom: 1px solid #000; */
 }
@@ -122,10 +110,7 @@
 .JSW_Sec2-1_left {
   width: 100%;
   height: 100%;
-  
-  overflow: hidden;  
-  border-right: 1px solid #000;
-
+  overflow: hidden;
 }
 
 .JSW_Sec2-1_left > img {
@@ -135,91 +120,71 @@
 }
 
 .JSW_myname {
-  font-size: 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2vw;
   font-weight: 600;
+  font-family: 'JalnanGothic';
 }
 
-
-
 .JSW_Sec2-1_Right {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
   width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 1%;
+  height: 20vw;
+  padding: 1vw;
 }
 
 .JSW_userinfo {
-  position: absolute;
-
   margin-top: 1%;
-  left: 10px;
   box-shadow: 0 0 2px 1px;
   padding: 1%;
-  width: 25vw;
-  height: 23vh;
-
+  width: 100%;
+  height: 13vw;
+  
   overflow-y: scroll;
-}
-
-.JSW_mypage_img {
-  padding: 2%;
-  background-color: lightgray;
-  border-radius: 10px;
-
-  position: absolute;
-  right: 5px;
-  bottom: 75px;
-
-  cursor: pointer;
 }
 
 .JSW_mypage_img:hover {
   box-shadow: 0px 0px 2px 1px;
 }
 
-.JSW_Cristal {  
-  padding: 2%;
-  background-color: lightgray;
-  border-radius: 10px;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
+.JSW_btnBox{
+  display: flex;
+  column-gap: 1vw;
+}
 
+.JSW_Cristal {
+  display: block;
+  padding: 0.8vw;
+  background-color: #2748b0;
+  color: white;
+  border-radius: 0.5vw;
+  font-size: 1vw;
   cursor: pointer;
-  
+  text-align: center;
 }
 
-.JSW_Cristal:hover {
-  box-shadow: 0px 0px 2px 1px;
-}
-.JSW_Cristal2 {  
-  padding: 2%;
-  background-color: lightgray;
-  border-radius: 10px;
-  position: absolute;
-  right: 5px;
-  bottom: 75px;
-
+.JSW_Cristal2 {
+  display: block;
+  text-align: center;
+  padding: 0.8vw;
+  background-color: #2748b0;
+  color: white;
+  border-radius: 0.5vw;
+  font-size: 1vw;
   cursor: pointer;
-  
 }
-
-.JSW_Cristal2:hover {
-  box-shadow: 0px 0px 2px 1px;
-}
-
-
-
-  
 
 .JSW_Sec2-2 {
   margin-top: 1%;
   width: 100%;
-  height: 40vh;
+  height: 50vh;
+  overflow: hidden;
   overflow-y: scroll;
 
   z-index: 5;
-
 }
 
 .JSW_Sec2-2_Left {
@@ -231,11 +196,17 @@
 }
 
 .JSW_userlist {
-  padding-top: 2%;
   font-size: 1vw;
   font-weight: 500;
+  word-wrap: break-word;
+  padding: 0.3vw 0
 }
 
+.JSW_userinfoflex {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
+  height: 100%;
+}
 
 #JSW_modalALL {
   background-color: #2748b0;
@@ -243,28 +214,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   width: 15vw;
   height: 45vh;
-  
+
   border: 1px solid #000;
   border-radius: 15px;
 
   z-index: 7;
 }
 
-
-
-
 .JSW_modal_loginInputBox {
   padding-top: 3%;
   margin: 0 auto;
-  
+
   display: grid;
   grid-template-rows: 1fr;
-  
+
   width: 80%;
-  
 }
 
 .JSW_modal_loginInputBox_s {
@@ -292,376 +259,338 @@
   background-color: white;
   border-color: white;
 
-  position:fixed;
+  position: fixed;
   right: 1.5vw;
   bottom: 1.5vh;
-
 }
 
 .JSW_imgupload {
-  background-color: #CCF4DC;
+  background-color: #ccf4dc;
   padding-top: 1%;
   padding-left: 3%;
   width: 6vw;
   height: 3vh;
-
-
 }
-
-
 
 @media (max-width: 1024px) {
+  .JSW_Main {
+    max-width: 100%;
+    max-height: 100vh;
 
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
 
-.JSW_Main {
-  max-width: 100%;
-  max-height: 100vh;
+  .JSW_menubar {
+    margin: 0 auto;
 
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  
+    width: 90%;
+    height: 90%;
+    box-shadow: 0px 0px 5px 1px;
+    background-color: #ccf4dc;
+    border-radius: 25px;
 
-}
+    padding-left: 15px;
+  }
 
+  .JSW_nav1 {
+    text-align: left;
+    position: relative;
+  }
 
-.JSW_menubar {
-  margin: 0 auto;
+  .JSW_nav1 > ul {
+    position: absolute;
+    left: -35px;
+  }
 
-  width: 90%;
-  height: 90%;
-  box-shadow: 0px 0px 5px 1px;
-  background-color: #CCF4DC;
-  border-radius: 25px;
+  .JSW_nav1 > ul > li {
+    padding-top: 10%;
+    list-style: none;
+    font-size: 1.5vw;
+  }
 
-  padding-left: 15px;
-  
-}
+  .JSW_nav1 > ul > li > a {
+    text-decoration: none;
+    color: black;
+    font-size: 100%;
+  }
 
-.JSW_nav1 {
-  text-align: left;
-  position: relative;
-}
-
-.JSW_nav1 > ul {
-  position: absolute;
-  left: -35px;
-}
-
-.JSW_nav1 > ul > li {
-  padding-top: 10%;
-  list-style: none;
-  font-size: 1.5vw;
-  
-}
-
-.JSW_nav1 > ul > li > a {
-  text-decoration: none;
-  color: black;
-  font-size: 100%;
-}
-
-.JSW_userlist {
-  font-size: 1.2vw;
-}
-
+  .JSW_userlist {
+    font-size: 1.2vw;
+  }
 
   /* .JSW_menubar {
     font-size: 2vw; 
   } */
 
+  .JSW_Sec2 {
+    height: 70vh;
+    border: 1px solid #000;
+    overflow: hidden;
+  }
 
-.JSW_Sec2 {
-  height: 70vh;
-  border: 1px solid #000;
-  overflow: hidden;
+  .JSW_Sec2-1 {
+    width: 100%;
+    height: 30vh;
+
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+
+    border-bottom: 1px solid #000;
+  }
+
+  .JSW_Sec2-1_left {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    border-right: 1px solid #000;
+  }
+
+  .JSW_Sec2-1_left > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .JSW_Sec2-1_Right {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 1%;
+
+    font-size: 80%;
+  }
+
+  .JSW_userinfo {
+    position: absolute;
+    left: 10px;
+    top: 30px;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+
+    width: 30vw;
+  }
+
+  .JSW_Cristal {
+    padding: 2%;
+    background-color: lightgray;
+    border-radius: 10px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+    cursor: pointer;
+
+    font-size: 70%;
+  }
+
+  .JSW_Cristal:hover {
+    box-shadow: 0px 0px 2px 1px;
+  }
+
+  .JSW_Sec2-2 {
+    width: 100%;
+    height: 40vh;
+    overflow-y: scroll;
+  }
+
+  .JSW_Sec2-2_Left {
+    border: 1px solid #000;
+  }
+
+  .JSW_Sec2-2_Right {
+    border: 1px solid #000;
+  }
+
+  /* 수정창 */
+
+  #JSW_modalALL {
+    background-color: #03c75a;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 35vw;
+    height: 35vh;
+
+    border: 1px solid #000;
+    border-radius: 15px;
+
+    z-index: 7;
+  }
+
+  .JSW_modal_loginInputBox {
+    padding-top: 3%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: 1fr;
+
+    width: 80%;
+  }
+
+  .JSW_modal_loginInputBox_s {
+    /* background-color: #CCF4DC; */
+    border-radius: 5px;
+    height: 5vh;
+  }
+
+  .JSW_modal_mainTitle {
+    padding-left: 10%;
+    font-size: 2vw;
+    font-weight: 900;
+    color: white;
+  }
+
+  .JSW_modal_loginCloseBtn {
+    padding-left: 5%;
+    padding-top: 5%;
+  }
+
+  .JSW_mypagewater {
+    width: 8vw;
+    height: 4vh;
+
+    background-color: #ccf4dc;
+    border-color: #ccf4dc;
+
+    position: fixed;
+    right: 3.5vw;
+    bottom: 1vh;
+  }
+
+  .JSW_imgupload {
+    padding-top: 3%;
+    padding-left: 5%;
+    width: 12vw;
+  }
 }
-
-.JSW_Sec2-1 {
-  width: 100%;
-  height: 30vh;
-
-  display: grid;
-  grid-template-columns: 1.5fr 3fr;
-
-  border-bottom: 1px solid #000;
-}
-
-.JSW_Sec2-1_left {
-  width: 100%;
-  height: 100%;
-  
-  overflow: hidden;  
-  border-right: 1px solid #000;
-}
-
-.JSW_Sec2-1_left > img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
-
-.JSW_Sec2-1_Right {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 1%;
-
-  font-size: 80%;
-}
-
-.JSW_userinfo {
-  position: absolute;
-  left: 10px;
-  top: 30px;
-
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
-
-  width: 30vw;
-}
-
-.JSW_Cristal {  
-  padding: 2%;
-  background-color: lightgray;
-  border-radius: 10px;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-
-  cursor: pointer;
-
-  font-size: 70%;
-  
-}
-
-.JSW_Cristal:hover {
-  box-shadow: 0px 0px 2px 1px;
-}
-
-
-
-  
-
-.JSW_Sec2-2 {
-  width: 100%;
-  height: 40vh;
-  overflow-y: scroll;
-
-
-}
-
-.JSW_Sec2-2_Left {
-  border: 1px solid #000;
-}
-
-.JSW_Sec2-2_Right {
-  border: 1px solid #000;
-}
-
-/* 수정창 */
-
-#JSW_modalALL {
-  background-color: #03C75A;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  width: 35vw;
-  height: 35vh;
-  
-  border: 1px solid #000;
-  border-radius: 15px;
-
-  z-index: 7;
-}
-
-
-.JSW_modal_loginInputBox {
-  padding-top: 3%;
-  margin: 0 auto;
-  
-  display: grid;
-  grid-template-rows: 1fr;
-  
-  width: 80%;
-  
-}
-
-.JSW_modal_loginInputBox_s {
-  /* background-color: #CCF4DC; */
-  border-radius: 5px;
-  height: 5vh;
-}
-
-.JSW_modal_mainTitle {
-  padding-left: 10%;
-  font-size: 2vw;
-  font-weight: 900;
-  color: white;
-}
-
-.JSW_modal_loginCloseBtn {
-  padding-left: 5%;
-  padding-top: 5%;
-}
-
-.JSW_mypagewater {
-  width: 8vw;
-  height: 4vh;
-
-  background-color: #CCF4DC;
-  border-color: #CCF4DC;
-
-  position:fixed;
-  right: 3.5vw;
-  bottom: 1vh;
-
-}
-
-.JSW_imgupload {
-  padding-top: 3%;
-  padding-left: 5%;
-  width: 12vw;
-}
-  
-}
-
 
 @media (max-width: 500px) {
-
   .JSW_menubar {
     font-size: 70%;
     padding-left: 17%;
     border-radius: 5px;
 
     width: 100%;
-    
-
   }
-  
+
   .JSW_Sec2-1_Right {
     font-size: 70%;
   }
 
-  
-.JSW_userinfo {
-  position: absolute;
+  .JSW_userinfo {
+    position: absolute;
 
-  margin-top: 3%;
-  box-shadow: 0 0 2px 1px;
-  padding: 1%;
-  width: 45vw;
+    margin-top: 3%;
+    box-shadow: 0 0 2px 1px;
+    padding: 1%;
+    width: 45vw;
+  }
 
-}
+  .JSW_myname {
+    font-size: 3vw;
+  }
 
-.JSW_myname {
-  font-size: 3vw;
-}
+  .JSW_userlist {
+    padding-top: 2%;
+    font-size: 2.5vw;
+    font-weight: 500;
+  }
 
-.JSW_userlist {
-  padding-top: 2%;
-  font-size: 2.5vw;
-  font-weight: 500;
-}
+  .JSW_nav1 {
+    padding-right: 0%;
+    text-align: center;
+  }
 
-.JSW_nav1 {
-  padding-right: 0%;
-  text-align: center;
-}
+  .JSW_nav1 > ul {
+    padding-left: 0%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
 
-.JSW_nav1 > ul {
-  padding-left: 0%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
+  .JSW_nav1 > ul > li {
+    padding-left: 5px;
+    padding-top: 45%;
 
-.JSW_nav1 > ul > li {
-  padding-left: 5px;
-  padding-top: 45%;
-  
-  font-size: 2.5vw;
-}
+    font-size: 2.5vw;
+  }
 
-.JSW_nav1 > ul > li > a {
-  text-decoration: none;
-  color: black;
-}
+  .JSW_nav1 > ul > li > a {
+    text-decoration: none;
+    color: black;
+  }
 
-.JSW_Main {
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10fr;
-}
+  .JSW_Main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr;
+  }
 
-/* 수정창 */
+  /* 수정창 */
 
-#JSW_modalALL {
-  background-color: #03C75A;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  width: 45vw;
-  height: 36vh;
-  
-  border: 1px solid #000;
-  border-radius: 15px;
+  #JSW_modalALL {
+    background-color: #03c75a;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-  z-index: 7;
-}
+    width: 45vw;
+    height: 36vh;
 
+    border: 1px solid #000;
+    border-radius: 15px;
 
-.JSW_modal_loginInputBox {
-  padding-top: 3%;
-  margin: 0 auto;
-  
-  display: grid;
-  grid-template-rows: 1fr;
-  
-  width: 80%;
-  
-}
+    z-index: 7;
+  }
 
-.JSW_modal_loginInputBox_s {
-  /* background-color: #CCF4DC; */
-  border-radius: 5px;
-  height: 5vh;
-}
+  .JSW_modal_loginInputBox {
+    padding-top: 3%;
+    margin: 0 auto;
 
-.JSW_imgupload {
-  padding-top: 5%;
-  padding-left: 5%;
-  width: 25vw;
-}
+    display: grid;
+    grid-template-rows: 1fr;
 
-.JSW_modal_mainTitle {
-  padding-left: 10%;
-  font-size: 4vw;
-  font-weight: 900;
-  color: white;
-}
+    width: 80%;
+  }
 
-.JSW_modal_loginCloseBtn {
-  padding-left: 5%;
-  padding-top: 5%;
-}
+  .JSW_modal_loginInputBox_s {
+    /* background-color: #CCF4DC; */
+    border-radius: 5px;
+    height: 5vh;
+  }
 
-.JSW_mypagewater {
-  width: 15vw;
-  height: 4vh;
+  .JSW_imgupload {
+    padding-top: 5%;
+    padding-left: 5%;
+    width: 25vw;
+  }
 
-  background-color: #CCF4DC;
-  border-color: #CCF4DC;
+  .JSW_modal_mainTitle {
+    padding-left: 10%;
+    font-size: 4vw;
+    font-weight: 900;
+    color: white;
+  }
 
-  position:fixed;
-  right: 5vw;
-  bottom: 1vh;
+  .JSW_modal_loginCloseBtn {
+    padding-left: 5%;
+    padding-top: 5%;
+  }
 
-}
+  .JSW_mypagewater {
+    width: 15vw;
+    height: 4vh;
 
+    background-color: #ccf4dc;
+    border-color: #ccf4dc;
 
+    position: fixed;
+    right: 5vw;
+    bottom: 1vh;
+  }
 }

@@ -14,7 +14,7 @@ const shuffleArray = (array) => {
 
 function Products() {
   const [prod, setProd] = useState([]);
-  const [displayedProducts, setDisplayedProducts] = useState(8); // 초기에 표시되는 상품 수
+  const [displayedProducts, setDisplayedProducts] = useState(12); // 초기에 표시되는 상품 수
 
   const fetchProduct = async () => {
     try {

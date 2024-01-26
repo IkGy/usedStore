@@ -55,7 +55,7 @@ const { log } = require("console");
 app.use(cors());
 
 const url = process.env.DB_URL;
-const port = process.env.PORT
+const port = process.env.PORT;
 new MongoClient(url)
   .connect({ useUnifiedTopology: true })
   .then((client) => {
@@ -225,14 +225,13 @@ app.get("/address/:cookie", async (req, res) => {
 //   응답.send(list);
 // });
 
-app.post('/upload', upload.single('profileIMG'), (req, res) => {
+app.post("/upload", upload.single("profileIMG"), (req, res) => {
   const file = req.file;
 
   // 업로드된 파일의 경로를 클라이언트에게 전송
   const fileUrl = `https://popol5.s3.ap-northeast-2.amazonaws.com/${file.filename}`;
   res.json({ fileUrl });
 });
-
 
 // 등록된 상품을 받아옴
 app.get("/product/registered", async (요청, 응답) => {
@@ -305,7 +304,6 @@ app.get("/review/mypagehoogi2", async (요청, 응답) => {
   응답.send(result);
 });
 
-
 // 찜해둔 물품목록
 app.get("/like/picklist", async (요청, 응답) => {
   const db = getDB();
@@ -333,8 +331,6 @@ app.get("/like/picklist", async (요청, 응답) => {
   console.log("prodData:", prodData);
   응답.send(prodData);
 });
-
-
 
 app.get("/room_list", async (req, res) => {
   const db = getDB();
@@ -375,32 +371,39 @@ app.post("/productedit", async (req, res) => {
         refund: req.body.change,
         location: req.body.selectedAddress,
         postprice: req.body.postprice,
-        updated_at: new Date()
+        updated_at: new Date(),
       },
     }
   );
-  res.status(201).send("수정완료")
+  res.status(201).send("수정완료");
 });
 
 app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
   const db = getDB();
-  console.log("aaaaaaa",req.file.location);
-  console.log(req.body);
-  await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
-    $set:{
-      nickname:req.body.nickname,
-      about:req.body.about,
-      address:req.body.address,
-      profileIMG:req.file.location
-    }})
-  .then(()=>{
-    res.status(201).end();
-  })
-  .catch((err)=>{
-    console.log(err);
-    res.status(500).end();
-  })
-})
+  const data = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(req.body.id) });
+  await db
+    .collection("user")
+    .updateOne(
+      { _id: new ObjectId(req.body.id) },
+      {
+        $set: {
+          nickname: req.body.nickname,
+          about: req.body.about,
+          address: req.body.address,
+          profileIMG: req.file.location,
+        },
+      }
+    )
+    .then(() => {
+      res.status(201).send();
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).end();
+    });
+});
 // ---------실시간채팅------------- //
 
 io.on("connection", (socket) => {
