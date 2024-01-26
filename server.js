@@ -209,15 +209,15 @@ app.get("/address/:cookie", async (req, res) => {
   res.status(201).send(result.address);
 });
 
-app.get("/mypage", async (요청, 응답) => {
-  const db = getDB();
-  console.log(요청.query);
-  let list = await db
-    .collection("user")
-    .findOne({ _id: new ObjectId(요청.query.id) });
-  console.log("test", list);
-  응답.send(list);
-});
+// app.get("/mypage", async (요청, 응답) => {
+//   const db = getDB();
+//   console.log(요청.query);
+//   let list = await db
+//     .collection("user")
+//     .findOne({ _id: new ObjectId(요청.query.id) });
+//   console.log("test", list);
+//   응답.send(list);
+// });
 
 app.post('/upload', upload.single('profileIMG'), (req, res) => {
   const file = req.file;
@@ -228,6 +228,7 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
 });
 
 
+// 등록된 상품을 받아옴
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -242,6 +243,7 @@ app.get("/product/registered", async (요청, 응답) => {
   응답.send(result);
 });
 
+// 구매한 상품의 목록을 받아옴
 app.get("/product/buylist", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -256,6 +258,7 @@ app.get("/product/buylist", async (요청, 응답) => {
   응답.send(result);
 });
 
+// 자신이 판매했던 목록을 나열
 app.get("/product/soldlist", async (요청, 응답) => {
   const db = getDB();
   console.log(요청.query);
@@ -270,6 +273,34 @@ app.get("/product/soldlist", async (요청, 응답) => {
   응답.send(result);
 });
 
+app.get("/review/mypagehoogi", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db
+    .collection("review")
+    .find({
+      resiver: 요청.query.id,
+    })
+    .toArray();
+  console.log(result);
+  응답.send(result);
+});
+
+app.get("/review/mypagehoogi2", async (요청, 응답) => {
+  const db = getDB();
+  console.log(요청.query);
+  let result = await db
+    .collection("review")
+    .find({
+      writer: 요청.query.id,
+    })
+    .toArray();
+  console.log(result);
+  응답.send(result);
+});
+
+
+// 찜해둔 물품목록
 app.get("/like/picklist", async (요청, 응답) => {
   const db = getDB();
   const prodData = [];

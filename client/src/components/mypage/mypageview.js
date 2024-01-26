@@ -10,6 +10,8 @@ import Hoogi from "./hoogi";
 import "./mypage.css";
 
 
+
+
 function Mypageview() {
   /* */
   const [selectedAddress, setSelectedAddress] = useState('');
@@ -61,13 +63,30 @@ function Mypageview() {
     });
   }, []);
 
+  const [getReview, setGetReview] = useState([]);
+  
+  useEffect(() => {
+    const fetchGetReview = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
+        setGetReview(res.data.review);
+        console.log("--------리뷰정보--------");
+        console.log(res.data.review);
+        console.log("----------------");
+      } catch (error) {
+        console.error('데이터를 불러오지 못했습니다:', error.response?.data);
+      }
+    };
+    fetchGetReview();
+  }, []);
+  
+
   useEffect(() => {
     setTimeout(() => {
       setEnd("end");
     }, 100);
     return setEnd("");
   }, [menu]);
-
   
 
   let [userInfo, setUSerInfo] = useState({
@@ -91,22 +110,22 @@ function Mypageview() {
                       </span>
                     <ul>
                       <li>
-                        <a
+                        <p
                           href="#"
                           className={menu === "등록된 상품" ? "active" : "noactive"}
                           onClick={() => MenuClick("등록된 상품")}
                         >
                           등록된 상품 
-                        </a>
+                        </p>
                       </li>
                       <li>
-                        <a
+                        <p
                           href="#"
-                          className={menu === "찜 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("찜 목록")}
+                          className={menu === "후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("후기")}
                         >
                           후기
-                        </a>
+                        </p>
                       </li>
                     </ul>
                   </nav>
@@ -132,7 +151,7 @@ function Mypageview() {
                 </div>
               </div>
             </div>
-     
+    
 
             <div className="JSW_Sec2-2">
               {menu === "등록된 상품" && (
@@ -145,7 +164,7 @@ function Mypageview() {
                   <Hoogi menu={menu} userInfo={userInfo} data={data}></Hoogi>
                 </div>
               )}
-         
+        
             </div>
           </div>
         </div>

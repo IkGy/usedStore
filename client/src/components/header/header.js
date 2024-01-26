@@ -9,13 +9,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
-import Category from './category';
-
 
 let currentPath = "";
 function Header() {
   let location = useLocation();
   console.log("location pathname: ", location.pathname);
+
   useEffect(() => {
     if (currentPath === location.pathname) window.location.reload();
     currentPath = location.pathname;
@@ -37,7 +36,8 @@ function Header() {
   };
 
   useEffect(() => {
-    axios.get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
+    axios
+      .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
       .then((result) => {
         console.log(result.data);
       });
@@ -117,21 +117,20 @@ function Header() {
               <nav>
                 <ul className="header_login">
                   <li className="header_login_nav">
-                    <span>
+                    <Link to={"/sellitem"}>
                       <FaWonSign className="main_loginIcon" />
-                    </span>
-                    <Link to={"/sellitem"}>판매하기</Link>
-                    <span>
+                      판매하기
+                    </Link>
+                    <Link to={"/mypage"} >
                       <LuUserCircle2 className="main_loginIcon" />
-                    </span>
-                    <Link to={"/mypage"} >내정보</Link>
-                    <span>
+                      내정보
+                    </Link>
+                    <Link to={"/chat"}>
                       <AiOutlineAliwangwang className="main_loginIcon" />
-                    </span>
-                    <Link to={"/chat"}>채팅</Link>
+                      채팅
+                    </Link>
                   </li>
-                  <li></li>
-                  <li>
+                  <li className="login_logout">
                     <Link onClick={logOut} className="main_logout">
                       로그아웃
                     </Link>
@@ -139,7 +138,7 @@ function Header() {
                 </ul>
               </nav>
             ) : (
-              <ul className="header_login">
+              <ul className="header_login2" style={{paddingLeft: "10vw"}}>
                 <li>
                   <CiLogin className="main_mainIcon" />
                   <Link to={"/login"}>로그인</Link>
@@ -152,10 +151,7 @@ function Header() {
             )}
           </div>
         </div>
-      </div>
-      <div>
-        <Category/>
-      </div>
+        </div>
     </div>
   );
 }

@@ -17,14 +17,14 @@
 }
 
 .footer_giturl{
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   font-family: none;
   font-weight: 900;
   color: rgba(0, 0, 0, 0.893)
 }
 
 .ymj_footer_all h3 {
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   margin-bottom: 1.5vw;
   color: rgba(0, 0, 0, 0.893)
 }
@@ -61,31 +61,24 @@
   margin: 0 auto;
   margin-top: 1.5vw;
   justify-content: space-around;
-  color: gray;
+  color: rgb(0, 0, 0);
 }
 
-.ymj_footer_all > p {
- font-size: 12px;
-}
-
-.ymj_footer_left > p{
-  font-size: 15pt;
-}
 .ymj_footer_right > div {
-  margin-top: 1.5vw;
+  margin-top: 1vw;
 }
 
 .ymj_footer_right > div > p{
-  font-size: 1.2vw;
+  font-size: 1vw;
   }
 
 .ymj_footer_right{
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 
 .ymj_footer_left > p {
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .ymj_footer_right > p {
@@ -93,7 +86,7 @@
 }
 
 .footer_colorbl{
-  color:rgba(0, 0, 0, 0.701);
+  color:rgba(0, 0, 0, 0.995);
   font-size: 1.6vw;
   font-weight: 900;
 }

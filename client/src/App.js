@@ -23,8 +23,9 @@ import Test from './components/test';
 import Test2 from './components/test2';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
-import Sellitemedit from './components/mypage/sellitemedit';
+import Sellitemedit from './components/mypage/sale/regi';
 import Picklist from './components/mypage/picklist';
+import MakeNewPW from './components/login/makenewpw';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,6 +53,7 @@ function App() {
           <Route path='/mypageview/:id' element={<Mypageview/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
+          <Route path='/makenewpw' element={<MakeNewPW />}></Route>
           <Route path='/sign_up' element={<Sign_Up />}></Route>
           <Route path='/sign_up1' element={<Sign_Up1 />}></Route>
           <Route path='/chat' element={<Chat />}></Route>
@@ -61,7 +63,7 @@ function App() {
           <Route path='/sellitem' element={<Sale />}></Route>
           <Route path='/sellitemedit/:id' element={<Sellitemedit />}></Route>
           <Route path='/test' element={<Test />}></Route>
-          <Route path='/product/new' element={<Test2 />}></Route>
+          <Route path='/product/new' element={<Test2 />}></Route> 
           <Route path='/main/:search' element={<Searchpage />}></Route>
           <Route path='/detailsearch/:category' element={<Categorysc />}></Route>
           

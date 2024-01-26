@@ -57,11 +57,16 @@ function Buylist() {
                 <div className="JSW_Aname">{data.comment}</div>
                 <div className="JSW_Aname">{data.price}</div>
               </Link>
+              <div className="JSW_listhoogi">
+                  {/* <Link to={`/sellitemedit/${data._id}`}> */}
+                  후기 작성하기
+                  {/* </Link> */}
+              </div>
             </div>
           )
         })}
       </div>
-   </div>
+  </div>
   )
 }
 
