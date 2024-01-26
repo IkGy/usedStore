@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './overview.css';
 import { API_URL } from '../../../config/contansts';
 import axios from 'axios';
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { GoHeartFill } from "react-icons/go";
 import { FaClock } from "react-icons/fa6";
@@ -90,6 +90,26 @@ function Item(props) {
             navigate('/login');
         }
     };
+
+    // 채팅방 조회
+    const [openChattingroom, setOpenChattingRoom] = useState([]);
+
+    const openChatting = async () => {
+        if (getCookie('login')){
+            try {
+                const res = await axios.post(`${API_URL}/prod/open/chattingroom/${id}`, {
+                    params: { login: getCookie('login') }
+                });
+                setOpenChattingRoom(res.data);
+                console.log(res.data);
+            } catch (error) {
+                console.error("채팅방을 불러오지 못했습니다");
+            }
+        } else {
+            navigate('/login');
+        }    
+    };
+    
 
     // 신고 알림창
     const handleReportClick = () => {
@@ -200,21 +220,18 @@ function Item(props) {
                                     </div>
                                 </div>
                             </div>
-                            {/* 찜 / 실시간 메세지 / 바로구매 버튼 */}
+                            {/* 찜 / 실시간 메세지 버튼 */}
                             <div className='KJH_item_btn_section'>
                                 <div className={`KJH_item_like_section_${like ? 'true' : 'false'}`}>
                                     <FaHeart onClick={toggleLike} />
                                 </div>
-                                <div className='KJH_item_btn_select_section'>
-                                    <div className='KJH_item_btn_select_talk'>
-                                        <IoChatboxEllipsesOutline />
-                                        <span>실시간 채팅</span>
-                                    </div>
-                                </div>
-                                <div className='KJH_item_btn_select_section'>
-                                    <div className='KJH_item_btn_select_buy'>
-                                        <span>바로구매</span>
-                                    </div>
+                                <div className='KJH_item_btn_select_section' onClick={openChatting}>
+                                    <Link to ='/chat'>
+                                        <div className='KJH_item_btn_select_talk'>
+                                            <IoChatboxEllipsesOutline />
+                                            <span>실시간 채팅</span>
+                                        </div>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
