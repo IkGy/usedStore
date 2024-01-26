@@ -90,6 +90,7 @@ function Mypage() {
       console.error(err);
       console.log("실패");
     });
+    setMenu('등록된 상품');
   }, []);
 
   useEffect(() => {
