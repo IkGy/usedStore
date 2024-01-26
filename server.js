@@ -31,13 +31,12 @@ const upload = multer({
 });
 
 
-
-
 const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
 const roomRouter = require("./routes/chat_room");
+const mypageRouter = require("./routes/mypage");
 
 
 app.use(express.json());
@@ -68,66 +67,13 @@ app.use("/jwt", jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
 app.use("/chat", roomRouter);
-
-// app.post('/product/new', upload.single('image'), (요청, 응답) => {
-//   console.log(요청.file)
-// })
+app.use("/mypage", mypageRouter);
 
 app.use(express.static(path.join(__dirname, "client/build")));
-
-// app.get('/', async (req,res) => {
-//   let result = await db.collection("product").find().toArray()
-//   console.log(result);
-//   res.status(201).send(result)
-// })
-
-// app.get('/header', async (req,res) => {
-//   let result = await db.collection("product").find().toArray()
-//   console.log(result);
-//   res.status(201).send(result)
-// })
 
 app.get("/", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
-
-// app.post("/login", async (req, res) => {
-//   const { email, password } = req.body;
-//   console.log(req.body);
-
-//   const Findemail = await db.collection("user").findOne({
-//     email: req.body.email
-//   });
-//   if(Findemail){
-//     if(req.body.password === Findemail.password){
-//       res.status(201).send("성공");
-//     } else {
-//       res.status(400).send("비번 틀림");
-//     }
-//   }
-//   }
-// );
-
-// app.post('/register', async (req,res) => {
-//   let result = req.body  // sign up 의 데이테를 불러오는 값
-//   await db.collection("user").insertOne({
-//     real_name: result.name,
-//     id: result.id,
-//     email: result.email,
-//     password: result.password,
-//     address: result.address,
-//     phone_number: result.phone_number,
-//     role: "user",
-//     user_name: "user",
-//     about: " ",
-//     create_at: new Date()
-//   })
-
-//   res.status(201).send(
-//     "전송 성공"
-//     )
-//   }
-// );
 
 app.post("/product", upload.array("img", 3), async (req, res) => {
   const tag = JSON.parse(req.body.tag);
@@ -205,19 +151,8 @@ app.get("/address/:cookie", async (req, res) => {
   let result = await db.collection("user").findOne({
     _id: new ObjectId(req.params.cookie),
   });
-  console.log(result);
   res.status(201).send(result.address);
 });
-
-// app.get("/mypage", async (요청, 응답) => {
-//   const db = getDB();
-//   console.log(요청.query);
-//   let list = await db
-//     .collection("user")
-//     .findOne({ _id: new ObjectId(요청.query.id) });
-//   console.log("test", list);
-//   응답.send(list);
-// });
 
 app.post('/upload', upload.single('profileIMG'), (req, res) => {
   const file = req.file;
@@ -231,7 +166,6 @@ app.post('/upload', upload.single('profileIMG'), (req, res) => {
 // 등록된 상품을 받아옴
 app.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
   let result = await db
     .collection("product")
     .find({
@@ -239,14 +173,12 @@ app.get("/product/registered", async (요청, 응답) => {
       status: "판매중",
     })
     .toArray();
-  console.log(result);
   응답.send(result);
 });
 
 // 구매한 상품의 목록을 받아옴
 app.get("/product/buylist", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
   let result = await db
     .collection("product")
     .find({
@@ -261,7 +193,6 @@ app.get("/product/buylist", async (요청, 응답) => {
 // 자신이 판매했던 목록을 나열
 app.get("/product/soldlist", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
   let result = await db
     .collection("product")
     .find({
@@ -269,33 +200,28 @@ app.get("/product/soldlist", async (요청, 응답) => {
       status: "판매완료",
     })
     .toArray();
-  console.log(result);
   응답.send(result);
 });
 
 app.get("/review/mypagehoogi", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
   let result = await db
     .collection("review")
     .find({
       resiver: 요청.query.id,
     })
     .toArray();
-  console.log(result);
   응답.send(result);
 });
 
 app.get("/review/mypagehoogi2", async (요청, 응답) => {
   const db = getDB();
-  console.log(요청.query);
   let result = await db
     .collection("review")
     .find({
       writer: 요청.query.id,
     })
     .toArray();
-  console.log(result);
   응답.send(result);
 });
 
@@ -304,19 +230,16 @@ app.get("/review/mypagehoogi2", async (요청, 응답) => {
 app.get("/like/picklist", async (요청, 응답) => {
   const db = getDB();
   const prodData = [];
-  console.log(요청.query);
   let result = await db
     .collection("like")
     .find({ liker: 요청.query.id })
     .toArray();
-  console.log("like", result);
 
   for (let i = 0; i < result.length; i++) {
     await db
       .collection("product")
       .findOne({ _id: new ObjectId(result[i].product_id) })
       .then((res) => {
-        console.log("res", res);
         prodData.push(res);
       })
       .catch((err) => {
@@ -324,7 +247,6 @@ app.get("/like/picklist", async (요청, 응답) => {
         res.static(501).end();
       });
   }
-  console.log("prodData:", prodData);
   응답.send(prodData);
 })
 

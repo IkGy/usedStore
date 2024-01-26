@@ -13,7 +13,7 @@ function Detail() {
     const { id } = useParams();
     const [item, setItem] = useState([]); // 상품 정보들
     const [save, setSave] = useState([]); // 해당 상품을 찜한 개수
-    const [userInfo, setUserInfo] = useState([]); // 판매자 정보 
+    const [userInfo, setUserInfo] = useState([]); // 판매자 정보
     const [review, setReview] = useState([]); // 해당 상품을 리뷰한 유저의 리뷰정보
     const [products, setProducts] = useState([]); // 판매자가 등록한 상품들 정보 전부
     const [error, setError] = useState(false);  // 에러 상태 추가 
