@@ -4,8 +4,6 @@ import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import soldout from "./image/soldout.png";
-
 function Mypagehoogi() {
 
   const [data, setData] = useState([])
@@ -13,8 +11,6 @@ function Mypagehoogi() {
   useEffect(() => {
     axios.get(`${API_URL}/review/mypagehoogi`,{params:{id:getCookie('login')}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {

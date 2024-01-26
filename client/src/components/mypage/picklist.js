@@ -11,13 +11,9 @@ import img3 from "./image/noimg.png"
 function Picklist() {
   const [data, setData] = useState([])
 
-  console.log(data);
-
   useEffect(() => {
     axios.get(`${API_URL}/like/picklist`,{params:{id:getCookie('login')}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
@@ -47,7 +43,6 @@ function Picklist() {
       <div className="JSW_picklistname">찜 목록</div>
       <div className="JSW_conentGridBox">
         {data.map((data, i)=> {
-          console.log("데이터: ",data);
           let img0 = null;
           if (data.images.length > 0)
           {

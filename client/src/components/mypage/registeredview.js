@@ -9,15 +9,9 @@ function Registeredview(props) {
   const [data, setData] = useState([])
   const useId = useParams();
 
-  console.log("test",useId);
-
-
-
   useEffect(() => {
     axios.get(`${API_URL}/product/registered`,{params:{id:useId.id}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
@@ -25,8 +19,6 @@ function Registeredview(props) {
       console.log("실패");
     });
   }, []);
-
-
 
   const [end ,setEnd] = useState("");
   const [isInitialLoad, setIsInitialLoad] = useState(true);

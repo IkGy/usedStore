@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import Modal from './shopmodal';
+
 import './hoogi.css';
 
 // 날짜 계산
@@ -18,12 +20,22 @@ function formatDate(dateString) {
   return `${year}년 ${month}월 ${day}일`;
 }
 
-
 function Hoogi(props) {
   const navigate = useNavigate();
   const [data, setData] = useState([])
   const useId = useParams();
   const [getReview, setGetReview] = useState([]);
+
+  // 모달창 관리
+  const [modalOpen, setModalOpen] = useState(false); // 모달창 관리
+  // 모달창 열기
+  function openModal() {
+    setModalOpen(true);
+  }
+  // 모달창 닫기
+  function closeModal() {
+    setModalOpen(false);
+  }
 
   // console.log("test",useId);
 
@@ -47,9 +59,6 @@ function Hoogi(props) {
       try {
         const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
         setGetReview(res.data.review);
-        console.log("--------리뷰정보--------");
-        console.log(res.data.review);
-        console.log("----------------");
       } catch (error) {
         console.error('데이터를 불러오지 못했습니다:', error.response?.data);
       }
@@ -83,6 +92,15 @@ function Hoogi(props) {
           <div className="KJH_shop-review_main_info">
             상점후기
           </div>
+          <div className="KJH_shop-review_post">
+            <div
+              onClick={openModal}
+              style={{ cursor: 'pointer' }}
+              >
+              후기 등록
+            </div> {/* 모달 열기 버튼 */}
+            <Modal show={modalOpen} onClose={closeModal} />
+          </div>
         </div>
         {getReview.map((review) => (
           <div className="KJH_shop-review_info"  key={review._id}>
@@ -105,4 +123,4 @@ function Hoogi(props) {
   )
 }
 
-export default Hoogi
+export default Hoogi;

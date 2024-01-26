@@ -8,15 +8,9 @@ function Registered(props) {
   const navigate = useNavigate();
   const [data, setData] = useState([])
 
-  console.log(data);
-
-
-
   useEffect(() => {
     axios.get(`${API_URL}/product/registered`,{params:{id:getCookie('login')}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {

@@ -20,6 +20,7 @@ router.get('/header',async (req,res)=>{
     let result = await db.collection("product").findOne({_id: new ObjectId(req.params.id)});
     res.status(201).send({product:result})
 })
+
 router.get('/detail/:id', async (req, res) => {
   try {
     const db = getDB();

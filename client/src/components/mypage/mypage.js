@@ -69,7 +69,6 @@ function Mypage() {
         // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ''}`;
         setSelectedAddress(fullAddress);
-        console.log(data);
       },
     }).open();
   };
@@ -82,8 +81,6 @@ function Mypage() {
   useEffect(() => {
     axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
