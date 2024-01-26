@@ -1,6 +1,5 @@
 .main_header {
   margin-top: 2vw;
-  height: 5vw;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -140,9 +139,6 @@ padding-right: 1vw;
   padding: 5px;
 }
 @media (max-width: 1200px) {
-  .main_header{
-    height: 6vw;
-  }
   .main_logoIcon{
     width: 5vw;
     margin-right: 1vw;
@@ -185,11 +181,6 @@ padding-right: 1vw;
 }
 
 @media (max-width: 500px) {
-  .main_header{
-    height: 15vw;
-    margin-top: 2vh;
-    margin-bottom: 1vw;
-  }
   .main_logoIcon {
     width: 13vw;
   }

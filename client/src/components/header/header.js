@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
+import Category from "./category";
 
 let currentPath = "";
 function Header() {
@@ -151,7 +152,10 @@ function Header() {
             )}
           </div>
         </div>
-        </div>
+      </div>
+      <div className="header_category">
+        <Category />
+      </div>
     </div>
   );
 }
