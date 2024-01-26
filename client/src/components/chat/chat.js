@@ -1,30 +1,38 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Chat_room from "./chat_component/chat_room";
-import Room_list from "./chat_component/room_list";
-
+import axios from "axios";
+import { getCookie } from "../../useCookies";
+import { API_URL } from "../config/contansts";
+import Room_list from "./chat_components/room_list.js";
+import Chat_room from "./chat_components/chat_room.js";
 import './chat.css'
 
 
 function Chat(){
+  console.log("chat진입");
   const [selectedUser, setSelectedUser] = useState(null);
-  // console.log("Chat에서 selecteduser: ", selectedUser);
+  const [selectedRoom, setSelectedRoom] = useState(null);
 
   const SelectUser = (user) => {
     setSelectedUser(user);
   };
+  const SelectRoom = (room) => {
+    setSelectedRoom(room);
+  };
 
   return(
+
     <div className="chat_page_Main">
-      <div className="room_list_div">
-        <Room_list
-          selectedUser={selectedUser}
-          onSelectUser={SelectUser}
-        />
-      </div>
-      <div className="chat_room_div">
-        <Chat_room  selectedUser={selectedUser}/>
-      </div>
+      <Room_list 
+        selectedUser={selectedUser} 
+        onSelectUser={SelectUser} 
+        selectedRoom={selectedRoom} 
+        onSelectRoom={SelectRoom} />
+      <Chat_room 
+        selectedUser={selectedUser} setSelectedUser={setSelectedUser}
+        selectedRoom={selectedRoom}
+        setSelectedRoom={setSelectedRoom}
+      />
     </div>
   );
 }

@@ -15,8 +15,6 @@ import Sign_Up from './components/sign_up/sign_up';
 import Sign_Up1 from './components/sign_up/sign_up1';
 import Sale from './components/sale/regi'
 import Chat from './components/chat/chat';
-import Chat_room from './components/chat/chat_component/chat_room';
-import Room_list from './components/chat/chat_component/room_list';
 import Rules from './components/guide/rules';
 import Rro from './components/guide/pro';
 import Location from './components/guide/location';
@@ -59,8 +57,6 @@ function App() {
           <Route path='/sign_up' element={<Sign_Up />}></Route>
           <Route path='/sign_up1' element={<Sign_Up1 />}></Route>
           <Route path='/chat' element={<Chat />}></Route>
-          <Route path='/chatroom/:id' element={<Chat_room />}></Route>
-          <Route path='/room_list' element={<Room_list />}></Route>
           <Route path='/rules' element={<Rules />}></Route>
           <Route path='/pro' element={<Rro />}></Route>
           <Route path='/location' element={<Location />}></Route>
