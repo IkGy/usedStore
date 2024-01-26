@@ -3,7 +3,21 @@ import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
-// import "./picklist.css"
+
+import './hoogi.css';
+
+// 날짜 계산
+function formatDate(dateString) {
+  // 문자열에서 연도, 월, 일 추출
+  const dateParts = dateString.split('T')[0].split('-');
+  const year = dateParts[0].substring(2); // 연도의 마지막 두 자리
+  const month = dateParts[1]; // 월
+  const day = dateParts[2]; // 일
+
+  // yy년 mm월 dd일 형식으로 포맷
+  return `${year}년 ${month}월 ${day}일`;
+}
+
 
 function Hoogi(props) {
   const navigate = useNavigate();
@@ -63,30 +77,31 @@ function Hoogi(props) {
 
 
   return(
-    <div className="JSW_picklist">
-      <div className="JSW_picklistname">후기</div>
-      <div className="JSW_conentGridBox">
-        
-        {getReview.map((review, i)=> {
-          return(
-            <div className="JSW_liststart_hoogi" key={review._id}>
-              <Link to={`/detail/${review._id}`}>
-                {/* <div className="JSW_contentGridBox_img">
-                {review.images && review.images[0] && <img src={review.images[0]} width="100%" alt="Review" />}
-                </div> */}
-                <div className="JSW_hoogiGridBox_img">
-                  <div className="JSW_Aname_hoogi">리뷰 작성자 : {review.writer}
-                </div>
-                </div>
-                <div className="JSW_Aname_hoogi">후기 : {review.comment}</div>
-                <div className="JSW_Aname_hoogi">작성일 : {review.update_at}</div>
-              </Link>
-            
+    <>
+      <div className="KJH_shop-review_container">
+        <div className="KJH_shop-review_main">
+          <div className="KJH_shop-review_main_info">
+            상점후기
+          </div>
+        </div>
+        {getReview.map((review) => (
+          <div className="KJH_shop-review_info"  key={review._id}>
+            <div className="KJH_shop-review_writer_section">
+              <div className="KJH_shop-review_writer">
+                {review.writer}
+              </div>
+              <div className="KJH_shop-review_date">
+                {formatDate(review.update_at)} 
+                {/* {review.update_at} */}
+              </div>
             </div>
-          )
-        })}
-      </div>
-  </div>
+            <div className="KJH_shop-review_comment">
+              {review.comment}
+            </div>
+          </div>
+        ))}
+        </div>
+    </>
   )
 }
 
