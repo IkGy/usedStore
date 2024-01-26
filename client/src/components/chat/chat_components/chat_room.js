@@ -44,32 +44,38 @@ function Chat_room({ selectedUser, selectedRoom }){
   };
 // -----------------------------------------------------//
 
-useEffect(() => {
-  
-}, [])
+
 
 useEffect(() => {
   console.log("ChatRoom에서 selecteduser: ", selectedUser);
   console.log("ChatRoom에서 selectedroom: ", selectedRoom);
   setUser(getCookie('login'));
+  socket = io(ENDPOINT)
+  console.log("socket: ", socket);
   
   if (selectedRoom) {
-    socket = io(ENDPOINT)
-    console.log("socket: ", socket);
     getLog(selectedRoom);
     
-    
-    socket.on('message', (data) => {
-      const { writer, message } = data;
-      setMessages((messages) => [...messages, { writer, message }]);
-    })
-
     socket.emit('join', selectedRoom, (error) => {
       if(error)
         alert('에러코드[', error, ']');
-    })  
+      })  
     }
   }, [selectedRoom, ENDPOINT]);
+
+  useEffect(() => {
+    socket.on('message', (data) => {
+      const { writer, message } = data;
+      // setMessages((messages) => [...messages, { writer, message }]);
+      setMessages(messages => {
+        const newMessages = [...messages, { writer, message }];
+        console.log('New Messages:', newMessages);
+        return newMessages;
+      });
+      
+    });
+  }, [socket, messages])
+
 
   const sendMessage = (event) => {
     event.preventDefault()
@@ -78,7 +84,6 @@ useEffect(() => {
 
     if (message) {
     console.log(message)
-
     axios.post(`${API_URL}/chat/live_chat`, {
       room_id: selectedRoom,
       writer: user,
@@ -92,8 +97,8 @@ useEffect(() => {
     })
 
     //소켓 연결할 부분
-    socket.emit('sendMessage', { writer, message }, () => setMessage(''));  
-    setMessage('');
+    socket.emit('sendMessage', { writer, message });  
+      setMessage('');
     }
   }
 
@@ -101,29 +106,8 @@ useEffect(() => {
     await axios.get(`${API_URL}/chat/chat`, {params:{ room_id: id }})
     .then((res)=>{
       const logs = res.data;
-      // console.log("res.data: ", res.data);
-      // if(res.data.length < 1){
-      //    console.log("로그가 없음!"); 
-      //   } else {
-      //     console.log("room_id: ", res.data[0].room_id);
-      // }
-      // const pastLog = logs.map(log => (
-      //   `${log.writer}: ${log.chat}`
-      //   ))
-      //   console.log("PL: ", pastLog);
-      // for (let i = 0; i < logs.length; i++) {
-      //   const chat = res.data[i].chat;
-      //   const writer = res.data[i].writer;
-        
-      //   console.log("채팅내용: ", chat);
-      //   console.log("쓴사람: ", writer);
-      // }
-      // setMessages(logs.map(log => ({ writer: log.writer, chat: log.chat })));
-      // console.log("logs: ", logs);
-      // setMessages(pastLog)
-      // setMessages(logs);
-      // console.log("logs: ",logs);
       setMessages(logs.map((log) => ({ writer: log.writer, message: log.chat || log.message })));
+
     })
     .catch((error)=> {
       console.log("error: ", error);
@@ -174,20 +158,20 @@ useEffect(() => {
         <div>
         <BasicScrollToBottom className="messages">
           {messages.map((message, i) => {
+            // console.log("messages: ", messages);
             // 각 메시지의 작성자를 추출
-            console.log("message: ", message);
+            // console.log("message: ", message);
             
             const messageWriter = message.writer;
             const messageContent = message.message;
-            console.log("작성자: ", messageWriter);
-            console.log("내용: ", messageContent);
+            // console.log("작성자: ", messageWriter);
+            // console.log("내용: ", messageContent);
 
             // const messageWriter = message.split(":")[0].trim();
             
             // 현재 사용자와 작성자가 동일한 경우 true, 아니면 false
             const isSentByCurrentUser = messageWriter === user;
-            console.log("isSentByCurrentUser: ", isSentByCurrentUser);
-            
+            // console.log("isSentByCurrentUser: ", isSentByCurrentUser);
 
             return isSentByCurrentUser ? (
               <div className='messageContainer justifyEnd' key={i}>

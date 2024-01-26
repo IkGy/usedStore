@@ -333,6 +333,7 @@ app.get("/like/picklist", async (요청, 응답) => {
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+const { callbackPromise } = require("nodemailer/lib/shared");
 // const socketio = require('socket.io');
 // const io = socketio(server)
 app.use(cors({ origin: '*' }))
@@ -348,25 +349,26 @@ io.on('connection', (socket) => {
   // 방 입장 이벤트 핸들링
   socket.on('join', (room, callback) => {
     console.log('방 입장:', room);
-
     // 해당 방에 클라이언트 소켓을 조인
-    socket.join(room);
     roomInfo[socket.id] = room;
     console.log(roomInfo[socket.id]);
-
+    socket.join(room);
+    console.log("join 실행");
+    // callback()
   });
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
-  socket.on('sendMessage', async (data) => {
+  socket.on('sendMessage', async (data, callback) => {
     const { writer, message } = data;
-    console.log("data: ", data);
-    console.log("writer: ", writer);
+    // console.log("data: ", data);
+    // console.log("writer: ", writer);
     console.log('메시지 받음:', message);
     const room = roomInfo[socket.id];
-    console.log("room: ", room);
+    // console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
     io.to(room).emit('message', { writer, message });
+    // callback()
   });
 
   // 연결 해제 이벤트 핸들링
