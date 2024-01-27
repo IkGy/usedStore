@@ -1,16 +1,15 @@
 import { getCookie } from "../../useCookies";
+import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Registeredview(props) {
-  const navigate = useNavigate();
+function Mypagehoogi() {
+
   const [data, setData] = useState([])
-  const useId = useParams();
 
   useEffect(() => {
-    axios.get(`${API_URL}/product/registered`,{params:{id:useId.id}})
+    axios.get(`${API_URL}/review/mypagehoogi`,{params:{id:getCookie('login')}})
     .then((res) => {
       setData(res.data);
     })
@@ -37,30 +36,28 @@ function Registeredview(props) {
     }
   }, [isInitialLoad]);
 
-
   return(
     <div className="JSW_picklist">
-      <div className="JSW_picklistname">등록된 상품</div>
+      <div className="JSW_picklistname">구매 후기</div>
       <div className="JSW_conentGridBox">
         {data.map((data, i)=> {
           return(
             <div className="JSW_liststart"
             key={data.id}>
               <Link to={`/detail/${data._id}`}>
-                <div className="JSW_contentGridBox_img">
-                  <img src={data.images[0]} width="100%"></img>
+              <div className="JSW_hoogiGridBox_img">
+                  <div className="JSW_Aname_hoogi">리뷰 작성자 : {data.writer}
                 </div>
-                <div className="JSW_Aname">{data.title}</div>
-                <div className="JSW_Aname">{data.comment}</div>
-                <div className="JSW_Aname">{data.price}</div>
+                </div>
+                <div className="JSW_Aname_hoogi">후기 : {data.comment}</div>
+                <div className="JSW_Aname_hoogi">작성일 : {data.update_at}</div>
               </Link>
-             
             </div>
           )
         })}
       </div>
-   </div>
+  </div>
   )
 }
 
-export default Registeredview
+export default Mypagehoogi

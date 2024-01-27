@@ -1,0 +1,144 @@
+.KJH_shop-review_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.KJH_shop-review_modal_section {
+    color: black;
+}
+
+/* ------------- 모달 : 등록하는 구간 ------------- */
+
+.KJH_shop-review_modal_info {
+    width: 40vw;
+    height: 45vh;
+    background-color: #dbe3ff;
+    padding: 4vh 2vw;
+    border: 0.2vw solid #2748b0;
+    border-radius: 0.4vw;
+}
+
+.KJH_shop-review_modal_in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(207, 208, 255); */
+    overflow: hidden;
+}
+
+.KJH_shop-review_modal_title_section {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+}
+
+.KJH_shop-review_modal_title {
+    display: inline-block;
+    background-color: white;
+    padding: 1.6vh 1vw;
+    border-radius: 0.4vw;
+    font-size: 1.4vw;
+    border: 0.2vw solid #2748b0;
+}
+
+.KJH_shop-review_modal_nickname {
+    margin-right: 0.4vw;
+    font-size: 1.2vw;
+    font-weight: 700;
+    color: #2748b0;
+}
+
+.KJH_shop-review_modal_ex_name {
+    font-size: 0.9vw;
+    color: #2f60ff;
+}
+
+.KJH_shop-review_modal_who-shop_section {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.4vh 0.6vw;
+}
+
+.KJH_shop-review-modal_content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: white;
+    height: 17vh;
+    border-radius: 0.2vw;
+    overflow-y: auto;
+    font-size: 1.2vw;
+    padding: 1vw 2vh;
+    border: 0.2vw solid #2748b0;
+}
+
+.KJH_shop-review_modal_bottom_section {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    width: 100%;
+}
+
+.KJH_shop-review_modal_bottom_date_section {
+    display: flex;
+    align-items: flex-end;
+}
+
+.KJH_shop-review_modal_date_title {
+    font-size: 0.8vw;
+}
+.KJH_shop-review_modal_date_content {
+    font-size: 1.2vw;
+    color: #2748b0;
+}
+
+.KJH_shop-review_modal_submit {
+    display: inline-block;
+    padding: 1vh 1vw;
+    font-size: 24px;
+    border-radius: 0.4vw;
+    background-color: white;
+    border: 0.2vw solid #2748b0;
+    font-size: 1.2vw;
+    transition: all 0.3s;
+}
+
+.KJH_shop-review_modal_submit:hover {
+    background-color: #89a4ff;
+    border: 0.2vw solid white;
+    color: white;
+}
+
+/* ------------------------------------------------ */
+.KJH_shop-review_close-button {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: #ff817a;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}

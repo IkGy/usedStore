@@ -20,6 +20,7 @@ router.get('/header',async (req,res)=>{
     let result = await db.collection("product").findOne({_id: new ObjectId(req.params.id)});
     res.status(201).send({product:result})
 })
+
 router.get('/detail/:id', async (req, res) => {
   try {
     const db = getDB();
@@ -53,7 +54,7 @@ router.get('/detail/:id', async (req, res) => {
 
 router.delete('/delete/:id', async (req, res) => {
   try {
-    console.log(req.params);
+    // console.log(req.params);
     const db = getDB();
     await db.collection("product").deleteOne({_id: new ObjectId(req.params.id)})
     .then(()=>{
@@ -75,7 +76,7 @@ router.get('/like/check', async (req, res) => {
       product_id : req.query.prodid,
       liker : req.query.userid
     });
-    console.log(likerid);
+    // console.log(likerid);
     res.status(201).send(likerid)
   } catch (error) {
     console.error(error);
@@ -143,5 +144,20 @@ router.get('/like/getlike', async (req, res) => {
     res.status(500).send('조회 오류');
   }
 });
+
+router.post('/open/chattingroom/:id', async (req, res) => {
+  try {
+    const db = getDB();
+    // console.log(req.query);
+    const mychattingroom = req.query;
+    await db.collection("chattingroom").find({
+      chattingroom_id: mychattingroom
+    }).toArray();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('채팅방을 조회하지 못했습니다');
+  }
+});
+
 
 module.exports = router;

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie, removeCookie } from "../../useCookies";
 import { API_URL } from "../config/contansts";
+import Category from "./category";
 
 let currentPath = "";
 function Header() {
@@ -80,15 +81,15 @@ function Header() {
     if (getCookie("login")) {
       removeCookie('login');
       window.Kakao.Auth.logout()
-        .then(function () {
-          alert(
-            "logout ok\naccess token -> " + window.Kakao.Auth.getAccessToken()
-          );
-          deleteCookie();
-        })
-        .catch(function () {
-          alert("Not logged in");
-        });
+        // .then(function () {
+        //   alert(
+        //     "logout ok\naccess token -> " + window.Kakao.Auth.getAccessToken()
+        //   );
+        //   deleteCookie();
+        // })
+        // .catch(function () {
+        //   alert("Not logged in");
+        // });
     }
     navigate("/");
     // window.location.href = '/'
@@ -138,7 +139,7 @@ function Header() {
                 </ul>
               </nav>
             ) : (
-              <ul className="header_login">
+              <ul className="header_login2" style={{paddingLeft: "10vw"}}>
                 <li>
                   <CiLogin className="main_mainIcon" />
                   <Link to={"/login"}>로그인</Link>
@@ -151,7 +152,10 @@ function Header() {
             )}
           </div>
         </div>
-        </div>
+      </div>
+      <div className="header_category">
+        <Category />
+      </div>
     </div>
   );
 }

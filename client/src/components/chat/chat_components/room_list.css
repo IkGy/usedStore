@@ -1,0 +1,19 @@
+.room_list_Main{
+  /* border: 1px solid #000;  */
+  max-height: 35vw;
+  min-height: 35vw;
+  overflow-y: auto;
+}
+.room_list_Top{
+  border-bottom: 1px solid #000;
+}
+.room_list{
+  display: block;
+  padding: 2vw;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.room_list:hover{
+  background-color: rgba(128, 128, 128, 0.136);
+}

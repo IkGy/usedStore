@@ -1,30 +1,3 @@
-.JSW_picklist {
-  position: relative;
-  
-  margin: 0 auto;
-  padding: 1vw;
-
-
-}
-
-.JSW_picklistname {
-  font-size: 1vw;
-  font-weight: 600;
-}
-
-.JSW_conentGridBox {
-  width: 100%;
-  height: 100%;
-  
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  
-  gap: 1vw;
-  padding: 1vw 0 0;
-  
-}
-
 .JSW_liststart {
   width: 10vw;
   
@@ -70,13 +43,17 @@
 .JSW_Aname {
   font-weight: 700;
   text-align: center;
-  
-  /* border-top: 1px solid #000; */
 }
 
-/* .JSW_Kname {
+.JSW_listhoogi {
+  border-top: 1px solid #000;
+  text-align: center;
+}
+
+.JSW_listhoogi:hover {
+  background-color: #03C75A;
   color: white;
-} */
+}
 
 .JSW_contentGridBox_img > img {
   border-top-left-radius: 15px;
@@ -112,13 +89,6 @@
     font-size: 90%;
   }
 
-  .JSW_conentGridBox {
-    grid-template-columns: repeat(3, 2fr);
-    
-    
-  }
-
-
   .JSW_liststart {
     width: 15vw;
   }
@@ -126,10 +96,6 @@
   .JSW_contentGridBox_img {
     height: 12vw;
 
-  }
-
-  .JSW_picklistname {
-    font-size: 2vw;
   }
 
 }
@@ -143,18 +109,6 @@
 
   .JSW_Aname {
     font-size: 80%;
-  }
-
-  .JSW_conentGridBox {
-    gap: 5vw;
-    grid-template-columns: 1fr;
-    /* z-index: 5; */
-    
-  }
-
-  .JSW_picklistname {
-    padding-left: 10%;
-    font-size: 4vw;
   }
   
   .JSW_contentGridBox_img {

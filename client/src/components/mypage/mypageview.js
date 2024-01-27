@@ -11,9 +11,7 @@ import "./mypage.css";
 
 
 
-
 function Mypageview() {
-  /* */
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
   const [menu, setMenu] = useState("등록된 상품");
@@ -53,8 +51,7 @@ function Mypageview() {
   useEffect(() => {
     axios.get(`${API_URL}/user/mypage`,{params:{id:useId.id}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
+      // console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
@@ -70,9 +67,6 @@ function Mypageview() {
       try {
         const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
         setGetReview(res.data.review);
-        console.log("--------리뷰정보--------");
-        console.log(res.data.review);
-        console.log("----------------");
       } catch (error) {
         console.error('데이터를 불러오지 못했습니다:', error.response?.data);
       }
@@ -121,8 +115,8 @@ function Mypageview() {
                       <li>
                         <p
                           href="#"
-                          className={menu === "찜 목록" ? "active" : "noactive"}
-                          onClick={() => MenuClick("찜 목록")}
+                          className={menu === "후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("후기")}
                         >
                           후기
                         </p>
@@ -144,14 +138,13 @@ function Mypageview() {
                       <div
                       key={data.id}
                       >
-                        <div className="JSW_userlist">이름 : {data.real_name}</div>
                         <div className="JSW_userlist">별명 : {data.nickname}</div>
                         <div className="JSW_userlist">상점 설명 : {data.about}</div>
                       </div>
                 </div>
               </div>
             </div>
-     
+    
 
             <div className="JSW_Sec2-2">
               {menu === "등록된 상품" && (
@@ -164,7 +157,7 @@ function Mypageview() {
                   <Hoogi menu={menu} userInfo={userInfo} data={data}></Hoogi>
                 </div>
               )}
-         
+        
             </div>
           </div>
         </div>

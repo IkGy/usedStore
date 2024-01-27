@@ -14,8 +14,8 @@ function Myapgeedit() {
     <div className="JSW_myeditcontainer">
       <button className="JSW_myeditclose" onClick={closeModal}>
         X
-     </button>
-     <p>모달창입니다.</p>
+    </button>
+    <p>모달창입니다.</p>
     </div>
   )
 }

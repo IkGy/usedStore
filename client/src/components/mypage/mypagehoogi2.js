@@ -6,12 +6,12 @@
 
 // import soldout from "./image/soldout.png";
 
-// function Soldlist() {
+// function Mypagehoogi2() {
 
 //   const [data, setData] = useState([])
 
 //   useEffect(() => {
-//     axios.get(`${API_URL}/product/soldlist`,{params:{id:getCookie('login')}})
+//     axios.get(`${API_URL}/review/mypagehoogi2`,{params:{id:getCookie('login')}})
 //     .then((res) => {
 //       console.log("DB 조회 완료");
 //       console.log(res.data);
@@ -42,29 +42,26 @@
 
 //   return(
 //     <div className="JSW_picklist">
-//       <div className="JSW_picklistname">판매 내역</div>
+//       <div className="JSW_picklistname">구매 후기</div>
 //       <div className="JSW_conentGridBox">
 //         {data.map((data, i)=> {
 //           return(
 //             <div className="JSW_liststart"
 //             key={data.id}>
 //               <Link to={`/detail/${data._id}`}>
-//                 <div className="JSW_contentGridBox_img" id='JSW_soldimg'>
-//                   <img src={data.images} width="100%"></img>
+//               <div className="JSW_hoogiGridBox_img">
+//                   <div className="JSW_Aname_hoogi">리뷰 작성자 : {data.writer}
 //                 </div>
-//                 {/* <div>
-//                   <img src={soldout} className="JSW_soldoutimg"></img>
-//                 </div> */}
-//                 <div className="JSW_Aname">{data.title}</div>
-//                 <div className="JSW_Aname">{data.comment}</div>
-//                 <div className="JSW_Aname">{data.price}</div>
+//                 </div>
+//                 <div className="JSW_Aname_hoogi">후기 : {data.comment}</div>
+//                 <div className="JSW_Aname_hoogi">작성일 : {data.update_at}</div>
 //               </Link>
 //             </div>
 //           )
 //         })}
 //       </div>
-//    </div>
+//   </div>
 //   )
 // }
 
-// export default Soldlist
+// export default Mypagehoogi2

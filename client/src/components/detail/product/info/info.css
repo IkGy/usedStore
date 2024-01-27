@@ -12,8 +12,15 @@
     position: relative;
 }
 
+.KJH_if_left_section {
+    flex-basis: 70%;
+}
+
+.KJH_if_right_section {
+    flex-basis: 30%;
+}
+
 .KJH_if_left_info {
-    width: 100%;
     padding-right: 3vw;
     border-right: 0.1em solid rgb(238, 238, 238);
     height: 100%;
@@ -52,6 +59,7 @@
     position: relative;
     padding: 2vh 0;
     height: 100%;
+    flex: 1;
 }
 
 .KJH_if_left_content_div:last-child {
@@ -141,7 +149,6 @@
     justify-content: space-between;
     align-items: center;
     column-gap: 16px;
-    width: 100%;
     padding: 2vh 1vw;
     border: 0.1em solid rgb(238, 238, 238);
     margin-bottom: 16px;
@@ -151,6 +158,7 @@
     list-style: none;
     border-radius: 0.4vw;
     transition: all 0.3s;
+    width: 50%;
 }
 
 .KJH_if_left_bottom_content_section > li:hover {
@@ -161,10 +169,6 @@
         border: 0;
     }
 
-}
-
-.KJH_if_left_bottom_single-product {
-    margin-right: 21.8vw;
 }
 
 .KJH_if_left_bottom_content_link_section {
@@ -187,8 +191,6 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 0.5vw;
-    box-sizing: border-box;
-    width: 13vw;
 }
 
 .KJH_if_left_bottom_content_link_price {
@@ -397,15 +399,10 @@
     color: black;
 }
 
-.KJH_if_right_bottom_talk, .KJH_if_right_bottom_buy {
-    height: 6vh;
-    font-size: 0.8vw;
-}
-
 .KJH_if_right_bottom_talk {
     display: flex;
     background: rgb(255, 164, 37);
-    border: 0.1em solid rgb(243, 150, 20);
+    border: 0.3em solid rgb(243, 150, 20);
     color: rgb(255, 255, 255);
     font-weight: 700;
     display: flex;
@@ -415,25 +412,14 @@
     cursor: pointer;
     outline: none;
     margin-right: 1.4vw;
+    height: 6vh;
+    font-size: 0.8vw;
 }
 
 .KJH_if_right_bottom_talk > img {
     margin-right: 0.3vw;
     vertical-align: bottom;
     border-style: none;
-}
-
-.KJH_if_right_bottom_buy {
-    background-color: rgb(198, 0, 0);
-    border-color: rgb(188, 0, 0);
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    cursor: pointer;
-    outline: none;
 }
 
 .KJH_if_section_bottom {
@@ -504,6 +490,7 @@
         width: 100%;
         border-right: 0;
         margin: 0;
+        flex: 1;
     }
     
     .KJH_if_left_content_div:last-child {
@@ -814,11 +801,6 @@
         border-radius: 0.7vw;
     }
     
-    .KJH_if_right_bottom_talk, .KJH_if_right_bottom_buy {
-        height: 6vh;
-        font-size: 0.8vw;
-    }
-    
     .KJH_if_right_bottom_talk {
         display: flex;
         background: rgb(255, 164, 37);
@@ -832,25 +814,14 @@
         cursor: pointer;
         outline: none;
         margin-right: 1.4vw;
+        height: 6vh;
+        font-size: 0.8vw;
     }
     
     .KJH_if_right_bottom_talk > img {
         margin-right: 0.3vw;
         vertical-align: bottom;
         border-style: none;
-    }
-    
-    .KJH_if_right_bottom_buy {
-        background-color: rgb(198, 0, 0);
-        border-color: rgb(188, 0, 0);
-        color: rgb(255, 255, 255);
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
-        cursor: pointer;
-        outline: none;
     }
     
     .KJH_if_section_bottom {
@@ -1232,11 +1203,6 @@
             border-radius: 0.7vw;
         }
         
-        .KJH_if_right_bottom_talk, .KJH_if_right_bottom_buy {
-            height: 6vh;
-            font-size: 0.8vw;
-        }
-        
         .KJH_if_right_bottom_talk {
             display: flex;
             background: rgb(255, 164, 37);
@@ -1250,25 +1216,14 @@
             cursor: pointer;
             outline: none;
             margin-right: 1.4vw;
+            height: 6vh;
+            font-size: 0.8vw;
         }
         
         .KJH_if_right_bottom_talk > img {
             margin-right: 0.3vw;
             vertical-align: bottom;
             border-style: none;
-        }
-        
-        .KJH_if_right_bottom_buy {
-            background-color: rgb(198, 0, 0);
-            border-color: rgb(188, 0, 0);
-            color: rgb(255, 255, 255);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-            cursor: pointer;
-            outline: none;
         }
         
         .KJH_if_section_bottom {

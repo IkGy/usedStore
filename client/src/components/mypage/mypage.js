@@ -4,21 +4,19 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import Modal from "react-modal";
-
-import Buylist from "./buylist";
-import Soldlist from "./soldlist";
 import Registered from "./registered";
 import Picklist from "./picklist";
+import Mypagehoogi from "./mypagehoogi";
 import "./mypage.css";
 import EK from "./image/이크.png"
 
-
 function Mypage() {
-  /* */
+  
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
-  const [menu, setMenu] = useState("등록된 상품");
+  const [menu, setMenu] = useState("구매 내역");
   const [end, setEnd] = useState("");
+  const [profileIMG, setImage] = useState("")
 
   let [modalIsOpen, setModalIsOpen] = useState(false); 
   let [zIndex, setZindex] = useState(1);
@@ -35,18 +33,18 @@ function Mypage() {
     const nickname = e.target?.nickname?.value || ''; // 값이 없을 때 빈 문자열로 설정
     const about = e.target?.about?.value || '';
     const address = e.target?.address?.value || '';
-    const profileIMG = e.target?.profileIMG?.value || '';
     const id = getCookie("login");
-    
-    console.log("test", nickname, about, id, address, profileIMG);
 
-    await axios.post(`${API_URL}/user/edit`, {
-      id,
-      nickname,
-      about,
-      address,
-      profileIMG
-    }).then(() => {
+    const fromdata = new FormData();
+
+    fromdata.append("nickname", nickname)
+    fromdata.append("about", about)
+    fromdata.append("address", address)
+    fromdata.append("profileIMG", profileIMG)
+    fromdata.append("id", id)
+
+
+    await axios.post(`${API_URL}/user/edit`, fromdata).then(() => {
       setModalIsOpen(false);
     })
     .catch(() => {
@@ -71,7 +69,6 @@ function Mypage() {
         // 주소 선택 후 state에 저장
         const fullAddress = `${data.address} ${data.buildingName || ''}`;
         setSelectedAddress(fullAddress);
-        console.log(data);
       },
     }).open();
   };
@@ -84,14 +81,13 @@ function Mypage() {
   useEffect(() => {
     axios.get(`${API_URL}/user/mypage`,{params:{id:getCookie('login')}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
       console.error(err);
       console.log("실패");
     });
+    setMenu("등록된 상품");
   }, []);
 
   useEffect(() => {
@@ -100,6 +96,8 @@ function Mypage() {
     }, 100);
     return setEnd("");
   }, [menu]);
+
+  
 
   
 
@@ -122,25 +120,7 @@ function Mypage() {
               <nav className="JSW_nav1">
                       <span id="JSW_Mypage_tag">
                       </span>
-                    <ul>
-                      <li>
-                        <p
-                          href="#"
-                          className={menu === "구매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("구매 내역")}
-                        >
-                          구매 내역
-                        </p>
-                      </li>
-                      <li>
-                        <p
-                          href="#"
-                          className={menu === "판매 내역" ? "active" : "noactive"}
-                          onClick={() => MenuClick("판매 내역")}
-                        >
-                          판매 내역
-                        </p>
-                      </li>
+                    <ul>      
                       <li>
                         <p
                           href="#"
@@ -157,6 +137,15 @@ function Mypage() {
                           onClick={() => MenuClick("찜 목록")}
                         >
                           찜 목록
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          href="#"
+                          className={menu === "후기" ? "active" : "noactive"}
+                          onClick={() => MenuClick("후기")}
+                        >
+                          구매 후기
                         </p>
                       </li>
                     </ul>
@@ -185,18 +174,13 @@ function Mypage() {
                       </div>
                 </div>
                 
-                {/* <Link
+                <Link to="/makenewpw"
                 className="loginBtn"
-                style={{ textDecoration: "none" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setModalIsOpen(true);
-                  setZindex(0);
-                }}>
+                style={{ textDecoration: "none" }}>
                 <label className="JSW_Cristal">
                   비밀번호 변경
                 </label>
-                </Link> */}
+                </Link>
                 <Link
                 className="loginBtn"
                 style={{ textDecoration: "none" }}
@@ -217,7 +201,7 @@ function Mypage() {
               isOpen={modalIsOpen}
               bodyOpenClassName="modal-open"
               onRequestClose={() => {
-                console.log('test');
+                // console.log('test');
                 setModalIsOpen(false);
                 setZindex(1);
               }}
@@ -270,15 +254,11 @@ function Mypage() {
                   </div>
                   <input
                     className="JSW_modal_loginInputBox_s" 
-                    id="profileIMG"
+                    name="profileIMG"
                     type = "file" 
-                    accept = "image/jpg, image/jpeg, image/png"
-                    placeholder={EK}
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
                     ></input>
-                  <input
-                  type="imgage"
-                  defaultValue={data.profileIMG}
-                  ></input>
                 </div>
               </div>
               <button type="submit" className="JSW_mypagewater"
@@ -291,18 +271,6 @@ function Mypage() {
             </div>
 
             <div className="JSW_Sec2-2">
-              {menu === "구매 내역" && (
-                <div className={"start " + end}>
-                  <Buylist menu={menu} userInfo={userInfo} data={data}></Buylist>
-                </div>
-              )}
-
-              {menu === "판매 내역" && (
-                <div className={"start " + end}>
-                  <Soldlist menu={menu} userInfo={userInfo}></Soldlist>
-                </div>
-              )}
-
               {menu === "등록된 상품" && (
                 <div className={"start " + end}>
                   <Registered menu={menu} userInfo={userInfo} data={data}></Registered>
@@ -311,6 +279,11 @@ function Mypage() {
               {menu === "찜 목록" && (
                 <div className={"start " + end}>
                   <Picklist menu={menu} userInfo={userInfo}></Picklist>
+                </div>
+              )}
+              {menu === "후기" && (
+                <div className={"start " + end}>
+                  <Mypagehoogi menu={menu} userInfo={userInfo}></Mypagehoogi>
                 </div>
               )}
             </div>
