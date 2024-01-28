@@ -38,6 +38,7 @@ router.post("/register", async (req, res) => {
 
     await db.collection("user").insertOne({
       real_name: name,
+      real_name: name,
       id: id,
       nickname: nickname,
       email: email,
@@ -45,7 +46,7 @@ router.post("/register", async (req, res) => {
       address: address,
       phone_number: phone_number,
       role: "user",
-      about: " ",
+      about: "소개글을 추가해주세요",
       create_at: new Date(),
       profileIMG: "https://popol5.s3.ap-northeast-2.amazonaws.com/1706405265093.jpg",
     });
@@ -154,9 +155,5 @@ router.get("/mypageview/:id", async (req, res) => {
     res.status(500).send('리뷰를 불러오지 못했습니다');
   }
 });
-
-
-
-
 
 module.exports = router;

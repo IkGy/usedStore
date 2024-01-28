@@ -112,7 +112,7 @@ export default function SignUp() {
             >
               카카오톡 계정으로 로그인
             </Button>
-            <NaverLoginButton />
+            {/* <NaverLoginButton /> 네이버 인증실패로 기능주석처리 */}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/sign_up" variant="body2" sx={{ pt: 5 }}>

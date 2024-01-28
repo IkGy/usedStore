@@ -35,6 +35,7 @@ const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
 const roomRouter = require("./routes/chat_room");
 const mypageRouter = require("./routes/mypage");
+const adminRouter = require('./routes/admin'); // 관리자 페이지용 라우터입니다.
 
 app.use(express.json());
 
@@ -50,7 +51,7 @@ new MongoClient(url)
   .then((client) => {
     const db = client.db("popol5");
     setDB(db);
-    console.log("DB연결성공");
+    console.log("DB 연결성공");
     app.listen(process.env.PORT, function () {
       console.log(`연결포트 : ${process.env.PORT}`);
     });
@@ -65,6 +66,7 @@ app.use("/prod", productRouter);
 app.use("/user", userRouter);
 app.use("/chat", roomRouter);
 app.use("/mypage", mypageRouter);
+app.use('/admin', adminRouter);
 
 app.use(express.static(path.join(__dirname, "client/build")));
 

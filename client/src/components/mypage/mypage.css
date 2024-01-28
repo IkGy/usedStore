@@ -139,7 +139,7 @@
 }
 
 .JSW_Sec2_view {
-  height: 100vh;
+  height: auto;
 }
 
 .JSW_Sec2-1 {
@@ -223,7 +223,8 @@
 
 .JSW_Sec2-2 {
   margin-top: 1vw;
-  padding-bottom: 1vw;
+  overflow: auto;
+  height: 42vh;
 }
 
 .JSW_Sec2-2_Left {
