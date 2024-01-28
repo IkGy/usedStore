@@ -23,7 +23,7 @@ function Mypage() {
       .get(`${API_URL}/user/mypage`, { params: { id: getCookie("login") } })
       .then((res) => {
         setData(res.data);
-        setSelectedAddress(res.data.address)
+        setSelectedAddress(res.data.address);
       })
       .catch((err) => {
         console.error(err);
@@ -38,10 +38,6 @@ function Mypage() {
     const about = e.target.about.value;
     const address = e.target.address.value;
     const _id = getCookie("login");
-
-
-
-
     const fromdata = new FormData();
 
     fromdata.append("nickname", nickname);
@@ -54,12 +50,11 @@ function Mypage() {
     await axios
       .post(`${API_URL}/user/edit`, fromdata)
       .then((result) => {
-        setData(result.data)
+        setData(result.data);
         setModal(false);
       })
       .catch(() => {});
   };
-
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -86,7 +81,6 @@ function Mypage() {
     setMenu(selectMenu);
   };
 
-  
   useEffect(() => {
     const body = document.body;
 
@@ -157,7 +151,7 @@ function Mypage() {
               <div>
                 <div className="JSW_modal_formtitle">배송지</div>
                 <input
-                style={{cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                   className="JSW_modal_loginInputBox_s"
                   id="address"
                   type="text"
@@ -165,7 +159,6 @@ function Mypage() {
                   onClick={handleAddressClick}
                 ></input>
               </div>
-
             </div>
           </div>
           <div className="JSW_modal_about">
@@ -179,10 +172,7 @@ function Mypage() {
             ></textarea>
           </div>
           <div className="JSW_modalsetbutnBox">
-            <button
-              type="submit"
-              className="JSW_mypagewater"
-            >
+            <button type="submit" className="JSW_mypagewater">
               수정 완료
             </button>
           </div>
@@ -234,7 +224,7 @@ function Mypage() {
                 <div className="CHM_myinfoimgbox">
                   <img src={data.profileIMG}></img>
                 </div>
-                <div>
+                <div className="CHM_useringoflex">
                   <div className="JSW_myname">
                     <div>내정보</div>
                     <div className="JSW_btnBox">
@@ -282,10 +272,8 @@ function Mypage() {
                 </div>
               )}
               {menu === "후기" && (
-
                 <div>
                   <Mypagehoogi menu={menu}></Mypagehoogi>
-
                 </div>
               )}
 
