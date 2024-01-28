@@ -5,8 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import noheart from "./image/noh.png";
 
-import "./picklist.css";
-
 import img3 from "./image/noimg.png";
 
 function Picklist() {

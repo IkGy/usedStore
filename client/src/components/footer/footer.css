@@ -94,6 +94,7 @@
 
 @media (max-width: 500px) {
   .footer_container {
+    display: none;
     margin: 3vw 0;
   }
   
