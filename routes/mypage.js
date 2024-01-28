@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const { getDB } = require('../db');
@@ -22,6 +23,7 @@ router.get('/post/shop/:id', async (req, res) => {
 // 리뷰 작성자의 정보 가져오기
 router.get("/post/shop", async (req, res) => {
   const db = getDB();
+
 
   let reviewer = await db.collection('user').findOne({_id:new ObjectId(req.query.id)});
 //   console.log(reviewer);

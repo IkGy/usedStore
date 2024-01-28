@@ -3,9 +3,7 @@ import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
 import Modal from './shopmodal';
-
 import './hoogi.css';
 
 // 날짜 계산
@@ -83,7 +81,6 @@ function Hoogi(props) {
       setIsInitialLoad(false);
     }
   }, [isInitialLoad]);
-
 
   return (
     <>

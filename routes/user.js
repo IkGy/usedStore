@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
       role: "user",
       about: " ",
       create_at: new Date(),
-      profileIMG: " ",
+      profileIMG: "https://popol5.s3.ap-northeast-2.amazonaws.com/1706405265093.jpg",
     });
 
     res.status(201).send("회원가입 완료");
@@ -139,7 +139,6 @@ router.post("/makenewpw", async (req, res) => {
 router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
-
   응답.send(list);
 })
 
