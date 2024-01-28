@@ -1,0 +1,225 @@
+.JSW_picklist {
+}
+
+.JSW_noproductbox{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_noproductbox div{
+  font-size: 1.5vw;
+  padding: 1vw 0 1vw 0
+}
+
+.JSW_noproductbox a{
+  font-size: 1.5vw;
+  background-color: #2748b0;
+  color: white;
+  padding: 0.7vw;
+  border-radius: 0.5vw;
+}
+
+.JSW_noproductbox img{
+  width: 10vw;
+  height: 9vw;
+}
+
+.JSW_picklistname {
+  font-size: 1.8vw;
+  padding: 1vw 0;
+  font-family: 'JalnanGothic';
+}
+
+.JSW_conentheightBox{
+  max-height: 30vw;
+  overflow-y: auto;
+}
+
+.JSW_conentGridBox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1vw;
+  padding: 0.2vw;
+}
+
+
+.JSW_liststart {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 0.15vw solid #cccccc87;
+}
+
+.JSW_liststart:hover {
+  border: 0.15vw solid #2748b0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.193);
+}
+
+.JSW_contentGridBox_img {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+/* #JSW_soldimg {
+  position: relative;
+  z-index: 1;
+}
+
+.JSW_soldoutimg {
+  position: absolute;
+  z-index: 2;
+} */
+
+.JSW_Aname {
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap; /* 줄 바꿈 금지 */
+  overflow: hidden; /* 내용이 넘칠 때 숨김 처리 */
+  text-overflow: ellipsis; /* 넘친 내용에 대해 ...으로 표시 */
+}
+
+.JSW_listhoogi {
+  border-top: 1px solid #000;
+  text-align: center;
+}
+
+.JSW_listhoogi:hover {
+  background-color: #03c75a;
+  color: white;
+}
+
+.JSW_contentGridBox_img > img {
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+}
+
+.JSW_list_edit_delete {
+  border-top: 1px solid #000;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.JSW_sell {
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+}
+
+.JSW_listedit {
+  border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+}
+
+.JSW_listdelete {
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+}
+
+.JSW_sell:hover {
+  background-color: #2748b0;
+  color: white;
+}
+
+.JSW_listedit:hover a {
+  color: white;
+}
+
+.JSW_listedit:hover {
+  background-color: #2748b0;
+}
+
+.JSW_listdelete:hover {
+  background-color: #2748b0;
+  color: white;
+}
+
+.JSW_AnameBox {
+  padding: 0.5vw;
+  font-size: 1vw;
+}
+
+.JSW_nohoogibox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_nohoogibox div{
+  font-size: 1.5vw;
+  padding: 1vw
+}
+
+.JSW_nohoogibox img{
+  width: 10vw;
+  height: 9vw;
+}
+
+.JSW_noheartbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_noheartbox div{
+  font-size: 1.5vw;
+  padding: 1vw
+}
+
+.JSW_list_edit_delete2{
+  border-top: 1px solid #000;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.JSW_noheartbox img{
+  width: 10vw;
+  height: 9vw;
+}
+@media (max-width: 1024px) {
+  .JSW_Aname {
+    font-size: 90%;
+  }
+
+  .JSW_liststart {
+    width: 15vw;
+  }
+
+  .JSW_contentGridBox_img {
+    height: 12vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .JSW_liststart {
+    width: 80%;
+    height: 100%;
+  }
+
+  .JSW_Aname {
+    font-size: 80%;
+  }
+  .JSW_contentGridBox_img {
+    /* z-index: 2; */
+    height: 55vw;
+  }
+
+  .JSW_liststart {
+    height: 70vw;
+    /* z-index: 2; */
+    margin-left: 10%;
+  }

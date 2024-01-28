@@ -22,7 +22,7 @@ router.get("/header", async (req, res) => {
   res.status(201).send({ product: result });
 });
 
-router.get("/detail/:id", async (req, res) => {
+router.get('/detail/:id', async (req, res) => {
   try {
     const db = getDB();
     let result = await db
@@ -68,7 +68,7 @@ router.get("/detail/:id", async (req, res) => {
 
 router.delete("/delete/:id", async (req, res) => {
   try {
-    console.log(req.params.id);
+    // console.log(req.params);
     const db = getDB();
     await db
       .collection("product")
@@ -93,7 +93,7 @@ router.get("/like/check", async (req, res) => {
       liker: req.query.userid,
     });
     // console.log(likerid);
-    res.status(201).send(likerid);
+    res.status(201).send(likerid)
   } catch (error) {
     console.error(error);
     res.status(500).send("찜 값을 불러오지 못했습니다");
@@ -180,5 +180,21 @@ router.post("/open/chattingroom/:id", async (req, res) => {
     res.status(500).send("채팅방을 조회하지 못했습니다");
   }
 });
+
+
+router.post('/open/chattingroom/:id', async (req, res) => {
+  try {
+    const db = getDB();
+    // console.log(req.query);
+    const mychattingroom = req.query;
+    await db.collection("chattingroom").find({
+      chattingroom_id: mychattingroom
+    }).toArray();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('채팅방을 조회하지 못했습니다');
+  }
+});
+
 
 module.exports = router;
