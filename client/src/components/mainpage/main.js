@@ -6,7 +6,7 @@ import Products from "./products";
 
 function Main(){
   return(
-    <div>
+    <div className='maincontain'>
       <ImageSlide />
       <AdComponent />
       <Products />

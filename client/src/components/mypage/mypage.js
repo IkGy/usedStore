@@ -29,7 +29,7 @@ function Mypage() {
         console.error(err);
         console.log("실패");
       });
-    setMenu("찜 목록");
+    setMenu("등록된 상품");
   }, []);
 
   const editUser = async (e) => {
@@ -276,7 +276,6 @@ function Mypage() {
                   <Mypagehoogi menu={menu}></Mypagehoogi>
                 </div>
               )}
-
             </div>
           </div>
         </div>
