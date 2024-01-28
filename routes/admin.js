@@ -5,8 +5,7 @@ const { getDB } = require("../db");
 router.get('/user', async (req, res) => {
   try {
     const db = getDB();
-    const userDataCursor = await db.collection("user").find();
-    const userData = await userDataCursor.toArray(); // 커서를 배열로 변환
+    const userData = await db.collection("user").find().toArray();// 커서를 배열로 변환
     console.log("사용자 데이터:", userData);
     res.json(userData);
   } catch (error) {
