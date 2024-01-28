@@ -22,8 +22,13 @@ import Searchpage from './components/searchpage/searchpage';
 import Categorysc from './components/searchpage/categotysc';
 import FindPW from './components/login/findpw';
 import Sellitemedit from './components/mypage/sale/regi';
-import Picklist from './components/mypage/picklist';
 import MakeNewPW from './components/login/makenewpw';
+import AdminMain from './components/admin/main/admin_main';
+import UserManagement from './components/admin/page/user_mgmt';
+import Setting from './components/admin/page/setting';
+import ProductManagement from './components/admin/page/product_mgmt';
+import Declaration from './components/admin/page/declaration';
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -62,7 +67,11 @@ function App() {
           <Route path='/sellitemedit/:id' element={<Sellitemedit />}></Route>
           <Route path='/main/:search' element={<Searchpage />}></Route>
           <Route path='/detailsearch/:category' element={<Categorysc />}></Route>
-          
+          <Route path='/admin_main' element={<AdminMain />}></Route>
+          <Route path='/page/user_mgmt' element={<UserManagement />}></Route>
+          <Route path='/page/setting' element={<Setting />}></Route>
+          <Route path='/page/declaration' element={<Declaration />}></Route>
+          <Route path='/page/product_mgmt' element={<ProductManagement />}></Route>
         </Routes>
         <Footer />
       </div>

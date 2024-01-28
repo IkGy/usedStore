@@ -1,0 +1,26 @@
+
+.admin_contents {
+  position: fixed;
+  top: 0;
+  background-color: #F5F5F5;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  display: flex;
+  padding: 50px 30px 20px 30px;
+}
+
+.admin_tagBox{
+  border: 1px solid black;
+  width: 10%;
+  height: 100%;
+}
+.click{
+  color: rgb(141, 118, 96);
+}
+.menu_info{
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+}
