@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { API_URL } from "../config/contansts";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import nohoogi from "./image/71583.png";
 
 function Mypagehoogi() {
   const [data, setData] = useState([]);
@@ -47,29 +48,36 @@ function Mypagehoogi() {
 
   return (
     <div className="JSW_picklist">
-      <div className="JSW_picklistname">구매 후기</div>
-      <div>
-        {data.map((data, i) => {
-          return (
-            <div key={data.id} className="CHM_hoogiBox">
-              <div className="JSW_profile_hoogi">
-                <img src={data.profileIMG}></img>
-              </div>
-              <div className="JSW_hoogiflex">
-                <div className="JSW_writer_hoogi">
-                  {data.writer}
-                </div>
-                <div className="JSW_date_hoogi">
-                  {formatUpdateDate(data.update_at)}
-                </div>
-              </div>
-
-              <div></div>
-              <div className="JSW_comment_hoogi">{data.comment}</div>
-            </div>
-          );
-        })}
+      <div className="JSW_picklistname">
+        구매 후기 <span>({data.length})</span>
       </div>
+      {data.length === 0 ? (
+        <div className="JSW_nohoogibox">
+          <img src={nohoogi}></img>
+          <div>아직 등록된 후기가 없습니다.</div>
+        </div>
+      ) : (
+        <div>
+          {data.map((data, i) => {
+            return (
+              <div key={data.id} className="CHM_hoogiBox">
+                <div className="JSW_profile_hoogi">
+                  <img src={data.profileIMG}></img>
+                </div>
+                <div className="JSW_hoogiflex">
+                  <div className="JSW_writer_hoogi">{data.writer}</div>
+                  <div className="JSW_date_hoogi">
+                    {formatUpdateDate(data.update_at)}
+                  </div>
+                </div>
+
+                <div></div>
+                <div className="JSW_comment_hoogi">{data.comment}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

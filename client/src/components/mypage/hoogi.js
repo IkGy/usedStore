@@ -18,7 +18,6 @@ function formatDate(dateString) {
   return `${year}년 ${month}월 ${day}일`;
 }
 
-
 function Hoogi(props) {
   const navigate = useNavigate();
   const [data, setData] = useState([])
@@ -83,8 +82,7 @@ function Hoogi(props) {
     }
   }, [isInitialLoad]);
 
-
-  return(
+  return (
     <>
       <div className="KJH_shop-review_container">
         <div className="KJH_shop-review_main">
@@ -95,31 +93,37 @@ function Hoogi(props) {
             <div
               onClick={openModal}
               style={{ cursor: 'pointer' }}
-              >
+            >
               후기 등록
             </div> {/* 모달 열기 버튼 */}
             <Modal show={modalOpen} onClose={closeModal} />
           </div>
         </div>
-        {getReview.map((review) => (
-          <div className="KJH_shop-review_info"  key={review._id}>
-            <div className="KJH_shop-review_writer_section">
-              <div className="KJH_shop-review_writer">
-                {review.writer}
-              </div>
-              <div className="KJH_shop-review_date">
-                {formatDate(review.update_at)} 
-                {/* {review.update_at} */}
-              </div>
-            </div>
-            <div className="KJH_shop-review_comment">
-              {review.comment}
-            </div>
+        {getReview.length === 0 ? (
+          <div className="KJH_shop-review_no-review">
+            상점 후기가 없습니다. 후기를 작성해주세요!
           </div>
-        ))}
-        </div>
+        ) : (
+          getReview.map((review) => (
+            <div className="KJH_shop-review_info" key={review._id}>
+              <div className="KJH_shop-review_writer_section">
+                <div className="KJH_shop-review_writer">
+                  {review.writer}
+                </div>
+                <div className="KJH_shop-review_date">
+                  {formatDate(review.update_at)} 
+                </div>
+              </div>
+              <div className="KJH_shop-review_comment">
+                {review.comment}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </>
   )
+  
 }
 
 export default Hoogi;

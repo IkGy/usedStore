@@ -62,11 +62,9 @@
   font-size: 3vw;
   font-weight: 900;
   color: white;
-
   width: 100%;
   height: 8vw;
   background-color: #2748b0;
-  margin-bottom: 2%;
 }
 
 .JSW_Main {
@@ -74,6 +72,8 @@
   grid-template-columns: 1fr 5fr;
   margin-bottom: 3vw;
   border-bottom: 0.15vw solid black;
+  border-left: 0.15vw solid black;
+  border-right: 0.15vw solid black;
 }
 
 .JSW_Main_view {
@@ -91,7 +91,6 @@
 } */
 
 .JSW_menubar {
-  width: 90%;
   height: 100%;
   border-right: 0.15vw solid #000;
 }
@@ -133,6 +132,7 @@
 .JSW_Sec2 {
   display: flex;
   flex-direction: column;
+  margin: 1vw;
 }
 
 .JSW_Sec2_view {
@@ -309,6 +309,7 @@
 .CHM_myinfocontain {
   display: flex;
   flex-direction: column;
+  margin-top: 1vw;
 }
 
 .CHM_myinfobox1 {
@@ -334,7 +335,7 @@
   grid-template-columns: 1fr 12fr;
   padding: 1vw 0;
   font-size: 1vw;
-  border-bottom: 0.15vw solid rgba(0, 0, 0, 0.768);
+  border-bottom: 0.25vw solid rgb(0, 0, 0);
 }
 
 .JSW_userabout {

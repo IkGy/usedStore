@@ -306,13 +306,14 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
       }
     );
     await db.collection("review").updateMany(
-      { resiver: req.body._id },
+      { write_id: req.body._id },
       {
         $set: {
+          writer: req.body.nickname,
           profileIMG: req.file.location,
         },
       }
-    )
+    );
   } else {
     await db.collection("user").updateOne(
       { _id: new ObjectId(req.body._id) },
@@ -324,12 +325,28 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
         },
       }
     );
+    await db.collection("review").updateMany(
+      { write_id: req.body._id },
+      {
+        $set: {
+          writer: req.body.nickname,
+        },
+      }
+    );
   }
 
-  let result = await db.collection("user").findOne({ _id: new ObjectId(req.body._id) })
-  res.status(201).send(result)
+  let result = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(req.body._id) });
+  res.status(201).send(result);
 });
 
+app.delete("/likedel/:user/:product_id", async (req, res) => {
+  const db = getDB();
+  console.log(req.params);
+  await db.collection("like").deleteOne({ product_id: req.params.product_id, liker: req.params.user });
+  res.status(201).send("짬해제성공")
+});
 // ---------실시간채팅------------- //
 const http = require("http");
 const server = http.createServer(app);
@@ -359,6 +376,7 @@ io.on("connection", (socket) => {
   });
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
+
   socket.on("sendMessage", async (data, callback) => {
     const { writer, message } = data;
     // console.log("data: ", data);
@@ -368,11 +386,13 @@ io.on("connection", (socket) => {
     // console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
+
     io.to(room).emit("message", { writer, message });
     // callback()
   });
 
   // 연결 해제 이벤트 핸들링
+
   socket.on("disconnect", () => {
     console.log("사용자가 연결 해제됨");
   });

@@ -12,7 +12,7 @@ import "./mypage.css";
 function Mypage() {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [data, setData] = useState({});
-  const [menu, setMenu] = useState("후기");
+  const [menu, setMenu] = useState("등록된 상품");
   const [profileIMG, setImage] = useState([]);
   const [prewviewimg, setpreviwimg] = useState([]);
   let [modal, setModal] = useState(false);
@@ -28,7 +28,7 @@ function Mypage() {
         console.error(err);
         console.log("실패");
       });
-    setMenu("후기");
+    setMenu("찜 목록");
   }, []);
 
   const editUser = async (e) => {
@@ -37,6 +37,7 @@ function Mypage() {
     const about = e.target.about.value;
     const address = e.target.address.value;
     const _id = getCookie("login");
+
 
     const fromdata = new FormData();
 
@@ -54,6 +55,7 @@ function Mypage() {
       })
       .catch(() => {});
   };
+
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -79,8 +81,6 @@ function Mypage() {
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
   };
-
-  
 
   
   useEffect(() => {
@@ -161,6 +161,7 @@ function Mypage() {
                   onClick={handleAddressClick}
                 ></input>
               </div>
+
             </div>
           </div>
           <div className="JSW_modal_about">
@@ -230,6 +231,7 @@ function Mypage() {
                   <img src={data.profileIMG}></img>
                 </div>
 
+
                 <div>
                   <div className="JSW_myname">
                     <div>내정보</div>
@@ -278,8 +280,10 @@ function Mypage() {
                 </div>
               )}
               {menu === "후기" && (
+
                 <div>
                   <Mypagehoogi menu={menu}></Mypagehoogi>
+
                 </div>
               )}
             </div>

@@ -19,7 +19,7 @@
 .KJH_shop-review_main_info {
   display: inline-block;
   padding: 0.3em 0.5em;
-  border: 2px solid black;
+  border: 0.2vw solid black;
   border-radius: 0.5em;
   font-size: 2em;
 }
@@ -27,7 +27,7 @@
 
 .KJH_shop-review_post {
   padding: 0.4em;
-  border: 0.2em solid black;
+  border: 0.2vw solid black;
   background-color: white;
   border-radius: 0.5em;
   font-size: 1.2em;
@@ -35,9 +35,15 @@
 }
 
 .KJH_shop-review_post:hover {
-  border: 0.2em solid transparent;
+  border: 0.2vw solid transparent;
   background-color: #2748b0;
   color: white;
+}
+
+
+.KJH_shop-review_no-review {
+  width: 100%;
+  font-size: 1.2vw;
 }
 
 .KJH_shop-review_info {

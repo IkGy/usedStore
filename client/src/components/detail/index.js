@@ -44,8 +44,6 @@ function Detail() {
         return <Navigate to="/detail/error" />;
     }
 
-    
-
     return (
         <>
             <div className='KJH_detail_container'>

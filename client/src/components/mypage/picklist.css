@@ -1,14 +1,40 @@
+
 .JSW_picklist {
+}
+
+.JSW_noproductbox{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_noproductbox div{
+  font-size: 1.5vw;
+  padding: 1vw 0 1vw 0
+}
+
+.JSW_noproductbox a{
+  font-size: 1.5vw;
+  background-color: #2748b0;
+  color: white;
+  padding: 0.7vw;
+  border-radius: 0.5vw;
+}
+
+.JSW_noproductbox img{
+  width: 10vw;
+  height: 9vw;
 }
 
 .JSW_picklistname {
   font-size: 1.8vw;
-  padding-bottom: 1vw;
+  padding: 1vw 0;
   font-family: 'JalnanGothic';
 }
 
 .JSW_conentheightBox{
-  height: 30vw;
+  max-height: 30vw;
   overflow-y: auto;
 }
 
@@ -18,6 +44,7 @@
   gap: 1vw;
   padding: 0.2vw;
 }
+
 
 .JSW_liststart {
   width: 100%;
@@ -126,6 +153,44 @@
   font-size: 1vw;
 }
 
+.JSW_nohoogibox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_nohoogibox div{
+  font-size: 1.5vw;
+  padding: 1vw
+}
+
+.JSW_nohoogibox img{
+  width: 10vw;
+  height: 9vw;
+}
+
+.JSW_noheartbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.JSW_noheartbox div{
+  font-size: 1.5vw;
+  padding: 1vw
+}
+
+.JSW_list_edit_delete2{
+  border-top: 1px solid #000;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.JSW_noheartbox img{
+  width: 10vw;
+  height: 9vw;
+}
 @media (max-width: 1024px) {
   .JSW_Aname {
     font-size: 90%;
@@ -161,3 +226,4 @@
     margin-left: 10%;
   }
 }
+
