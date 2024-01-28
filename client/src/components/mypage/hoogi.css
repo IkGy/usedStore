@@ -7,6 +7,9 @@
 }
 
 .KJH_shop-review_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   border-bottom: 0.1em solid #cecece;
   padding-bottom: 0.8em;
@@ -19,6 +22,22 @@
   border: 2px solid black;
   border-radius: 0.5em;
   font-size: 2em;
+}
+
+
+.KJH_shop-review_post {
+  padding: 0.4em;
+  border: 0.2em solid black;
+  background-color: white;
+  border-radius: 0.5em;
+  font-size: 1.2em;
+  transition: all 0.3s;
+}
+
+.KJH_shop-review_post:hover {
+  border: 0.2em solid transparent;
+  background-color: #2748b0;
+  color: white;
 }
 
 .KJH_shop-review_info {

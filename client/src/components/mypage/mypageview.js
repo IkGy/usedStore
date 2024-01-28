@@ -12,7 +12,6 @@ import "./mypage.css";
 
 
 function Mypageview() {
-  /* */
   const [selectedAddress, setSelectedAddress] = useState('');
   const [data, setData] = useState({})
   const [menu, setMenu] = useState("등록된 상품");
@@ -52,8 +51,7 @@ function Mypageview() {
   useEffect(() => {
     axios.get(`${API_URL}/user/mypage`,{params:{id:useId.id}})
     .then((res) => {
-      console.log("DB 조회 완료");
-      console.log(res.data);
+      // console.log(res.data);
       setData(res.data);
     })
     .catch((err) => {
@@ -69,9 +67,6 @@ function Mypageview() {
       try {
         const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
         setGetReview(res.data.review);
-        console.log("--------리뷰정보--------");
-        console.log(res.data.review);
-        console.log("----------------");
       } catch (error) {
         console.error('데이터를 불러오지 못했습니다:', error.response?.data);
       }

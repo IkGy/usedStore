@@ -81,15 +81,15 @@ function Header() {
     if (getCookie("login")) {
       removeCookie('login');
       window.Kakao.Auth.logout()
-        .then(function () {
-          alert(
-            "logout ok\naccess token -> " + window.Kakao.Auth.getAccessToken()
-          );
-          deleteCookie();
-        })
-        .catch(function () {
-          alert("Not logged in");
-        });
+        // .then(function () {
+        //   alert(
+        //     "logout ok\naccess token -> " + window.Kakao.Auth.getAccessToken()
+        //   );
+        //   deleteCookie();
+        // })
+        // .catch(function () {
+        //   alert("Not logged in");
+        // });
     }
     navigate("/");
     // window.location.href = '/'
