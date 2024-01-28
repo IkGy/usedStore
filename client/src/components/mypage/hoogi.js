@@ -2,7 +2,7 @@ import { getCookie } from "../../useCookies";
 import { API_URL } from '../config/contansts';
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import Modal from './shopmodal';
 import './hoogi.css';
 
@@ -23,16 +23,26 @@ function Hoogi(props) {
   const [data, setData] = useState([])
   const useId = useParams();
   const [getReview, setGetReview] = useState([]);
+  const [reviewUpdated, setReviewUpdated] = useState(false);
+  const [reviewContent, setReviewContent] = useState('');
 
   // 모달창 관리
   const [modalOpen, setModalOpen] = useState(false); // 모달창 관리
+
   // 모달창 열기
   function openModal() {
-    setModalOpen(true);
+    if (getCookie('login')) {
+      setReviewContent('');
+      setModalOpen(true);
+    } else {
+      alert('후기등록을 위해 로그인을 해주시기 바랍니다')
+      navigate('/login');
+    }
   }
   // 모달창 닫기
   function closeModal() {
     setModalOpen(false);
+    setReviewContent('');
   }
 
   // console.log("test",useId);
@@ -62,7 +72,11 @@ function Hoogi(props) {
       }
     };
     fetchGetReview();
-  }, []);
+  }, [reviewUpdated]);
+
+  const updateReviewData = () => {
+    setReviewUpdated(prev => !prev); // 상태를 변경하여 useEffect 트리거
+};
 
 
   const [end ,setEnd] = useState("");
@@ -96,7 +110,14 @@ function Hoogi(props) {
             >
               후기 등록
             </div> {/* 모달 열기 버튼 */}
-            <Modal show={modalOpen} onClose={closeModal} />
+            <Modal
+              show={modalOpen}
+              onClose={closeModal}
+              updateReviewData={updateReviewData}
+              setModalOpen={setModalOpen}
+              reviewContent={reviewContent}
+              setReviewContent={setReviewContent} 
+            />
           </div>
         </div>
         {getReview.length === 0 ? (
@@ -107,12 +128,18 @@ function Hoogi(props) {
           getReview.map((review) => (
             <div className="KJH_shop-review_info" key={review._id}>
               <div className="KJH_shop-review_writer_section">
-                <div className="KJH_shop-review_writer">
-                  {review.writer}
+                <div className="KJH_shop-review_img">
+                  <img src={review.profileIMG} alt="프로필 이미지" />
                 </div>
-                <div className="KJH_shop-review_date">
-                  {formatDate(review.update_at)} 
+                <div className="KJH_shop-review_img_right_section">
+                  <div className="KJH_shop-review_writer">
+                    {review.writer}
+                  </div>
+                  <div className="KJH_shop-review_date">
+                    {formatDate(review.update_at)} 
+                  </div>
                 </div>
+
               </div>
               <div className="KJH_shop-review_comment">
                 {review.comment}

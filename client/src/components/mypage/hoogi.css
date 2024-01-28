@@ -8,61 +8,81 @@
 
 .KJH_shop-review_main {
   display: flex;
+  position: sticky;
+  top: 0;
+  background-color: #82a1ff;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  border-bottom: 0.1em solid #cecece;
-  padding-bottom: 0.8em;
+  padding: 1vh 0.5vw;
   margin-bottom: 0.4em;
+  border-radius: 0.4vw;
 }
 
 .KJH_shop-review_main_info {
   display: inline-block;
-  padding: 0.3em 0.5em;
-  border: 0.2vw solid black;
-  border-radius: 0.5em;
-  font-size: 2em;
+  padding: 0.8vh 0.5vw;
+  border-radius: 0.6vw;
+  font-size: 1.4vw;
+  background-color: white;
 }
 
 .KJH_shop-review_post {
-  padding: 0.4em;
-  border: 0.2vw solid black;
+  padding: 0.6vh 0.4vw;
   background-color: white;
-  border-radius: 0.5em;
-  font-size: 1.2em;
+  border-radius: 0.5vw;
+  font-size: 1vw;
   transition: all 0.3s;
+  border: 0.2vw solid black;
 }
 
 .KJH_shop-review_post:hover {
-  border: 0.2vw solid transparent;
-  background-color: #2748b0;
+  border: 0.2vw solid white;
+  background-color: #3665ff;
   color: white;
 }
 
 .KJH_shop-review_no-review {
   width: 100%;
+  padding-left: 0.6vw;
   font-size: 1.2vw;
 }
 
 .KJH_shop-review_info {
-  background-color: #ebf0ff  ;
-  width: calc(51% - 2em); /* 패딩과 마진을 고려한 너비 계산 */
+  background-color: #ebf0ff;
+  width: calc(51% - 2em);
   padding: 0.8em;
   border-radius: 0.5em;
-  box-sizing: border-box; /* box-sizing을 border-box로 설정 */
+  box-sizing: border-box;
 }
 
 
 /* 리뷰어, 작성일 */
 .KJH_shop-review_writer_section {
   display: flex;
-  justify-content: space-between;
+  margin-bottom: 0.6vh;
+}
+
+.KJH_shop-review_img {
+  width: 5vw;
+  
+  margin-right: 0.5vw;
+}
+
+.KJH_shop-review_img > img {
+  width: 100%;
+  border-radius: 0.4vw;
+}
+
+.KJH_shop-review_img_right_section {
+  display:  flex;
   align-items: flex-end;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .KJH_shop-review_writer {
-  background-color: #2748b0;
+  background-color: #5970bd;
   color: white;
   padding: 0.4em;
   border-radius: 0.5em;
@@ -89,10 +109,4 @@
   border: 0.1em solid black;
   border-radius: 0.5em;
   padding: 0.5em;
-}
-
-@media (max-width: 1024px) {
-  .KJH_shop-review_info {
-    width: 100%;
-  }
 }
