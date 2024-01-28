@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./footer.css";
 
-
 function Footer(){
   return(
     <div className="footer_container">
@@ -17,6 +16,9 @@ function Footer(){
           </div>
           <div className="ymj_footer_link">
             <Link to={'/location'}>위치기반 약관</Link>
+          </div>
+          <div className="ymj_footer_link">
+            <Link to={'/admin_main'}>admin</Link>
           </div>
       </div>
 

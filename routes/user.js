@@ -157,8 +157,4 @@ router.get("/mypageview/:id", async (req, res) => {
   }
 });
 
-
-
-
-
 module.exports = router;
