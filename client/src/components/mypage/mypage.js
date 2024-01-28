@@ -17,6 +17,7 @@ function Mypage() {
   const [prewviewimg, setpreviwimg] = useState([]);
   let [modal, setModal] = useState(false);
 
+
   useEffect(() => {
     axios
       .get(`${API_URL}/user/mypage`, { params: { id: getCookie("login") } })
@@ -39,6 +40,8 @@ function Mypage() {
     const _id = getCookie("login");
 
 
+
+
     const fromdata = new FormData();
 
     fromdata.append("nickname", nickname);
@@ -46,6 +49,7 @@ function Mypage() {
     fromdata.append("address", address);
     fromdata.append("profileIMG", prewviewimg);
     fromdata.append("_id", _id);
+
 
     await axios
       .post(`${API_URL}/user/edit`, fromdata)
@@ -230,8 +234,6 @@ function Mypage() {
                 <div className="CHM_myinfoimgbox">
                   <img src={data.profileIMG}></img>
                 </div>
-
-
                 <div>
                   <div className="JSW_myname">
                     <div>내정보</div>
@@ -286,6 +288,7 @@ function Mypage() {
 
                 </div>
               )}
+
             </div>
           </div>
         </div>

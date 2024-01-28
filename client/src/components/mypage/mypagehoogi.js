@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import nohoogi from "./image/71583.png";
 
+
 function Mypagehoogi() {
   const [data, setData] = useState([]);
 
