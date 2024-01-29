@@ -18,3 +18,22 @@
 .searchpage_statussel div{
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  .searchpage_header{
+    padding: 7vw 5vw;
+    background-color: rgb(245, 245, 245);
+    font-size: 4.5vw;
+    font-family: 'SejonghospitalBold';
+    margin-bottom: 1vw;
+  }
+
+  .searchpage_statussel{
+    font-size: 2.5vw;
+  }
+
+  .searchpage_statussel div{
+    cursor: pointer;
+    padding:  0 0.5vw;
+  }
+}

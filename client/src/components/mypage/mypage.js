@@ -216,6 +216,7 @@ function Mypage() {
               </nav>
             </div>
           </div>
+
           <div className="JSW_Sec2">
             <div className="CHM_myinfocontain">
               <div className="CHM_myinfobox1">
