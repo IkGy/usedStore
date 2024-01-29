@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Declaration from '../page/declaration';
+import Report from "../page/report";
 import UserManagement from '../page/user_mgmt';
 import Setting from '../page/setting';
 import ProductManagement from '../page/product_mgmt';
@@ -37,7 +37,7 @@ function AdminMain() {
             </li>
             <li>
               <div
-                to="/page/declaration"
+                to="/page/report"
                 className={menu === "신고" ? "click" : "noneclick"}
                 onClick={() => MenuClick("신고")}
               >
@@ -61,7 +61,7 @@ function AdminMain() {
         
         {menu === "상품관리" && <div>{<ProductManagement></ProductManagement>}</div>}
         
-        {menu === "신고" && <div>{<Declaration></Declaration>}</div>}
+        {menu === "신고" && <div>{<Report></Report>}</div>}
         
         {menu === "설정" && <div>{<Setting></Setting>}</div>}
       </div>
