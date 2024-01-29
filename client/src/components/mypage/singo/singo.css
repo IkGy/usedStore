@@ -8,6 +8,10 @@
     font-weight: 700;
 }
 
+.kk_ask_gre_all {
+    margin-left: 5vw;
+}
+
 .kk_ask_help_bar_qna {
     color: green;
     font-weight: 700;
@@ -55,7 +59,7 @@
 
 .kk_ask_section {
     background-color: #fff;
-    width:  60vw;
+    width:  65.2vw;
     margin: 0 auto;
     border: 1px solid #e8e8e8;
     padding: 0 70px 50px;
@@ -140,7 +144,7 @@
 .kk_ask_btm_title_right {
     position: absolute;
     bottom: 0;
-    right: 5.5em;
+    right: 6em;
     font-size: 14px;
     font-weight: bold;
     color: #999999;
@@ -351,6 +355,11 @@
 
 
 @media (max-width: 1024px) {
+
+    .kk_ask_gre_all {
+        margin-left: 0vw;
+    }
+    
     .kk_ask_section {
         background-color: #fff;
         width: 70vw;
@@ -400,7 +409,7 @@
     }
     .kk_form_textarea {
         width: 60vw;
-        height: 25vh;
+        height: 200px;
     }
     
 
