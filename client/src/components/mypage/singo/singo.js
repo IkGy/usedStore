@@ -36,9 +36,9 @@ function Singo() {
                       <div className='kk_ask_btm_title'>
                           신고내용 작성하기
                       </div>
-                      <div className='kk_ask_btm_title_right'>
+                      {/* <div className='kk_ask_btm_title_right'>
                       필수입력사항
-                      </div>
+                      </div> */}
                   </div>
                   <div className='JSW_select_category'>
                     <div className='JSW_select_title'>카테고리</div>
@@ -46,6 +46,7 @@ function Singo() {
                         <select>
                             <option>광고성</option>
                             <option>상품정보 부적절</option>
+                            <option>부적절한 닉네임 및 상점 내용</option>
                             <option>거래 금지 품목</option>
                             <option>사기</option>
                             <option>19금 콘텐츠</option>
@@ -93,9 +94,9 @@ function Singo() {
                         <span>취소</span>
                     </button>
                     {/* 이부분은 데이터 취합해서 submit 하는 부분 만들어야함 */}
-                    <Link to ="/" className='kk_ask_btm_btn_reg'>
+                    <button type='submit' className='kk_ask_btm_btn_reg'>
                         <span>등록하기</span> 
-                    </Link>
+                    </button>
                 </div>
               </div>
           </div>
