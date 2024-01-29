@@ -23,5 +23,10 @@
   border: 1px solid #000000;
   text-align: center;
   min-height: 30px;
+  overflow: hidden;
 }
 
+.usermgmt_td input {
+  width: calc(100% - 18px); 
+  box-sizing: border-box;
+}
