@@ -39,14 +39,16 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
         }
     }, [show, id]);
 
-    const submitReview = async (resiverId, writerId, reviewContent) => {
+    const submitReview = async (resiverId, writerId, reviewContent, writer_id, writer_profileIMG) => {
         try {
             const url = `${API_URL}/mypage/post/shop`;
             
             const requestBody = {
                 resiverId :resiverId,
                 writerid: writerId,
-                content: reviewContent
+                content: reviewContent,
+                writer: writer_id,
+                profileIMG: writer_profileIMG
             };
             await axios.post(url, requestBody)
             alert('작성이 완료되었습니다');
@@ -62,7 +64,9 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
         event.preventDefault();
         fetchReviewer();
         const writerId = reviewer.nickname;
-        await submitReview(id, writerId, reviewContent);
+        const writer_id = reviewer._id;
+        const writer_profileIMG = reviewer.profileIMG
+        await submitReview(id, writerId, reviewContent, writer_id, writer_profileIMG);
     };
 
     // 실시간 날짜와 시간계산
