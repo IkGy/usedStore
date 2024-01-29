@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config/contansts";
 
 function ProductManagement() {
+  const [prodData,setProdData] = useState([]);
   const getData = async ()=>{
     await axios.get(`${API_URL}/admin/prodAll`)
     .then((response)=>{
@@ -16,8 +17,17 @@ function ProductManagement() {
     getData();
   },[])
   return (
-    <div>
-      
+    <div className="admin_prod_list">
+      <table>
+
+        {/* {prodData.map(()=>{
+          return(
+            <tr>
+
+            </tr>
+          )
+        })} */}
+      </table>
     </div>
   );
 }
