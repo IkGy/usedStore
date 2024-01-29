@@ -39,7 +39,6 @@ function UserManagement() {
             <th className="usermgmt_th">휴대폰 번호</th>
             <th className="usermgmt_th">유저 상태</th>
             <th className="usermgmt_th">상점 한마디</th>
-            <th className="usermgmt_th">생성 일</th>
           </tr>
         </thead>
         <tbody className='usermgmt_tbody'>   
@@ -61,7 +60,6 @@ function UserManagement() {
               <td className='usermgmt_td'>{user.phone_number}</td>
               <td className='usermgmt_td'>{user.role}</td>
               <td className='usermgmt_td'>{user.about}</td>
-              <td className='usermgmt_td'>{user.created_at}</td>
             </tr>
           ))}
         </tbody>
