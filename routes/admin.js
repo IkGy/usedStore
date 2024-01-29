@@ -46,5 +46,8 @@ router.post(`/useredit/:id`, async (req, res) => {
   }
 });
 
+router.get('/prodAll', async(req,res)=>{
+  await 
+})
 
 module.exports = router;

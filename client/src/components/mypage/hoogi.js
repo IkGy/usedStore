@@ -35,7 +35,7 @@ function Hoogi(props) {
       setReviewContent('');
       setModalOpen(true);
     } else {
-      alert('후기등록을 위해 로그인을 해주시기 바랍니다')
+      alert('후기등록을 위해 로그인 해주시기 바랍니다')
       navigate('/login');
     }
   }
@@ -66,6 +66,7 @@ function Hoogi(props) {
     const fetchGetReview = async () => {
       try {
         const res = await axios.get(`${API_URL}/user/mypageview/${useId.id}`);
+        
         setGetReview(res.data.review);
       } catch (error) {
         console.error('데이터를 불러오지 못했습니다:', error.response?.data);
@@ -129,7 +130,7 @@ function Hoogi(props) {
             <div className="KJH_shop-review_info" key={review._id}>
               <div className="KJH_shop-review_writer_section">
                 <div className="KJH_shop-review_img">
-                  <img src={review.profileIMG} alt="프로필 이미지" />
+                  <img src={review.profileIMG} alt="profile_img" />
                 </div>
                 <div className="KJH_shop-review_img_right_section">
                   <div className="KJH_shop-review_writer">

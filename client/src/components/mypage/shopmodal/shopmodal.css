@@ -9,6 +9,7 @@
     align-items: center;
     backdrop-filter: blur(5px);
     z-index: 10;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .KJH_shop-review_modal_section {
@@ -24,6 +25,7 @@
     padding: 4vh 2vw;
     border: 0.2vw solid #2748b0;
     border-radius: 0.4vw;
+    transition: 0.1s;
 }
 
 .KJH_shop-review_modal_in {
@@ -50,6 +52,7 @@
     padding: 1.6vh 1vw;
     border-radius: 0.4vw;
     font-size: 1.4vw;
+    font-weight: 700;
     border: 0.2vw solid #2748b0;
     transition: 0.1s;
 }
@@ -83,8 +86,7 @@
     width: 100%;
     background-color: white;
     height: 17vh;
-    border-radius: 0.2vw;
-    font-size: 1.2vw;
+    border-radius: 0.3vw;
     padding: 1vh 1vw;
     border: 0.2vw solid #2748b0;
     transition: all 0.1s;
@@ -118,6 +120,7 @@
 }
 .KJH_shop-review_modal_date_content {
     font-size: 1.2vw;
+    font-weight: 700;
     color: #2748b0;
     transition: 0.1s;
 }
@@ -125,11 +128,11 @@
 .KJH_shop-review_modal_submit {
     display: inline-block;
     padding: 1vh 1vw;
-    font-size: 24px;
     border-radius: 0.4vw;
     background-color: white;
     border: 0.2vw solid #2748b0;
     font-size: 1.2vw;
+    font-weight: 700;
     transition: all 0.3s;
     cursor: pointer;
 }
@@ -167,6 +170,7 @@
         align-items: center;
         backdrop-filter: blur(5px);
         z-index: 10;
+        font-family: 'Noto Sans KR', sans-serif;
     }
     
     .KJH_shop-review_modal_section {
@@ -242,7 +246,6 @@
         background-color: white;
         height: 12vh;
         border-radius: 0.2vw;
-        font-size: 1.2vw;
         padding: 1vh 1vw;
         border: 0.2vw solid #2748b0;
     }
@@ -310,3 +313,326 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .KJH_shop-review_modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+        z-index: 10;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    
+    .KJH_shop-review_modal_section {
+        color: black;
+    }
+    
+    /* ------------- 모달 : 등록하는 구간 ------------- */
+    
+    .KJH_shop-review_modal_info {
+        width: 65vw;
+        height: 45vh;
+        background-color: #dbe3ff;
+        padding: 4vh 2vw;
+        border: 0.3vw solid #2748b0;
+        border-radius: 0.4vw;
+    }
+    
+    .KJH_shop-review_modal_in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .KJH_shop-review_modal_title_section {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        top: 0;
+        width: 100%;
+    }
+    
+    .KJH_shop-review_modal_title {
+        display: inline-block;
+        background-color: white;
+        padding: 1.2vh 0.8vw;
+        border-radius: 0.4vw;
+        font-size: 1.6vw;
+        font-weight: 700;
+        border: 0.3vw solid #2748b0;
+        transition: 0.1s;
+    }
+    
+    .KJH_shop-review_modal_nickname {
+        margin-right: 0.4vw;
+        font-size: 2vw;
+        font-weight: 700;
+        color: #2748b0;
+    }
+    
+    .KJH_shop-review_modal_ex_name {
+        font-size: 1.4vw;
+        color: #2f60ff;
+    }
+    
+    .KJH_shop-review_modal_who-shop_section {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        align-items: flex-end;
+        padding: 0.4vh 0.6vw;
+    }
+    
+    .KJH_shop-review_modal_content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        background-color: white;
+        height: 19vh;
+        border-radius: 0.8vw;
+        padding: 1vh 1vw;
+        border: 0.3vw solid #2748b0;
+        transition: all 0.1s;
+    }
+    
+    .KJH_shop-review_modal_textarea {
+        font-family: 'Noto Sans KR', sans-serif;
+        border: none;
+        resize: none;
+        font-size: 1.8vw;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .KJH_shop-review_modal_bottom_section {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    .KJH_shop-review_modal_bottom_date_section {
+        display: flex;
+        align-items: flex-end;
+    }
+    
+    .KJH_shop-review_modal_date_title {
+        font-size: 1.6vw;
+        transition: 0.1s;
+    }
+    .KJH_shop-review_modal_date_content {
+        font-size: 2vw;
+        font-weight: 700;
+        color: #2748b0;
+        transition: 0.1s;
+    }
+    
+    .KJH_shop-review_modal_submit {
+        display: inline-block;
+        padding: 1vh 1vw;
+        border-radius: 0.8vw;
+        background-color: white;
+        border: 0.3vw solid #2748b0;
+        font-size: 2vw;
+        font-weight: 700;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    
+    .KJH_shop-review_modal_submit:hover {
+        background-color: #89a4ff;
+        border: 0.3vw solid white;
+        color: white;
+    }
+    
+    /* ------------------------------------------------ */
+    .KJH_shop-review_close-button {
+        position: absolute;
+        width: 80px;
+        height: 40px;
+        border-radius: 10px;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background-color: #ff817a;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+        .KJH_shop-review_modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        .KJH_shop-review_modal_section {
+            color: black;
+        }
+        
+        /* ------------- 모달 : 등록하는 구간 ------------- */
+        
+        .KJH_shop-review_modal_info {
+            width: 80vw;
+            height: 45vh;
+            background-color: #dbe3ff;
+            padding: 2vh 2vw;
+            border: 0.4vw solid #2748b0;
+            border-radius: 1.2vw;
+            transition: 0.1s;
+        }
+        
+        .KJH_shop-review_modal_in {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .KJH_shop-review_modal_title_section {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            top: 0;
+            width: 100%;
+        }
+        
+        .KJH_shop-review_modal_title {
+            display: inline-block;
+            background-color: white;
+            padding: 1.6vh 7vw;
+            border-radius: 1vw;
+            font-size: 3vw;
+            font-weight: 700;
+            border: 0.4vw solid #2748b0;
+            transition: 0.1s;
+        }
+        
+        .KJH_shop-review_modal_nickname {
+            margin-right: 0.4vw;
+            font-size: 3vw;
+            font-weight: 700;
+            color: #2748b0;
+        }
+        
+        .KJH_shop-review_modal_ex_name {
+            font-size: 2vw;
+            color: #2f60ff;
+        }
+        
+        .KJH_shop-review_modal_who-shop_section {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.4vh 0.6vw;
+        }
+        
+        .KJH_shop-review_modal_content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            background-color: white;
+            height: 17vh;
+            border-radius: 1vw;
+            padding: 1vh 1vw;
+            border: 0.4vw solid #2748b0;
+            transition: all 0.1s;
+        }
+        
+        .KJH_shop-review_modal_textarea {
+            font-family: 'Noto Sans KR', sans-serif;
+            border: none;
+            resize: none;
+            font-size: 3vw;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .KJH_shop-review_modal_bottom_section {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .KJH_shop-review_modal_bottom_date_section {
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .KJH_shop-review_modal_date_title {
+            font-size: 2.5vw;
+            transition: 0.1s;
+        }
+        .KJH_shop-review_modal_date_content {
+            font-size: 3vw;
+            font-weight: 700;
+            color: #2748b0;
+            transition: 0.1s;
+        }
+        
+        .KJH_shop-review_modal_submit {
+            display: inline-block;
+            padding: 1vh 1vw;
+            font-size: 24px;
+            border-radius: 1vw;
+            background-color: white;
+            border: 0.4vw solid #2748b0;
+            font-size: 3vw;
+            font-weight: 700;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .KJH_shop-review_modal_submit:hover {
+            background-color: #89a4ff;
+            border: 0.4vw solid white;
+            color: white;
+        }
+        
+        /* ------------------------------------------------ */
+        .KJH_shop-review_close-button {
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background-color: #ff817a;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    }
+}
