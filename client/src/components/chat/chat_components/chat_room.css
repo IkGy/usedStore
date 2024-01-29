@@ -5,11 +5,15 @@
   max-height: 35vw;
   min-height: 35vw;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
 }
 .room_Input_component{
   position: absolute;
-  border: 1px solid #000;
-}
+}`  
 
 
 /* 미선택시 */
@@ -53,11 +57,28 @@
 /* 채팅 라인 */
 .messages {
   min-height: 40vh;
+  max-height: 55vh;
+  /* max-height: 40vh;   */
+  height: 100%;
   padding: 5% 0;
   overflow: auto;
   flex: auto;
-  /* border: 1px solid #000; */
+  /* border: 1px solid #000; */  
+  overflow-y: auto;
 }
+.messagesOnImages {
+  min-height: 40vh;
+  max-height: 40vh;  
+  height: 100%;
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+  /* border: 1px solid #000; */  
+  overflow-y: auto;
+}
+
+
+
 .messageBox {
   background: #F3F3F3;
   border-radius: 20px;
@@ -129,14 +150,17 @@
 /* preview */
 .file-previews-container {
   padding: 0.8vh;
-  width: 100%;
+  min-width: 100%;
   max-width: 100%;
-  max-height: fit-content;
+  /* max-height: fit-content; */
+  min-height: 150px;
+  max-height: 150px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 1vh;
-  
+  position: absolute;
   background-color: rgba(65, 65, 65, 0.1);
+  overflow-y: auto;
 }
 
 
@@ -172,9 +196,11 @@
 /* input */
 .chat_room_input_main {
   display: flex;
+  width: 100%;
   border-top: 2px solid #D3D3D3;
-  position: relative;
   align-content: end;
+  bottom: 0;
+  position: absolute;
 }
 
 .input_area {
