@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleLoginButton from "../login/goolge";
-import NaverLoginButton from "../login/NaverLoginButton"; 
+// import NaverLoginButton from "../login/NaverLoginButton"; 
 import './sign_up.css';
 
 
