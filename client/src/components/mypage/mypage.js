@@ -17,7 +17,6 @@ function Mypage() {
   const [prewviewimg, setpreviwimg] = useState([]);
   let [modal, setModal] = useState(false);
 
-
   useEffect(() => {
     axios
       .get(`${API_URL}/user/mypage`, { params: { id: getCookie("login") } })
@@ -29,7 +28,7 @@ function Mypage() {
         console.error(err);
         console.log("실패");
       });
-    setMenu("찜 목록");
+    setMenu("등록된 상품");
   }, []);
 
   const editUser = async (e) => {
@@ -45,7 +44,6 @@ function Mypage() {
     fromdata.append("address", address);
     fromdata.append("profileIMG", prewviewimg);
     fromdata.append("_id", _id);
-
 
     await axios
       .post(`${API_URL}/user/edit`, fromdata)
@@ -152,7 +150,7 @@ function Mypage() {
                 <div className="JSW_modal_formtitle">배송지</div>
                 <input
                   style={{ cursor: "pointer" }}
-                  className="JSW_modal_loginInputBox_s"
+                  className="JSW_modal_loginInputBox_s JSW_modal_addinput"
                   id="address"
                   type="text"
                   value={selectedAddress}
@@ -187,7 +185,7 @@ function Mypage() {
               <nav className="JSW_nav1">
                 <span id="JSW_Mypage_tag"></span>
                 <ul>
-                  <li>
+                  <li className="JSW_firstlist">
                     <p
                       href="#"
                       className={menu === "등록된 상품" ? "active" : "noactive"}
@@ -229,13 +227,6 @@ function Mypage() {
                     <div>내정보</div>
                     <div className="JSW_btnBox">
                       <Link
-                        to="/makenewpw"
-                        className="loginBtn"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <label className="JSW_Cristal">비밀번호 변경</label>
-                      </Link>
-                      <Link
                         className="loginBtn"
                         style={{ textDecoration: "none" }}
                         onClick={(e) => {
@@ -244,6 +235,13 @@ function Mypage() {
                         }}
                       >
                         <label className="JSW_Cristal2">프로필 수정</label>
+                      </Link>
+                      <Link
+                        to="/makenewpw"
+                        className="loginBtn"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <label className="JSW_Cristal">비밀번호 변경</label>
                       </Link>
                     </div>
                   </div>
@@ -276,7 +274,6 @@ function Mypage() {
                   <Mypagehoogi menu={menu}></Mypagehoogi>
                 </div>
               )}
-
             </div>
           </div>
         </div>

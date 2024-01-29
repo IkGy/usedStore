@@ -43,7 +43,9 @@ router.post('/post/shop', async (req, res) => {
             writer: writerid,
             create_at: currentDate,
             update_at: currentDate,
-            comment: content
+            comment: content,
+            write_id: req.body.writer,
+            profileIMG: req.body.profileIMG
         });
         res.status(201).send({ message: '후기가 성공적으로 작성되었습니다.' });
     } catch (error) {
