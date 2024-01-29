@@ -1,7 +1,8 @@
-.prod_title{
+.prod_title {
   margin-top: 2vw;
-  font-size: 1.5vw;
+  font-size: 2vw;
   font-weight: bold;
+  font-family: 'SejonghospitalBold';
 }
 
 .main_prod_grid {
@@ -9,15 +10,22 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1vw;
-  justify-content: center;
   margin-top: 1vw;
-  
+  width: 100%;
 }
 
 .main_prod_detail {
-  border: 0.1vw solid rgba(169, 169, 169, 0.241);
+  border: 0.15vw solid rgba(169, 169, 169, 0.199);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.main_prod_detail:hover {
+  border: 0.15vw solid #2748b0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.193);
 }
 
 .main_prod_img {
@@ -31,19 +39,25 @@
 
 .main_prod_title {
   font-size: 1.3vw;
-  font-family: 'JalnanGothic';
+  font-family: "JalnanGothic";
   padding-bottom: 0.5vw;
 }
 
 .main_prod_price {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9vw;
+  align-items: center;
+  font-size: 1.2vw;
+}
+
+.main_prod_price span{
+  color: rgba(0, 0, 0, 0.652);
+  font-size: 1vw;
 }
 
 .main_prod_info {
   padding: 1vw;
-  max-width: 14vw;
+  max-width: 100%;
 }
 
 .main_prod_info p:first-child {
@@ -53,46 +67,56 @@
   white-space: nowrap;
 }
 
-.plus_btn{
+.plus_btn {
   width: 100%;
   text-align: center;
-  margin-top: 1vw;
+  margin-top: 2vw;
   display: flex;
   justify-content: center;
 }
-.load_more_button{
-  width: 13vw;
-  height: 2.5vw;
+.load_more_button {
+  width: 10vw;
   color: #fff;
   border-radius: 5px;
-  padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 900;
-  font-size: 1vw;
+  font-size: 1.8vw;
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-    7px 7px 20px 0px rgba(0,0,0,.1),
-    4px 4px 5px 0px rgba(0,0,0,.1);
+  box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
 .btn_1 {
-  background: rgb(6,14,131);
-  background: linear-gradient(0deg, #2748b0 0%, #2748b0 100%);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #2748b0;
+  padding: 0.7vw;
+  border-style: none;
+  font-family: 'SejonghospitalBold';
+}
+
+.btn_1:hover {
+  background: #375cd5;
 }
 
 @media (max-width: 500px) {
-  .prod_title{
-    margin-top: 2vw;
-    font-size: 3vw;
+  .main_prod_detail {
+    border: 0.5vw solid rgba(169, 169, 169, 0.085);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .main_prod_detail:hover {
+    border: 0.5vw solid #2748b0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.193);
+  }
+
+  .prod_title {
+    margin-top: 5vw;
+    font-size: 4vw;
     font-weight: bold;
   }
 
@@ -102,13 +126,14 @@
 
   .main_prod_grid {
     grid-template-columns: repeat(3, 1fr);
-  column-gap: 2vw;
-  row-gap: 2.5vw;
+    column-gap: 2vw;
+    row-gap: 2.5vw;
+    margin-top: 2vw;
   }
 
   .main_prod_info {
     padding: 1vw;
-    max-width: 27vw;
+    max-width: 100%;
   }
 
   .main_prod_info p:first-child {
@@ -117,19 +142,20 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
+
   .main_prod_title {
-    font-size: 2vw;
-    font-family: 'JalnanGothic';
+    font-size: 2.5vw;
+    font-family: "JalnanGothic";
     padding-bottom: 1vw;
+    padding-top: 1vw;
   }
-  
+
   .main_prod_price {
     display: flex;
-    justify-content: space-between;
-    font-size: 2vw;
+    font-size: 2.5vw;
   }
-  .plus_btn{
+
+  .plus_btn {
     width: 100%;
     text-align: center;
     margin-top: 3vw;
@@ -137,13 +163,12 @@
     justify-content: center;
   }
 
-  .load_more_button{
+  .load_more_button {
     width: 30vw;
-    height: 4vw;
     color: #fff;
     border-radius: 5px;
-    padding: 4vw 5vw;
-    font-family: 'Lato', sans-serif;
+    padding: 2vw;
+    font-family: "Lato", sans-serif;
     font-weight: 900;
     font-size: 3vw;
     background: transparent;
@@ -151,18 +176,21 @@
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
-      box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-      7px 7px 20px 0px rgba(0,0,0,.1),
-      4px 4px 5px 0px rgba(0,0,0,.1);
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     outline: none;
   }
-  
+
   .btn_1 {
-    background: rgb(6,14,131);
-    background: linear-gradient(0deg, #2748b0 0%, #2748b0 100%);
+    background: #2748b0;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .main_prod_price span{
+    color: rgba(0, 0, 0, 0.652);
+    font-size: 2.2vw;
   }
 }

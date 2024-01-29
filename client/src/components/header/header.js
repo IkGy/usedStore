@@ -36,13 +36,6 @@ function Header() {
     }
   };
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
-      .then((result) => {
-        console.log(result.data);
-      });
-  }, []);
 
   useEffect(() => {
     // 카카오 SDK 초기화
@@ -58,11 +51,12 @@ function Header() {
       window.Kakao.init("90b9cec28ae877d95b8c171eabad92f5");
     };
 
-    axios
-      .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
-      .then((result) => {
-        console.log(result.data);
-      });
+    // axios
+    //   .get(`${API_URL}/user/header`, { params: { id: getCookie("login") } })
+    //   .then((result) => {
+    //     console.log(result.data);
+    //   });
+    
   }, []);
 
   const deleteCookie = () => {

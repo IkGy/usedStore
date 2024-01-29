@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleLoginButton from "../login/goolge";
-import NaverLoginButton from "../login/NaverLoginButton"; 
+// import NaverLoginButton from "../login/NaverLoginButton"; 
 import './sign_up.css';
 
 
@@ -112,7 +112,7 @@ export default function SignUp() {
             >
               카카오톡 계정으로 로그인
             </Button>
-            <NaverLoginButton />
+            {/* <NaverLoginButton /> 네이버 인증실패로 기능주석처리 */}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/sign_up" variant="body2" sx={{ pt: 5 }}>

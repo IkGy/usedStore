@@ -18,19 +18,20 @@
 .JSW_modal_selectform {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  row-gap: 0.5vw;
+  align-items:center;
 }
 
 .JSW_modal_formtitle {
-  font-size: 1.2vw;
+  font-size: 1.5vw;
   margin-bottom: 0.4vw;
+  font-family: 'SejonghospitalBold';
 }
 
 .JSW_modal_imgpreview {
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: 10vw;
+  height: 13vw;
 }
 
 .JSW_modal_imgpreview img {
@@ -107,7 +108,7 @@
 
 .JSW_nav1 {
   position: sticky;
-  top: 5vw;
+  top: 6.5vw;
 }
 
 .JSW_nav1 > ul {
@@ -116,11 +117,17 @@
 }
 
 .JSW_nav1 > ul > li {
-  padding-top: 20%;
   list-style: none;
   text-align: center;
-  font-size: 1vw;
+  font-size: 1.3vw;
   font-weight: 700;
+  padding: 1vw;
+  background-color: white;
+  transition: 0.2s background-color;
+}
+
+.JSW_nav1 > ul > li:hover {
+  background-color: rgb(239, 239, 239);
 }
 
 .JSW_nav1 > ul > li > a {
@@ -139,7 +146,7 @@
 }
 
 .JSW_Sec2_view {
-  height: 100vh;
+  height: auto;
 }
 
 .JSW_Sec2-1 {
@@ -208,6 +215,11 @@
   font-size: 1vw;
   cursor: pointer;
   text-align: center;
+  transition: background-color 0.2s;
+}
+
+.JSW_Cristal:hover {
+  background-color: #375cd5;
 }
 
 .JSW_Cristal2 {
@@ -219,11 +231,16 @@
   border-radius: 0.5vw;
   font-size: 1vw;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.JSW_Cristal2:hover {
+  background-color: #375cd5;
 }
 
 .JSW_Sec2-2 {
   margin-top: 1vw;
-  padding-bottom: 1vw;
+  overflow: hidden;
 }
 
 .JSW_Sec2-2_Left {
@@ -235,7 +252,7 @@
 }
 
 .JSW_userlist {
-  font-size: 1vw;
+  font-size: 1.2vw;
   font-weight: 500;
   word-wrap: break-word;
   padding: 0.3vw 0;
@@ -253,24 +270,30 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30vw;
+  width: 40vw;
   border: 0.4vw solid #2748b0;
   border-radius: 0.5vw;
-  padding: 1vw;
+  padding: 1.5vw;
   z-index: 7;
 }
 
 .JSW_modal_loginInputBox {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr;
   column-gap: 1vw;
-  margin-bottom: 1vw;
+  margin-bottom: 2vw;
+}
+
+.JSW_modal_addinput{
+  background-color: rgba(0, 0, 0, 0.123);
 }
 
 .JSW_modal_loginInputBox_s {
   width: 100%;
-  padding: 0.2vw;
+  padding: 0.5vw;
   font-size: 1vw;
+  font-weight: 900;
+  border-radius: 0.3vw;
 }
 
 .JSW_modal_mainTitle {
@@ -278,21 +301,35 @@
 }
 
 .JSW_modal_loginCloseBtn {
+  font-family: 'SejonghospitalBold';
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.5vw;
+  font-size: 2vw;
   margin-bottom: 1vw;
 }
 
 .JSW_mypagewater {
+  font-family: 'SejonghospitalBold';
   background-color: #2748b0;
   border-style: none;
   color: white;
-  padding: 0.5vw;
+  padding: 0.6vw;
   border-radius: 0.3vw;
   margin-top: 1vw;
-  font-size: 1vw;
+  font-size: 1.3vw;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.JSW_mypagewater:hover {
+  background-color:#375cd5;
+}
+
+.CHM_useringoflex{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
 
 .JSW_imgupload {
@@ -317,13 +354,14 @@
 
 .CHM_myinfobox1 {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2.5fr;
   column-gap: 1vw;
 }
 
 .CHM_myinfoimgbox {
+  min-height: 13vw;
   width: 100%;
-  height: 13vw;
+  height: 100%;
 }
 
 .CHM_myinfobox1 img {
@@ -335,9 +373,9 @@
 
 .JSW_useraboutbox {
   display: grid;
-  grid-template-columns: 1fr 12fr;
+  grid-template-columns: 1fr 9fr;
   padding: 1vw 0;
-  font-size: 1vw;
+  font-size: 1.2vw;
   border-bottom: 0.25vw solid rgb(0, 0, 0);
 }
 
@@ -458,7 +496,11 @@
   overflow: hidden;
 }
 
+.JSW_AnameBox div:first-child{
+  padding-bottom: 0.2vw;
+}
 .JSW_Aname {
+  font-family: 'SejonghospitalBold';
   font-weight: 700;
   text-align: center;
   white-space: nowrap; /* 줄 바꿈 금지 */
@@ -479,7 +521,6 @@
 .JSW_contentGridBox_img > img {
   width: 100%;
   height: 100%;
-
   z-index: 2;
 }
 
@@ -491,8 +532,12 @@
 }
 
 .JSW_sell {
-  padding: 0.5vw 1vw;
+  font-family: 'SejonghospitalBold';
   font-size: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .JSW_listedit {
@@ -500,11 +545,25 @@
   border-left: 1px solid #000;
   padding: 0.5vw 1vw;
   font-size: 1vw;
+  font-family: 'SejonghospitalBold';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.JSW_listedit a{
+  font-family: 'SejonghospitalBold';
 }
 
 .JSW_listdelete {
+  font-family: 'SejonghospitalBold';
   padding: 0.5vw 1vw;
   font-size: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .JSW_sell:hover {
@@ -614,6 +673,12 @@
   .JSW_nav1 > ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+  }
+
+  .CHM_uibt{
+    display: grid;
+    grid-template-columns: 1fr 1fr !important;
     padding: 0;
   }
 
@@ -890,5 +955,66 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .JSW_noproductbox {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vw;
+  }
+
+  
+  .JSW_noproductbox div {
+    font-size: 3vw;
+    padding: 2vw 0 3vw 0;
+  }
+  
+  .JSW_noproductbox a {
+    font-size: 3vw;
+    background-color: #2748b0;
+    color: white;
+    padding: 1vw;
+    border-radius: 0.5vw;
+  }
+  
+  .JSW_noproductbox img {
+    width: 30vw;
+    height: 20vw;
+  }
+
+  .JSW_noheartbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vw;
+  }
+  
+  .JSW_noheartbox div {
+    font-size: 3vw;
+    padding: 3vw;
+  }
+
+  .JSW_noheartbox img {
+    width: 30vw;
+    height: 20vw;
+  }
+
+  .JSW_nohoogibox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vw;
+  }
+  
+  .JSW_nohoogibox div {
+    font-size: 3vw;
+    padding: 3vw;
+  }
+  
+  .JSW_nohoogibox img {
+    width: 30vw;
+    height: 20vw;
   }
 }
