@@ -8,6 +8,10 @@
     font-weight: 700;
 }
 
+.kk_ask_gre_all {
+    margin-left: 5vw;
+}
+
 .kk_ask_help_bar_qna {
     color: green;
     font-weight: 700;
@@ -55,7 +59,7 @@
 
 .kk_ask_section {
     background-color: #fff;
-    width:  60vw;
+    width:  65.2vw;
     margin: 0 auto;
     border: 1px solid #e8e8e8;
     padding: 0 70px 50px;
@@ -94,6 +98,7 @@
     padding-bottom: 19px;
     font-family: font_ns, sans-serif;
 }
+
 
 .kk_ask_agree_left_info {
     border: 2px solid #e5e5e5;
@@ -140,7 +145,7 @@
 .kk_ask_btm_title_right {
     position: absolute;
     bottom: 0;
-    right: 5.5em;
+    right: 6em;
     font-size: 14px;
     font-weight: bold;
     color: #999999;
@@ -299,8 +304,8 @@
     display: inline-block;
     width: 180px;
     height:48px;
-    border: 1px solid #ddd;
 }
+
 .JSW_select select {
     display: inline-block;
     width: 100%;
@@ -309,15 +314,17 @@
     outline: 0;
     border: 0;
     border-radius: 0;
-    background: white;
-    color: black;
+    background: #f2f2f2;
+    border-radius: 10px;
+    color: #666666;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    font-size: 14px;
+    font-size: 16px;
     height: 100%;
     /* background: url('/img/add/icon_select.png') 150px center no-repeat; 화살표 이미지 */
 }
+
 .JSW_select select::-ms-expand {
     display: none;
 }
@@ -326,6 +333,7 @@
     opacity: 0.5;
     pointer-events: none;
 }
+
 .JSW_select__arrow {
     position: absolute;
     top: 16px;
@@ -337,10 +345,12 @@
     border-width: 8px 5px 0 5px;
     border-color: #7b7b7b transparent transparent transparent;
 }
+
 .JSW_select select:hover ~ .JSW_select__arrow,
 .JSW_select select:focus ~ .JSW_select__arrow {
     border-top-color: #000;
 }
+
 .JSW_select select:disabled ~ .JSW_select__arrow {
     border-top-color: #ccc;
 }
@@ -350,7 +360,13 @@
 }
 
 
+
 @media (max-width: 1024px) {
+
+    .kk_ask_gre_all {
+        margin-left: 0vw;
+    }
+    
     .kk_ask_section {
         background-color: #fff;
         width: 70vw;
@@ -400,7 +416,7 @@
     }
     .kk_form_textarea {
         width: 60vw;
-        height: 25vh;
+        height: 200px;
     }
     
 
