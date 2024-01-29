@@ -20,8 +20,8 @@ router.get('/user', async (req, res) => {
 
 router.post(`/useredit/:id`, async (req, res) => {
   
-  console.log('req.params: ', req.params);
-  console.log('req.body: ', req.body);
+  // console.log('req.params: ', req.params);
+  // console.log('req.body: ', req.body);
   
   try {
     const db = getDB(); 
@@ -35,7 +35,7 @@ router.post(`/useredit/:id`, async (req, res) => {
         },
       }
     ); 
-    console.log("(useredit) 사용자 데이터:", userData);
+    // console.log("(useredit) 사용자 데이터:", userData);
     res.json(userData);
 
   } catch (error) {
@@ -45,8 +45,51 @@ router.post(`/useredit/:id`, async (req, res) => {
 
 });
 
+<<<<<<< HEAD
 // router.get('/prodAll', async(req,res)=>{
 //   await 
 // })
+=======
+router.get('/prodAll', async (req, res) => {
+  const db = getDB();
+
+  try {
+    const products = await db.collection('product').aggregate([
+      {
+        $lookup: {
+          from: 'user',
+          let: { sellerId: { $toObjectId: '$seller' } }, // Convert seller to ObjectId
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ['$_id', '$$sellerId'] }
+              }
+            },
+            {
+              $project: {
+                password: 0, // Exclude password from sellerInfo
+                email: 0      // Exclude email from sellerInfo
+                // Add other fields as needed
+              }
+            }
+          ],
+          as: 'sellerInfo'
+        }
+      },
+      {
+        $unwind: {
+          path: '$sellerInfo',
+          preserveNullAndEmptyArrays: true
+        }
+      }
+    ]).toArray();
+
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+>>>>>>> 5967cffe92b9749b0cddba65a4e4ec8982e96481
 
 module.exports = router;
