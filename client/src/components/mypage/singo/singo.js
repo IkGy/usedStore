@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Submit_Data from './submit_data';
 
 import './singo.css';
 
 function Singo() {
+
+
+    const navigate = useNavigate(); //변수 할당시켜서 사용
+    const onClickBtn = () => {
+        navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
+    };
+      
 
   const rendertext = (text) => {
     return text.split('\n').map((line, index) => (
@@ -81,9 +89,9 @@ function Singo() {
                       ))}
                   </table>
                 <div className='kk_ask_btm_btn_sction'>
-                    <Link to ="/" className='kk_ask_btm_btn_cancel'>
+                    <button onClick={onClickBtn} className='kk_ask_btm_btn_cancel'>
                         <span>취소</span>
-                    </Link>
+                    </button>
                     {/* 이부분은 데이터 취합해서 submit 하는 부분 만들어야함 */}
                     <Link to ="/" className='kk_ask_btm_btn_reg'>
                         <span>등록하기</span> 

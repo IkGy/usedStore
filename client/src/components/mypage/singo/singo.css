@@ -240,6 +240,8 @@
     border-radius: 15px;
     transition-duration: 0.2s;
     margin: 0 4px;
+
+    cursor: pointer;
 }
 
 .kk_ask_btm_btn_cancel {
