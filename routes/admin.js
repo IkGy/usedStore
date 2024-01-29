@@ -45,11 +45,6 @@ router.post(`/useredit/:id`, async (req, res) => {
 
 });
 
-<<<<<<< HEAD
-// router.get('/prodAll', async(req,res)=>{
-//   await 
-// })
-=======
 router.get('/prodAll', async (req, res) => {
   const db = getDB();
 
@@ -90,6 +85,5 @@ router.get('/prodAll', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
->>>>>>> 5967cffe92b9749b0cddba65a4e4ec8982e96481
 
 module.exports = router;
