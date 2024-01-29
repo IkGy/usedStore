@@ -28,6 +28,7 @@ import UserManagement from './components/admin/page/user_mgmt';
 import Setting from './components/admin/page/setting';
 import ProductManagement from './components/admin/page/product_mgmt';
 import Declaration from './components/admin/page/declaration';
+import Singo from './components/mypage/singo/singo';
 
 
 function ScrollToTop() {
@@ -54,6 +55,7 @@ function App() {
           <Route path='/mypage/:id' element={<Mypage/>}></Route>
           <Route path='/mypage/:id/:picklist' element={<Mypage/>}></Route>
           <Route path='/mypageview/:id' element={<Mypageview/>}></Route>
+          <Route path='/singo' element={<Singo/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/makenewpw' element={<MakeNewPW />}></Route>
