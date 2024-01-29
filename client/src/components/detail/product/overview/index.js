@@ -112,7 +112,7 @@ function Item(props) {
 
     // 신고 알림창
     const handleReportClick = () => {
-        alert('이 게시글을 신고하시겠습니까?');
+        alert('신고 페이지로 이동합니다.');
     };
 
 
