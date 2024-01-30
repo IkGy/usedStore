@@ -170,6 +170,7 @@ app.get("/product/registered", async (요청, 응답) => {
     .collection("product")
     .find({
       seller: 요청.query.id,
+      status: "판매중",
     })
     .toArray();
   응답.send(result);
@@ -291,9 +292,7 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
     nickname: req.body.nickname,
   });
 
-  if (req.body.nickname.length < 2 || req.body.nickname.length > 10) {
-    return res.status(400).send("닉네임은 2글자에서 10글자 사이어야 합니다");
-  } else if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
+  if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
     res.status(201).send("닉네임중복");
   } else {
     if (req.file) {
@@ -417,20 +416,6 @@ app.post("/singo", async (req, res) => {
   res.status(201).send("접수완료");
 });
 
-app.post("/sellcomplete/:_id", async (req, res) => {
-  const db = getDB();
-  await db.collection("product").updateOne(
-    { _id: new ObjectId(req.params._id) },
-    {
-      $set: {
-        status: "판매완료",
-      },
-    }
-  );
-
-  res.status(201).send("판매완료!");
-});
-
 // ---------실시간채팅------------- //
 
 // Socket.io 설정
@@ -493,6 +478,10 @@ app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 
 
+
+
+
+
 app.get("/room_list", async (req, res) => {
   const db = getDB();
 
@@ -507,20 +496,31 @@ app.get("/room_list", async (req, res) => {
   res.status(201).send(result);
 });
 
-app.get("/chat_room", async (req, res) => {
+
+app.get('/chat_room', async (req, res) => {
+  console.log("chatroom 진입");
   const db = getDB();
   const user_ID = req.query.id;
 
-  // let test = await db.collection('chattingroom').aggregate([
-  //   {
-  //     $lookup: {
-  //       from: 'user',
-  //       let: {
-          
-  //       }
-  //     }
-  //   }
-  // ])
+  try {
+    let result = await db
+      .collection("chattingroom")
+      .find({
+        user: user_ID,
+      })
+      .toArray();
+
+    console.log("result: ", result);
+    res.status(201).send(result);
+  } catch (error) {
+    console.log("채팅 불러오기 실패다 이자식아");
+    res.status(500).send("대체 어떻게 조회한거야?!");
+  }
+});
+
+app.get("/chat_room", async (req, res) => {
+  const db = getDB();
+  const user_ID = req.query.id;
 
   try {
     let result = await db.collection('chattingroom').find({

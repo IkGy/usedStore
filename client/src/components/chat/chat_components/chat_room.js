@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './chat_room.css';
 import io from 'socket.io-client';
 import BasicScrollToBottom from 'react-scroll-to-bottom';
@@ -85,7 +85,6 @@ useEffect(() => {
     getLog(selectedRoom);
     
     socket.emit('join', selectedRoom, (error) => {
-      console.log("채팅방 입장");
       if(error)
         alert('에러코드[', error, ']');
       })  
@@ -113,11 +112,9 @@ useEffect(() => {
   const sendMessage = (event) => {
     event.preventDefault()
     console.log("전송 클릭");
-
     const writer = user;
     const images = selectedFiles;
-    // console.log("message 정리: ", message.trim());
-    // console.log("message 길이: ", message.trim().length);
+
 
     if(message.trim().length === 0 ) console.log("전송하지 않습니다.");
     else {
@@ -178,14 +175,13 @@ useEffect(() => {
   // else isSentByCurrentUser = false;
   // console.log("true/false = ", isSentByCurrentUser);
   
+  
+
+
   const closeRoom = () => {
     setSelectedUser('');
   }
 
-  const getoutRoom = async(req, res) => {    
-    await axios.delete(`${API_URL}/chat/out_room`)
-  } 
- 
 
 
   return (

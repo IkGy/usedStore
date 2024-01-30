@@ -79,7 +79,6 @@ function ProductManagement() {
               <td><Link to={`/detail/${data._id}`} target="_blank">{data.title}</Link></td>
               <td>{data.comment}</td>
               <td>{data.sellerInfo.nickname}</td>
-              {/* {console.log('wlq',data.sellerInfo)} */}
               {data.buyerInfo ? 
                 <td>{data.buyerInfo.nickname}</td>
                 :

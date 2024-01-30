@@ -1,6 +1,6 @@
 import './report.css'
-import { FaArrowUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FaArrowUp } from "react-icons/fa";
 import { API_URL } from '../../../config/contansts';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';

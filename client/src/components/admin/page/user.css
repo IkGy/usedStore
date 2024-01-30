@@ -1,6 +1,27 @@
+.usermgmt_search_section {
+  padding: 0 0.2vw 1.6vh;
+}
+
+.usermgmt_search_section > input {
+  font-size: 1.2vw;
+  padding: 1vh 0.8vw;
+  border-radius: 0.2vw;
+}
+
 .usermgmt_table {
   text-align: center;
-  padding: 3vh 2vw;
+  width: 100%;
+}
+
+.usermgmt_table_tr {
+  font-size: 1.2vw;
+}
+
+.usermgmt_table_tr > th {
+  background-color: #627dcd;
+  color: white;
+  padding: 0.8vh 0;
+  background-color: white;
 }
 
 .usermgmt_table_tr {
@@ -13,9 +34,6 @@
   background-color: #627dcd;
   color: white;
   padding: 0.8vh 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .usermgmt_table_tbody > tr > td {
@@ -40,4 +58,8 @@
 
 .usermgmt_table_tbody > tr > td > button {
   font-size: 0.8vw;
+}
+
+.usermgmt_table_td_adress {
+  max-width: 350px;
 }

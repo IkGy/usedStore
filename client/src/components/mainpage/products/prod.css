@@ -95,17 +95,10 @@
   padding: 0.7vw;
   border-style: none;
   font-family: 'SejonghospitalBold';
-  filter:brightness(100%)
 }
 
 .btn_1:hover {
   background: #375cd5;
-}
-
-.main_prod_sell{
-  display:flex;
-  justify-content:center;
-  font-size:1.2vw;
 }
 
 @media (max-width: 500px) {
@@ -199,11 +192,5 @@
   .main_prod_price span{
     color: rgba(0, 0, 0, 0.652);
     font-size: 2.2vw;
-  }
-
-  .main_prod_sell{
-    display:flex;
-    justify-content:center;
-    font-size:2.2vw;
   }
 }

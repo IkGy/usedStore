@@ -74,29 +74,13 @@ function Products() {
             <Link to={`/detail/${data._id}`} key={data._id}>
               <div className="main_prod_detail">
                 <div className="main_prod_img">
-                  <img
-                    className="main_prod_image"
-                    style={
-                      data.status === "판매중"
-                        ? { filter: "brightness(100%)" }
-                        : { filter: "brightness(50%)" }
-                    }
-                    src={data.images[0]}
-                    alt={data.title}
-                  />
+                  <img className="main_prod_image" src={data.images[0]} alt={data.title} />
                 </div>
                 <div className="main_prod_info">
                   <p className="main_prod_title">{data.title}</p>
-                  {data.status === "판매중" ? (
-                    <>
-                      <p className="main_prod_price">
-                        {data.price} 원
-                        <span>{formatTimeAgo(data.created_at)}</span>
-                      </p>
-                    </>
-                  ) : (
-                    <div className="main_prod_sell">판매완료</div>
-                  )}
+                  <p className="main_prod_price">
+                    {data.price} 원<span>{formatTimeAgo(data.created_at)}</span>
+                  </p>
                 </div>
               </div>
             </Link>

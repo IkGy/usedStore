@@ -46,7 +46,7 @@ function Info(props) {
     const info = props.info;
     const seller = props.seller;
     const review = props.review;
-    const products = props.products.filter((a) => a.status === "판매중");
+    const products = props.products;
 
     // 판매자의 최근에 게시한 상품 2개 뽑기
     const lastTwoProducts = products.slice(-2);
@@ -174,7 +174,7 @@ function Info(props) {
                                             <div className='KJH_if_right_top_content_user_info'>
                                                 {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                                 <div>
-                                                    님의 판매중인 상품
+                                                    님의 등록된 상품
                                                 </div>
                                                 <div className='KJH_if_right_top_prod_count'>
                                                     {products.length}
@@ -195,7 +195,7 @@ function Info(props) {
                                         <div className='KJH_if_right_review_section'>
                                         {review.length > 0 ? (
                                             <>
-                                            {review.slice(0, 2).map((r, index) => (
+                                            {review.slice(0, 3).map((r, index) => (
                                                 <div className='KJH_if_right_review_info' key={index}>
                                                 <div className='KJH_if_right_review_title'>
                                                     <div className='KJH_if_right_review_writer'>
@@ -227,11 +227,6 @@ function Info(props) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='KJH_if_right_bottom_section'>
-                                <button className='KJH_if_right_bottom_talk' >
-                                    <div>실시간톡</div>
-                                </button>
                             </div>
                         </div>
                     </div>

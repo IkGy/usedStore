@@ -22,21 +22,10 @@ router.get('/user', async (req, res) => {
 router.delete('/user/:id', async (req, res) => {
   try {
     const db = getDB();
-    await db.collection('like').deleteMany({liker:req.params.id}); //자신의 찜목록 삭제
-    await db.collection('product').find({seller:req.params.id}).toArray()
-    .then(async (result)=>{
-      for (let i = 0; i < result.length; i++) {
-        await db.collection('like').deleteOne({product_id:result[i]._id.toString()})
-        .then(()=>{
-          console.log('찜목록 상품관련 삭제');
-        })
-        .catch((err)=>{
-          console.error(err);
-        })
-      }
-    })// 자신이 올린 상품관련 찜목록 삭제
-    await db.collection('product').deleteMany({seller:req.params.id})//자신이 등록한 상품삭제
-    await db.collection('user').deleteOne({ _id: new ObjectId(req.params.id) });//회원 탈퇴
+    const deletedUser = await db.collection('user').deleteOne({ _id: new ObjectId(req.params.id) });
+    if (deletedUser.deletedCount === 0) {
+      return res.status(404).json({ message: '삭제할 사용자를 찾을 수 없습니다.' });
+    }
     res.status(200).json({ message: '사용자가 삭제되었습니다.' });
   } catch (error) {
     console.error("데이터 삭제 실패:", error);
@@ -46,6 +35,8 @@ router.delete('/user/:id', async (req, res) => {
 
 // 유저 데이터 수정하기
 router.post(`/useredit/:id`, async (req, res) => {
+  // console.log('req.params: ', req.params);
+  // console.log('req.body: ', req.body);
   try {
     const db = getDB();
     const userData = await db.collection('user').findOne({ _id: new ObjectId(req.params.id) })
@@ -54,11 +45,11 @@ router.post(`/useredit/:id`, async (req, res) => {
     const editAbout = req.body.about || userData.about;
     await db.collection("user").updateOne(
       { _id: new ObjectId(req.params.id) },
-        {
-          $set: {
-            nickname: editNickname,
-            role: editRole,
-            about: editAbout,
+      {
+        $set: {
+          nickname: editNickname,
+          role: editRole,
+          about: editAbout,
         },
       }
     );
@@ -66,7 +57,7 @@ router.post(`/useredit/:id`, async (req, res) => {
 
   } catch (error) {
     console.error("데이터 수정 실패:", error);
-    res.status(500).json({ error: "서버 오류 발생" });
+    res.status(500).json({ error: "서버 오류 발생" }); 
   }
 });
 
@@ -149,9 +140,10 @@ router.get('/prodAll', async (req, res) => {
 router.delete('/prodOne', async (req, res) => {  
   try {
     console.log(req.query);
-    const db = getDB();   
-    await db.collection('like').deleteMany({product_id:req.query.prod_id})
-    await db.collection("product").deleteOne({ _id : new ObjectId(req.query.prod_id) })
+    const db = getDB();
+    await db.collection("product").deleteOne(
+      { _id : new ObjectId(req.query.prod_id) }
+    )
     res.status(201).end();
   } catch (error) {
     console.error(error);
