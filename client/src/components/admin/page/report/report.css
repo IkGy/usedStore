@@ -1,131 +1,164 @@
+.KJH_admin-report_uparrow {
+  overflow-y: auto;
+  background-color: #f0f3ff;
+}
+
+.KJH_admin-report_uparrow > svg {
+  position: absolute;
+  display: block;
+  opacity: 0.8;
+  background-color: white;
+  border: 0.15vw solid #a8bdff;
+  color: #5273e1;
+  border-radius: 0.2vw;
+  margin: 0.6vw;
+  padding: 2px;
+  width: 40px;
+  height: 40px;
+  right: 45px;
+  bottom: 50px;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 3;
+}
+@media (max-height: 250px) {
+  .KJH_admin-report_uparrow > svg {
+    display: none;
+  }
+}
+
+.KJH_admin-report_uparrow > svg:hover {
+  border-radius: 15px;
+  background-color: #5273e1;
+  color: white;
+}
+
 .KJH_admin-report_container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 3vh 2vw;
-    background-color: antiquewhite;
-}
-
-.KJH_admin-report_container > svg {
-    position: absolute;
-    opacity: 0.8;
-    border: 0.15vw solid black;
-    border-radius: 0.2vw;
-    margin: 0.6vw;
-    padding: 2px;
-    width: 2vw;
-    height: 4vh;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    transition: 0.2s;    
-}
-
-.KJH_admin-report_container > svg:hover {
-    border-radius: 1vw;
-    background-color: #666666;
-    color: white;
-
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 3vh 2vw;
 }
 
 .KJH_admin-report_title_section {
-    text-align: center;
+  text-align: center;
 }
 
 .KJH_admin-report_title_info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .KJH_admin-report_title, .KJH_admin-report_count {
-    display: inline-block;
-    border: 0.1vw solid black;
-    border-radius: 0.2vw;
-    font-size: 1.6vw;
-    font-weight: 700;
-    padding: 1vh 1.4vw;
-    margin: 0 1vw 2vh 0;
-    background-color: aquamarine;
+  display: inline-block;
+  border-radius: 0.2vw;
+  font-size: 1.6vw;
+  font-weight: 700;
+  padding: 1vh 1.4vw;
+  margin: 0 1vw 2vh 0;
+  background-color: #304ea9;
+  color: white;
 }
-
-/* .KJH_admin-report_title {
-
-}
-
-.KJH_admin-report_count {
-
-} */
 
 .KJH_admin-report_table_tr {
-    position: sticky;
-    top: 0;
-    font-size: 1.4vw;
+  position: sticky;
+  top: 0;
+  font-size: 1.2vw;
 }
 
 .KJH_admin-report_table_tr > th {
-    background-color: #bebebe;
-    color: black;
-    padding: 0.8vh 0;
+  background-color: #627dcd;
+  color: white;
+  padding: 0.8vh 0;
 }
 
 
 .KJH_admin-report_table_container {
-    border: 1px solid black;
-    margin-right: 1.3vw;
+  margin-right: 30px;
 }
 
 .KJH_admin-report_table_setcion {
-    width: 100%;
-    padding: 0;
+  width: 100%;
+  padding: 0;
 }
-
-.KJH_admin-report_table_tbody > td {
-    background-color: #dcdcdc;
-    padding: 0.2vh;
-    transition: 0.1s;
-}
-
-.KJH_admin-report_table_tbody:hover > td {
-    background-color: #999999;
-}
-
-.KJH_admin-report_table_tbody > td:hover {
-    background-color: #666666;
-    color: white;
-}
-
 
 /*----------[ tbody - td(내용) ]----------*/
 
+.KJH_admin-report_table_tbody > tr > td,
+.KJH_admin-report_table_tbody > tr > td:hover > a {
+  background-color: #d9e1ff;
+  transition: 0.1s;
+}
+
+.KJH_admin-report_table_tbody > tr > td {
+  padding: 0.8vh 0.5vw;
+}
+
+.KJH_admin-report_table_tbody > tr:hover > td {
+  background-color: #a8bdff;
+}
+
+.KJH_admin-report_table_tbody > tr > td:hover,
+.KJH_admin-report_table_tbody > tr > td:hover > a {
+  background-color: #5273e1;
+  color: white;
+}
+
 /* 구분: index*/
-.KJH_admin-report_table_tbody > .KJH_index {
-    font-size: 1.2vw;
-    font-weight: 700;
+.KJH_admin-report_table_tbody > tr > .KJH_index {
+  font-size: 1vw;
+  font-weight: 700;
 }
 
 /* 신고 종류: type */
-.KJH_admin-report_table_tbody > .KJH_type {
-    font-size: 1vw;
+.KJH_admin-report_table_tbody > tr > .KJH_type {
+  font-size: 0.8vw;
+  font-weight: 700;
 }
 
 /* 해당 게시글: post*/
-.KJH_admin-report_table_tbody > .KJH_post {
-    font-size: 1vw;
+.KJH_admin-report_table_tbody > tr > .KJH_post {
+  font-size: 0.8vw;
+}
+
+.KJH_admin-report_table_tbody > tr > .KJH_post > a {
+  width: 100%;
+  height: 100%;
+}
+
+/* 신고 내용: content*/
+.KJH_admin-report_table_tbody > tr > .KJH_content {
+  font-size: 0.8vw;
+  max-width: 20vw;
+  padding: 0 1vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 일자: date*/
-.KJH_admin-report_table_tbody > .KJH_date {
-    font-size: 1vw;
+.KJH_admin-report_table_tbody > tr > .KJH_date > .KJH_date_created {
+  font-size: 0.8vw;
+  font-weight: 700;
+}
+@media (max-width: 1400px) {
+  .KJH_admin-report_table_tbody > tr > .KJH_date > .KJH_date_created {
+    font-size: 0.6vw;
+  }
+}
+
+.KJH_admin-report_table_tbody > tr > .KJH_date > .KJH_date_ago {
+  font-size: 0.8vw;
 }
 
 /* 판매자: seller */
-.KJH_admin-report_table_tbody > .KJH_seller {
-    font-size: 1vw;
+.KJH_admin-report_table_tbody > tr > .KJH_seller {
+  font-size: 0.9vw;
 }
 
-/* 신고자: buyer */
-.KJH_admin-report_table_tbody > .KJH_buyer {
-    font-size: 1vw;
+/* 신고자: reporter */
+.KJH_admin-report_table_tbody > tr > .KJH_reporter {
+  font-size: 0.9vw;
 }
 
 /*----------------------------------*/
