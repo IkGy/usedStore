@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Report from "../page/report";
 import UserManagement from '../page/user_mgmt';
 import ProductManagement from '../page/product_mgmt';
 import "./admin_main.css";
+import { useNavigate } from "react-router-dom";
+import { getCookie, setCookie } from "../../../useCookies";
 
 
 function AdminMain() {
   const [menu, setMenu] = useState("유저관리");
+  const navigate = useNavigate();
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
   };
+
+  useEffect(()=>{
+    if (!getCookie('admin')) {
+      const pw = prompt('관리자 비밀번호를 입력해주세요 ');
+      if (pw == 'resellmarcketadmin') {
+        
+        setCookie('admin','%2265a630e6c03024116f7f%',{ expires: new Date(Date.now() + 60 * 60 * 1000) })
+      }else{
+        navigate('/');
+      }
+    }
+  },[])
 
   return (
     <div className="admin_contents">
