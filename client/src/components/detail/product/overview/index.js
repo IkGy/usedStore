@@ -98,27 +98,30 @@ function Item(props) {
     }
   };
 
-  // 채팅방 조회
-  const [openChattingroom, setOpenChattingRoom] = useState([]);
+    // 채팅방 조회
+    const [openChattingroom, setOpenChattingRoom] = useState([]);
+    const curUser = getCookie('login');
+    const selUser = props.seller._id;
+    console.log("curUser: ", curUser);
+    console.log("selUser: ", selUser);
 
-  const openChatting = async () => {
-    if (getCookie("login")) {
-      try {
-        const res = await axios.post(
-          `${API_URL}/prod/open/chattingroom/${id}`,
-          {
-            params: { login: getCookie("login") },
-          }
-        );
-        setOpenChattingRoom(res.data);
-        console.log(res.data);
-      } catch (error) {
-        console.error("채팅방을 불러오지 못했습니다");
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+    const openChatting = async () => {
+        if (curUser){
+            try {
+                const res = await axios.post(`${API_URL}/chat/open_chat`, {
+                    user: [selUser, curUser]
+                    // seller: selUser,
+                    // buyer: curUser
+                });
+                console.log(res.data);
+            } catch (error) {
+                console.error("채팅방을 불러오지 못했습니다");
+            }
+        } else {
+            navigate('/login');
+        }    
+    };
+    
 
   // 신고 알림창
   const handleReportClick = () => {
