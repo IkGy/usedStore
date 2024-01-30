@@ -10,31 +10,34 @@ function UserManagement() {
   const [editNickname, setEditNickName] = useState('');
   const [editRole, setEditRole] = useState('');
   const [editAbout, setEditAbout] = useState('');
+  
+  const getData = async()=>{
+    axios.get(`${API_URL}/admin/user`)
+    .then(res => {
+      console.log(res);
+      setUserData(res.data);
+      // 모든 행의 수정 상태를 초기화합니다.
+      const initialEditStatus = {};
+      res.data.forEach(user => {
+        initialEditStatus[user._id] = false;
+      });
+      setEditStatus(initialEditStatus);
+    })
+    .catch(error => {
+      console.error('user 데이터 가져오기 실패:', error);
+    });
+  }
 
   useEffect(() => {
-    axios.get(`${API_URL}/admin/user`)
-      .then(res => {
-        console.log(res);
-        setUserData(res.data);
-        // 모든 행의 수정 상태를 초기화합니다.
-        const initialEditStatus = {};
-        res.data.forEach(user => {
-          initialEditStatus[user._id] = false;
-        });
-        setEditStatus(initialEditStatus);
-      })
-      .catch(error => {
-        console.error('user 데이터 가져오기 실패:', error);
-      });
+    getData()
   }, []);
 
-  const saveUserData = async (id, field, value) => {
-    await axios.post(`${API_URL}/admin/useredit/${id}`, { [field]: value })
+  const saveUserData = async (id) => {
+    await axios.post(`${API_URL}/admin/useredit/${id}`, { nickname:editNickname, role: editRole, about: editAbout})
       .then((res) => {
         console.log('데이터 수정 성공:', res.data);
-        setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
-        // 저장 후 해당 행의 수정 상태를 비활성화합니다.
-        setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
+        getData();
+        setEditStatus(null);
       })
       .catch(error => {
         console.error('데이터 수정 실패:', error);
@@ -60,8 +63,9 @@ function UserManagement() {
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
   };
 
-  const handleSave = (id, field, value) => {
-    saveUserData(id, field, value); // 수정된 내용을 저장하는 함수입니다.
+  const handleSave = (id) => {
+    saveUserData(id); // 수정된 내용을 저장하는 함수입니다.
+    setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
   };
 
   const handleFieldChange = (id, field, value) => {
@@ -72,7 +76,7 @@ function UserManagement() {
     } else if (field === 'about') {
       setEditAbout(value);
     }
-    setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
+    setUserData(userData && userData.map(user => user._id === id ? { ...user, [field]: value } : user));
   };
 
   return (
@@ -94,12 +98,12 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody className='usermgmt_tbody'>
-          {userData.map(user => (
+          {userData && userData.map(user => (
             <tr key={user._id} className='usermgmt_tr'>
               <td className='usermgmt_td' style={{ width: '7%' }}>
                 {/* 수정 버튼 */}
                   {editStatus[user._id] ? 
-                    <button onClick={() => handleSave(user._id, 'nickname', editNickname, 'role', editRole, 'about', editAbout)}>저장</button>
+                    <button onClick={() => handleSave(user._id)}>저장</button>
                     :
                     <button onClick={() => handleEdit(user._id)}>수정</button>
                   }
@@ -119,7 +123,7 @@ function UserManagement() {
                   <input
                     id='user_nickname'
                     type='text'
-                    value={editNickname}
+                    defaultValue={user.nickname}
                     onChange={(e) => setEditNickName(e.target.value)}
                   />
                 ) : (
@@ -148,7 +152,7 @@ function UserManagement() {
                   <input
                     id='user_role'
                     type='text'
-                    value={editRole}
+                    defaultValue={user.role}
                     onChange={(e) => setEditRole(e.target.value)}
                   />
                 ) : (
@@ -161,7 +165,7 @@ function UserManagement() {
                   <input
                     id='user_about'
                     type='text'
-                    value={editAbout}
+                    defaultValue={user.about}
                     onChange={(e) => setEditAbout(e.target.value)}
                   />
                 ) : (

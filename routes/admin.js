@@ -35,26 +35,25 @@ router.delete('/user/:id', async (req, res) => {
 
 // 유저 데이터 수정하기
 router.post(`/useredit/:id`, async (req, res) => {
-  
-  console.log('req.params: ', req.params);
-  console.log('req.body: ', req.body);
-  
+  // console.log('req.params: ', req.params);
+  // console.log('req.body: ', req.body);
   try {
     const db = getDB();
-    const { nickname, user, about } = req.body;
-
-    const userData = await db.collection("user").updateOne(
+    const userData = await db.collection('user').findOne({ _id: new ObjectId(req.params.id) })
+    const editNickname = req.body.nickname || userData.nickname;
+    const editRole = req.body.role || userData.role;
+    const editAbout = req.body.about || userData.about;
+    await db.collection("user").updateOne(
       { _id: new ObjectId(req.params.id) },
       {
         $set: {
-          nickname,
-          user,
-          about,
+          nickname: editNickname,
+          role: editRole,
+          about: editAbout,
         },
       }
-    ); 
-    console.log("(useredit) 사용자 데이터:", userData);
-    res.json(userData);
+    );
+    res.status(201);
 
   } catch (error) {
     console.error("데이터 수정 실패:", error);
