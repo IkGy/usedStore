@@ -24,3 +24,71 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
+.admin_prod_table {
+  text-align: center;
+  padding: 3vh 2vw;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.admin_prod_table_tr {
+  position: sticky;
+  top: 0;
+  font-size: 1.2vw;
+}
+
+.admin_prod_table_tr > th {
+  background-color: #627dcd;
+  color: white;
+  padding: 0.8vh 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin_prod_table_tbody > tr > td {
+  padding: 0.8vh 0.5vw;
+  background-color: #d9e1ff;
+  font-size: 0.8vw;
+  padding: 0.8vh 0.5vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.1s;
+}
+
+.admin_prod_table_tbody > tr:hover > td {
+  background-color: #a8bdff;
+}
+
+.admin_prod_table_tbody > tr > td:hover {
+  background-color: #5273e1;
+  color: white;
+}
+
+.datailModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow: auto;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
