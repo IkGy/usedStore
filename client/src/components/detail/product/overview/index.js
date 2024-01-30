@@ -124,7 +124,7 @@ function Item(props) {
   const handleReportClick = () => {
     if (!getCookie("login")) {
       alert("로그인 후 이용해주세요.");
-      navigate(`/detail/${id}`)
+      navigate(`/detail/${id}`);
     }
   };
 
@@ -189,6 +189,11 @@ function Item(props) {
                   <button
                     className="KJH_item_info_report"
                     onClick={handleReportClick}
+                    style={
+                      Info.status === "판매중"
+                        ? { display: "flex" }
+                        : { display: "none" }
+                    }
                   >
                     <MdReport />
                     <Link to={`/singo/${id}`}>
@@ -246,22 +251,30 @@ function Item(props) {
               </div>
               {/* 찜 / 실시간 메세지 버튼 */}
               <div className="KJH_item_btn_section">
-                <div
-                  className={`KJH_item_like_section_${like ? "true" : "false"}`}
-                >
-                  <FaHeart onClick={toggleLike} />
-                </div>
-                <div
-                  className="KJH_item_btn_select_section"
-                  onClick={openChatting}
-                >
-                  <Link to="/chat">
-                    <div className="KJH_item_btn_select_talk">
-                      <IoChatboxEllipsesOutline />
-                      <span>실시간 채팅</span>
+                {Info.status === "판매중" ? (
+                  <>
+                    <div
+                      className={`KJH_item_like_section_${
+                        like ? "true" : "false"
+                      }`}
+                    >
+                      <FaHeart onClick={toggleLike} />
                     </div>
-                  </Link>
-                </div>
+                    <div
+                      className="KJH_item_btn_select_section"
+                      onClick={openChatting}
+                    >
+                      <Link to="/chat">
+                        <div className="KJH_item_btn_select_talk">
+                          <IoChatboxEllipsesOutline />
+                          <span>실시간 채팅</span>
+                        </div>
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <div className='KJH_item_sell'>판매완료</div>
+                )}
               </div>
             </div>
           </div>

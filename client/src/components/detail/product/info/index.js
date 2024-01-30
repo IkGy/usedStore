@@ -45,7 +45,7 @@ function Info(props) {
     const info = props.info;
     const seller = props.seller;
     const review = props.review;
-    const products = props.products;
+    const products = props.products.filter((a) => a.status === "판매중");
 
     // 판매자의 최근에 게시한 상품 2개 뽑기
     const lastTwoProducts = products.slice(-2);
@@ -172,7 +172,7 @@ function Info(props) {
                                             <div className='KJH_if_right_top_content_user_info'>
                                                 {/* 해당 판매자가 판매하는 상품 개수 데이터 : 마이페이지 - 상품으로 연결*/}
                                                 <div>
-                                                    님의 등록된 상품
+                                                    님의 판매중인 상품
                                                 </div>
                                                 <div className='KJH_if_right_top_prod_count'>
                                                     {products.length}
