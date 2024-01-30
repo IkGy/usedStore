@@ -7,6 +7,13 @@ function ProductManagement() {
   const [prodData, setProdData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  
+  const deleteItem = async(id)=>{
+    console.log(id);
+    await axios.delete(`${API_URL}/admin/prodOne`,{params: {prod_id: id}})
+    setModalIsOpen(false);
+    getData();
+  }
 
   const getData = async () => {
     await axios.get(`${API_URL}/admin/prodAll`)
@@ -25,7 +32,6 @@ function ProductManagement() {
 
   const detailProd = (id) => {
     const selectedProduct = prodData.find((product) => product._id === id);
-    console.log("Selected Product:", selectedProduct);
     setSelectedProduct(selectedProduct);
     setModalIsOpen(true);
   };
@@ -73,10 +79,22 @@ function ProductManagement() {
               <div>
                 <h2>{selectedProduct.title}</h2>
                 <p>{selectedProduct.comment}</p>
-                {/* 다른 상세 정보 표시 */}
+                <h2>판매자</h2>
+                <p>{selectedProduct.sellerInfo.nickname}</p>
+                <p>{selectedProduct.sellerInfo.email}</p>
+                <h2>구매자</h2>
+                {selectedProduct.buyerInfo ?
+                  <>
+                    <p>{selectedProduct.buyerInfo.nickname}</p>
+                    <p>{selectedProduct.buyerInfo.email}</p>
+                  </>
+                :
+                  <p>아직 판매중인 상품입니다.</p>
+                }
               </div>
             )}
             <button onClick={() => setModalIsOpen(false)}>닫기</button>
+            <button onClick={() => deleteItem(selectedProduct._id)}>삭제</button>
           </div>
         </div>
       )}

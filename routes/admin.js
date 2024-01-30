@@ -66,7 +66,6 @@ router.get('/prodAll', async (req, res) => {
             {
               $project: {
                 password: 0, // Exclude password from sellerInfo
-                email: 0      // Exclude email from sellerInfo
                 // Add other fields as needed
               }
             }
@@ -87,8 +86,6 @@ router.get('/prodAll', async (req, res) => {
             {
               $project: {
                 password: 0, // Exclude password from buyerInfo
-                email: 0      // Exclude email from buyerInfo
-                // Add other fields as needed
               }
             }
           ],
@@ -116,6 +113,20 @@ router.get('/prodAll', async (req, res) => {
   }
 });
 
+router.delete('/prodOne', async (req, res) => {  
+  try {
+    console.log(req.query);
+    const db = getDB();
+    await db.collection("product").deleteOne(
+      { _id : new ObjectId(req.query.prod_id) }
+    )
+    res.status(201).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "서버 오류 발생" });
+  }
+
+});
 
 
 module.exports = router;
