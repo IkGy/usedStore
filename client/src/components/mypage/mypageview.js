@@ -87,11 +87,11 @@ function Mypageview() {
       <div className="JSW_container">
         <div className="JSW_mypage_title">"{data.nickname}" 님의 상점</div>
         <div className="JSW_Main">
-        <div className="JSW_Sec1">
+          <div className="JSW_Sec1">
             <div className="JSW_menubar">
               <nav className="JSW_nav1">
                 <span id="JSW_Mypage_tag"></span>
-                <ul className='CHM_uibt'>
+                <ul className="CHM_uibt">
                   <li className="JSW_firstlist">
                     <p
                       href="#"
@@ -122,6 +122,9 @@ function Mypageview() {
                   <img src={data.profileIMG}></img>
                 </div>
                 <div className="CHM_useringoflex">
+                  <div className="JSW_myname">
+                    <div>상세정보</div>
+                  </div>
                   <div className="JSW_userlist">별명 : {data.nickname}</div>
                   <div className="JSW_userlist">
                     전화번호 : {data.phone_number}
