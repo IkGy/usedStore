@@ -32,25 +32,36 @@ function getTimeDifference(dateString) {
 
 function Report() {
 
-  const [report, setReport] = useState([]);
+    const [report, setReport] = useState([]);
 
-  useEffect(() => {
-    const fetchreport = async () => {
-      try {
-        const res = await axios.get(`${API_URL}/admin/report`);
-        const sortedData = res.data.sort((a, b) => new Date(a.report_date) - new Date(b.report_date));
-        console.log(sortedData);
-        setReport(sortedData);
-      } catch (error) {
-        console.error('조회 에러', error);
+    useEffect(() => {
+      const fetchreport = async () => {
+        try {
+          const res = await axios.get(`${API_URL}/admin/report`);
+          const sortedData = res.data.sort((a, b) => new Date(a.report_date) - new Date(b.report_date));
+          console.log(sortedData);
+          setReport(sortedData);
+        } catch (error) {
+          console.error('조회 에러', error);
+        }
+      };
+      fetchreport();
+    }, []);
+
+    // 위로 스크롤
+    const scrollToTop = () => {
+      const element = document.querySelector('.menu_info');
+      if (element) {
+        element.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
     };
-    fetchreport();
-  }, []);
 
     return (
       <div className='KJH_admin-report_uparrow'>
-        <FaArrowUp />
+        <FaArrowUp onClick={scrollToTop} />
         <div className='KJH_admin-report_container'>
           <div className='KJH_admin-report_title_section'>
             <div className='KJH_admin-report_title_info'>
