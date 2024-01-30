@@ -10,7 +10,7 @@ function UserManagement() {
   const [editNickname, setEditNickName] = useState('');
   const [editRole, setEditRole] = useState('');
   const [editAbout, setEditAbout] = useState('');
-  
+
   const getData = async()=>{
     axios.get(`${API_URL}/admin/user`)
     .then(res => {
@@ -68,16 +68,16 @@ function UserManagement() {
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
   };
 
-  const handleFieldChange = (id, field, value) => {
-    if (field === 'nickname') {
-      setEditNickName(value);
-    } else if (field === 'role') {
-      setEditRole(value);
-    } else if (field === 'about') {
-      setEditAbout(value);
-    }
-    setUserData(userData && userData.map(user => user._id === id ? { ...user, [field]: value } : user));
-  };
+  // const handleFieldChange = (id, field, value) => {
+  //   if (field === 'nickname') {
+  //     setEditNickName(value);
+  //   } else if (field === 'role') {
+  //     setEditRole(value);
+  //   } else if (field === 'about') {
+  //     setEditAbout(value);
+  //   }
+  //   setUserData(userData && userData.map(user => user._id === id ? { ...user, [field]: value } : user));
+  // };
 
   return (
     <div>
