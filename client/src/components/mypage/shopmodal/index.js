@@ -104,8 +104,8 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
             <div className="KJH_shop-review_modal-content" onClick={e => e.stopPropagation()}>
                 <form onSubmit={handleSubmit}>
                     <div className='KJH_shop-review_modal_section'>
-                        <div className='KJH_shop-review_modal_info'>
-                            <FaWindowClose onClick={onClose} />
+                        <div className='KJH_shop-review_modal_info'> 
+                        {/* //여기 */}
                             <div className='KJH_shop-review_modal_in'>
                                 <div className='KJH_shop-review_modal_title_section'>
                                     <div className='KJH_shop-review_modal_title'>
@@ -118,8 +118,7 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
                                         <div className='KJH_shop-review_modal_ex_name'>
                                             님의 상점
                                         </div>
-                                        
-                                    </div>
+                                    </div> 
                                 </div>
                                 <div className='KJH_shop-review_modal_content'>
                                     <textarea

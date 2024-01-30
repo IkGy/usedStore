@@ -8,6 +8,8 @@ import Registered from "./registered";
 import Picklist from "./picklist";
 import Mypagehoogi from "./mypagehoogi";
 import "./mypage.css";
+import Withdraw from "../mypage/withdraw/withdraw";
+
 
 function Mypage() {
   const [selectedAddress, setSelectedAddress] = useState("");
@@ -109,7 +111,7 @@ function Mypage() {
       <div
         className="mypage_modalBg"
         style={modal ? { display: "flex" } : { display: "none" }}
-      >
+        >
         <form onSubmit={editUser} id="JSW_modalALL">
           <div className="JSW_modal_loginCloseBtn">
             <div className="JSW_modal_mainTitle">프로필 수정</div>
@@ -120,7 +122,6 @@ function Mypage() {
               class="fa-solid fa-xmark"
             ></i>
           </div>
-
           <div className="JSW_modal_loginInputBox">
             <input
               name="profileIMG"
@@ -224,7 +225,16 @@ function Mypage() {
                       className={menu === "후기" ? "active" : "noactive"}
                       onClick={() => MenuClick("후기")}
                     >
-                      구매 후기
+                      상점 후기
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      href="#"
+                      className={menu === "계정 탈퇴하기" ? "active1" : "noactive1"}
+                      onClick={() => MenuClick("계정 탈퇴하기")}
+                    >
+                      계정 탈퇴하기
                     </p>
                   </li>
                 </ul>
@@ -290,6 +300,11 @@ function Mypage() {
                   <Mypagehoogi menu={menu}></Mypagehoogi>
                 </div>
               )}
+              {menu === "계정 탈퇴하기" && (
+                <div>
+                  <Withdraw menu={menu}></Withdraw>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -299,5 +314,3 @@ function Mypage() {
 }
 
 export default Mypage;
-
-// <a href="https://kr.freepik.com/search?format=search&last_filter=type&last_value=icon&query=%EC%9D%B5%EB%AA%85%EC%9D%98%20%EC%96%BC%EA%B5%B4&type=icon">afif fudin 제작 아이콘</a>
