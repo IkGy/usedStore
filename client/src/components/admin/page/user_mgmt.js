@@ -41,6 +41,20 @@ function UserManagement() {
       });
   };
 
+  const deleteUser = async (id) => {
+    const confirmed = window.confirm('정말로 사용자를 삭제하시겠습니까?');
+    if (confirmed) {
+    await axios.delete(`${API_URL}/admin/user/${id}`)
+      .then((res) => {
+        console.log('데이터 삭제 성공:', res.data);
+        setUserData(userData.filter(user => user._id !== id));
+      })
+      .catch(error => {
+        console.error('데이터 삭제 실패:', error);
+      });
+    }
+  };
+
   const handleEdit = (id) => {
     // 수정 버튼 클릭 시 해당 행의 수정 상태를 활성화합니다.
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
@@ -89,7 +103,7 @@ function UserManagement() {
                     :
                     <button onClick={() => handleEdit(user._id)}>수정</button>
                   }
-                &nbsp;<button>삭제</button>
+                &nbsp;<button onClick={() => deleteUser(user._id)}>삭제</button>
               </td>
               {/* 본명 */}
               <td className='usermgmt_td' style={{ width: '6%' }}>
@@ -110,7 +124,7 @@ function UserManagement() {
                   />
                 ) : (
                   <span>{user.nickname}</span>
-                )}
+                )}  
               </td>
               {/* 이메일 */}
               <td className='usermgmt_td' style={{ width: '12%' }}>
