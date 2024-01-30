@@ -4,9 +4,24 @@
   min-height: 35vw;
   overflow-y: auto;
 }
-.room_list_Main::-webkit-scrollbar{
-  
+
+.room_list_Main::-webkit-scrollbar {
+  width: 0.5vw;
+  display: none;
 }
+ 
+.room_list_Main::-webkit-scrollbar-thumb {
+  background: #2979FF;
+  border-radius: 20px;
+}
+
+.room_list_Main::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}
+
+
+
 
 .room_list_Top{
   height: 3vw;
@@ -16,11 +31,11 @@
 .room_list_name{
   font-size: 2vw;
 }
-.bdr{
+/* .bdr{
   height: 90%;
 
   border-right: 1px solid #D3D3D3;
-}
+} */
 .room_list{
   font-size: 1vw;
   display: block;

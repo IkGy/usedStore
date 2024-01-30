@@ -73,14 +73,6 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
 // ----------------------------------------------------- //
 
 
-
-
-
-
-
-
-
-
 useEffect(() => {
   console.log("ChatRoom에서 selecteduser: ", selectedUser);
   console.log("ChatRoom에서 selectedroom: ", selectedRoom);

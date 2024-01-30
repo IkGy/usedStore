@@ -33,28 +33,28 @@ router.post('/open_chat', async (req, res) => {
   console.log('users: ', users[0], users[1]);
   
   try {
-      let resss = await db.collection('chattingroom').find({
-        user: {$all: users}
-      }).toArray();
-      console.log('resss: ', resss);
-      if(resss && resss.length > 0) {
-        console.log("이미 채팅방이 존재합니다.");
-        res.status(200).send('기존 채팅방으로 연결합니다.');
-      }
-      else {
-        console.log("채팅방 생성");
-        await db.collection("chattingroom").insertOne({
-          user: users,
-          create_at: new Date(),
-        })
-        .then((result)=>{
-          res.status(201).end();
-        })
-        .catch((err)=>{
-          console.error(err);
-          res.status(501).send(err);
-        })
-      }
+    let resss = await db.collection('chattingroom').find({
+      user: {$all: users}
+    }).toArray();
+    console.log('resss: ', resss);
+    if(resss && resss.length > 0) {
+      console.log("이미 채팅방이 존재합니다.");
+      res.status(200).send('기존 채팅방으로 연결합니다.');
+    }
+    else {
+      console.log("채팅방 생성");
+      await db.collection("chattingroom").insertOne({
+        user: users,
+        create_at: new Date(),
+      })
+      .then((result)=>{
+        res.status(201).end();
+      })
+      .catch((err)=>{
+        console.error(err);
+        res.status(501).send(err);
+      })
+    }
   }
   catch (error){
     console.log('error: ', error)
