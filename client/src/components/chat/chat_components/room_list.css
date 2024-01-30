@@ -4,10 +4,25 @@
   min-height: 35vw;
   overflow-y: auto;
 }
+.room_list_Main::-webkit-scrollbar{
+  
+}
+
 .room_list_Top{
-  border-bottom: 1px solid #000;
+  height: 3vw;
+  padding-bottom: 0.8vw;
+  border-bottom: 2px solid #D3D3D3;
+}
+.room_list_name{
+  font-size: 2vw;
+}
+.bdr{
+  height: 90%;
+
+  border-right: 1px solid #D3D3D3;
 }
 .room_list{
+  font-size: 1vw;
   display: block;
   padding: 2vw;
   transition: 0.3s;

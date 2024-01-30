@@ -35,13 +35,14 @@ const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
 const roomRouter = require("./routes/chat_room");
 const mypageRouter = require("./routes/mypage");
-const adminRouter = require('./routes/admin'); // 관리자 페이지용 라우터입니다.
+const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
 
 app.use(express.json());
 
 const cors = require("cors");
 const { log } = require("console");
 const { write } = require("fs");
+const { equal } = require("assert");
 app.use(cors());
 
 const url = process.env.DB_URL;
@@ -66,7 +67,7 @@ app.use("/prod", productRouter);
 app.use("/user", userRouter);
 app.use("/chat", roomRouter);
 app.use("/mypage", mypageRouter);
-app.use('/admin', adminRouter);
+app.use("/admin", adminRouter);
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -295,148 +296,207 @@ app.post("/productedit", async (req, res) => {
 
 app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
   const db = getDB();
-  if (req.file) {
-    await db.collection("user").updateOne(
-      { _id: new ObjectId(req.body._id) },
-      {
-        $set: {
-          nickname: req.body.nickname,
-          about: req.body.about,
-          address: req.body.address,
-          profileIMG: req.file.location,
-        },
-      }
-    );
-    await db.collection("review").updateMany(
-      { write_id: req.body._id },
-      {
-        $set: {
-          writer: req.body.nickname,
-          profileIMG: req.file.location,
-        },
-      }
-    );
-  } else {
-    await db.collection("user").updateOne(
-      { _id: new ObjectId(req.body._id) },
-      {
-        $set: {
-          nickname: req.body.nickname,
-          about: req.body.about,
-          address: req.body.address,
-        },
-      }
-    );
-    await db.collection("review").updateMany(
-      { write_id: req.body._id },
-      {
-        $set: {
-          writer: req.body.nickname,
-        },
-      }
-    );
-  }
+  let nicknamecheck = await db.collection("user").findOne({
+    nickname: req.body.nickname,
+  });
 
-  let result = await db
-    .collection("user")
-    .findOne({ _id: new ObjectId(req.body._id) });
-  res.status(201).send(result);
+  console.log(req.body.oldnickname);
+
+  if (nicknamecheck) {
+    res.status(201).send("닉네임중복");
+  } else {
+    if (req.file) {
+      await db.collection("user").updateOne(
+        { _id: new ObjectId(req.body._id) },
+        {
+          $set: {
+            nickname: req.body.nickname,
+            about: req.body.about,
+            address: req.body.address,
+            profileIMG: req.file.location,
+          },
+        }
+      );
+      await db.collection("review").updateMany(
+        { write_id: req.body._id },
+        {
+          $set: {
+            writer: req.body.nickname,
+            profileIMG: req.file.location,
+          },
+        }
+      );
+      await db.collection("report_list").updateMany(
+        {
+          reporter_nickname: req.body.oldnickname,
+        },
+        {
+          $set: {
+            reporter_nickname: req.body.nickname,
+          },
+        }
+      );
+    } else {
+      await db.collection("user").updateOne(
+        { _id: new ObjectId(req.body._id) },
+        {
+          $set: {
+            nickname: req.body.nickname,
+            about: req.body.about,
+            address: req.body.address,
+          },
+        }
+      );
+      await db.collection("review").updateMany(
+        { write_id: req.body._id },
+        {
+          $set: {
+            writer: req.body.nickname,
+          },
+        }
+      );
+      await db.collection("report_list").updateMany(
+        {
+          reporter_nickname: req.body.oldnickname,
+        },
+        {
+          $set: {
+            reporter_nickname: req.body.nickname,
+          },
+        }
+      );
+    }
+    let result = await db
+      .collection("user")
+      .findOne({ _id: new ObjectId(req.body._id) });
+    res.status(201).send(result);
+  }
 });
 
 app.delete("/likedel/:user/:product_id", async (req, res) => {
   const db = getDB();
   console.log(req.params);
-  await db.collection("like").deleteOne({ product_id: req.params.product_id, liker: req.params.user });
-  res.status(201).send("짬해제성공")
+  await db
+    .collection("like")
+    .deleteOne({ product_id: req.params.product_id, liker: req.params.user });
+  res.status(201).send("짬해제성공");
 });
+
+app.get("/singo/:product_id/:user_id", async (req, res) => {
+  const db = getDB();
+  let userinfo = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(req.params.user_id) });
+
+  let 중복 = await db.collection("report_list").findOne({
+    reported_product_id: req.params.product_id,
+    reporter_nickname: userinfo.nickname,
+  });
+
+  if (중복) {
+    res.status(201).send("이미신고함");
+  } else {
+    let productinfo = await db
+      .collection("product")
+      .findOne({ _id: new ObjectId(req.params.product_id) });
+
+    let seller = await db
+      .collection("user")
+      .findOne({ _id: new ObjectId(productinfo.seller) });
+    console.log(seller.nickname);
+
+    res.status(201).send({ productinfo, userinfo, seller });
+  }
+});
+
+app.post("/singo", async (req, res) => {
+  const db = getDB();
+  await db.collection("report_list").insertOne({
+    report_type: req.body.report_type,
+    reported_post: req.body.reported_post,
+    report_title: req.body.report_title,
+    report_content: req.body.report_content,
+    report_date: req.body.report_date,
+    reported_link: req.body.reported_link,
+    reported_user_nickname: req.body.reported_user_nickname,
+    reported_user_email: req.body.reported_user_email,
+    reporter_nickname: req.body.reporter_nickname,
+    reporter_email: req.body.reporter_email,
+    reported_product_id: req.body.reported_product_id,
+  });
+  res.status(201).send("접수완료");
+});
+
 // ---------실시간채팅------------- //
-const http = require("http");
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const { callbackPromise } = require("nodemailer/lib/shared");
-// const socketio = require('socket.io');
-// const io = socketio(server)
-app.use(cors({ origin: "*" }));
-const io = new Server(server, { cors: { origin: "*" } });
 
-app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
-const roomInfo = [];
-// Socket.io 설정
-io.on("connection", (socket) => {
-  const { url } = socket.request;
-  console.log(`${url} 에서 연결됨`);
 
-  // 방 입장 이벤트 핸들링
-  socket.on("join", (room, callback) => {
-    console.log("방 입장:", room);
-    // 해당 방에 클라이언트 소켓을 조인
-    roomInfo[socket.id] = room;
-    console.log(roomInfo[socket.id]);
-    socket.join(room);
-    console.log("join 실행");
-    // callback()
-  });
+app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
-  // 클라이언트로부터의 메시지 이벤트 핸들링
 
-  socket.on("sendMessage", async (data, callback) => {
-    const { writer, message } = data;
-    // console.log("data: ", data);
-    // console.log("writer: ", writer);
-    console.log("메시지 받음:", message);
-    const room = roomInfo[socket.id];
-    // console.log("room: ", room);
 
-    // 같은 방에 있는 모든 클라이언트에게 메시지 전송
-
-    io.to(room).emit("message", { writer, message });
-    // callback()
-  });
-
-  // 연결 해제 이벤트 핸들링
-
-  socket.on("disconnect", () => {
-    console.log("사용자가 연결 해제됨");
-  });
-});
-
-server.listen(5000, () => console.log("채팅서버 연결"));
-
-// ------------------------------- //
-
-// 채팅을 위한 친구들-----------------
+// 채팅 조회를 위한 친구들-----------------
 
 app.get("/room_list", async (req, res) => {
   const db = getDB();
-  // console.log("req.query: ", req.query);
-  let result = await db
-    .collection("chattingroom")
-    .find({
-      user: req.query.id,
-    })
-    .toArray();
+  const user_ID = req.query.id.toString();
+  console.log('user_ID: ', user_ID);
+  const ChatUsers = await db.collection('chattingroom').find({user: user_ID}).toArray();
+  const NickUser = await db.collection('user').find().toArray();
+  
+  const joinedChatData = ChatUsers.map((a) => {
+    const searchNick = NickUser.find(b => b._id === a.id);
+    return {...a, searchNick};
+    // const user = users.find(user => user.userId === product.userId);
+  });
+  console.log('joinedChatData: ', joinedChatData);
+
+
+  let result = await db.collection('chattingroom').find({
+    user: req.query.id
+  }).toArray()
+
   // console.log("roomList의 result: ", result);
   res.status(201).send(result);
 });
 
-app.get("/chat_room", async (req, res) => {
+app.get('/chat_room', async (req, res) => {
+  console.log("chatroom 진입");
   const db = getDB();
-  // console.log("req.query: ", req.query);
   const user_ID = req.query.id;
-  // console.log("user_ID: ", user_ID);
+
+
   try {
-    let result = await db
-      .collection("chattingroom")
-      .find({
-        user: user_ID,
-      })
-      .toArray();
-    res.status(201).end();
+    let result = await db.collection('chattingroom').find({
+      user: user_ID
+    }).toArray();
+
+    console.log('result: ', result);
+    res.status(201).send(result);
   } catch (error) {
     console.log("채팅 불러오기 실패다 이자식아");
     res.status(500).send("대체 어떻게 조회한거야?!");
   }
 });
+  
+app.get('/chat_room', async (req, res) => {
+  const db = getDB();
+  const user_ID = req.query.id;
+
+
+  try {
+    let result = await db.collection('chattingroom').find({
+      user: user_ID
+    }).toArray();
+
+
+    console.log('result: ', result);
+    res.status(201).send(result);
+  } catch (error) {
+    console.log("채팅 불러오기 실패다 이자식아");
+    res.status(500).send("대체 어떻게 조회한거야?!");
+  }
+});
+
 
 app.get("/chat_log", async (req, res) => {
   // console.log("로그에서 req.query: ", req.query);

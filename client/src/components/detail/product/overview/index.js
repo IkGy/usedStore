@@ -176,7 +176,7 @@ function Item(props) {
                                 </div>
                                 <button className='KJH_item_info_report' onClick={handleReportClick}>
                                     <MdReport />
-                                <Link to='/singo'><div className='KJH_item_info_report_text'>신고하기</div></Link>
+                                <Link to={`/singo/${id}`}><div className='KJH_item_info_report_text'>신고하기</div></Link>
                                 </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>
