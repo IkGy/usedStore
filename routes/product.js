@@ -66,13 +66,13 @@ router.get('/detail/:id', async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id/:proid", async (req, res) => {
   try {
     // console.log(req.params);
     const db = getDB();
     await db
       .collection("product")
-      .deleteOne({ _id: new ObjectId(req.params.id) })
+      .deleteOne({ _id: new ObjectId(req.params.proid) })
       .then(() => {
         res.status(201).end();
       })

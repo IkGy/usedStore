@@ -26,8 +26,9 @@ function Room_list({ onSelectUser, onSelectRoom }) {
     })
     .then((res) => {
       console.log("조회성공");
-      setMyRoom_List(res.data);
+      // console.log("res.data: ", res.data);
       console.log("room_list의 res.data: ", res.data);
+      setMyRoom_List(res.data);
       let updatedUsers = [];
       for (let i = 0; i < res.data.length; i++) {
         let filteruser = res.data[i].user.filter(
@@ -36,8 +37,8 @@ function Room_list({ onSelectUser, onSelectRoom }) {
         updatedUsers.push(...filteruser);
       }
       setUser(updatedUsers);
-      // console.log("updatedUsers: ", updatedUsers);
-      // console.log("user: ", user);
+      console.log("updatedUsers: ", updatedUsers);
+      console.log("user: ", user);
     })
   }, []);
 
@@ -47,15 +48,15 @@ function Room_list({ onSelectUser, onSelectRoom }) {
 
     await axios.get(`${API_URL}/chat_log`, {params:{ room_id: id }})
     .then((res)=>{
-      // console.log("res: ", res);
-      // console.log("res.data: ", res.data);
-      // if(res.data.length < 1){
-      //    console.log("로그가 없음!"); 
-      //   } else {
-      //     console.log("room_id: ", res.data[0].room_id);
-      //   }
-      // console.log("방id:", id); 
-      // console.log("res: ", res.data[0].chat);
+      console.log("res: ", res);
+      console.log("res.data: ", res.data);
+      if(res.data.length < 1){
+        console.log("로그가 없음!"); 
+      } else {
+        console.log("room_id: ", res.data[0].room_id);
+      }
+      console.log("방id:", id); 
+      console.log("res: ", res.data[0].chat);
     })
     .catch((error)=> {
       console.log("error: ", error);
@@ -72,22 +73,20 @@ function Room_list({ onSelectUser, onSelectRoom }) {
     
     <><div className="room_list_Main">
     <div className="room_list_Top">
-      <h1>나의 채팅방</h1>
+      <h1 className="room_list_name">나의 채팅방</h1>
     </div>
-    
+    <div className="bdr"> 
     {myRoom_list.map((a, i) => {
-
       return <div
-      // <div className="room_list" onClick={(e) => {clickRoom(user[i], a._id)}}>
         key={a._id}
         onClick={() => {
           clickRoom(user[i], a._id);
         }}
         className="room_list"
         >{user[i]}님과의 채팅방</div>
-        
       })}
-      </div>
+    </div>
+    </div>
     </>
   );
 }

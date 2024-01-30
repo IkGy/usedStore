@@ -5,40 +5,73 @@ import { API_URL } from '../../config/contansts';
 
 function UserManagement() {
   const [userData, setUserData] = useState([]);
-  const [editStatus, setEditStatus] = useState({}); // 수정 상태를 관리하는 객체
-
+  const [editStatus, setEditStatus] = useState({});
   const [editNickname, setEditNickName] = useState('');
   const [editRole, setEditRole] = useState('');
   const [editAbout, setEditAbout] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
+  const [searchResults, setSearchResults] = useState([]); // 검색 결과 상태 추가
+
+  const searchUser = (term) => {
+    const filteredUsers = userData.filter(user => {
+      // 검색어를 유저의 닉네임과 이메일에서 검색합니다.
+      return user.nickname.toLowerCase().includes(term.toLowerCase()) ||
+            user.email.toLowerCase().includes(term.toLowerCase());
+    });
+    setSearchResults(filteredUsers);
+  };
 
   useEffect(() => {
-    axios.get(`${API_URL}/admin/user`)
-      .then(res => {
-        console.log(res);
-        setUserData(res.data);
-        // 모든 행의 수정 상태를 초기화합니다.
-        const initialEditStatus = {};
-        res.data.forEach(user => {
-          initialEditStatus[user._id] = false;
-        });
-        setEditStatus(initialEditStatus);
-      })
-      .catch(error => {
-        console.error('user 데이터 가져오기 실패:', error);
+    if (searchTerm.trim() !== '') {
+      // 검색어가 변경될 때마다 검색을 수행합니다.
+      searchUser(searchTerm);
+    } else {
+      // 검색어가 없는 경우에는 전체 유저를 표시합니다.
+      setSearchResults(userData);
+    }
+  }, [searchTerm, userData]);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/admin/user`);
+      setUserData(res.data);
+      // 모든 행의 수정 상태를 초기화합니다.
+      const initialEditStatus = {};
+      res.data.forEach(user => {
+        initialEditStatus[user._id] = false;
       });
+      setEditStatus(initialEditStatus);
+    } catch (error) {
+      console.error('user 데이터 가져오기 실패:', error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
-  const saveUserData = async (id, field, value) => {
-    await axios.post(`${API_URL}/admin/useredit/${id}`, { [field]: value })
-      .then((res) => {
-        console.log('데이터 수정 성공:', res.data);
-        setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
-        // 저장 후 해당 행의 수정 상태를 비활성화합니다.
-        setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
-      })
-      .catch(error => {
-        console.error('데이터 수정 실패:', error);
-      });
+  const saveUserData = async (id) => {
+    try {
+      await axios.post(`${API_URL}/admin/useredit/${id}`, { nickname: editNickname, role: editRole, about: editAbout });
+      console.log('데이터 수정 성공');
+      getData();
+      setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
+    } catch (error) {
+      console.error('데이터 수정 실패:', error);
+    }
+  };
+
+  const deleteUser = async (id) => {
+    const confirmed = window.confirm('정말로 사용자를 삭제하시겠습니까?');
+    if (confirmed) {
+      try {
+        await axios.delete(`${API_URL}/admin/user/${id}`);
+        console.log('데이터 삭제 성공');
+        setUserData(userData.filter(user => user._id !== id));
+      } catch (error) {
+        console.error('데이터 삭제 실패:', error);
+      }
+    }
   };
 
   const handleEdit = (id) => {
@@ -46,108 +79,80 @@ function UserManagement() {
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
   };
 
-  const handleSave = (id, field, value) => {
-    saveUserData(id, field, value); // 수정된 내용을 저장하는 함수입니다.
-  };
-
-  const handleFieldChange = (id, field, value) => {
-    if (field === 'nickname') {
-      setEditNickName(value);
-    } else if (field === 'role') {
-      setEditRole(value);
-    } else if (field === 'about') {
-      setEditAbout(value);
-    }
-    setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
-  };
-
   return (
     <div>
-      <div className="usermgmt">유저관리</div>
+      <input
+        type="text"
+        placeholder="검색어를 입력하세요..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <table className="usermgmt_table">
-        <thead className="usermgmt_thead">
-          <tr className="usermgmt_tr">
-            <th className="usermgmt_th" style={{ width: '7%' }}>유저관리</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>본명</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>아이디</th>
-            <th className="usermgmt_th" style={{ width: '8%' }}>닉네임</th>
-            <th className="usermgmt_th" style={{ width: '12%' }}>이메일</th>
-            <th className="usermgmt_th" style={{ width: '7%' }}>비밀번호</th>
-            <th className="usermgmt_th" style={{ width: '18%' }}>주소</th>
-            <th className="usermgmt_th" style={{ width: '8%' }}>휴대폰 번호</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>유저 상태</th>
-            <th className="usermgmt_th" style={{ width: '20%' }}>상점 한마디</th>
+        {/* 테이블 헤더 */}
+        <thead>
+          <tr className='usermgmt_table_tr'>
+            <th>유저관리</th>
+            <th>본명</th>
+            <th>아이디</th>
+            <th>닉네임</th>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>주소</th>
+            <th>휴대폰 번호</th>
+            <th>유저 상태</th>
+            <th>상점 한마디</th>
           </tr>
         </thead>
-        <tbody className='usermgmt_tbody'>
-          {userData.map(user => (
+        {/* 테이블 본문 */}
+        <tbody className='usermgmt_table_tbody'>
+          {searchResults.map(user => (
             <tr key={user._id} className='usermgmt_tr'>
-              <td className='usermgmt_td' style={{ width: '7%' }}>
+              <td>
                 {/* 수정 버튼 */}
-                  {editStatus[user._id] ? 
-                    <button onClick={() => handleSave(user._id, 'nickname', editNickname, 'role', editRole, 'about', editAbout)}>저장</button>
-                    :
-                    <button onClick={() => handleEdit(user._id)}>수정</button>
-                  }
-                &nbsp;<button>삭제</button>
+                {editStatus[user._id] ?
+                  <button onClick={() => saveUserData(user._id)}>저장</button>
+                  :
+                  <button onClick={() => handleEdit(user._id)}>수정</button>
+                }
+                &nbsp;<button onClick={() => deleteUser(user._id)}>삭제</button>
               </td>
-              {/* 본명 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
-                <span>{user.real_name}</span>
-              </td>
-              {/* 아이디 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
-                <span>{user.id}</span>
-              </td>
-              {/* 닉네임 */}
-              <td className='usermgmt_td' style={{ width: '8%' }}>
+              <td>{user.real_name}</td>
+              <td>{user.id}</td>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_nickname'
                     type='text'
-                    value={editNickname}
+                    defaultValue={user.nickname}
                     onChange={(e) => setEditNickName(e.target.value)}
                   />
                 ) : (
-                  <span>{user.nickname}</span>
+                  <div>{user.nickname}</div>
                 )}
               </td>
-              {/* 이메일 */}
-              <td className='usermgmt_td' style={{ width: '12%' }}>
-                <span>{user.email}</span>
-              </td>
-              {/* 비밀번호 */}
-              <td className='usermgmt_td' style={{ width: '7%' }}>
-                <span>{user.password}</span>
-              </td>
-              {/* 주소 */}
-              <td className='usermgmt_td' style={{ width: '18%' }}>
-                <span>{user.address}</span>
-              </td>
-              {/* 휴대폰 번호 */}
-              <td className='usermgmt_td' style={{ width: '8%' }}>
-                <span>{user.phone_number}</span>
-              </td>
-              {/* 유저 상태 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
+              <td>{user.email}</td>
+              <td>{user.password}</td>
+              <td>{user.address}</td>
+              <td>{user.phone_number}</td>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_role'
                     type='text'
-                    value={editRole}
+                    defaultValue={user.role}
                     onChange={(e) => setEditRole(e.target.value)}
                   />
                 ) : (
-                  <span>{user.role}</span>
+                  <div>{user.role}</div>
                 )}
               </td>
               {/* 상점 한마디 */}
-              <td className='usermgmt_td' style={{ width: '20%' }}>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_about'
                     type='text'
-                    value={editAbout}
+                    defaultValue={user.about}
                     onChange={(e) => setEditAbout(e.target.value)}
                   />
                 ) : (

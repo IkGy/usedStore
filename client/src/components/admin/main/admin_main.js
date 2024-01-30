@@ -1,59 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Report from "../page/report";
 import UserManagement from '../page/user_mgmt';
-import Setting from '../page/setting';
 import ProductManagement from '../page/product_mgmt';
 import "./admin_main.css";
-
+import Logo from './logo.png'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getCookie, setCookie } from "../../../useCookies";
 
 function AdminMain() {
   const [menu, setMenu] = useState("유저관리");
+  const navigate = useNavigate();
   const MenuClick = (selectMenu) => {
     setMenu(selectMenu);
   };
 
+  useEffect(()=>{
+    if (!getCookie('admin')) {
+      const pw = prompt('관리자 비밀번호를 입력해주세요 ');
+      if (pw == 'resellmarketadmin') {
+        
+        setCookie('admin','%2265a630e6c03024116f7f%',{ expires: new Date(Date.now() + 60 * 60 * 1000) })
+      }else{
+        navigate('/');
+      }
+    }
+  },[])
+
   return (
     <div className="admin_contents">
-      <div className="admin_tagBox">
+      <div>
         <nav>
-          <ul className="admin_tags">
-            <li>
-              <div
-                to="/page/user_mgmt"
-                className={menu === "유저관리" ? "click" : "noneclick"}
-                onClick={() => MenuClick("유저관리")}
-              >
-                유저관리
-              </div>
-            </li>
-            <li>
-              <div
-                to="/page/product_mgmt"
-                className={menu === "상품관리" ? "click" : "noneclick"}
-                onClick={() => MenuClick("상품관리")}
-              >
-                상품관리
-              </div>
-            </li>
-            <li>
-              <div
-                to="/page/report"
-                className={menu === "신고" ? "click" : "noneclick"}
-                onClick={() => MenuClick("신고")}
-              >
-                신고
-              </div>
-            </li>
-            <li>
-              <div
-                to="/page/setting"
-                className={menu === "설정" ? "click" : "noneclick"}
-                onClick={() => MenuClick("설정")}
-              >
-                설정
-              </div>
-            </li>
-          </ul>
+          <div className="admin_page_title_display">
+            <div className="admin_page_title_section">
+              <Link to='/'><img src={Logo} alt="logo"/></Link>
+            </div>
+            <div className="admin_page_title_name">Administrator Page</div>
+          </div>
+          
+          <div className="admin_tagbox_container">
+            <div
+              to="/page/user_mgmt"
+              className={menu === "유저관리" ? "click" : "noneclick"}
+              onClick={() => MenuClick("유저관리")}
+            >
+              유저관리
+            </div>
+            <div
+              to="/page/product_mgmt"
+              className={menu === "상품관리" ? "click" : "noneclick"}
+              onClick={() => MenuClick("상품관리")}
+            >
+              상품관리
+            </div>
+            <div
+              to="/page/report"
+              className={menu === "신고" ? "click" : "noneclick"}
+              onClick={() => MenuClick("신고")}
+            >
+              신고
+            </div>
+          </div>
         </nav>
       </div>
       <div className="menu_info">
@@ -62,8 +69,6 @@ function AdminMain() {
         {menu === "상품관리" && <div>{<ProductManagement></ProductManagement>}</div>}
         
         {menu === "신고" && <div>{<Report></Report>}</div>}
-        
-        {menu === "설정" && <div>{<Setting></Setting>}</div>}
       </div>
     </div>
   );

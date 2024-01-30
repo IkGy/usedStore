@@ -1,15 +1,17 @@
-.usermgmt_table {
+.admin_prod_table {
   text-align: center;
   padding: 3vh 2vw;
+  width: 100%;
+  table-layout: fixed;
 }
 
-.usermgmt_table_tr {
+.admin_prod_table_tr {
   position: sticky;
   top: 0;
   font-size: 1.2vw;
 }
 
-.usermgmt_table_tr > th {
+.admin_prod_table_tr > th {
   background-color: #627dcd;
   color: white;
   padding: 0.8vh 0;
@@ -18,7 +20,7 @@
   text-overflow: ellipsis;
 }
 
-.usermgmt_table_tbody > tr > td {
+.admin_prod_table_tbody > tr > td {
   padding: 0.8vh 0.5vw;
   background-color: #d9e1ff;
   font-size: 0.8vw;
@@ -29,15 +31,11 @@
   transition: 0.1s;
 }
 
-.usermgmt_table_tbody > tr:hover > td {
+.admin_prod_table_tbody > tr:hover > td {
   background-color: #a8bdff;
 }
 
-.usermgmt_table_tbody > tr > td:hover {
+.admin_prod_table_tbody > tr > td:hover {
   background-color: #5273e1;
   color: white;
-}
-
-.usermgmt_table_tbody > tr > td > button {
-  font-size: 0.8vw;
 }

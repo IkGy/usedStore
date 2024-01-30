@@ -33,25 +33,36 @@ function Mypage() {
 
   const editUser = async (e) => {
     e.preventDefault();
+    const oldnickname = data.nickname;
     const nickname = e.target.nickname.value; // 값이 없을 때 빈 문자열로 설정
     const about = e.target.about.value;
     const address = e.target.address.value;
     const _id = getCookie("login");
     const fromdata = new FormData();
 
+    console.log(nickname);
     fromdata.append("nickname", nickname);
     fromdata.append("about", about);
     fromdata.append("address", address);
     fromdata.append("profileIMG", prewviewimg);
+    fromdata.append("oldnickname", oldnickname);
     fromdata.append("_id", _id);
 
-    await axios
-      .post(`${API_URL}/user/edit`, fromdata)
-      .then((result) => {
-        setData(result.data);
-        setModal(false);
-      })
-      .catch(() => {});
+    if (nickname === "") {
+      alert("닉네임을 입력해주세요!");
+    } else {
+      await axios
+        .post(`${API_URL}/user/edit`, fromdata)
+        .then((result) => {
+          if (result.data === "닉네임중복") {
+            alert("누군가 사용중인 닉네임 입니다.");
+          } else {
+            setData(result.data);
+            setModal(false);
+          }
+        })
+        .catch(() => {});
+    }
   };
 
   useEffect(() => {
@@ -100,14 +111,14 @@ function Mypage() {
         style={modal ? { display: "flex" } : { display: "none" }}
       >
         <form onSubmit={editUser} id="JSW_modalALL">
-          <div
-            className="JSW_modal_loginCloseBtn"
-            onClick={() => {
-              setModal(false);
-            }}
-          >
+          <div className="JSW_modal_loginCloseBtn">
             <div className="JSW_modal_mainTitle">프로필 수정</div>
-            <i class="fa-solid fa-xmark"></i>
+            <i
+              onClick={() => {
+                setModal(false);
+              }}
+              class="fa-solid fa-xmark"
+            ></i>
           </div>
 
           <div className="JSW_modal_loginInputBox">
@@ -116,8 +127,12 @@ function Mypage() {
               type="file"
               accept="image/*"
               onChange={(e) => {
-                setpreviwimg(e.target.files[0]);
                 setImage(null);
+                if (e.target.files.length === 0) {
+                  console.log("어림도 없다");
+                } else {
+                  setpreviwimg(e.target.files[0]);
+                }
               }}
               style={{ display: "none" }}
             ></input>
