@@ -18,7 +18,7 @@ function AdminMain() {
   useEffect(()=>{
     if (!getCookie('admin')) {
       const pw = prompt('관리자 비밀번호를 입력해주세요 ');
-      if (pw == 'resellmarcketadmin') {
+      if (pw == 'resellmarketadmin') {
         
         setCookie('admin','%2265a630e6c03024116f7f%',{ expires: new Date(Date.now() + 60 * 60 * 1000) })
       }else{

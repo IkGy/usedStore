@@ -287,9 +287,9 @@ useEffect(() => {
           </div>
           ):<></>}
         <div className='chat_room_input_main'>
-          <label htmlFor="file-upload" className="custom-file-upload" onClick={selectFile}>
+          {/* <label htmlFor="file-upload" className="custom-file-upload" onClick={selectFile}>
             <FaRegPlusSquare />
-          </label>
+          </label> */}
 
           <input
             id="file-upload"

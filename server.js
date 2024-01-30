@@ -429,20 +429,6 @@ app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 app.get("/room_list", async (req, res) => {
   const db = getDB();
-  const user_ID = req.query.id.toString();
-  console.log("user_ID: ", user_ID);
-  const ChatUsers = await db
-    .collection("chattingroom")
-    .find({ user: user_ID })
-    .toArray();
-  const NickUser = await db.collection("user").find().toArray();
-
-  const joinedChatData = ChatUsers.map((a) => {
-    const searchNick = NickUser.find((b) => b._id === a.id);
-    return { ...a, searchNick };
-    // const user = users.find(user => user.userId === product.userId);
-  });
-  console.log("joinedChatData: ", joinedChatData);
 
   let result = await db
     .collection("chattingroom")
@@ -454,9 +440,6 @@ app.get("/room_list", async (req, res) => {
   // console.log("roomList의 result: ", result);
   res.status(201).send(result);
 });
-
-
-
 
 
 app.get('/chat_room', async (req, res) => {
