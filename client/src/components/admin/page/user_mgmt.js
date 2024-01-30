@@ -88,7 +88,7 @@ function UserManagement() {
       <div className='usermgmt_search_section'>
         <input
           type="text"
-          placeholder="검색어를 입력하세요..."
+          placeholder="검색..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
