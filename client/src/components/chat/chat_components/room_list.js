@@ -9,6 +9,9 @@ import { io } from "socket.io-client";
 
 let socket;
 
+// const ENDPOINT = 'http://localhost:5000'
+const ENDPOINT = 'http://15.164.229.9:5000'
+
 function Room_list({ onSelectUser, onSelectRoom }) {
   // 각 유저의 id를 가져오고
   // 유저 id가 포함되어있는 채팅방 id를 조회해야함
@@ -48,15 +51,15 @@ function Room_list({ onSelectUser, onSelectRoom }) {
 
     await axios.get(`${API_URL}/chat_log`, {params:{ room_id: id }})
     .then((res)=>{
-      console.log("res: ", res);
-      console.log("res.data: ", res.data);
+      // console.log("res: ", res);
+      // console.log("res.data: ", res.data);
       if(res.data.length < 1){
         console.log("로그가 없음!"); 
       } else {
         console.log("room_id: ", res.data[0].room_id);
       }
-      console.log("방id:", id); 
-      console.log("res: ", res.data[0].chat);
+      // console.log("방id:", id); 
+      // console.log("res: ", res.data[0].chat);
     })
     .catch((error)=> {
       console.log("error: ", error);
@@ -75,7 +78,6 @@ function Room_list({ onSelectUser, onSelectRoom }) {
     <div className="room_list_Top">
       <h1 className="room_list_name">나의 채팅방</h1>
     </div>
-    <div className="bdr"> 
     {myRoom_list.map((a, i) => {
       return <div
         key={a._id}
@@ -85,7 +87,6 @@ function Room_list({ onSelectUser, onSelectRoom }) {
         className="room_list"
         >{user[i]}님과의 채팅방</div>
       })}
-    </div>
     </div>
     </>
   );

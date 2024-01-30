@@ -47,6 +47,7 @@ app.use(cors());
 
 const url = process.env.DB_URL;
 const port = process.env.PORT;
+
 new MongoClient(url)
   .connect({ useUnifiedTopology: true })
   .then((client) => {
@@ -417,6 +418,60 @@ app.post("/singo", async (req, res) => {
 
 // ---------실시간채팅------------- //
 
+// Socket.io 설정
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+// const socketio = require('socket.io');
+// const io = socketio(server)
+
+// app.use(cors());
+app.use(cors({ origin: '*' }))
+const io = new Server(server, {cors: {origin: '*'}});
+
+const roomInfo = [];
+console.log("소켓으로 들어오긴 함");
+io.on('connection', (socket) => {
+  const { url } = socket.request;
+  console.log(`${url} 에서 연결됨`);
+  
+  // 방 입장 이벤트 핸들링
+  socket.on('join', (room, callback) => {
+    console.log('방 입장:', room);
+    // 해당 방에 클라이언트 소켓을 조인
+    roomInfo[socket.id] = room;
+    console.log(roomInfo[socket.id]);
+    socket.join(room);
+    console.log("join 실행");
+    // callback()
+  });
+
+  // 클라이언트로부터의 메시지 이벤트 핸들링
+  socket.on('sendMessage', async (data, callback) => {
+    console.log("소켓 sendMessage 진입");
+    const { writer, message, images } = data;
+    console.log("data: ", data);
+    console.log("writer: ", writer);
+    console.log('메시지 받음:', message);
+    console.log('이미지 받음:', images);
+    const room = roomInfo[socket.id];
+    console.log("room: ", room);
+
+    // 같은 방에 있는 모든 클라이언트에게 메시지 전송
+    io.to(room).emit('message', { writer, message, images });
+    // callback()
+  });
+
+  // 연결 해제 이벤트 핸들링
+  socket.on('disconnect', () => {
+    console.log('사용자가 연결 해제됨');
+
+  });
+});
+
+server.listen(5000, () => console.log("채팅서버 연결"));
+
+
 app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 // 채팅 조회를 위한 친구들-----------------
@@ -497,6 +552,43 @@ app.get("/chat_log", async (req, res) => {
     res.status(500).send("대체 어떻게 조회한거야?!");
   }
 });
+// 채팅방에서 닉네임을 가져오기 위한 친구
+app.get("/user_nicknames", async (req, res) => {
+  const db = getDB();
+  let userIds = req.query.userIds;
+
+  // userIds가 문자열 형태의 배열인 경우 파싱하여 배열로 변환
+  if (typeof userIds === 'string') {
+    userIds = JSON.parse(userIds);
+  }
+
+  // console.log('userIds:', userIds);
+  // console.log('userIds type:', typeof userIds);
+
+  try {
+    // userIds를 배열로 변환
+    const userIdsArray = Array.isArray(userIds) ? userIds : [userIds];
+    // console.log('userIdsArray:', userIdsArray);
+
+    const users = await db.collection("user").find({ _id: { $in: userIdsArray.map(id => new ObjectId(id)) } }).toArray();
+    // console.log('users:', users);
+
+    // 클라이언트에서 전송한 userIds 배열의 순서를 기반으로 정렬
+    const sortedUsers = userIdsArray.map(id => users.find(user => user._id.toString() === id));
+
+    const nicknames = sortedUsers.map((user) => user.nickname);
+    // console.log('nicknames:', nicknames);
+
+    res.status(200).json(nicknames);
+  } catch (error) {
+    console.error("Failed to fetch user nicknames", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
 
 // ---------------------------------
 
