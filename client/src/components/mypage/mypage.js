@@ -111,14 +111,14 @@ function Mypage() {
         style={modal ? { display: "flex" } : { display: "none" }}
       >
         <form onSubmit={editUser} id="JSW_modalALL">
-          <div
-            className="JSW_modal_loginCloseBtn"
-            onClick={() => {
-              setModal(false);
-            }}
-          >
+          <div className="JSW_modal_loginCloseBtn">
             <div className="JSW_modal_mainTitle">프로필 수정</div>
-            <i class="fa-solid fa-xmark"></i>
+            <i
+              onClick={() => {
+                setModal(false);
+              }}
+              class="fa-solid fa-xmark"
+            ></i>
           </div>
 
           <div className="JSW_modal_loginInputBox">
