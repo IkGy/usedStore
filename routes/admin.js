@@ -47,7 +47,17 @@ router.post(`/useredit/:id`, async (req, res) => {
   }
 });
 
-
+// 신고 관리
+router.get("/report", async (req, res) => {
+  try {
+    const db = getDB();
+    let result = await db.collection("report_list").find().toArray();
+    res.status(201).send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("신고 데이터를 찾을 수 없습니다");
+  }
+});
 
 router.get('/prodAll', async (req, res) => {
   const db = getDB();
