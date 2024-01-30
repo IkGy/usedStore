@@ -1,32 +1,56 @@
 .usermgmt_table {
-  display: flex;
-  flex-direction: column;
-  padding: 50px 30px 20px 30px;
-}
-
-.usermgmt_tr {
-  display: flex;
-  flex-direction: row;
-}
-
-/* 테이블 헤더 스타일링 */
-.usermgmt_th {
-  padding: 8px;
-  background-color: #f2f2f2;
-  border: 1px black solid;
   text-align: center;
+  padding: 3vh 2vw;
 }
 
-/* 테이블 내용 스타일링 */
-.usermgmt_td {
-  padding: 8px;
-  border: 1px solid #000000;
-  text-align: center;
-  min-height: 30px;
+.usermgmt_table_tr {
+  position: sticky;
+  top: 0;
+  font-size: 1.2vw;
+}
+
+.usermgmt_table_tr > th {
+  background-color: #627dcd;
+  color: white;
+  padding: 0.8vh 0;
+}
+
+.usermgmt_table_tr {
+  position: sticky;
+  top: 0;
+  font-size: 1.2vw;
+}
+
+.usermgmt_table_tr > th {
+  background-color: #627dcd;
+  color: white;
+  padding: 0.8vh 0;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.usermgmt_td input {
-  width: calc(100% - 18px); 
-  box-sizing: border-box;
+.usermgmt_table_tbody > tr > td {
+  padding: 0.8vh 0.5vw;
+  background-color: #d9e1ff;
+  font-size: 0.8vw;
+  padding: 0.8vh 0.5vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.1s;
+}
+
+.usermgmt_table_tbody > tr:hover > td {
+  background-color: #a8bdff;
+}
+
+.usermgmt_table_tbody > tr > td:hover,
+.usermgmt_table_tbody > tr > td:hover > a {
+  background-color: #5273e1;
+  color: white;
+}
+
+.usermgmt_table_tbody > tr > td > button {
+  font-size: 0.8vw;
 }
