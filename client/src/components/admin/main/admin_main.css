@@ -52,7 +52,7 @@
 }
 
 .menu_section {
-  padding: 0 2vw 3vh;
+  margin: 0 2vw 3vh;
   height: 78vh;
   overflow-y: auto;
 }

@@ -10,6 +10,19 @@ function ProductManagement() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   
+  // 검색 필터기능
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProdData = prodData.filter(product => {
+    return product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           product.sellerInfo.nickname.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+
   const deleteItem = async(id)=>{
     console.log(id);
     await axios.delete(`${API_URL}/admin/prodOne`,{params: {prod_id: id}})
@@ -40,7 +53,7 @@ function ProductManagement() {
 
   // 위로 스크롤
   const scrollToTop = () => {
-    const element = document.querySelector('.menu_info');
+    const element = document.querySelector('.menu_section');
     if (element) {
       element.scrollTo({
         top: 0,
@@ -50,8 +63,15 @@ function ProductManagement() {
   };
 
   return (
-    <div>
+    <div className="admin_prod_container">
       <FaArrowUp onClick={scrollToTop} />
+      <div className='admin_prod_search_section'>
+        <input 
+          type="text" 
+          value={searchTerm} 
+          onChange={handleSearchChange} 
+          placeholder="검색..." />
+      </div>
       <table className="admin_prod_table">
         <colgroup>
           <col style={{ width: "25%" }}  />
@@ -74,7 +94,7 @@ function ProductManagement() {
           </tr>
         </thead>
         <tbody className="admin_prod_table_tbody">
-           {prodData && prodData.map((data, i) => (
+          {filteredProdData && filteredProdData.map((data, i) => (
             <tr key={i}>
               <td><Link to={`/detail/${data._id}`} target="_blank">{data.title}</Link></td>
               <td>{data.comment}</td>

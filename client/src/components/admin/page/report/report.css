@@ -1,8 +1,3 @@
-.KJH_admin-report_uparrow {
-  overflow-y: auto;
-  background-color: #f0f3ff;
-}
-
 .KJH_admin-report_uparrow > svg {
   position: absolute;
   display: block;
@@ -15,8 +10,8 @@
   padding: 2px;
   width: 40px;
   height: 40px;
-  right: 45px;
-  bottom: 50px;
+  right: 55px;
+  bottom: 25px;
   cursor: pointer;
   transition: 0.2s;
   z-index: 3;
@@ -37,7 +32,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 3vh 2vw;
 }
 
 .KJH_admin-report_title_section {
@@ -70,11 +64,6 @@
   background-color: #627dcd;
   color: white;
   padding: 0.8vh 0;
-}
-
-
-.KJH_admin-report_table_container {
-  margin-right: 30px;
 }
 
 .KJH_admin-report_table_setcion {
@@ -112,16 +101,17 @@
 
 /* 신고 종류: type */
 .KJH_admin-report_table_tbody > tr > .KJH_type {
-  font-size: 0.8vw;
+  font-size: 1vw;
   font-weight: 700;
 }
 
 /* 해당 게시글: post*/
 .KJH_admin-report_table_tbody > tr > .KJH_post {
-  font-size: 0.8vw;
+  font-size: 0.9vw;
 }
 
 .KJH_admin-report_table_tbody > tr > .KJH_post > a {
+  font-family: 'Noto Sans KR', sans-serif;
   width: 100%;
   height: 100%;
 }
