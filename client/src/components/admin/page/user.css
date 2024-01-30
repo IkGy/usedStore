@@ -34,9 +34,6 @@
   background-color: #627dcd;
   color: white;
   padding: 0.8vh 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .usermgmt_table_tbody > tr > td {
@@ -54,8 +51,7 @@
   background-color: #a8bdff;
 }
 
-.usermgmt_table_tbody > tr > td:hover,
-.usermgmt_table_tbody > tr > td:hover > a {
+.usermgmt_table_tbody > tr > td:hover {
   background-color: #5273e1;
   color: white;
 }

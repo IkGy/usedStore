@@ -52,6 +52,11 @@ function UserManagement() {
 
   const saveUserData = async (id) => {
     try {
+      if (editNickname.length < 2 || editNickname.length > 10) {
+        alert("닉네임은 2글자에서 10글자 사이어야 합니다");
+        return;
+      }
+
       await axios.post(`${API_URL}/admin/useredit/${id}`, { nickname: editNickname, role: editRole, about: editAbout });
       console.log('데이터 수정 성공');
       getData();
