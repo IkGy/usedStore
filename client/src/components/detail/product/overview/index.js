@@ -104,7 +104,7 @@ function Item(props) {
   const selUser = props.seller._id;
   console.log("curUser: ", curUser);
   console.log("selUser: ", selUser);
-	
+
 	const openChatting = async () => {
 		if (curUser){
 			try {
@@ -145,7 +145,7 @@ function Item(props) {
 
   const Info = props.info;
 
-  // 생성 날짜 형식화`
+  // 생성 날짜 형식화
   const formattedCreatedAt = formatTimeAgo(Info.created_at);
 
   return (
