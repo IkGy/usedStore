@@ -456,16 +456,16 @@ app.get("/chat_room", async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id;
 
-  let test = await db.collection('chattingroom').aggregate([
-    {
-      $lookup: {
-        from: 'user',
-        let: {
+  // let test = await db.collection('chattingroom').aggregate([
+  //   {
+  //     $lookup: {
+  //       from: 'user',
+  //       let: {
           
-        }
-      }
-    }
-  ])
+  //       }
+  //     }
+  //   }
+  // ])
 
   try {
     let result = await db.collection('chattingroom').find({
@@ -518,7 +518,10 @@ app.get("/user_nicknames", async (req, res) => {
     const users = await db.collection("user").find({ _id: { $in: userIdsArray.map(id => new ObjectId(id)) } }).toArray();
     console.log('users:', users);
 
-    const nicknames = users.map((user) => user.nickname);
+    // 클라이언트에서 전송한 userIds 배열의 순서를 기반으로 정렬
+    const sortedUsers = userIdsArray.map(id => users.find(user => user._id.toString() === id));
+
+    const nicknames = sortedUsers.map((user) => user.nickname);
     console.log('nicknames:', nicknames);
 
     res.status(200).json(nicknames);
@@ -527,6 +530,7 @@ app.get("/user_nicknames", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 
 

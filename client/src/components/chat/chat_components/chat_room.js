@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './chat_room.css';
 import io from 'socket.io-client';
 import BasicScrollToBottom from 'react-scroll-to-bottom';
@@ -11,7 +11,7 @@ import ReactEmoji from 'react-emoji';
 
 let socket;
 // const ENDPOINT = 'http://15.164.229.9:5000'
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'http://localhost:5000'
 
 function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   console.log("Chat_room 진입");
@@ -84,6 +84,7 @@ useEffect(() => {
     getLog(selectedRoom);
     
     socket.emit('join', selectedRoom, (error) => {
+      console.log("채팅방 입장");
       if(error)
         alert('에러코드[', error, ']');
       })  
@@ -114,7 +115,6 @@ useEffect(() => {
     // console.log("message 길이: ", message.trim().length);
 
     if(message.trim().length === 0 ) console.log("전송하지 않습니다.");
-    
     else {
       if (message || selectedFiles) {
         console.log(message)
@@ -134,16 +134,16 @@ useEffect(() => {
       .then((result) => {
         console.log("result: ", result);
         console.log("post 완료");
+        //소켓 연결할 부분
+        // socket.emit('sendMessage', { chatFormData });  
+        socket.emit('sendMessage', { writer, message, images });  
+          setMessage('');
+          setSelectedFiles([]);
       })
       .catch((error) => {
         console.log("error: ", error);
       })
-  
-      //소켓 연결할 부분
-      // socket.emit('sendMessage', { chatFormData });  
-      socket.emit('sendMessage', { writer, message, images });  
-        setMessage('');
-        setSelectedFiles([]);
+      
       }
     }
   }
@@ -173,13 +173,14 @@ useEffect(() => {
   // else isSentByCurrentUser = false;
   // console.log("true/false = ", isSentByCurrentUser);
   
-  
-
-
   const closeRoom = () => {
     setSelectedUser('');
   }
 
+  const getoutRoom = async(req, res) => {    
+    await axios.delete(`${API_URL}/chat/out_room`)
+  } 
+ 
 
 
   return (

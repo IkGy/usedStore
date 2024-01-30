@@ -8,6 +8,7 @@ import queryString from 'query-string';
 import { io } from "socket.io-client";
 
 let socket;
+const ENDPOINT = 'http://localhost:5000'
 
 function Room_list({ onSelectUser, onSelectRoom }) {
   // 각 유저의 id를 가져오고
@@ -20,27 +21,7 @@ function Room_list({ onSelectUser, onSelectRoom }) {
   const [user, setUser] = useState([]);
   const [room, setRoom] = useState('');
 
-  // useEffect(() => {
-  //   axios.get(`${API_URL}/room_list`, {
-  //     params: { id: getCookie("login") },
-  //   })
-  //   .then((res) => {
-  //     console.log("조회성공");
-  //     // console.log("res.data: ", res.data);
-  //     console.log("room_list의 res.data: ", res.data);
-  //     setMyRoom_List(res.data);
-  //     let updatedUsers = [];
-  //     for (let i = 0; i < res.data.length; i++) {
-  //       let filteruser = res.data[i].user.filter(
-  //       (element) => element !== getCookie("login")
-  //     );
-  //       updatedUsers.push(...filteruser);
-  //     }
-  //     setUser(updatedUsers);
-  //     console.log("updatedUsers: ", updatedUsers);
-  //     console.log("user: ", user);
-  //   })
-  // }, []);
+
   useEffect(() => {
     axios.get(`${API_URL}/room_list`, {
         params: { id: getCookie("login") },
@@ -83,8 +64,8 @@ function Room_list({ onSelectUser, onSelectRoom }) {
   
 
   const clickRoom = async (user, id) => {
-    console.log("a.id: ", id);  
-    socket = io(API_URL)
+    console.log("user.id: ", id);  
+    socket = io(ENDPOINT)
 
     await axios.get(`${API_URL}/chat_log`, {params:{ room_id: id }})
     .then((res)=>{

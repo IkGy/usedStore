@@ -99,6 +99,7 @@ function Item(props) {
     }
   };
 
+
   // 채팅방 조회
   const curUser = getCookie('login');
   const selUser = props.seller._id;
@@ -112,6 +113,7 @@ function Item(props) {
 					user: [selUser, curUser]
 				});
 				console.log(res.data);
+        
 			} catch (error) {
 				console.error("채팅방을 불러오지 못했습니다");
 			}
