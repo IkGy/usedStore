@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../config/contansts";
 import "./searchpage.css";
-import nosearch from "./6179016.png"
+import nosearch from "./6179016.png";
 
 function Searchpage() {
   let { search } = useParams();
@@ -126,7 +126,10 @@ function Searchpage() {
           </div>
         </>
       ) : (
-        <div>읎어</div>
+        <div className='searchpage_nosearch'>
+          <img src={nosearch}></img>
+          <div>검색 결과가 없습니다....</div>
+        </div>
       )}
     </div>
   );
