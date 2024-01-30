@@ -105,6 +105,7 @@ function Singo() {
                     <option>19금 콘텐츠</option>
                     <option>기타</option>
                   </select>
+
                 </div>
               </div>
               <table className="kk_ask_btm_table">

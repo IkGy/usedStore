@@ -27,7 +27,7 @@ import AdminMain from './components/admin/main/admin_main';
 import UserManagement from './components/admin/page/user_mgmt';
 import Setting from './components/admin/page/setting';
 import ProductManagement from './components/admin/page/product_mgmt';
-import Declaration from './components/admin/page/declaration';
+import Report from "./components/admin/page/report";
 import Singo from './components/mypage/singo/singo';
 import ScrollToTopButton from './topbtn.js'
 
@@ -74,7 +74,7 @@ function App() {
           <Route path='/admin_main' element={<AdminMain />}></Route>
           <Route path='/page/user_mgmt' element={<UserManagement />}></Route>
           <Route path='/page/setting' element={<Setting />}></Route>
-          <Route path='/page/declaration' element={<Declaration />}></Route>
+          <Route path='/page/report' element={<Report />}></Route>
           <Route path='/page/product_mgmt' element={<ProductManagement />}></Route>
         </Routes>
         <Footer />
