@@ -63,26 +63,37 @@ function UserManagement() {
 
   return (
     <div>
-      <div className="usermgmt">유저관리</div>
       <table className="usermgmt_table">
-        <thead className="usermgmt_thead">
-          <tr className="usermgmt_tr">
-            <th className="usermgmt_th" style={{ width: '7%' }}>유저관리</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>본명</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>아이디</th>
-            <th className="usermgmt_th" style={{ width: '8%' }}>닉네임</th>
-            <th className="usermgmt_th" style={{ width: '12%' }}>이메일</th>
-            <th className="usermgmt_th" style={{ width: '7%' }}>비밀번호</th>
-            <th className="usermgmt_th" style={{ width: '18%' }}>주소</th>
-            <th className="usermgmt_th" style={{ width: '8%' }}>휴대폰 번호</th>
-            <th className="usermgmt_th" style={{ width: '6%' }}>유저 상태</th>
-            <th className="usermgmt_th" style={{ width: '20%' }}>상점 한마디</th>
+        <colgroup>
+          <col style={{ width: "7%" }} />
+          <col style={{ width: "6%" }}  />
+          <col style={{ width: "6%" }} />
+          <col style={{ width: "8%" }} />
+          <col style={{ width: "12%" }}  />
+          <col style={{ width: "7%" }} />
+          <col style={{ width: "18%" }} />
+          <col style={{ width: "8%" }} />
+          <col style={{ width: "6%" }} />
+          <col style={{ width: "20%" }} />
+        </colgroup>
+        <thead>
+          <tr className='usermgmt_table_tr'>
+            <th>유저관리</th>
+            <th>본명</th>
+            <th>아이디</th>
+            <th>닉네임</th>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>주소</th>
+            <th>휴대폰 번호</th>
+            <th>유저 상태</th>
+            <th>상점 한마디</th>
           </tr>
         </thead>
-        <tbody className='usermgmt_tbody'>
+        <tbody className='usermgmt_table_tbody'>
           {userData.map(user => (
-            <tr key={user._id} className='usermgmt_tr'>
-              <td className='usermgmt_td' style={{ width: '7%' }}>
+            <tr key={user._id}>
+              <td className='usermgmt_update_btn'>
                 {/* 수정 버튼 */}
                   {editStatus[user._id] ? 
                     <button onClick={() => handleSave(user._id, 'nickname', editNickname, 'role', editRole, 'about', editAbout)}>저장</button>
@@ -92,15 +103,11 @@ function UserManagement() {
                 &nbsp;<button>삭제</button>
               </td>
               {/* 본명 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
-                <span>{user.real_name}</span>
-              </td>
+              <td className='usermgmt_real_name'>{user.real_name}</td>
               {/* 아이디 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
-                <span>{user.id}</span>
-              </td>
+              <td className='usermgmt_id'>{user.id}</td>
               {/* 닉네임 */}
-              <td className='usermgmt_td' style={{ width: '8%' }}>
+              <td className='usermgmt_nickname'>
                 {editStatus[user._id] ? (
                   <input
                     id='user_nickname'
@@ -109,27 +116,19 @@ function UserManagement() {
                     onChange={(e) => setEditNickName(e.target.value)}
                   />
                 ) : (
-                  <span>{user.nickname}</span>
+                  <div>{user.nickname}</div>
                 )}
               </td>
               {/* 이메일 */}
-              <td className='usermgmt_td' style={{ width: '12%' }}>
-                <span>{user.email}</span>
-              </td>
+              <td className='usermgmt_email'>{user.email}</td>
               {/* 비밀번호 */}
-              <td className='usermgmt_td' style={{ width: '7%' }}>
-                <span>{user.password}</span>
-              </td>
+              <td className='usermgmt_password'>{user.password}</td>
               {/* 주소 */}
-              <td className='usermgmt_td' style={{ width: '18%' }}>
-                <span>{user.address}</span>
-              </td>
+              <td className='usermgmt_address'>{user.address}</td>
               {/* 휴대폰 번호 */}
-              <td className='usermgmt_td' style={{ width: '8%' }}>
-                <span>{user.phone_number}</span>
-              </td>
+              <td className='usermgmt_phone_number'>{user.phone_number}</td>
               {/* 유저 상태 */}
-              <td className='usermgmt_td' style={{ width: '6%' }}>
+              <td className='usermgmt_role'>
                 {editStatus[user._id] ? (
                   <input
                     id='user_role'
@@ -138,11 +137,11 @@ function UserManagement() {
                     onChange={(e) => setEditRole(e.target.value)}
                   />
                 ) : (
-                  <span>{user.role}</span>
+                  <div>{user.role}</div>
                 )}
               </td>
               {/* 상점 한마디 */}
-              <td className='usermgmt_td' style={{ width: '20%' }}>
+              <td className='usermgmt_about'>
                 {editStatus[user._id] ? (
                   <input
                     id='user_about'
