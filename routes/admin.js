@@ -46,8 +46,6 @@ router.delete('/user/:id', async (req, res) => {
 
 // 유저 데이터 수정하기
 router.post(`/useredit/:id`, async (req, res) => {
-  // console.log('req.params: ', req.params);
-  // console.log('req.body: ', req.body);
   try {
     const db = getDB();
     const userData = await db.collection('user').findOne({ _id: new ObjectId(req.params.id) })
@@ -56,11 +54,11 @@ router.post(`/useredit/:id`, async (req, res) => {
     const editAbout = req.body.about || userData.about;
     await db.collection("user").updateOne(
       { _id: new ObjectId(req.params.id) },
-      {
-        $set: {
-          nickname: editNickname,
-          role: editRole,
-          about: editAbout,
+        {
+          $set: {
+            nickname: editNickname,
+            role: editRole,
+            about: editAbout,
         },
       }
     );
@@ -68,7 +66,7 @@ router.post(`/useredit/:id`, async (req, res) => {
 
   } catch (error) {
     console.error("데이터 수정 실패:", error);
-    res.status(500).json({ error: "서버 오류 발생" }); 
+    res.status(500).json({ error: "서버 오류 발생" });
   }
 });
 
