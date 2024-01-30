@@ -29,8 +29,8 @@ const chatImages = multer({
 router.post('/open_chat', async (req, res) => {
   const db = getDB();
   const users = req.body.user
-  console.log('users: ', users);
-  console.log('users: ', users[0], users[1]);
+  // console.log('users: ', users);
+  // console.log('users: ', users[0], users[1]);
   
   try {
     let resss = await db.collection('chattingroom').find({
@@ -80,10 +80,10 @@ router.get('/chat', async (req, res) => {
 
 router.post('/live_chat', chatImages.array('img', 10), async (req,res)=>{
   const db = getDB();
-  console.log('chatImages: ', chatImages);
-  console.log("req.body: ", req.body);
-  console.log("req.query: ", req.query);
-  console.log("req.files: ", req.files);
+  // console.log('chatImages: ', chatImages);
+  // console.log("req.body: ", req.body);
+  // console.log("req.query: ", req.query);
+  // console.log("req.files: ", req.files);
   // const Images = req.files.map((file) => file.location);
   // console.log('Images: ', Images);
 
