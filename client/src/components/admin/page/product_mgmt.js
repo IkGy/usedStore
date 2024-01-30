@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Modal from 'react-modal'
 import { API_URL } from "../../config/contansts";
 import './admin_product.css';
 
@@ -50,8 +49,12 @@ function ProductManagement() {
             <tr className="admin_prodData" key={i}>
               <td>{data.title}</td>
               <td>{data.comment}</td>
-              <td>{data.sellerInfo.id}</td>
-              <td>{data.buyer}</td>
+              <td>{data.sellerInfo.nickname}</td>
+              {data.buyerInfo ? 
+                <td>{data.buyerInfo.nickname}</td>
+                :
+                <td></td>
+              }
               <td>{data.price}</td>
               <td>{data.status}</td>
               <td>

@@ -48,7 +48,6 @@ router.post(`/useredit/:id`, async (req, res) => {
 
 router.get('/prodAll', async (req, res) => {
   const db = getDB();
-
   try {
     const products = await db.collection('product').aggregate([
       {
@@ -73,8 +72,35 @@ router.get('/prodAll', async (req, res) => {
         }
       },
       {
+        $lookup: {
+          from: 'user',
+          let: { buyerId: { $cond: { if: { $ne: ['$buyer', ''] }, then: { $toObjectId: '$buyer' }, else: null } } }, // Convert buyer to ObjectId if not empty
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ['$_id', '$$buyerId'] }
+              }
+            },
+            {
+              $project: {
+                password: 0, // Exclude password from buyerInfo
+                email: 0      // Exclude email from buyerInfo
+                // Add other fields as needed
+              }
+            }
+          ],
+          as: 'buyerInfo'
+        }
+      },
+      {
         $unwind: {
           path: '$sellerInfo',
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $unwind: {
+          path: '$buyerInfo',
           preserveNullAndEmptyArrays: true
         }
       }
@@ -86,5 +112,7 @@ router.get('/prodAll', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
 
 module.exports = router;
