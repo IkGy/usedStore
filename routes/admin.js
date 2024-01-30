@@ -3,7 +3,7 @@ const router = express.Router();
 const { getDB } = require("../db");
 const { ObjectId } = require('mongodb');
 
-
+// 유저 데이터 불러오기
 router.get('/user', async (req, res) => {  
   try {
     const db = getDB();
@@ -18,28 +18,42 @@ router.get('/user', async (req, res) => {
 
 });
 
-
-router.post(`/useredit/:id`, async (req, res) => {
-  
-  console.log('req.params: ', req.params);
-  console.log('req.body: ', req.body);
-  
+//유저 데이터 삭제
+router.delete('/user/:id', async (req, res) => {
   try {
     const db = getDB();
-    const { nickname, user, about } = req.body;
+    const deletedUser = await db.collection('user').deleteOne({ _id: new ObjectId(req.params.id) });
+    if (deletedUser.deletedCount === 0) {
+      return res.status(404).json({ message: '삭제할 사용자를 찾을 수 없습니다.' });
+    }
+    res.status(200).json({ message: '사용자가 삭제되었습니다.' });
+  } catch (error) {
+    console.error("데이터 삭제 실패:", error);
+    res.status(500).json({ error: "서버 오류 발생" });
+  }
+});
 
-    const userData = await db.collection("user").updateOne(
+// 유저 데이터 수정하기
+router.post(`/useredit/:id`, async (req, res) => {
+  // console.log('req.params: ', req.params);
+  // console.log('req.body: ', req.body);
+  try {
+    const db = getDB();
+    const userData = await db.collection('user').findOne({ _id: new ObjectId(req.params.id) })
+    const editNickname = req.body.nickname || userData.nickname;
+    const editRole = req.body.role || userData.role;
+    const editAbout = req.body.about || userData.about;
+    await db.collection("user").updateOne(
       { _id: new ObjectId(req.params.id) },
       {
         $set: {
-          nickname,
-          user,
-          about,
+          nickname: editNickname,
+          role: editRole,
+          about: editAbout,
         },
       }
-    ); 
-    console.log("(useredit) 사용자 데이터:", userData);
-    res.json(userData);
+    );
+    res.status(201);
 
   } catch (error) {
     console.error("데이터 수정 실패:", error);
@@ -76,7 +90,6 @@ router.get('/prodAll', async (req, res) => {
             {
               $project: {
                 password: 0, // Exclude password from sellerInfo
-                email: 0      // Exclude email from sellerInfo
                 // Add other fields as needed
               }
             }
@@ -97,8 +110,6 @@ router.get('/prodAll', async (req, res) => {
             {
               $project: {
                 password: 0, // Exclude password from buyerInfo
-                email: 0      // Exclude email from buyerInfo
-                // Add other fields as needed
               }
             }
           ],
@@ -126,6 +137,18 @@ router.get('/prodAll', async (req, res) => {
   }
 });
 
-
+router.delete('/prodOne', async (req, res) => {  
+  try {
+    console.log(req.query);
+    const db = getDB();
+    await db.collection("product").deleteOne(
+      { _id : new ObjectId(req.query.prod_id) }
+    )
+    res.status(201).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "서버 오류 발생" });
+  }
+});
 
 module.exports = router;

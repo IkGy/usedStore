@@ -248,16 +248,7 @@ app.get("/like/picklist", async (요청, 응답) => {
   응답.send(prodData);
 });
 
-app.get("/room_list", async (req, res) => {
-  const db = getDB();
-  let result = await db
-    .collection("chattingroom")
-    .find({
-      user: req.query.id,
-    })
-    .toArray();
-  res.status(201).send(result);
-});
+
 
 app.post("/sellitemedit", async (req, res) => {
   const db = getDB();
@@ -300,9 +291,7 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
     nickname: req.body.nickname,
   });
 
-  console.log(req.body.oldnickname);
-
-  if (nicknamecheck) {
+  if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
     res.status(201).send("닉네임중복");
   } else {
     if (req.file) {
@@ -414,7 +403,6 @@ app.post("/singo", async (req, res) => {
   await db.collection("report_list").insertOne({
     report_type: req.body.report_type,
     reported_post: req.body.reported_post,
-    report_title: req.body.report_title,
     report_content: req.body.report_content,
     report_date: req.body.report_date,
     reported_link: req.body.reported_link,
@@ -429,74 +417,68 @@ app.post("/singo", async (req, res) => {
 
 // ---------실시간채팅------------- //
 
-
-app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
-
-
+app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 // 채팅 조회를 위한 친구들-----------------
 
+
+
+
+
+
+
 app.get("/room_list", async (req, res) => {
   const db = getDB();
-  const user_ID = req.query.id.toString();
-  console.log('user_ID: ', user_ID);
-  const ChatUsers = await db.collection('chattingroom').find({user: user_ID}).toArray();
-  const NickUser = await db.collection('user').find().toArray();
-  
-  const joinedChatData = ChatUsers.map((a) => {
-    const searchNick = NickUser.find(b => b._id === a.id);
-    return {...a, searchNick};
-    // const user = users.find(user => user.userId === product.userId);
-  });
-  console.log('joinedChatData: ', joinedChatData);
 
-
-  let result = await db.collection('chattingroom').find({
-    user: req.query.id
-  }).toArray()
+  let result = await db
+    .collection("chattingroom")
+    .find({
+      user: req.query.id,
+    })
+    .toArray();
 
   // console.log("roomList의 result: ", result);
   res.status(201).send(result);
 });
+
 
 app.get('/chat_room', async (req, res) => {
   console.log("chatroom 진입");
   const db = getDB();
   const user_ID = req.query.id;
 
-
   try {
-    let result = await db.collection('chattingroom').find({
-      user: user_ID
-    }).toArray();
+    let result = await db
+      .collection("chattingroom")
+      .find({
+        user: user_ID,
+      })
+      .toArray();
 
-    console.log('result: ', result);
+    console.log("result: ", result);
     res.status(201).send(result);
   } catch (error) {
     console.log("채팅 불러오기 실패다 이자식아");
     res.status(500).send("대체 어떻게 조회한거야?!");
   }
 });
-  
-app.get('/chat_room', async (req, res) => {
+
+app.get("/chat_room", async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id;
 
-
   try {
     let result = await db.collection('chattingroom').find({
       user: user_ID
     }).toArray();
 
-
-    console.log('result: ', result);
+    console.log("result: ", result);
     res.status(201).send(result);
   } catch (error) {
     console.log("채팅 불러오기 실패다 이자식아");
     res.status(500).send("대체 어떻게 조회한거야?!");
   }
 });
-
 
 app.get("/chat_log", async (req, res) => {
   // console.log("로그에서 req.query: ", req.query);
@@ -517,7 +499,6 @@ app.get("/chat_log", async (req, res) => {
 });
 
 // ---------------------------------
-
 
 app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));

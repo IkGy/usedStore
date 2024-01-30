@@ -22,7 +22,7 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   let chatFormData = new FormData();
 
 
-  // 지울거임
+
   const isIncludeImage = null;
   const selectFile = (e) => {
     console.log("파일 선택함");
@@ -71,14 +71,6 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
     
   };
 // ----------------------------------------------------- //
-
-
-
-
-
-
-
-
 
 
 useEffect(() => {
@@ -287,9 +279,9 @@ useEffect(() => {
           </div>
           ):<></>}
         <div className='chat_room_input_main'>
-          <label htmlFor="file-upload" className="custom-file-upload" onClick={selectFile}>
+          {/* <label htmlFor="file-upload" className="custom-file-upload" onClick={selectFile}>
             <FaRegPlusSquare />
-          </label>
+          </label> */}
 
           <input
             id="file-upload"

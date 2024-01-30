@@ -17,9 +17,11 @@ function Footer(){
           <div className="ymj_footer_link">
             <Link to={'/location'}>위치기반 약관</Link>
           </div>
-          {/* <div className="ymj_footer_link">
-            <Link to={'/admin_main'}>admin</Link>
-          </div>  제작중*/}
+          <div className="ymj_footer_link">
+            <Link to={'/admin_main'}>
+                관리자페이지
+            </Link>
+          </div>
       </div>
 
       <div className="ymj_footer_all"_>

@@ -35,6 +35,7 @@
 
   font-size: 1.5vw;
 }
+
 /* info */
 .chat_room_info_main {
   display: flex;
@@ -42,8 +43,9 @@
   justify-content: space-between;
   background: #2979FF;
   border-radius: 4px 4px 0 0;
-  height: 2.8vw;
+  height: 3vw;
   width: 100%;
+  border-bottom: 2px solid #D3D3D3;
 }
 
 .InnerContainer {
@@ -68,6 +70,7 @@
   z-index: 10;
   /* padding-right: 2vw; */
 }
+
 /* 채팅 라인 */
 .messages {
   min-height: 28vw;
@@ -77,9 +80,15 @@
   padding: 5% 0;
   overflow: auto;
   flex: auto;
-  /* border: 1px solid #000; */  
-  overflow-y: auto;
+  overflow-y: auto;  
 }
+
+.messages::-webkit-scrollbar{
+  display: none;
+}
+
+
+ 
 .messagesOnImages {
   min-height: 21vw;
   max-height: 21vw;  

@@ -49,7 +49,7 @@ function Detail() {
             <div className='KJH_detail_container'>
                 <div className='KJH_detail_slide_section'>
                     <Slide info={item} />
-                    <Overview info={item} heart={save} />
+                    <Overview info={item} heart={save} seller={userInfo} />
                 </div>
                 <Info info={item} seller={userInfo} review={review} products={products}/>
             </div>

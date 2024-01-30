@@ -164,7 +164,7 @@ export default function SignUp() {
                   fullWidth
                   id="real_name"
                   label="성명"
-                  value={userData.name || Naver_InfoN || ''}
+                  defaultValuevalue={userData.name || Naver_InfoN || ''}
                   onChange={(e) => {
                     setUserData((prev) => ({ ...prev, name: e.target.value }));
                     setNaver_InfoN((prev) => ({ ...prev, name: e.target.value }));
@@ -185,13 +185,13 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   required
+                  autoComplete="given-name"
                   fullWidth
                   id="email"
                   label="이메일 주소"
                   name="email"
                   type="email"
-                  autoComplete="email"
-                  value={userData.email || Naver_InfoE || ''}
+                  defaultValuevalue={userData.email || Naver_InfoE || ''}
                   onChange={(e) => {
                     setUserData((prev) => ({ ...prev, email: e.target.value }));
                     setNaver_InfoE((prev) => ({ ...prev, email: e.target.value }));
