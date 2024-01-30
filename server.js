@@ -418,140 +418,107 @@ app.post("/singo", async (req, res) => {
 
 // ---------실시간채팅------------- //
 
-// Socket.io 설정
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 // const socketio = require('socket.io');
 // const io = socketio(server)
-
-// app.use(cors());
 app.use(cors({ origin: '*' }))
 const io = new Server(server, {cors: {origin: '*'}});
 
+app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 const roomInfo = [];
-console.log("소켓으로 들어오긴 함");
+// Socket.io 설정
 io.on('connection', (socket) => {
   const { url } = socket.request;
   console.log(`${url} 에서 연결됨`);
-
+  
   // 방 입장 이벤트 핸들링
   socket.on('join', (room, callback) => {
     console.log('방 입장:', room);
-    io.sockets.adapter.rooms.set(socket.id, room);
+
     // 해당 방에 클라이언트 소켓을 조인
-    // roomInfo[socket.id] = room;
-    // console.log(roomInfo[socket.id]);
-    // socket.join(room);
-    console.log("join 실행");
-    // callback()
+    socket.join(room);
+    roomInfo[socket.id] = room;
+    console.log(roomInfo[socket.id]);
+
   });
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
-  socket.on('sendMessage', async (data, callback) => {
-    console.log("소켓 sendMessage 진입");
-    const { writer, message, images } = data;
+  socket.on('sendMessage', async (data) => {
+    const { writer, message } = data;
     console.log("data: ", data);
     console.log("writer: ", writer);
     console.log('메시지 받음:', message);
-    console.log('이미지 받음:', images);
-    // const room = roomInfo[socket.id];
-    const room = io.sockets.adapter.rooms.get(socket.id);
+    const room = roomInfo[socket.id];
     console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
-    io.to(room).emit('message', { writer, message, images });
-    // callback()
+    io.to(room).emit('message', { writer, message });
   });
 
   // 연결 해제 이벤트 핸들링
   socket.on('disconnect', () => {
     console.log('사용자가 연결 해제됨');
+
   });
 });
 
 server.listen(5000, () => console.log("채팅서버 연결"));
 
 
-app.get("/chat", (req, res) => res.sendFile(`${__dirname}/routes/chat_room.js`));
-// 채팅 조회를 위한 친구들-----------------
+
+// ------------------------------- //
+
+
+// 채팅을 위한 친구들-----------------
 
 
 
-
-
-
-
-app.get("/room_list", async (req, res) => {
+app.get('/room_list', async(req, res) => {
   const db = getDB();
-
-  let result = await db
-    .collection("chattingroom")
-    .find({
-      user: req.query.id,
-    })
-    .toArray();
-
+  // console.log("req.query: ", req.query);
+  let result = await db.collection('chattingroom').find({
+    user: req.query.id
+  }).toArray()
   // console.log("roomList의 result: ", result);
-  res.status(201).send(result);
-});
+  res.status(201).send(result)
+})
 
-
-app.get('/chat_room', async (req, res) => {
-  console.log("chatroom 진입");
+app.get('/chat_room', async(req, res) => {
   const db = getDB();
+  // console.log("req.query: ", req.query);
   const user_ID = req.query.id;
-
+  // console.log("user_ID: ", user_ID);
   try {
-    let result = await db
-      .collection("chattingroom")
-      .find({
-        user: user_ID,
-      })
-      .toArray();
+  let result = await db.collection('chattingroom').find({
+    user: user_ID
+  }).toArray()
+  res.status(201).end();
+}
+catch(error){
+  console.log("채팅 불러오기 실패다 이자식아");
+  res.status(500).send("대체 어떻게 조회한거야?!")
+}
+})
 
-    console.log("result: ", result);
-    res.status(201).send(result);
-  } catch (error) {
-    console.log("채팅 불러오기 실패다 이자식아");
-    res.status(500).send("대체 어떻게 조회한거야?!");
-  }
-});
-
-app.get("/chat_room", async (req, res) => {
-  const db = getDB();
-  const user_ID = req.query.id;
-
-  try {
-    let result = await db.collection('chattingroom').find({
-      user: user_ID
-    }).toArray();
-
-    console.log("result: ", result);
-    res.status(201).send(result);
-  } catch (error) {
-    console.log("채팅 불러오기 실패다 이자식아");
-    res.status(500).send("대체 어떻게 조회한거야?!");
-  }
-});
-
-app.get("/chat_log", async (req, res) => {
+app.get('/chat_log', async (req, res) => {
   // console.log("로그에서 req.query: ", req.query);
   const db = getDB();
   try {
-    await db
-      .collection("chatting")
-      .find({ room_id: req.query.room_id })
-      .toArray()
-      .then((result) => {
-        // console.log("result: ", result);
-        return res.status(201).send(result);
-      });
-  } catch (error) {
-    console.log("채팅 불러오기 실패다 이자식아");
-    res.status(500).send("대체 어떻게 조회한거야?!");
-  }
-});
+  await db.collection('chatting').find({room_id : req.query.room_id}).toArray()
+  .then((result)=>{
+    // console.log("result: ", result);
+    return res.status(201).send(result);
+  })
+  
+}
+catch(error){
+  console.log("채팅 불러오기 실패다 이자식아");
+  res.status(500).send("대체 어떻게 조회한거야?!")
+}
+})
+
 // 채팅방에서 닉네임을 가져오기 위한 친구
 app.get("/user_nicknames", async (req, res) => {
   const db = getDB();
