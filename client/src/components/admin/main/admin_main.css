@@ -33,6 +33,7 @@
   display: flex;
   width: 100%;
   padding: 0 2vw;
+  margin-bottom: 2vh;
 }
 
 .admin_tagbox_container > div {
@@ -49,8 +50,14 @@
   color: white;
   background-color: #4f68b2;
 }
+
+.menu_section {
+  padding: 0 2vw 3vh;
+  height: 78vh;
+  overflow-y: auto;
+}
+
 .menu_info{
   width: 100%;
   height: 100%;
-  overflow-y: auto;
 }
