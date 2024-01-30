@@ -195,7 +195,7 @@ function Info(props) {
                                         <div className='KJH_if_right_review_section'>
                                         {review.length > 0 ? (
                                             <>
-                                            {review.slice(0, 2).map((r, index) => (
+                                            {review.slice(0, 3).map((r, index) => (
                                                 <div className='KJH_if_right_review_info' key={index}>
                                                 <div className='KJH_if_right_review_title'>
                                                     <div className='KJH_if_right_review_writer'>
@@ -227,11 +227,6 @@ function Info(props) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='KJH_if_right_bottom_section'>
-                                <button className='KJH_if_right_bottom_talk' >
-                                    <div>실시간톡</div>
-                                </button>
                             </div>
                         </div>
                     </div>
