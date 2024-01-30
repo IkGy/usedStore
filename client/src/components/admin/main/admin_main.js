@@ -63,12 +63,14 @@ function AdminMain() {
           </div>
         </nav>
       </div>
-      <div className="menu_info">
-        {menu === "유저관리" && <div>{<UserManagement></UserManagement>}</div>}
-        
-        {menu === "상품관리" && <div>{<ProductManagement></ProductManagement>}</div>}
-        
-        {menu === "신고" && <div>{<Report></Report>}</div>}
+      <div className="menu_section">
+        <div className="menu_info">
+          {menu === "유저관리" && <div>{<UserManagement></UserManagement>}</div>}
+          
+          {menu === "상품관리" && <div>{<ProductManagement></ProductManagement>}</div>}
+          
+          {menu === "신고" && <div>{<Report></Report>}</div>}
+        </div>
       </div>
     </div>
   );

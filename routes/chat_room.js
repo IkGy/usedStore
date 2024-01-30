@@ -29,8 +29,8 @@ const chatImages = multer({
 router.post('/open_chat', async (req, res) => {
   const db = getDB();
   const users = req.body.user
-  // console.log('users: ', users);
-  // console.log('users: ', users[0], users[1]);
+  console.log('users: ', users);
+  console.log('users: ', users[0], users[1]);
   
   try {
     let resss = await db.collection('chattingroom').find({
@@ -48,8 +48,7 @@ router.post('/open_chat', async (req, res) => {
         create_at: new Date(),
       })
       .then((result)=>{
-        console.log('result: ', result);
-        res.status(201).send(result);
+        res.status(201).end();
       })
       .catch((err)=>{
         console.error(err);
@@ -68,7 +67,7 @@ router.get('/chat', async (req, res) => {
   try {
     const db = getDB();
     console.log(req.query);
-    let chat_log = await db.collection("chatting").find({room_id: req.query.room_id}).toArray();
+    let chat_log = await db.collection("chatting").find({room_id: req.query.room_id}).toArray()
     // console.log("chat_log: ", chat_log);
     res.status(201).send(chat_log);
   } catch (error) {
@@ -81,7 +80,7 @@ router.get('/chat', async (req, res) => {
 
 router.post('/live_chat', chatImages.array('img', 10), async (req,res)=>{
   const db = getDB();
-  // console.log('chatImages: ', chatImages);
+  console.log('chatImages: ', chatImages);
   console.log("req.body: ", req.body);
   console.log("req.query: ", req.query);
   console.log("req.files: ", req.files);

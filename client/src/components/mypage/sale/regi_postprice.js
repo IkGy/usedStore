@@ -3,7 +3,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { grey } from "@mui/material/colors";
-import { blue } from "@mui/material/colors";
+import { green } from "@mui/material/colors";
 
 function Regi_postprice(props) {
   return (
@@ -12,7 +12,7 @@ function Regi_postprice(props) {
         배송비
         {props.postprice ? (
           <i
-            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
+            style={{ color: "green", paddingLeft: "0.5vw" }}
             class="fa-solid fa-check"
           ></i>
         ) : (
@@ -38,7 +38,7 @@ function Regi_postprice(props) {
                     },
                     color: grey[600],
                     "&.Mui-checked": {
-                      color: blue[900],
+                      color: green[600],
                     },
                   }}
                 />
@@ -56,7 +56,7 @@ function Regi_postprice(props) {
                     },
                     color: grey[600],
                     "&.Mui-checked": {
-                      color: blue[900],
+                      color: green[600],
                     },
                   }}
                 />

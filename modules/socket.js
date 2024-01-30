@@ -27,18 +27,17 @@ io.on('connection', (socket) => {
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
   socket.on('sendMessage', async (data, callback) => {
-    console.log("소켓 sendMessage 진입");
     const { writer, message, images } = data;
     console.log("data: ", data);
     console.log("writer: ", writer);
     console.log('메시지 받음:', message);
     console.log('이미지 받음:', images);
     const room = roomInfo[socket.id];
-    console.log("room: ", room);
+    // console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
     io.to(room).emit('message', { writer, message, images });
-    callback()
+    // callback()
   });
 
   // 연결 해제 이벤트 핸들링

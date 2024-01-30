@@ -86,6 +86,8 @@
 .messages::-webkit-scrollbar{
   display: none;
 }
+
+
  
 .messagesOnImages {
   min-height: 21vw;
