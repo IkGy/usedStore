@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 import "./singo.css";
 import axios from "axios";
 import { API_URL } from "../../config/contansts";
@@ -10,7 +9,6 @@ import { getCookie } from "../../../useCookies";
 function Singo() {
   const [singonickname, setSingonickname] = useState("");
   const [usernickname, setUsernickname] = useState("");
-  const [singotitle, setSingotitle] = useState("");
   const [singocontent, setSingocontent] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("광고성");
   const navigate = useNavigate(); //변수 할당시켜서 사용
@@ -26,7 +24,6 @@ function Singo() {
   let singo = () => {
     const report_type = selectedCategory;
     const reported_post = data.productinfo.title;
-    const report_title = singotitle;
     const report_content = singocontent;
     const report_date = new Date();
     const reported_link = `/detail/${product_id}`;
@@ -40,7 +37,6 @@ function Singo() {
       .post(`${API_URL}/singo`, {
         report_type: report_type,
         reported_post: reported_post,
-        report_title: report_title,
         report_content: report_content,
         report_date: report_date,
         reported_link: reported_link,
@@ -62,7 +58,7 @@ function Singo() {
       .then((result) => {
         if (result.data === "이미신고함") {
           alert("이미 신고하신 상품입니다.");
-          navigate("/");
+          navigate(`/detail/${product_id}`);
         } else {
           setData(result.data);
           setUsernickname(result.data.userinfo.nickname);
@@ -136,23 +132,11 @@ function Singo() {
                 </tbody>
                 <tbody>
                   <tr scopte="col">
-                    <th scope="col">신고제목</th>
-                    <td>
-                      <span className="kk_form_text" style={{ width: "100%" }}>
-                        <input
-                          value={singotitle}
-                          onChange={(e) => setSingotitle(e.target.value)}
-                        />
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody>
-                  <tr scopte="col">
                     <th scope="col">신고내용</th>
                     <td>
                       <span className="kk_form_text" style={{ width: "100%" }}>
-                        <textarea
+                        <input
+                          placeholder="20자 이내로 작성해주세요."
                           value={singocontent}
                           onChange={(e) => setSingocontent(e.target.value)}
                         />

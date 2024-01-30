@@ -414,7 +414,6 @@ app.post("/singo", async (req, res) => {
   await db.collection("report_list").insertOne({
     report_type: req.body.report_type,
     reported_post: req.body.reported_post,
-    report_title: req.body.report_title,
     report_content: req.body.report_content,
     report_date: req.body.report_date,
     reported_link: req.body.reported_link,

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../config/contansts";
 import "./searchpage.css";
+import nosearch from "./6179016.png"
 
 function Searchpage() {
   let { search } = useParams();
@@ -100,24 +101,33 @@ function Searchpage() {
           </div>
         </div>
       </div>
-      <div className="main_prod_grid">
-        {resultdata.length > 0 &&
-          resultdata.map((data) => (
-            <Link to={`/detail/${data._id}`}>
-              <div className="main_prod_detail">
-                <div className="main_prod_img">
-                  <img className="main_prod_image" src={data.images[0]}></img>
-                </div>
-                <div className="main_prod_info">
-                  <p className="main_prod_title">{data.title}</p>
-                  <p className="main_prod_price">
-                    {data.price} 원<span>{data.date}</span>
-                  </p>
-                </div>
-              </div>
-            </Link>
-          ))}
-      </div>
+      {data.length !== 0 ? (
+        <>
+          <div className="main_prod_grid">
+            {resultdata.length > 0 &&
+              resultdata.map((data) => (
+                <Link to={`/detail/${data._id}`}>
+                  <div className="main_prod_detail">
+                    <div className="main_prod_img">
+                      <img
+                        className="main_prod_image"
+                        src={data.images[0]}
+                      ></img>
+                    </div>
+                    <div className="main_prod_info">
+                      <p className="main_prod_title">{data.title}</p>
+                      <p className="main_prod_price">
+                        {data.price} 원<span>{data.date}</span>
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </>
+      ) : (
+        <div>읎어</div>
+      )}
     </div>
   );
 }
