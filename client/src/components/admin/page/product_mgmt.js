@@ -67,24 +67,17 @@ function ProductManagement() {
             <th>제목</th>
             <th>제품설명</th>
             <th>판매자</th>
-            <th>구매자</th>
             <th>제품상태</th>
             <th>가격</th>
             <th>관리</th>
           </tr>
         </thead>
         <tbody className="admin_prod_table_tbody">
-           {prodData && prodData.map((data, i) => (
+          {prodData && prodData.map((data, i) => (
             <tr key={i}>
               <td><Link to={`/detail/${data._id}`} target="_blank">{data.title}</Link></td>
               <td>{data.comment}</td>
               <td>{data.sellerInfo.nickname}</td>
-              {/* {console.log('wlq',data.sellerInfo)} */}
-              {data.buyerInfo ? 
-                <td>{data.buyerInfo.nickname}</td>
-                :
-                <td>{data.buyer}</td>
-              }
               <td>{data.price}</td>
               <td>{data.status}</td>
               <td>
