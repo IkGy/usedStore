@@ -5,34 +5,32 @@ import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { setCookie } from "../../../useCookies";
+import { getCookie, removeCookie, setCookie } from "../../../useCookies";
 import { API_URL } from "../../config/contansts";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 
-function Withdraw() {
+function Withdraw(props) {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const userPW = props.pw;
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post(`${API_URL}/user/login`, {
-        password: password,
-      });
-      setCookie('login', JSON.stringify(response.data));
-      setLoggedIn(true);
-      console.log("로그인 성공!:", response.data);
-    } catch (error) {
-      alert("비밀번호를 확인 해주십시오.");
-      console.error("로그인 실패:", error);
+  const handleLogin =()=>{
+    // console.log('test',password);
+    if (!password) {
+      return alert("비밀번호를 입력해주세요")
+    }else if(userPW == password){
+        if (window.confirm('계정탈퇴를 진행하시겠습니까?')) {
+          axios.delete(`${API_URL}/admin/user/${getCookie('login')}`);
+          removeCookie('login');
+          navigate('/');
+        }
+    }else{
+      return alert("비밀번호를 확인해주세요")
     }
-  };
+  }
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      alert("당신의 모든 정보와 이용내역이 삭제됩니다. 정말 삭제하시겠습니까?");
-    }
-  }, [isLoggedIn]);
 
   return(
     <div>
@@ -43,7 +41,7 @@ function Withdraw() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          }}  
+          }}
         >
           <Typography component="h1" variant="h5">
             리셀 마켓 계정 탈퇴
@@ -66,6 +64,7 @@ function Withdraw() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 10}}
+            
           >
             비밀번호 확인
           </Button>

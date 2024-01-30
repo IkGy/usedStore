@@ -301,7 +301,7 @@ function Mypage() {
               )}
               {menu === "계정 탈퇴하기" && (
                 <div>
-                  <Withdraw menu={menu}></Withdraw>
+                  <Withdraw pw={data.password} menu={menu}></Withdraw>
                 </div>
               )}
             </div>

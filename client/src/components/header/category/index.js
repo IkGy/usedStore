@@ -31,44 +31,44 @@ function Category() {
         newDropCategories.category2 = [
           "휴대폰",
           "테블릿",
-          "웨어러블(워치/밴드)",
-          "오디오/영상/관련기기",
-          "PC/노트북",
-          "게임/타이틀",
-          "카메라/DSLR",
-          "PC부품/저장장치",
+          "웨어러블(워치·밴드)",
+          "오디오·영상·관련기기",
+          "PC·노트북",
+          "게임·타이틀",
+          "카메라·DSLR",
+          "PC부품·저장장치",
         ];
         if (subCategory[0] === "휴대폰") {
           newDropCategories.category3 = [
             "스마트폰",
             "일반폰(피쳐폰)",
-            "케이스/보호필름/액세서리",
-            "케이블/충전기/주변기기",
+            "케이스·보호필름·액세서리",
+            "케이블·충전기·주변기기",
             "기타 휴대폰",
           ];
         } else if (subCategory[0] === "테블릿") {
           newDropCategories.category3 = [
             "테블릿",
-            "케이스/보호필름/액세서리",
-            "케이블/충전기/주변기기",
+            "케이스·보호필름·액세서리",
+            "케이블·충전기·주변기기",
           ];
-        } else if (subCategory[0] === "웨어러블(워치/밴드)") {
+        } else if (subCategory[0] === "웨어러블(워치·밴드)") {
           newDropCategories.category3 = [
             "스마트워치/밴드",
-            "케이스/보호필름/액세서리",
-            "케이블/충전기/주변기기",
+            "케이스·보호필름·액세서리",
+            "케이블·충전기·주변기기",
           ];
-        } else if (subCategory[0] === "오디오/영상/관련기기") {
+        } else if (subCategory[0] === "오디오·영상·관련기기") {
           newDropCategories.category3 = [
             "이어폰",
             "헤드폰",
-            "스피커/앰프",
+            "스피커·앰프",
             "MP3/PMP",
-            "비디오/프로젝터",
-            "오디오/홈시어터",
-            "기타 오디오/영상/관련기기",
+            "비디오·프로젝터",
+            "오디오·홈시어터",
+            "기타 오디오·영상·관련기기",
           ];
-        } else if (subCategory[0] === "PC/노트북") {
+        } else if (subCategory[0] === "PC·노트북") {
           newDropCategories.category3 = [
             "데스크탑",
             "노트북/넷북",
@@ -76,37 +76,37 @@ function Category() {
             "키보드",
             "마우스",
             "기타 PC 주변기기",
-            "노트북 가방/액세서리",
-            "기타 PC/노트북",
+            "노트북 가방·액세서리",
+            "기타 PC·노트북",
           ];
-        } else if (subCategory[0] === "게임/타이틀") {
+        } else if (subCategory[0] === "게임·타이틀") {
           newDropCategories.category3 = [
-            "닌텐도/NDS/Wii",
-            "소니/플레이스테이션",
+            "닌텐도·NDS/Wii",
+            "소니·플레이스테이션",
             "XBOX",
             "PC게임",
             "기타 게임/타이틀",
           ];
-        } else if (subCategory[0] === "카메라/DSLR") {
+        } else if (subCategory[0] === "카메라·DSLR") {
           newDropCategories.category3 = [
-            "필름카메라/중형카메라",
-            "DSLR/미러리스",
-            "렌즈/필터/컨버터",
-            "일반디카/토이카메라",
-            "삼각대/플래시/조명",
+            "필름카메라·중형카메라",
+            "DSLR·미러리스",
+            "렌즈·필터·컨버터",
+            "일반디카·토이카메라",
+            "삼각대·플래시·조명",
             "디지털 캠코더",
-            "메모리/베터리/가방",
+            "메모리·베터리·가방",
             "기타 카메라",
           ];
-        } else if (subCategory[0] === "PC부품/저장장치") {
+        } else if (subCategory[0] === "PC부품·저장장치") {
           newDropCategories.category3 = [
             "CPU/메인보드",
-            "HDD/ODD/SSD",
-            "USB/케이블/스피커",
-            "복합기/프린터",
+            "HDD·ODD·SSD",
+            "USB/케이블·스피커",
+            "복합기·프린터",
             "네트워크장비",
-            "쿨러/파워서플라이",
-            "메모리/VGA",
+            "쿨러·파워서플라이",
+            "메모리·VGA",
             "소모품",
           ];
         }
