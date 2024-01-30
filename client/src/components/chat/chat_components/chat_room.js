@@ -21,7 +21,8 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   const [selectedFiles, setSelectedFiles] = useState([]);
   let chatFormData = new FormData();
 
-
+  console.log('selectedRoom:', selectedRoom);
+  
 
   const isIncludeImage = null;
   const selectFile = (e) => {
@@ -77,7 +78,7 @@ useEffect(() => {
   console.log("ChatRoom에서 selecteduser: ", selectedUser);
   console.log("ChatRoom에서 selectedroom: ", selectedRoom);
   setUser(getCookie('login'));
-  socket = io(ENDPOINT)
+  socket = io(ENDPOINT);
   console.log("socket: ", socket);
   
   if (selectedRoom) {
@@ -89,6 +90,10 @@ useEffect(() => {
         alert('에러코드[', error, ']');
       })  
     }
+    return () => {
+      // 컴포넌트가 언마운트될 때 소켓 연결 해제
+      socket.disconnect();
+    };
   }, [selectedRoom, ENDPOINT]);
 
   useEffect(() => {
@@ -123,7 +128,8 @@ useEffect(() => {
         selectedFiles.forEach((file, i) => {
         chatFormData.append(`img`, file[i]);
       });
-  
+      
+      if(selectedFiles == undefined) setSelectedFiles(null);
       axios.post(`${API_URL}/chat/live_chat`, {
         room_id: selectedRoom,
         writer: user,
@@ -143,7 +149,6 @@ useEffect(() => {
       .catch((error) => {
         console.log("error: ", error);
       })
-      
       }
     }
   }
