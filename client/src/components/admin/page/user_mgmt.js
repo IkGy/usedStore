@@ -107,7 +107,7 @@ function UserManagement() {
         <tbody className='usermgmt_table_tbody'>
           {searchResults.map(user => (
             <tr key={user._id} className='usermgmt_tr'>
-              <td className='usermgmt_update_btn'>
+              <td>
                 {/* 수정 버튼 */}
                 {editStatus[user._id] ?
                   <button onClick={() => saveUserData(user._id)}>저장</button>
@@ -116,10 +116,9 @@ function UserManagement() {
                 }
                 &nbsp;<button onClick={() => deleteUser(user._id)}>삭제</button>
               </td>
-              {/* 유저 정보 표시 */}
-              <td className='usermgmt_real_name'>{user.real_name}</td>
-              <td className='usermgmt_id'>{user.id}</td>
-              <td className='usermgmt_nickname'>
+              <td>{user.real_name}</td>
+              <td>{user.id}</td>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_nickname'
@@ -131,11 +130,11 @@ function UserManagement() {
                   <div>{user.nickname}</div>
                 )}
               </td>
-              <td className='usermgmt_email'>{user.email}</td>
-              <td className='usermgmt_password'>{user.password}</td>
-              <td className='usermgmt_address'>{user.address}</td>
-              <td className='usermgmt_phone_number'>{user.phone_number}</td>
-              <td className='usermgmt_role'>
+              <td>{user.email}</td>
+              <td>{user.password}</td>
+              <td>{user.address}</td>
+              <td>{user.phone_number}</td>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_role'
@@ -147,7 +146,8 @@ function UserManagement() {
                   <div>{user.role}</div>
                 )}
               </td>
-              <td className='usermgmt_about'>
+              {/* 상점 한마디 */}
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_about'
