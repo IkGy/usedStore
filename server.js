@@ -169,7 +169,6 @@ app.get("/product/registered", async (요청, 응답) => {
     .collection("product")
     .find({
       seller: 요청.query.id,
-      status: "판매중",
     })
     .toArray();
   응답.send(result);
@@ -291,7 +290,9 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
     nickname: req.body.nickname,
   });
 
-  if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
+  if (req.body.nickname.length < 2 || req.body.nickname.length > 10) {
+    return res.status(400).send("닉네임은 2글자에서 10글자 사이어야 합니다");
+  } else if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
     res.status(201).send("닉네임중복");
   } else {
     if (req.file) {
@@ -413,6 +414,20 @@ app.post("/singo", async (req, res) => {
     reported_product_id: req.body.reported_product_id,
   });
   res.status(201).send("접수완료");
+});
+
+app.post("/sellcomplete/:_id", async (req, res) => {
+  const db = getDB();
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.params._id) },
+    {
+      $set: {
+        status: "판매완료",
+      },
+    }
+  );
+
+  res.status(201).send("판매완료!");
 });
 
 // ---------실시간채팅------------- //
