@@ -27,8 +27,9 @@ import AdminMain from './components/admin/main/admin_main';
 import UserManagement from './components/admin/page/user_mgmt';
 import Setting from './components/admin/page/setting';
 import ProductManagement from './components/admin/page/product_mgmt';
-import Declaration from './components/admin/page/declaration';
+import Report from "./components/admin/page/report";
 import Singo from './components/mypage/singo/singo';
+import ScrollToTopButton from './topbtn.js'
 
 
 function ScrollToTop() {
@@ -44,6 +45,7 @@ function ScrollToTop() {
 function App() {
   return (
     <div className="total_display">
+      <ScrollToTopButton></ScrollToTopButton> 
       <ScrollToTop />
       <div className="display_section">
         <Header />
@@ -55,7 +57,7 @@ function App() {
           <Route path='/mypage/:id' element={<Mypage/>}></Route>
           <Route path='/mypage/:id/:picklist' element={<Mypage/>}></Route>
           <Route path='/mypageview/:id' element={<Mypageview/>}></Route>
-          <Route path='/singo' element={<Singo/>}></Route>
+          <Route path='/singo/:product_id' element={<Singo/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/findpw' element={<FindPW />}></Route>
           <Route path='/makenewpw' element={<MakeNewPW />}></Route>
@@ -72,7 +74,7 @@ function App() {
           <Route path='/admin_main' element={<AdminMain />}></Route>
           <Route path='/page/user_mgmt' element={<UserManagement />}></Route>
           <Route path='/page/setting' element={<Setting />}></Route>
-          <Route path='/page/declaration' element={<Declaration />}></Route>
+          <Route path='/page/report' element={<Report />}></Route>
           <Route path='/page/product_mgmt' element={<ProductManagement />}></Route>
         </Routes>
         <Footer />

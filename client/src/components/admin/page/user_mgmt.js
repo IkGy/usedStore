@@ -7,6 +7,10 @@ function UserManagement() {
   const [userData, setUserData] = useState([]);
   const [editStatus, setEditStatus] = useState({}); // 수정 상태를 관리하는 객체
 
+  const [editNickname, setEditNickName] = useState('');
+  const [editRole, setEditRole] = useState('');
+  const [editAbout, setEditAbout] = useState('');
+
   useEffect(() => {
     axios.get(`${API_URL}/admin/user`)
       .then(res => {
@@ -30,16 +34,30 @@ function UserManagement() {
         console.log('데이터 수정 성공:', res.data);
         setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
         // 저장 후 해당 행의 수정 상태를 비활성화합니다.
-        setEditStatus({ ...editStatus, [id]: false });
+        setEditStatus(prevStatus => ({ ...prevStatus, [id]: false }));
       })
       .catch(error => {
         console.error('데이터 수정 실패:', error);
       });
   };
 
+  const deleteUser = async (id) => {
+    const confirmed = window.confirm('정말로 사용자를 삭제하시겠습니까?');
+    if (confirmed) {
+    await axios.delete(`${API_URL}/admin/user/${id}`)
+      .then((res) => {
+        console.log('데이터 삭제 성공:', res.data);
+        setUserData(userData.filter(user => user._id !== id));
+      })
+      .catch(error => {
+        console.error('데이터 삭제 실패:', error);
+      });
+    }
+  };
+
   const handleEdit = (id) => {
     // 수정 버튼 클릭 시 해당 행의 수정 상태를 활성화합니다.
-    setEditStatus({ ...editStatus, [id]: true });
+    setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
   };
 
   const handleSave = (id, field, value) => {
@@ -47,6 +65,13 @@ function UserManagement() {
   };
 
   const handleFieldChange = (id, field, value) => {
+    if (field === 'nickname') {
+      setEditNickName(value);
+    } else if (field === 'role') {
+      setEditRole(value);
+    } else if (field === 'about') {
+      setEditAbout(value);
+    }
     setUserData(userData.map(user => user._id === id ? { ...user, [field]: value } : user));
   };
 
@@ -74,11 +99,11 @@ function UserManagement() {
               <td className='usermgmt_td' style={{ width: '7%' }}>
                 {/* 수정 버튼 */}
                   {editStatus[user._id] ? 
-                    <button onClick={() => handleSave(user._id, 'nickname', user.nickname, 'role', user.role, 'about', user.about)}>저장</button>
+                    <button onClick={() => handleSave(user._id, 'nickname', editNickname, 'role', editRole, 'about', editAbout)}>저장</button>
                     :
                     <button onClick={() => handleEdit(user._id)}>수정</button>
                   }
-                &nbsp;<button>삭제</button>
+                &nbsp;<button onClick={() => deleteUser(user._id)}>삭제</button>
               </td>
               {/* 본명 */}
               <td className='usermgmt_td' style={{ width: '6%' }}>
@@ -94,12 +119,12 @@ function UserManagement() {
                   <input
                     id='user_nickname'
                     type='text'
-                    value={user.nickname}
-                    onChange={(e) => handleFieldChange(user._id, 'nickname', e.target.value)}
+                    value={editNickname}
+                    onChange={(e) => setEditNickName(e.target.value)}
                   />
                 ) : (
                   <span>{user.nickname}</span>
-                )}
+                )}  
               </td>
               {/* 이메일 */}
               <td className='usermgmt_td' style={{ width: '12%' }}>
@@ -123,8 +148,8 @@ function UserManagement() {
                   <input
                     id='user_role'
                     type='text'
-                    value={user.role}
-                    onChange={(e) => handleFieldChange(user._id, 'role', e.target.value)}
+                    value={editRole}
+                    onChange={(e) => setEditRole(e.target.value)}
                   />
                 ) : (
                   <span>{user.role}</span>
@@ -136,8 +161,8 @@ function UserManagement() {
                   <input
                     id='user_about'
                     type='text'
-                    value={user.about}
-                    onChange={(e) => handleFieldChange(user._id, 'about', e.target.value)}
+                    value={editAbout}
+                    onChange={(e) => setEditAbout(e.target.value)}
                   />
                 ) : (
                   <span>{user.about}</span>

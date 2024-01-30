@@ -2,6 +2,7 @@
   margin-top: 2vw;
   font-size: 2vw;
   font-weight: bold;
+  font-family: 'SejonghospitalBold';
 }
 
 .main_prod_grid {
@@ -14,7 +15,7 @@
 }
 
 .main_prod_detail {
-  border: 0.15vw solid rgba(169, 169, 169, 0.241);
+  border: 0.15vw solid rgba(169, 169, 169, 0.199);
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -91,19 +92,18 @@
 
 .btn_1 {
   background: #2748b0;
-  padding: 0.5vw;
+  padding: 0.7vw;
   border-style: none;
+  font-family: 'SejonghospitalBold';
 }
 
 .btn_1:hover {
   background: #375cd5;
-  padding: 0.5vw;
-  border-style: none;
 }
 
 @media (max-width: 500px) {
   .main_prod_detail {
-    border: 0.5vw solid rgba(169, 169, 169, 0.241);
+    border: 0.5vw solid rgba(169, 169, 169, 0.085);
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -144,14 +144,15 @@
   }
 
   .main_prod_title {
-    font-size: 2vw;
+    font-size: 2.5vw;
     font-family: "JalnanGothic";
     padding-bottom: 1vw;
+    padding-top: 1vw;
   }
 
   .main_prod_price {
     display: flex;
-    font-size: 2vw;
+    font-size: 2.5vw;
   }
 
   .plus_btn {
@@ -190,6 +191,6 @@
 
   .main_prod_price span{
     color: rgba(0, 0, 0, 0.652);
-    font-size: 1.vw;
+    font-size: 2.2vw;
   }
 }
