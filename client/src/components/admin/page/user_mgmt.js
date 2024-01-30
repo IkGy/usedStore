@@ -1,7 +1,8 @@
 import './user.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
+import { FaArrowUp } from "react-icons/fa";
 
 function UserManagement() {
   const [userData, setUserData] = useState([]);
@@ -83,12 +84,24 @@ function UserManagement() {
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
   };
 
+  // 위로 스크롤
+  const scrollToTop = () => {
+    const element = document.querySelector('.menu_section');
+    if (element) {
+      element.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <div>
+    <div className='usermgmt_container'>
+      <FaArrowUp onClick={scrollToTop} />
       <div className='usermgmt_search_section'>
         <input
           type="text"
-          placeholder="검색어를 입력하세요..."
+          placeholder="검색..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

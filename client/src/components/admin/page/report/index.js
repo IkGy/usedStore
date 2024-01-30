@@ -50,7 +50,7 @@ function Report() {
 
     // 위로 스크롤
     const scrollToTop = () => {
-      const element = document.querySelector('.menu_info');
+      const element = document.querySelector('.menu_section');
       if (element) {
         element.scrollTo({
           top: 0,
