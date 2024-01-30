@@ -83,12 +83,10 @@
   overflow-y: auto;  
 }
 
-.messages::-webkit-scrollbar{
+.messages::-webkit-scrollbar{ 
   display: none;
 }
 
-
- 
 .messagesOnImages {
   min-height: 21vw;
   max-height: 21vw;  
@@ -99,7 +97,9 @@
   /* border: 1px solid #000; */  
   overflow-y: auto;
 }
-
+.messagesOnImages::-webkit-scrollbar{
+  display: none;
+}
 
 
 .messageBox {
@@ -260,5 +260,3 @@ input:focus, textarea:focus, select:focus{
   border-radius: 0 0 8px 0;
   font-size: 1.1vw;
 }
-
-

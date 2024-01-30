@@ -10,8 +10,8 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReactEmoji from 'react-emoji';
 
 let socket;
-const ENDPOINT = 'http://54.180.101.110:5000'	
-// const ENDPOINT = 'http://localhost:5000'
+// const ENDPOINT = 'http://15.164.229.9:5000'
+const ENDPOINT = 'http://localhost:5000'
 
 function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   console.log("Chat_room 진입");
@@ -104,7 +104,6 @@ useEffect(() => {
         console.log('New Messages:', newMessages);
         return newMessages;
       });
-      
     });
   }, [socket])
 
@@ -194,7 +193,6 @@ useEffect(() => {
           </div>
           <FaTimes className='close_room' onClick={closeRoom}/>
         </div> 
-        <div>
         <BasicScrollToBottom className={selectedFiles.length > 0 ? "messagesOnImages" : "messages" }>
           {messages.map((message, i) => {
             // console.log("messages: ", messages);
@@ -206,13 +204,13 @@ useEffect(() => {
             // console.log("작성자: ", messageWriter);
             // console.log("내용: ", messageContent);
 
-            // const messageWriter = message.split(":")[0].trim();
+            // const messageWriter = message.split(":")[0].trim(); 
             
             // 현재 사용자와 작성자가 동일한 경우 true, 아니면 false
             const isSentByCurrentUser = messageWriter === user;
             // console.log("isSentByCurrentUser: ", isSentByCurrentUser);
             return isSentByCurrentUser ? (
-              <div className='messageContainer justifyEnd' key={i}>
+              <d className='messageContainer justifyEnd' key={i}>
                 <div className='messageBox backgroundBlue'>
                   { 
                     isIncludeImage != null ? (
@@ -232,7 +230,7 @@ useEffect(() => {
                   }
                 <p className='messageText colorWhite'>{messageContent}</p>
                 </div>
-              </div>
+              </d>
               ) : (
               <div className='messageContainer justifyStart' key={i}>
                 <div className='messageBox backgroundLight'>
@@ -260,8 +258,6 @@ useEffect(() => {
           })}
                      
         </BasicScrollToBottom>
-        </div>
-
         {selectedFiles.length > 0 ? (
           <div className="file-previews-container">
           {selectedFiles.map((preview, index) => (
