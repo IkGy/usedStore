@@ -32,7 +32,7 @@ function ProductManagement() {
     getData();
   }, []);
 
-  const detailProd = (id) => {
+  const detailProd = async(id) => {
     const selectedProduct = prodData.find((product) => product._id === id);
     setSelectedProduct(selectedProduct);
     setModalIsOpen(true);
