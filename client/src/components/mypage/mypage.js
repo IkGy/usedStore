@@ -100,7 +100,6 @@ function Mypage() {
     } else {
       body.style.overflow = "auto"; // 모달이 닫힐 때 스크롤 복원
     }
-
     return () => {
       body.style.overflow = "auto"; // 컴포넌트가 언마운트될 때 스크롤 복원
     };
