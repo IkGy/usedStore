@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import './shopmodal.css';
 import { getCookie } from '../../../useCookies';
+import { FaWindowClose } from "react-icons/fa";
 
 function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, setReviewContent }) {
     const { id } = useParams();
@@ -146,7 +147,6 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
                         </div>
                     </div>
                 </form>
-                <button className="KJH_shop-review_close-button" onClick={onClose}>닫기</button>
             </div>
         </div>
     );

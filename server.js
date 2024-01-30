@@ -169,7 +169,6 @@ app.get("/product/registered", async (요청, 응답) => {
     .collection("product")
     .find({
       seller: 요청.query.id,
-      status: "판매중",
     })
     .toArray();
   응답.send(result);
@@ -291,7 +290,9 @@ app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
     nickname: req.body.nickname,
   });
 
-  if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
+  if (req.body.nickname.length < 2 || req.body.nickname.length > 10) {
+    return res.status(400).send("닉네임은 2글자에서 10글자 사이어야 합니다");
+  } else if (nicknamecheck && nicknamecheck._id.toString() !== req.body._id) {
     res.status(201).send("닉네임중복");
   } else {
     if (req.file) {
@@ -415,15 +416,25 @@ app.post("/singo", async (req, res) => {
   res.status(201).send("접수완료");
 });
 
+app.post("/sellcomplete/:_id", async (req, res) => {
+  const db = getDB();
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.params._id) },
+    {
+      $set: {
+        status: "판매완료",
+      },
+    }
+  );
+
+  res.status(201).send("판매완료!");
+});
+
 // ---------실시간채팅------------- //
 
 app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 // 채팅 조회를 위한 친구들-----------------
-
-
-
-
 
 
 
@@ -441,31 +452,20 @@ app.get("/room_list", async (req, res) => {
   res.status(201).send(result);
 });
 
-
-app.get('/chat_room', async (req, res) => {
-  console.log("chatroom 진입");
-  const db = getDB();
-  const user_ID = req.query.id;
-
-  try {
-    let result = await db
-      .collection("chattingroom")
-      .find({
-        user: user_ID,
-      })
-      .toArray();
-
-    console.log("result: ", result);
-    res.status(201).send(result);
-  } catch (error) {
-    console.log("채팅 불러오기 실패다 이자식아");
-    res.status(500).send("대체 어떻게 조회한거야?!");
-  }
-});
-
 app.get("/chat_room", async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id;
+
+  let test = await db.collection('chattingroom').aggregate([
+    {
+      $lookup: {
+        from: 'user',
+        let: {
+          
+        }
+      }
+    }
+  ])
 
   try {
     let result = await db.collection('chattingroom').find({
@@ -497,6 +497,39 @@ app.get("/chat_log", async (req, res) => {
     res.status(500).send("대체 어떻게 조회한거야?!");
   }
 });
+
+app.get("/user_nicknames", async (req, res) => {
+  const db = getDB();
+  let userIds = req.query.userIds;
+
+  // userIds가 문자열 형태의 배열인 경우 파싱하여 배열로 변환
+  if (typeof userIds === 'string') {
+    userIds = JSON.parse(userIds);
+  }
+
+  console.log('userIds:', userIds);
+  console.log('userIds type:', typeof userIds);
+
+  try {
+    // userIds를 배열로 변환
+    const userIdsArray = Array.isArray(userIds) ? userIds : [userIds];
+    console.log('userIdsArray:', userIdsArray);
+
+    const users = await db.collection("user").find({ _id: { $in: userIdsArray.map(id => new ObjectId(id)) } }).toArray();
+    console.log('users:', users);
+
+    const nicknames = users.map((user) => user.nickname);
+    console.log('nicknames:', nicknames);
+
+    res.status(200).json(nicknames);
+  } catch (error) {
+    console.error("Failed to fetch user nicknames", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
 
 // ---------------------------------
 
