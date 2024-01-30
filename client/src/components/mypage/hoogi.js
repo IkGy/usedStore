@@ -20,7 +20,6 @@ function formatDate(dateString) {
 
 function Hoogi(props) {
   const navigate = useNavigate();
-  const [data, setData] = useState([])
   const useId = useParams();
   const [getReview, setGetReview] = useState([]);
   const [reviewUpdated, setReviewUpdated] = useState(false);
@@ -31,14 +30,30 @@ function Hoogi(props) {
 
   // 모달창 열기
   function openModal() {
-    if (getCookie('login')) {
+    const userId = getCookie('login');
+  
+    if (userId) {
+      if (userId === useId.id) {
+        alert('본인 후기는 작성할 수 없습니다');
+        return;
+      }
+  
+      const hasReviewed = getReview.some(review => review.write_id === userId);
+      if (hasReviewed) {
+        alert('후기는 중복으로 작성할 수 없습니다');
+        return;
+      }
+  
       setReviewContent('');
       setModalOpen(true);
     } else {
-      alert('후기등록을 위해 로그인 해주시기 바랍니다')
+      alert('후기등록을 위해 로그인 해주시기 바랍니다');
       navigate('/login');
     }
   }
+  
+  
+  
   // 모달창 닫기
   function closeModal() {
     setModalOpen(false);
