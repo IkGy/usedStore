@@ -51,11 +51,12 @@ function ProductManagement() {
           </tr>
         </thead>
         <tbody>
-          {prodData.map((data, i) => (
+          {prodData && prodData.map((data, i) => (
             <tr className="admin_prodData" key={i}>
               <td>{data.title}</td>
               <td>{data.comment}</td>
               <td>{data.sellerInfo.nickname}</td>
+              {/* {console.log('wlq',data.sellerInfo)} */}
               {data.buyerInfo ? 
                 <td>{data.buyerInfo.nickname}</td>
                 :
