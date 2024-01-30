@@ -127,8 +127,12 @@ function Mypage() {
               type="file"
               accept="image/*"
               onChange={(e) => {
-                setpreviwimg(e.target.files[0]);
                 setImage(null);
+                if (e.target.files.length === 0) {
+                  console.log("어림도 없다");
+                } else {
+                  setpreviwimg(e.target.files[0]);
+                }
               }}
               style={{ display: "none" }}
             ></input>
