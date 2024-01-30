@@ -50,8 +50,14 @@ function ProductManagement() {
             <tr className="admin_prodData" key={i}>
               <td>{data.title}</td>
               <td>{data.comment}</td>
-              <td>{data.sellerInfo.id}</td>
-              <td>{data.buyer}</td>
+              <td>{data.sellerInfo.nickname}</td>
+              
+              {data.buyerInfo ? 
+                <td>{data.buyerInfo.nickname}</td>
+                :
+                <td></td>
+              }
+              
               <td>{data.price}</td>
               <td>{data.status}</td>
               <td>

@@ -4,7 +4,7 @@ const { getDB } = require("../db");
 const { ObjectId } = require('mongodb');
 
 
-router.get('/user', async (req, res) => {
+router.get('/user', async (req, res) => {  
   try {
     const db = getDB();
     const userData = await db.collection("user").find().toArray();
@@ -18,10 +18,11 @@ router.get('/user', async (req, res) => {
 
 });
 
+
 router.post(`/useredit/:id`, async (req, res) => {
   
-  // console.log('req.params: ', req.params);
-  // console.log('req.body: ', req.body);
+  console.log('req.params: ', req.params);
+  console.log('req.body: ', req.body);
   
   try {
     const db = getDB();
@@ -37,7 +38,7 @@ router.post(`/useredit/:id`, async (req, res) => {
         },
       }
     ); 
-    // console.log("(useredit) 사용자 데이터:", userData);
+    console.log("(useredit) 사용자 데이터:", userData);
     res.json(userData);
 
   } catch (error) {
@@ -45,6 +46,8 @@ router.post(`/useredit/:id`, async (req, res) => {
     res.status(500).json({ error: "서버 오류 발생" }); 
   }
 });
+
+
 
 router.get('/prodAll', async (req, res) => {
   const db = getDB();
