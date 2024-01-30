@@ -426,8 +426,8 @@ const { Server } = require('socket.io');
 // const io = socketio(server)
 
 // app.use(cors());
-app.use(cors({ origin: '' }))
-const io = new Server(server, {cors: {origin: ''}});
+app.use(cors({ origin: '*' }))
+const io = new Server(server, {cors: {origin: '*'}});
 
 const roomInfo = [];
 console.log("소켓으로 들어오긴 함");
