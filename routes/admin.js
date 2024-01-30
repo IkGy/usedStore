@@ -149,7 +149,6 @@ router.delete('/prodOne', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "서버 오류 발생" });
   }
-
 });
 
 

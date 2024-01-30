@@ -60,13 +60,6 @@ function AdminMain() {
             >
               신고
             </div>
-            <div
-              to="/page/setting"
-              className={menu === "설정" ? "click" : "noneclick"}
-              onClick={() => MenuClick("설정")}
-            >
-              설정
-            </div>
           </div>
         </nav>
       </div>

@@ -11,6 +11,28 @@ function UserManagement() {
   const [editRole, setEditRole] = useState('');
   const [editAbout, setEditAbout] = useState('');
 
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
+  const [searchResults, setSearchResults] = useState([]); // 검색 결과 상태 추가
+
+  const searchUser = (term) => {
+    const filteredUsers = userData.filter(user => {
+      // 검색어를 유저의 닉네임과 이메일에서 검색합니다.
+      return user.nickname.toLowerCase().includes(term.toLowerCase()) ||
+            user.email.toLowerCase().includes(term.toLowerCase());
+    });
+    setSearchResults(filteredUsers);
+  };
+
+  useEffect(() => {
+    if (searchTerm.trim() !== '') {
+      // 검색어가 변경될 때마다 검색을 수행합니다.
+      searchUser(searchTerm);
+    } else {
+      // 검색어가 없는 경우에는 전체 유저를 표시합니다.
+      setSearchResults(userData);
+    }
+  }, [searchTerm, userData]);
+
   const getData = async()=>{
     axios.get(`${API_URL}/admin/user`)
     .then(res => {
@@ -81,6 +103,12 @@ function UserManagement() {
 
   return (
     <div>
+        <input
+        type="text"
+        placeholder="검색어를 입력하세요..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <table className="usermgmt_table">
         <colgroup>
           <col style={{ width: "7%" }} />
@@ -109,6 +137,11 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody className='usermgmt_table_tbody'>
+        {searchResults.map(user => (
+            <tr key={user._id} className='usermgmt_tr'>
+              {/* 유저 정보 표시 */}
+            </tr>
+          ))}
           {userData && userData.map(user => (
             <tr key={user._id}>
               <td className='usermgmt_update_btn'>
