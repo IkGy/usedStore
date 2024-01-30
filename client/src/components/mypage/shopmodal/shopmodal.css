@@ -19,6 +19,7 @@
 /* ------------- 모달 : 등록하는 구간 ------------- */
 
 .KJH_shop-review_modal_info {
+    position: relative;
     width: 40vw;
     height: 45vh;
     background-color: #dbe3ff;
@@ -26,6 +27,26 @@
     border: 0.2vw solid #2748b0;
     border-radius: 0.4vw;
     transition: 0.1s;
+}
+
+.KJH_shop-review_modal_info > svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2vw;
+    height: 3.8vh;
+    margin: 0.6vh 0.4vw 0 0;
+    color: #4762ff;
+    transition: 0.3s;
+    padding: 0.1vw;
+    border-radius: 0.2vw;
+    background-color: white;
+    cursor: pointer;
+}
+
+.KJH_shop-review_modal_info > svg:hover {
+    color: white;
+    background-color: #4762ff;
 }
 
 .KJH_shop-review_modal_in {
@@ -144,19 +165,6 @@
 }
 
 /* ------------------------------------------------ */
-.KJH_shop-review_close-button {
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    border-radius: 10px;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background-color: #ff817a;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-}
 
 @media (max-height: 450px) {
     .KJH_shop-review_modal {
@@ -298,19 +306,6 @@
     }
     
     /* ------------------------------------------------ */
-    .KJH_shop-review_close-button {
-        position: absolute;
-        width: 80px;
-        height: 40px;
-        border-radius: 10px;
-        top: 10px;
-        right: 10px;
-        border: none;
-        background-color: #ff817a;
-        color: white;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
 }
 
 @media (max-width: 1024px) {
@@ -459,19 +454,6 @@
     }
     
     /* ------------------------------------------------ */
-    .KJH_shop-review_close-button {
-        position: absolute;
-        width: 80px;
-        height: 40px;
-        border-radius: 10px;
-        top: 10px;
-        right: 10px;
-        border: none;
-        background-color: #ff817a;
-        color: white;
-        padding: 5px 10px;
-        cursor: pointer;
-    }
 
     @media (max-width: 500px) {
         .KJH_shop-review_modal {
@@ -621,18 +603,5 @@
         }
         
         /* ------------------------------------------------ */
-        .KJH_shop-review_close-button {
-            position: absolute;
-            width: 80px;
-            height: 40px;
-            border-radius: 10px;
-            top: 10px;
-            right: 10px;
-            border: none;
-            background-color: #ff817a;
-            color: white;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
     }
 }
