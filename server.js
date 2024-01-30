@@ -562,22 +562,22 @@ app.get("/user_nicknames", async (req, res) => {
     userIds = JSON.parse(userIds);
   }
 
-  // console.log('userIds:', userIds);
-  // console.log('userIds type:', typeof userIds);
+  console.log('userIds:', userIds);
+  console.log('userIds type:', typeof userIds);
 
   try {
     // userIds를 배열로 변환
     const userIdsArray = Array.isArray(userIds) ? userIds : [userIds];
-    // console.log('userIdsArray:', userIdsArray);
+    console.log('userIdsArray:', userIdsArray);
 
     const users = await db.collection("user").find({ _id: { $in: userIdsArray.map(id => new ObjectId(id)) } }).toArray();
-    // console.log('users:', users);
+    console.log('users:', users);
 
     // 클라이언트에서 전송한 userIds 배열의 순서를 기반으로 정렬
     const sortedUsers = userIdsArray.map(id => users.find(user => user._id.toString() === id));
 
     const nicknames = sortedUsers.map((user) => user.nickname);
-    // console.log('nicknames:', nicknames);
+    console.log('nicknames:', nicknames);
 
     res.status(200).json(nicknames);
   } catch (error) {
