@@ -107,7 +107,7 @@ function Mypageview() {
                       className={menu === "후기" ? "active" : "noactive"}
                       onClick={() => MenuClick("후기")}
                     >
-                      구매 후기
+                      상점 후기
                     </p>
                   </li>
                 </ul>

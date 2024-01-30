@@ -3,6 +3,7 @@ const router = express.Router();
 const { getDB } = require("../db");
 const { ObjectId } = require("mongodb");
 
+
 router.post("/login", async (req, res) => {
   try {
     const db = getDB();
@@ -24,6 +25,10 @@ router.post("/register", async (req, res) => {
   try {
     const db = getDB();
     let { name, id, nickname, email, password, address, phone_number } = req.body;
+
+    if (nickname.length < 2 || nickname.length > 10) {
+      return res.status(400).send("닉네임은 2글자에서 10글자 사이어야 합니다");
+    }
 
     // email과 nickname 중복 확인
     const existingEmailUser = await db.collection("user").findOne({ email: email });
@@ -57,24 +62,6 @@ router.post("/register", async (req, res) => {
     res.status(500).send("서버 오류");
   }
 });
-
-// router.post("/edit", async (req, res) => {
-//   const db = getDB();
-//   await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
-//     $set:{
-//       nickname:req.body.nickname,
-//       about:req.body.about,
-//       address:req.body.address,
-//       profileIMG:req.body.profileIMG
-//     }})
-//   .then(()=>{
-//     res.status(201).end();
-//   })
-//   .catch((err)=>{
-//     console.log(err);
-//     res.status(500).end();
-//   })
-// })
 
 router.post("/findpw", async (req, res) => {
   try {

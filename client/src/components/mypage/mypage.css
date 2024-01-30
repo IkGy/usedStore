@@ -59,6 +59,16 @@
   color: black;
 }
 
+
+.active1 {
+  color: #ff0000;
+}
+
+.noactive1 {
+  color: black;
+}
+
+
 .JSW_mypage_title {
   display: flex;
   align-items: center;
