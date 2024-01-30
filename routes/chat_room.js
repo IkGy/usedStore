@@ -48,7 +48,8 @@ router.post('/open_chat', async (req, res) => {
         create_at: new Date(),
       })
       .then((result)=>{
-        res.status(201).end();
+        console.log('result: ', result);
+        res.status(201).send(result);
       })
       .catch((err)=>{
         console.error(err);
