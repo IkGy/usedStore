@@ -22,7 +22,7 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   let chatFormData = new FormData();
 
 
-  // 지울거임
+
   const isIncludeImage = null;
   const selectFile = (e) => {
     console.log("파일 선택함");
