@@ -473,7 +473,7 @@ io.on('connection', (socket) => {
 server.listen(5000, () => console.log("채팅서버 연결"));
 
 
-app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
+app.get("/chat", (req, res) => res.sendFile(`${__dirname}/routes/chat_room.js`));
 // 채팅 조회를 위한 친구들-----------------
 
 
