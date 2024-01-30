@@ -11,7 +11,7 @@ import ReactEmoji from 'react-emoji';
 
 let socket;
 // const ENDPOINT = 'http://15.164.229.9:5000'
-const ENDPOINT = `${API_URL}:5000`
+const ENDPOINT = 'http://localhost:5000';
 
 function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   console.log("Chat_room 진입");
@@ -107,40 +107,44 @@ useEffect(() => {
   const sendMessage = (event) => {
     event.preventDefault()
     console.log("전송 클릭");
+
     const writer = user;
     const images = selectedFiles;
+    // console.log("message 정리: ", message.trim());
+    // console.log("message 길이: ", message.trim().length);
 
-
-    if (message || selectedFiles) {
-    console.log(message)
-    console.log("selectedFiles: ", selectedFiles)
-
+    if(message.trim().length === 0 ) console.log("전송하지 않습니다.");
     
-    selectedFiles.forEach((file, i) => {
-      chatFormData.append(`img`, file[i]);
-    });
-
-
-    axios.post(`${API_URL}/chat/live_chat`, {
-      room_id: selectedRoom,
-      writer: user,
-      chat: message,
-      images: selectedFiles
-    })
-
-    .then((result) => {
-      console.log("result: ", result);
-      console.log("post 완료");
-    })
-    .catch((error) => {
-      console.log("error: ", error);
-    })
-
-    //소켓 연결할 부분
-    // socket.emit('sendMessage', { chatFormData });  
-    socket.emit('sendMessage', { writer, message, images });  
-      setMessage('');
-      setSelectedFiles([]);
+    else {
+      if (message || selectedFiles) {
+        console.log(message)
+        console.log("selectedFiles: ", selectedFiles)
+  
+        selectedFiles.forEach((file, i) => {
+        chatFormData.append(`img`, file[i]);
+      });
+  
+      axios.post(`${API_URL}/chat/live_chat`, {
+        room_id: selectedRoom,
+        writer: user,
+        chat: message,
+        images: selectedFiles
+      })
+  
+      .then((result) => {
+        console.log("result: ", result);
+        console.log("post 완료");
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      })
+  
+      //소켓 연결할 부분
+      // socket.emit('sendMessage', { chatFormData });  
+      socket.emit('sendMessage', { writer, message, images });  
+        setMessage('');
+        setSelectedFiles([]);
+      }
     }
   }
 

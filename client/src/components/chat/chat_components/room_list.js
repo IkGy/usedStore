@@ -20,27 +20,67 @@ function Room_list({ onSelectUser, onSelectRoom }) {
   const [user, setUser] = useState([]);
   const [room, setRoom] = useState('');
 
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/room_list`, {
+  //     params: { id: getCookie("login") },
+  //   })
+  //   .then((res) => {
+  //     console.log("조회성공");
+  //     // console.log("res.data: ", res.data);
+  //     console.log("room_list의 res.data: ", res.data);
+  //     setMyRoom_List(res.data);
+  //     let updatedUsers = [];
+  //     for (let i = 0; i < res.data.length; i++) {
+  //       let filteruser = res.data[i].user.filter(
+  //       (element) => element !== getCookie("login")
+  //     );
+  //       updatedUsers.push(...filteruser);
+  //     }
+  //     setUser(updatedUsers);
+  //     console.log("updatedUsers: ", updatedUsers);
+  //     console.log("user: ", user);
+  //   })
+  // }, []);
   useEffect(() => {
     axios.get(`${API_URL}/room_list`, {
-      params: { id: getCookie("login") },
-    })
-    .then((res) => {
-      console.log("조회성공");
-      // console.log("res.data: ", res.data);
-      console.log("room_list의 res.data: ", res.data);
-      setMyRoom_List(res.data);
-      let updatedUsers = [];
-      for (let i = 0; i < res.data.length; i++) {
-        let filteruser = res.data[i].user.filter(
-        (element) => element !== getCookie("login")
-      );
-        updatedUsers.push(...filteruser);
-      }
-      setUser(updatedUsers);
-      console.log("updatedUsers: ", updatedUsers);
-      console.log("user: ", user);
-    })
+        params: { id: getCookie("login") },
+      })
+      .then(async (res) => {
+        console.log("조회성공");
+        setMyRoom_List(res.data);
+  
+        const updatedUsers = [];
+        for (let i = 0; i < res.data.length; i++) {
+          const filteruser = res.data[i].user.filter(
+            (element) => element !== getCookie("login")
+          );
+          updatedUsers.push(...filteruser);
+        }
+        setUser(updatedUsers);
+        const nicknames = await getNicknames(updatedUsers);
+        setUser(nicknames);
+  
+        console.log("updatedUsers: ", updatedUsers);
+        console.log("user: ", nicknames);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch room list", error);
+      });
   }, []);
+  
+
+  const getNicknames = async (userIds) => {
+    try {
+      const response = await axios.get(`${API_URL}/user_nicknames`, {
+        params: { userIds: userIds },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Failed to fetch user nicknames", error);
+      return [];
+    }
+  };
+  
 
   const clickRoom = async (user, id) => {
     console.log("a.id: ", id);  
@@ -67,6 +107,7 @@ function Room_list({ onSelectUser, onSelectRoom }) {
     // console.log(`${user}님과의 채팅방`);
     onSelectUser(user);
     onSelectRoom(id);
+
   }
   
   return (
