@@ -426,22 +426,23 @@ const { Server } = require('socket.io');
 // const io = socketio(server)
 
 // app.use(cors());
-app.use(cors({ origin: '*' }))
-const io = new Server(server, {cors: {origin: '*'}});
+app.use(cors({ origin: '' }))
+const io = new Server(server, {cors: {origin: ''}});
 
 const roomInfo = [];
 console.log("소켓으로 들어오긴 함");
 io.on('connection', (socket) => {
   const { url } = socket.request;
-  console.log(`${url} 에서 연결됨`);
-  
+  console.log("${url} 에서 연결됨");
+
   // 방 입장 이벤트 핸들링
   socket.on('join', (room, callback) => {
     console.log('방 입장:', room);
+    io.sockets.adapter.rooms.set(socket.id, room);
     // 해당 방에 클라이언트 소켓을 조인
-    roomInfo[socket.id] = room;
-    console.log(roomInfo[socket.id]);
-    socket.join(room);
+    // roomInfo[socket.id] = room;
+    // console.log(roomInfo[socket.id]);
+    // socket.join(room);
     console.log("join 실행");
     // callback()
   });
@@ -454,7 +455,8 @@ io.on('connection', (socket) => {
     console.log("writer: ", writer);
     console.log('메시지 받음:', message);
     console.log('이미지 받음:', images);
-    const room = roomInfo[socket.id];
+    // const room = roomInfo[socket.id];
+    const room = io.sockets.adapter.rooms.get(socket.id);
     console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
@@ -465,7 +467,6 @@ io.on('connection', (socket) => {
   // 연결 해제 이벤트 핸들링
   socket.on('disconnect', () => {
     console.log('사용자가 연결 해제됨');
-
   });
 });
 
@@ -473,7 +474,6 @@ server.listen(5000, () => console.log("채팅서버 연결"));
 
 
 app.get("/chat", (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
-
 // 채팅 조회를 위한 친구들-----------------
 
 
