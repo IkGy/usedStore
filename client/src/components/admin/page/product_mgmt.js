@@ -1,7 +1,9 @@
+import { FaArrowUp } from "react-icons/fa";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config/contansts";
 import './admin_product.css';
+import { Link } from "react-router-dom";
 
 function ProductManagement() {
   const [prodData, setProdData] = useState([]);
@@ -30,11 +32,32 @@ function ProductManagement() {
     setModalIsOpen(true);
   };
 
+  // 위로 스크롤
+  const scrollToTop = () => {
+    const element = document.querySelector('.menu_info');
+    if (element) {
+      element.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div>
-      <table className="admin_prod_list">
+      <FaArrowUp onClick={scrollToTop} />
+      <table className="admin_prod_table">
+        <colgroup>
+          <col style={{ width: "25%" }}  />
+          <col style={{ width: "25%" }}  />
+          <col />
+          <col />
+          <col />
+          <col />
+          <col />
+        </colgroup>
         <thead>
-          <tr>
+          <tr className="admin_prod_table_tr">
             <th>제목</th>
             <th>제품설명</th>
             <th>판매자</th>
@@ -44,16 +67,16 @@ function ProductManagement() {
             <th>관리</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="admin_prod_table_tbody">
           {prodData.map((data, i) => (
-            <tr className="admin_prodData" key={i}>
-              <td>{data.title}</td>
+            <tr key={i}>
+              <td><Link to={`/detail/${data._id}`} target="_blank">{data.title}</Link></td>
               <td>{data.comment}</td>
               <td>{data.sellerInfo.nickname}</td>
               {data.buyerInfo ? 
                 <td>{data.buyerInfo.nickname}</td>
                 :
-                <td></td>
+                <td>{data.buyer}</td>
               }
               <td>{data.price}</td>
               <td>{data.status}</td>

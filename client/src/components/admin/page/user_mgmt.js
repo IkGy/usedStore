@@ -93,7 +93,7 @@ function UserManagement() {
         <tbody className='usermgmt_table_tbody'>
           {userData.map(user => (
             <tr key={user._id}>
-              <td className='usermgmt_update_btn'>
+              <td>
                 {/* 수정 버튼 */}
                   {editStatus[user._id] ? 
                     <button onClick={() => handleSave(user._id, 'nickname', editNickname, 'role', editRole, 'about', editAbout)}>저장</button>
@@ -103,11 +103,11 @@ function UserManagement() {
                 &nbsp;<button>삭제</button>
               </td>
               {/* 본명 */}
-              <td className='usermgmt_real_name'>{user.real_name}</td>
+              <td>{user.real_name}</td>
               {/* 아이디 */}
-              <td className='usermgmt_id'>{user.id}</td>
+              <td>{user.id}</td>
               {/* 닉네임 */}
-              <td className='usermgmt_nickname'>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_nickname'
@@ -120,15 +120,15 @@ function UserManagement() {
                 )}
               </td>
               {/* 이메일 */}
-              <td className='usermgmt_email'>{user.email}</td>
+              <td>{user.email}</td>
               {/* 비밀번호 */}
-              <td className='usermgmt_password'>{user.password}</td>
+              <td>{user.password}</td>
               {/* 주소 */}
-              <td className='usermgmt_address'>{user.address}</td>
+              <td>{user.address}</td>
               {/* 휴대폰 번호 */}
-              <td className='usermgmt_phone_number'>{user.phone_number}</td>
+              <td>{user.phone_number}</td>
               {/* 유저 상태 */}
-              <td className='usermgmt_role'>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_role'
@@ -141,7 +141,7 @@ function UserManagement() {
                 )}
               </td>
               {/* 상점 한마디 */}
-              <td className='usermgmt_about'>
+              <td>
                 {editStatus[user._id] ? (
                   <input
                     id='user_about'
