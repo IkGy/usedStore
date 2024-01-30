@@ -12,6 +12,8 @@ function Chat(){
   console.log("chat진입");
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
+ 
+
 
   const SelectUser = (user) => {
     setSelectedUser(user);
@@ -27,7 +29,8 @@ function Chat(){
         selectedUser={selectedUser} 
         onSelectUser={SelectUser} 
         selectedRoom={selectedRoom} 
-        onSelectRoom={SelectRoom} />
+        onSelectRoom={SelectRoom} 
+        />
       <Chat_room 
         selectedUser={selectedUser} setSelectedUser={setSelectedUser}
         selectedRoom={selectedRoom}

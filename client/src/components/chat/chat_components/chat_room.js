@@ -13,7 +13,7 @@ let socket;
 // const ENDPOINT = 'http://15.164.229.9:5000'
 const ENDPOINT = `${API_URL}:5000`
 
-function Chat_room({ selectedUser, selectedRoom }){
+function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   console.log("Chat_room 진입");
   const [user, setUser] = useState('');
   const [message, setMessage] = useState('');
@@ -180,9 +180,9 @@ useEffect(() => {
   
 
 
-
-
-
+  const closeRoom = () => {
+    setSelectedUser('');
+  }
 
 
 
@@ -192,13 +192,13 @@ useEffect(() => {
       <div className='actived_room'>
         <div className='chat_room_info_main'>
           <div className='InnerContainer'>
-            <h3>{selectedUser}님과의 채팅</h3>
+            <h3 className='info_who'>{selectedUser}님과의 채팅</h3>
           </div>
+          <FaTimes className='close_room' onClick={closeRoom}/>
         </div> 
         <div>
         <BasicScrollToBottom className={selectedFiles.length > 0 ? "messagesOnImages" : "messages" }>
           {messages.map((message, i) => {
-            console.log("length: ", selectedFiles.length);
             // console.log("messages: ", messages);
             // 각 메시지의 작성자를 추출
             // console.log("message: ", message);
@@ -213,7 +213,6 @@ useEffect(() => {
             // 현재 사용자와 작성자가 동일한 경우 true, 아니면 false
             const isSentByCurrentUser = messageWriter === user;
             // console.log("isSentByCurrentUser: ", isSentByCurrentUser);
-
             return isSentByCurrentUser ? (
               <div className='messageContainer justifyEnd' key={i}>
                 <div className='messageBox backgroundBlue'>
@@ -258,7 +257,8 @@ useEffect(() => {
                 <p className='messageText colorDark'>{messageContent}</p>
                 </div>
               </div>
-              );
+              )
+         
           })}
                      
         </BasicScrollToBottom>

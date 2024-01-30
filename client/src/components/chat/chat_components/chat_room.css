@@ -13,22 +13,27 @@
 }
 .room_Input_component{
   position: absolute;
-}`  
+}
 
 
 /* 미선택시 */
 .please_select{
+  display: block;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   justify-content: center;
+  align-content: center;
   text-align: center;
+  align-items: center;
 }
 .malpoongseon{
-  margin: 20vh auto 1vh; 
-  font-size: 5vh;
+  margin: 12vw auto 1vh; 
+  font-size: 15vh;
 }
 .please_select > p {
-  font-size: 2vh;
+
+  font-size: 1.5vw;
 }
 /* info */
 .chat_room_info_main {
@@ -37,7 +42,7 @@
   justify-content: space-between;
   background: #2979FF;
   border-radius: 4px 4px 0 0;
-  height: 6vh;
+  height: 2.8vw;
   width: 100%;
 }
 
@@ -45,19 +50,28 @@
   flex: 0.5;
   display: flex;
   align-items: center;
-  margin-left: 5%;
+  margin-left: 1.7vw;
   color: white;
 }
-
-
-.onlineIcon {
-  margin-right: 5%;
+.info_who{
+  font-size: 1.3vw;
 }
 
+.onlineIcon {
+  margin-right: 2vw;
+}
+.close_room{
+  margin-right: 0.8vw;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2vw;
+  z-index: 10;
+  /* padding-right: 2vw; */
+}
 /* 채팅 라인 */
 .messages {
-  min-height: 40vh;
-  max-height: 55vh;
+  min-height: 28vw;
+  max-height: 28vw;
   /* max-height: 40vh;   */
   height: 100%;
   padding: 5% 0;
@@ -67,8 +81,8 @@
   overflow-y: auto;
 }
 .messagesOnImages {
-  min-height: 40vh;
-  max-height: 40vh;  
+  min-height: 21vw;
+  max-height: 21vw;  
   height: 100%;
   padding: 5% 0;
   overflow: auto;
@@ -152,9 +166,8 @@
   padding: 0.8vh;
   min-width: 100%;
   max-width: 100%;
-  /* max-height: fit-content; */
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 7vw;
+  max-height: 7vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 1vh;
@@ -200,15 +213,16 @@
   border-top: 2px solid #D3D3D3;
   align-content: end;
   bottom: 0;
+  background-color: #fff;
   position: absolute;
 }
 
 .input_area {
   border: none;
   border-radius: 0;
-  padding: 5% 5% 5% 3%;
+  padding: 1.7vw 1.7vw 1.7vw 2vw;
   width: 80%;
-  font-size: 1.2em;
+  font-size: 1vw;
   max-width: calc(100% - 100px);
 }
 
@@ -220,8 +234,9 @@ input:focus, textarea:focus, select:focus{
   display: none;
 }
 .custom-file-upload{
-  padding-left: 3%;
-  font-size: 30px;
+  padding-left: 1.2vw;
+  /* padding-left: 3%; */
+  font-size: 4vh;
   margin: auto;
 }
 .sendButton {
@@ -229,11 +244,12 @@ input:focus, textarea:focus, select:focus{
   text-transform: uppercase;
   text-decoration: none;
   background: #2979FF;
-  padding: 20px;
+  padding: 0.7vw;
   display: inline-block;
   border: none;
   width: 20%;
   border-radius: 0 0 8px 0;
+  font-size: 1.1vw;
 }
 
 

@@ -44,6 +44,7 @@ app.use(express.json());
 const cors = require("cors");
 const { log } = require('console');
 const { write } = require("fs");
+const { equal } = require("assert");
 app.use(cors());
 
 const url = process.env.DB_URL;
@@ -264,31 +265,65 @@ app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 app.get('/room_list', async(req, res) => {
   const db = getDB();
-  // console.log("req.query: ", req.query);
+  const user_ID = req.query.id.toString();
+  console.log('user_ID: ', user_ID);
+  const ChatUsers = await db.collection('chattingroom').find({user: user_ID}).toArray();
+  const NickUser = await db.collection('user').find().toArray();
+  
+  const joinedChatData = ChatUsers.map((a) => {
+    const searchNick = NickUser.find(b => b._id === a.id);
+    return {...a, searchNick};
+    // const user = users.find(user => user.userId === product.userId);
+  });
+  console.log('joinedChatData: ', joinedChatData);
+
+
   let result = await db.collection('chattingroom').find({
     user: req.query.id
   }).toArray()
+
   // console.log("roomList의 result: ", result);
   res.status(201).send(result)
 })
 
-app.get('/chat_room', async(req, res) => {
+app.get('/chat_room', async (req, res) => {
+  console.log("chatroom 진입");
   const db = getDB();
-  // console.log("req.query: ", req.query);
   const user_ID = req.query.id;
-  // console.log("user_ID: ", user_ID);
+
+
   try {
-  let result = await db.collection('chattingroom').find({
-    user: user_ID
-  }).toArray()
-  console.log('result: ', result);
-  res.status(201).end();
-}
-catch(error){
-  console.log("채팅 불러오기 실패다 이자식아");
-  res.status(500).send("대체 어떻게 조회한거야?!")
-}
-})
+    let result = await db.collection('chattingroom').find({
+      user: user_ID
+    }).toArray();
+
+    console.log('result: ', result);
+    res.status(201).send(result);
+  } catch (error) {
+    console.log("채팅 불러오기 실패다 이자식아");
+    res.status(500).send("대체 어떻게 조회한거야?!");
+  }
+});
+  
+app.get('/chat_room', async (req, res) => {
+  const db = getDB();
+  const user_ID = req.query.id;
+
+
+  try {
+    let result = await db.collection('chattingroom').find({
+      user: user_ID
+    }).toArray();
+
+
+    console.log('result: ', result);
+    res.status(201).send(result);
+  } catch (error) {
+    console.log("채팅 불러오기 실패다 이자식아");
+    res.status(500).send("대체 어떻게 조회한거야?!");
+  }
+});
+
 
 app.get('/chat_log', async (req, res) => {
   // console.log("로그에서 req.query: ", req.query);

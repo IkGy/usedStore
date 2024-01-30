@@ -27,17 +27,12 @@ const chatImages = multer({
 });
 
 
-
-
-
-
 router.get('/chat', async (req, res) => {
-  console.log("/chat");
   try {
     const db = getDB();
     console.log(req.query);
     let chat_log = await db.collection("chatting").find({room_id: req.query.room_id}).toArray()
-    console.log("chat_log: ", chat_log);
+    // console.log("chat_log: ", chat_log);
     res.status(201).send(chat_log);
   } catch (error) {
     console.log('error: ', error);

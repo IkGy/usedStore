@@ -3,6 +3,8 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   height: 100%;
+  padding-bottom: 3vw;
+  border-bottom: 3px solid #000;
 }
 
 
