@@ -248,16 +248,7 @@ app.get("/like/picklist", async (요청, 응답) => {
   응답.send(prodData);
 });
 
-app.get("/room_list", async (req, res) => {
-  const db = getDB();
-  let result = await db
-    .collection("chattingroom")
-    .find({
-      user: req.query.id,
-    })
-    .toArray();
-  res.status(201).send(result);
-});
+
 
 app.post("/sellitemedit", async (req, res) => {
   const db = getDB();
@@ -436,6 +427,12 @@ app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 // 채팅 조회를 위한 친구들-----------------
 
+
+
+
+
+
+
 app.get("/room_list", async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id.toString();
@@ -458,6 +455,10 @@ app.get("/room_list", async (req, res) => {
   // console.log("roomList의 result: ", result);
   res.status(201).send(result);
 });
+
+
+
+
 
 app.get('/chat_room', async (req, res) => {
   console.log("chatroom 진입");
@@ -482,12 +483,10 @@ app.get('/chat_room', async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id;
 
-
   try {
     let result = await db.collection('chattingroom').find({
       user: user_ID
     }).toArray();
-
 
     console.log('result: ', result);
     res.status(201).send(result);

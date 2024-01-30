@@ -42,8 +42,9 @@
   justify-content: space-between;
   background: #2979FF;
   border-radius: 4px 4px 0 0;
-  height: 2.8vw;
+  height: 3vw;
   width: 100%;
+  border-bottom: 2px solid #D3D3D3;
 }
 
 .InnerContainer {
@@ -68,6 +69,7 @@
   z-index: 10;
   /* padding-right: 2vw; */
 }
+
 /* 채팅 라인 */
 .messages {
   min-height: 28vw;
