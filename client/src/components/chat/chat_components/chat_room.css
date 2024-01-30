@@ -35,6 +35,7 @@
 
   font-size: 1.5vw;
 }
+
 /* info */
 .chat_room_info_main {
   display: flex;
@@ -79,9 +80,15 @@
   padding: 5% 0;
   overflow: auto;
   flex: auto;
-  /* border: 1px solid #000; */  
-  overflow-y: auto;
+  overflow-y: auto;  
 }
+
+.messages::-webkit-scrollbar{
+  display: none;
+}
+
+
+ 
 .messagesOnImages {
   min-height: 21vw;
   max-height: 21vw;  
