@@ -1,0 +1,32 @@
+.usermgmt_table {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px 20px 30px;
+}
+
+.usermgmt_tr {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 테이블 헤더 스타일링 */
+.usermgmt_th {
+  padding: 8px;
+  background-color: #f2f2f2;
+  border: 1px black solid;
+  text-align: center;
+}
+
+/* 테이블 내용 스타일링 */
+.usermgmt_td {
+  padding: 8px;
+  border: 1px solid #000000;
+  text-align: center;
+  min-height: 30px;
+  overflow: hidden;
+}
+
+.usermgmt_td input {
+  width: calc(100% - 18px); 
+  box-sizing: border-box;
+}

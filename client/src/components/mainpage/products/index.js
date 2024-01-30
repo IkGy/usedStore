@@ -12,17 +12,42 @@ const shuffleArray = (array) => {
   return array;
 };
 
+// 날짜 차이를 계산하여 표시하는 함수
+const formatTimeAgo = (dateString) => {
+  const date = new Date(dateString);
+  const now = new Date();
+
+  const timeDifference = now - date;
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(months / 12);
+
+  if (seconds < 60) {
+    return `${seconds}초 전`;
+  } else if (minutes < 60) {
+    return `${minutes}분 전`;
+  } else if (hours < 24) {
+    return `${hours}시간 전`;
+  } else if (days < 30) {
+    return `${days}일 전`;
+  } else if (months < 12) {
+    return `${months}개월 전`;
+  } else {
+    return `${years}년 전`;
+  }
+};
+
 function Products() {
   const [prod, setProd] = useState([]);
-  const [displayedProducts, setDisplayedProducts] = useState(8); // 초기에 표시되는 상품 수
+  const [displayedProducts, setDisplayedProducts] = useState(12);
 
   const fetchProduct = async () => {
     try {
       const res = await axios.get(`${API_URL}/prod`);
-      // console.log("상품 데이터 조회 완료");
-      // console.log(res.data);
       const shuffledProducts = shuffleArray(res.data);
-      // console.log(shuffledProducts);
       setProd(shuffledProducts);
     } catch (error) {
       console.log("데이터 조회 실패");
@@ -35,7 +60,7 @@ function Products() {
   }, []);
 
   const handleLoadMore = () => {
-    setDisplayedProducts(displayedProducts + 4); // 4개씩 상품 수를 증가
+    setDisplayedProducts(displayedProducts + 4);
   };
 
   return (
@@ -54,7 +79,7 @@ function Products() {
                 <div className="main_prod_info">
                   <p className="main_prod_title">{data.title}</p>
                   <p className="main_prod_price">
-                    {data.price} 원<span>{data.date}</span>
+                    {data.price} 원<span>{formatTimeAgo(data.created_at)}</span>
                   </p>
                 </div>
               </div>

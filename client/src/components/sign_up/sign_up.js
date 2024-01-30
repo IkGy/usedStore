@@ -90,6 +90,7 @@ export default function SignUp() {
     const address = e.target.address.value;
     const phone_number = e.target.phone_number.value;
 
+
     if (!nickname || !name || !email || !password || !address || !phone_number) {
       alert("모든 항목을 채워주세요.");
       return;

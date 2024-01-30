@@ -37,7 +37,7 @@ function RegiImage(props) {
 
   useEffect(() => {
     const body = document.body;
-    console.log(body);
+
     if (modal) {
       body.style.overflow = "hidden"; // 모달이 열릴 때 스크롤 방지
     } else {

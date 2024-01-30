@@ -1,0 +1,131 @@
+.KJH_admin-report_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3vh 2vw;
+    background-color: antiquewhite;
+}
+
+.KJH_admin-report_container > svg {
+    position: absolute;
+    opacity: 0.8;
+    border: 0.15vw solid black;
+    border-radius: 0.2vw;
+    margin: 0.6vw;
+    padding: 2px;
+    width: 2vw;
+    height: 4vh;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    transition: 0.2s;    
+}
+
+.KJH_admin-report_container > svg:hover {
+    border-radius: 1vw;
+    background-color: #666666;
+    color: white;
+
+}
+
+.KJH_admin-report_title_section {
+    text-align: center;
+}
+
+.KJH_admin-report_title_info {
+    display: flex;
+    align-items: center;
+}
+
+.KJH_admin-report_title, .KJH_admin-report_count {
+    display: inline-block;
+    border: 0.1vw solid black;
+    border-radius: 0.2vw;
+    font-size: 1.6vw;
+    font-weight: 700;
+    padding: 1vh 1.4vw;
+    margin: 0 1vw 2vh 0;
+    background-color: aquamarine;
+}
+
+/* .KJH_admin-report_title {
+
+}
+
+.KJH_admin-report_count {
+
+} */
+
+.KJH_admin-report_table_tr {
+    position: sticky;
+    top: 0;
+    font-size: 1.4vw;
+}
+
+.KJH_admin-report_table_tr > th {
+    background-color: #bebebe;
+    color: black;
+    padding: 0.8vh 0;
+}
+
+
+.KJH_admin-report_table_container {
+    border: 1px solid black;
+    margin-right: 1.3vw;
+}
+
+.KJH_admin-report_table_setcion {
+    width: 100%;
+    padding: 0;
+}
+
+.KJH_admin-report_table_tbody > td {
+    background-color: #dcdcdc;
+    padding: 0.2vh;
+    transition: 0.1s;
+}
+
+.KJH_admin-report_table_tbody:hover > td {
+    background-color: #999999;
+}
+
+.KJH_admin-report_table_tbody > td:hover {
+    background-color: #666666;
+    color: white;
+}
+
+
+/*----------[ tbody - td(내용) ]----------*/
+
+/* 구분: index*/
+.KJH_admin-report_table_tbody > .KJH_index {
+    font-size: 1.2vw;
+    font-weight: 700;
+}
+
+/* 신고 종류: type */
+.KJH_admin-report_table_tbody > .KJH_type {
+    font-size: 1vw;
+}
+
+/* 해당 게시글: post*/
+.KJH_admin-report_table_tbody > .KJH_post {
+    font-size: 1vw;
+}
+
+/* 일자: date*/
+.KJH_admin-report_table_tbody > .KJH_date {
+    font-size: 1vw;
+}
+
+/* 판매자: seller */
+.KJH_admin-report_table_tbody > .KJH_seller {
+    font-size: 1vw;
+}
+
+/* 신고자: buyer */
+.KJH_admin-report_table_tbody > .KJH_buyer {
+    font-size: 1vw;
+}
+
+/*----------------------------------*/

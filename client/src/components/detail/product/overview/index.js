@@ -112,7 +112,7 @@ function Item(props) {
 
     // 신고 알림창
     const handleReportClick = () => {
-        alert('신고되었습니다.');
+        alert('신고 페이지로 이동합니다.');
     };
 
 
@@ -176,7 +176,7 @@ function Item(props) {
                                 </div>
                                 <button className='KJH_item_info_report' onClick={handleReportClick}>
                                     <MdReport />
-                                <div className='KJH_item_info_report_text'>신고하기</div>
+                                <Link to='/singo'><div className='KJH_item_info_report_text'>신고하기</div></Link>
                                 </button>
                                 </div>
                                 <div className='KJH_item_info_status_section'>

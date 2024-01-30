@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const { getDB } = require('../db');
@@ -23,6 +24,7 @@ router.get('/post/shop/:id', async (req, res) => {
 router.get("/post/shop", async (req, res) => {
   const db = getDB();
 
+
   let reviewer = await db.collection('user').findOne({_id:new ObjectId(req.query.id)});
 //   console.log(reviewer);
   res.send(reviewer);
@@ -41,7 +43,9 @@ router.post('/post/shop', async (req, res) => {
             writer: writerid,
             create_at: currentDate,
             update_at: currentDate,
-            comment: content
+            comment: content,
+            write_id: req.body.writer,
+            profileIMG: req.body.profileIMG
         });
         res.status(201).send({ message: '후기가 성공적으로 작성되었습니다.' });
     } catch (error) {

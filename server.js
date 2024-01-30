@@ -7,7 +7,6 @@ const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
 require("dotenv").config();
 
-
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
@@ -30,31 +29,30 @@ const upload = multer({
   }),
 });
 
-
 const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
 const roomRouter = require("./routes/chat_room");
 const mypageRouter = require("./routes/mypage");
-
+const adminRouter = require('./routes/admin'); // 관리자 페이지용 라우터입니다.
 
 app.use(express.json());
 
 const cors = require("cors");
-const { log } = require('console');
+const { log } = require("console");
 const { write } = require("fs");
 const { equal } = require("assert");
 app.use(cors());
 
 const url = process.env.DB_URL;
-const port = process.env.PORT
+const port = process.env.PORT;
 new MongoClient(url)
   .connect({ useUnifiedTopology: true })
   .then((client) => {
     const db = client.db("popol5");
     setDB(db);
-    console.log("DB연결성공");
+    console.log("DB 연결성공");
     app.listen(process.env.PORT, function () {
       console.log(`연결포트 : ${process.env.PORT}`);
     });
@@ -69,6 +67,7 @@ app.use("/prod", productRouter);
 app.use("/user", userRouter);
 app.use("/chat", roomRouter);
 app.use("/mypage", mypageRouter);
+app.use('/admin', adminRouter);
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -155,14 +154,13 @@ app.get("/address/:cookie", async (req, res) => {
   res.status(201).send(result.address);
 });
 
-app.post('/upload', upload.single('profileIMG'), (req, res) => {
+app.post("/upload", upload.single("profileIMG"), (req, res) => {
   const file = req.file;
 
   // 업로드된 파일의 경로를 클라이언트에게 전송
   const fileUrl = `https://popol5.s3.ap-northeast-2.amazonaws.com/${file.filename}`;
   res.json({ fileUrl });
 });
-
 
 // 등록된 상품을 받아옴
 app.get("/product/registered", async (요청, 응답) => {
@@ -226,7 +224,6 @@ app.get("/review/mypagehoogi2", async (요청, 응답) => {
   응답.send(result);
 });
 
-
 // 찜해둔 물품목록
 app.get("/like/picklist", async (요청, 응답) => {
   const db = getDB();
@@ -249,9 +246,110 @@ app.get("/like/picklist", async (요청, 응답) => {
       });
   }
   응답.send(prodData);
-})
+});
 
+app.get("/room_list", async (req, res) => {
+  const db = getDB();
+  let result = await db
+    .collection("chattingroom")
+    .find({
+      user: req.query.id,
+    })
+    .toArray();
+  res.status(201).send(result);
+});
 
+app.post("/sellitemedit", async (req, res) => {
+  const db = getDB();
+  console.log("edit: ", req.body);
+  let product = await db.collection("product").findOne({
+    _id: new ObjectId(req.body._id),
+  });
+  console.log("product: ", product);
+  res.status(201).send(product);
+});
+
+app.post("/productedit", async (req, res) => {
+  const db = getDB();
+  const tag = JSON.parse(req.body.tag);
+  const category = JSON.parse(req.body.category);
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.body._id) },
+    {
+      $set: {
+        price: req.body.price,
+        count: req.body.count,
+        tags: tag,
+        title: req.body.title,
+        category: category,
+        comment: req.body.content,
+        product_status: req.body.status,
+        refund: req.body.change,
+        location: req.body.selectedAddress,
+        postprice: req.body.postprice,
+        updated_at: new Date(),
+      },
+    }
+  );
+  res.status(201).send("수정완료");
+});
+
+app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
+  const db = getDB();
+  if (req.file) {
+    await db.collection("user").updateOne(
+      { _id: new ObjectId(req.body._id) },
+      {
+        $set: {
+          nickname: req.body.nickname,
+          about: req.body.about,
+          address: req.body.address,
+          profileIMG: req.file.location,
+        },
+      }
+    );
+    await db.collection("review").updateMany(
+      { write_id: req.body._id },
+      {
+        $set: {
+          writer: req.body.nickname,
+          profileIMG: req.file.location,
+        },
+      }
+    );
+  } else {
+    await db.collection("user").updateOne(
+      { _id: new ObjectId(req.body._id) },
+      {
+        $set: {
+          nickname: req.body.nickname,
+          about: req.body.about,
+          address: req.body.address,
+        },
+      }
+    );
+    await db.collection("review").updateMany(
+      { write_id: req.body._id },
+      {
+        $set: {
+          writer: req.body.nickname,
+        },
+      }
+    );
+  }
+
+  let result = await db
+    .collection("user")
+    .findOne({ _id: new ObjectId(req.body._id) });
+  res.status(201).send(result);
+});
+
+app.delete("/likedel/:user/:product_id", async (req, res) => {
+  const db = getDB();
+  console.log(req.params);
+  await db.collection("like").deleteOne({ product_id: req.params.product_id, liker: req.params.user });
+  res.status(201).send("짬해제성공")
+});
 // ---------실시간채팅------------- //
 
 
@@ -261,9 +359,7 @@ app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
 
 // 채팅 조회를 위한 친구들-----------------
 
-
-
-app.get('/room_list', async(req, res) => {
+app.get("/room_list", async (req, res) => {
   const db = getDB();
   const user_ID = req.query.id.toString();
   console.log('user_ID: ', user_ID);
@@ -283,8 +379,8 @@ app.get('/room_list', async(req, res) => {
   }).toArray()
 
   // console.log("roomList의 result: ", result);
-  res.status(201).send(result)
-})
+  res.status(201).send(result);
+});
 
 app.get('/chat_room', async (req, res) => {
   console.log("chatroom 진입");
@@ -325,22 +421,23 @@ app.get('/chat_room', async (req, res) => {
 });
 
 
-app.get('/chat_log', async (req, res) => {
+app.get("/chat_log", async (req, res) => {
   // console.log("로그에서 req.query: ", req.query);
   const db = getDB();
   try {
-  await db.collection('chatting').find({room_id : req.query.room_id}).toArray()
-  .then((result)=>{
-    // console.log("result: ", result);
-    return res.status(201).send(result);
-  })
-  
-}
-catch(error){
-  console.log("채팅 불러오기 실패다 이자식아");
-  res.status(500).send("대체 어떻게 조회한거야?!")
-}
-})
+    await db
+      .collection("chatting")
+      .find({ room_id: req.query.room_id })
+      .toArray()
+      .then((result) => {
+        // console.log("result: ", result);
+        return res.status(201).send(result);
+      });
+  } catch (error) {
+    console.log("채팅 불러오기 실패다 이자식아");
+    res.status(500).send("대체 어떻게 조회한거야?!");
+  }
+});
 
 // ---------------------------------
 

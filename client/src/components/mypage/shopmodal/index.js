@@ -5,7 +5,7 @@ import axios from 'axios';
 import './shopmodal.css';
 import { getCookie } from '../../../useCookies';
 
-function Modal({ show, onClose }) {
+function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, setReviewContent }) {
     const { id } = useParams();
     const [seller, setSeller] = useState('');
     const [reviewer, setReviewer] = useState('');
@@ -33,40 +33,40 @@ function Modal({ show, onClose }) {
 
     useEffect(() => {
         if (show) {
+            setReviewContent('');
             fetchSeller();
             fetchReviewer();
         }
     }, [show, id]);
 
-    const submitReview = async (resiverId, writerId, reviewContent) => {
+    const submitReview = async (resiverId, writerId, reviewContent, writer_id, writer_profileIMG) => {
         try {
             const url = `${API_URL}/mypage/post/shop`;
             
             const requestBody = {
                 resiverId :resiverId,
                 writerid: writerId,
-                content: reviewContent
+                content: reviewContent,
+                writer: writer_id,
+                profileIMG: writer_profileIMG
             };
             await axios.post(url, requestBody)
-            .then(()=>{
-                alert('후기작성 완료');
-            })
-            .catch(()=>{
-
-            })
+            alert('작성이 완료되었습니다');
+            setModalOpen(false);
+            updateReviewData();
         } catch (error) {
             console.error('후기 작성 에러:', error);
             throw error;
         }
     };
 
-    const [reviewContent, setReviewContent] = useState('');
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         fetchReviewer();
         const writerId = reviewer.nickname;
-        await submitReview(id, writerId, reviewContent);
+        const writer_id = reviewer._id;
+        const writer_profileIMG = reviewer.profileIMG
+        await submitReview(id, writerId, reviewContent, writer_id, writer_profileIMG);
     };
 
     // 실시간 날짜와 시간계산
@@ -119,8 +119,9 @@ function Modal({ show, onClose }) {
                                         
                                     </div>
                                 </div>
-                                <div className='KJH_shop-review-modal_content'>
-                                    <textarea 
+                                <div className='KJH_shop-review_modal_content'>
+                                    <textarea
+                                        className='KJH_shop-review_modal_textarea'
                                         value={reviewContent} 
                                         onChange={(e) => setReviewContent(e.target.value)}
                                         placeholder="후기를 작성해주세요"
