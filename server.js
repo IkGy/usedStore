@@ -433,7 +433,7 @@ const roomInfo = [];
 console.log("소켓으로 들어오긴 함");
 io.on('connection', (socket) => {
   const { url } = socket.request;
-  console.log("${url} 에서 연결됨");
+  console.log(`${url} 에서 연결됨`);
 
   // 방 입장 이벤트 핸들링
   socket.on('join', (room, callback) => {
