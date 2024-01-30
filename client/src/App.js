@@ -42,12 +42,16 @@ function ScrollToTop() {
 }
 
 function App() {
+
+  const location = useLocation();
+  const isAdminRoute = location.pathname === '/admin_main';
+
   return (
     <div className="total_display">
-      <ScrollToTopButton></ScrollToTopButton> 
+      {!isAdminRoute && <ScrollToTopButton />}
       <ScrollToTop />
       <div className="display_section">
-        <Header />
+        {!isAdminRoute && <Header />}
         <Routes>
           <Route path='/' element={<Main></Main>}></Route>
           <Route path='/detail/:id' element={<Detail />}></Route>
@@ -75,7 +79,7 @@ function App() {
           <Route path='/page/report' element={<Report />}></Route>
           <Route path='/page/product_mgmt' element={<ProductManagement />}></Route>
         </Routes>
-        <Footer />
+        {!isAdminRoute && <Footer />}
       </div>
     </div>
   );

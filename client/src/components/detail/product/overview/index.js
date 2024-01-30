@@ -14,6 +14,7 @@ import { FaHeart } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { getCookie } from "../../../../useCookies";
 
+
 // 시간 계산
 function formatTimeAgo(createdDate) {
   const created = new Date(createdDate);
@@ -99,26 +100,25 @@ function Item(props) {
   };
 
   // 채팅방 조회
-  const [openChattingroom, setOpenChattingRoom] = useState([]);
-
-  const openChatting = async () => {
-    if (getCookie("login")) {
-      try {
-        const res = await axios.post(
-          `${API_URL}/prod/open/chattingroom/${id}`,
-          {
-            params: { login: getCookie("login") },
-          }
-        );
-        setOpenChattingRoom(res.data);
-        console.log(res.data);
-      } catch (error) {
-        console.error("채팅방을 불러오지 못했습니다");
-      }
-    } else {
-      navigate("/login");
-    }
-  };
+  const curUser = getCookie('login');
+  const selUser = props.seller._id;
+  console.log("curUser: ", curUser);
+  console.log("selUser: ", selUser);
+	
+	const openChatting = async () => {
+		if (curUser){
+			try {
+				const res = await axios.post(`${API_URL}/chat/open_chat`, {
+					user: [selUser, curUser]
+				});
+				console.log(res.data);
+			} catch (error) {
+				console.error("채팅방을 불러오지 못했습니다");
+			}
+		} else {
+			navigate('/login');
+		}    
+	};
 
   // 신고 알림창
   const handleReportClick = () => {

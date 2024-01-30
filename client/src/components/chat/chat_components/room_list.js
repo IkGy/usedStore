@@ -53,8 +53,8 @@ function Room_list({ onSelectUser, onSelectRoom }) {
       if(res.data.length < 1){
         console.log("로그가 없음!"); 
       } else {
-          console.log("room_id: ", res.data[0].room_id);
-        }
+        console.log("room_id: ", res.data[0].room_id);
+      }
       console.log("방id:", id); 
       console.log("res: ", res.data[0].chat);
     })

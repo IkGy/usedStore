@@ -1,5 +1,5 @@
 import './info.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 // 카테고리 화살표
 import { IoIosArrowForward } from "react-icons/io";
@@ -10,6 +10,7 @@ import { BiSolidCategory } from "react-icons/bi"; // 카테고리 아이콘
 import { IoMdPricetags } from "react-icons/io";   // 상품태그 아이콘
 
 import { CiShop } from "react-icons/ci"; // 상점 아이콘
+
 
 // 시간 계산
 function formatDate(dateString) {
@@ -54,6 +55,7 @@ function Info(props) {
     if (!info || !seller || !review) {
         return <div>Loading...</div>;
     }
+
     
 
     return (
@@ -227,7 +229,7 @@ function Info(props) {
                                 </div>
                             </div>
                             <div className='KJH_if_right_bottom_section'>
-                                <button className='KJH_if_right_bottom_talk'>
+                                <button className='KJH_if_right_bottom_talk' >
                                     <div>실시간톡</div>
                                 </button>
                             </div>

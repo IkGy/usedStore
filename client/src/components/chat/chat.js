@@ -32,7 +32,8 @@ function Chat(){
         onSelectRoom={SelectRoom} 
         />
       <Chat_room 
-        selectedUser={selectedUser} setSelectedUser={setSelectedUser}
+        selectedUser={selectedUser} 
+        setSelectedUser={setSelectedUser}
         selectedRoom={selectedRoom}
         setSelectedRoom={setSelectedRoom}
       />
