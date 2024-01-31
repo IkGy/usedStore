@@ -415,6 +415,7 @@ app.post("/singo", async (req, res) => {
   res.status(201).send("접수완료");
 });
 
+
 app.post("/sellcomplete/:_id", async (req, res) => {
   const db = getDB();
   await db.collection("product").updateOne(
@@ -428,6 +429,7 @@ app.post("/sellcomplete/:_id", async (req, res) => {
 
   res.status(201).send("판매완료!");
 });
+
 // ---------실시간채팅------------- //
 
 const http = require('http');

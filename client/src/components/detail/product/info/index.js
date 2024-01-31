@@ -49,6 +49,7 @@ function Info(props) {
   // 판매자의 최근에 게시한 상품 2개 뽑기
   const lastTwoProducts = products.slice(-2);
 
+
   if (!info || !seller || !review) {
     return <div>Loading...</div>;
   }

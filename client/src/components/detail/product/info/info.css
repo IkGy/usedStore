@@ -380,24 +380,7 @@
     background-color: #fff9c4;
 }
 
-.KJH_if_right_bottom_section {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    width: 100%;
-    padding: 1.1vw;
-}
 
-.KJH_if_right_bottom_section > button {
-    border-radius: 0.7vw;
-    transition: all 0.3s;
-}
-
-.KJH_if_right_bottom_section > button:hover {
-    background-color: transparent;
-    color: black;
-}
 
 .KJH_if_right_bottom_talk {
     display: flex;
@@ -414,12 +397,6 @@
     margin-right: 1.4vw;
     height: 6vh;
     font-size: 0.8vw;
-}
-
-.KJH_if_right_bottom_talk > img {
-    margin-right: 0.3vw;
-    vertical-align: bottom;
-    border-style: none;
 }
 
 .KJH_if_section_bottom {
