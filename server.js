@@ -170,7 +170,6 @@ app.get("/product/registered", async (요청, 응답) => {
     .collection("product")
     .find({
       seller: 요청.query.id,
-      status: "판매중",
     })
     .toArray();
   응답.send(result);
@@ -414,6 +413,21 @@ app.post("/singo", async (req, res) => {
     reported_product_id: req.body.reported_product_id,
   });
   res.status(201).send("접수완료");
+});
+
+
+app.post("/sellcomplete/:_id", async (req, res) => {
+  const db = getDB();
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.params._id) },
+    {
+      $set: {
+        status: "판매완료",
+      },
+    }
+  );
+
+  res.status(201).send("판매완료!");
 });
 
 // ---------실시간채팅------------- //

@@ -19,7 +19,7 @@
 }
 
 .slick-dots {
-    border-top: 0.1em solid black;
+
 }
 
 .slick-slider > button {
@@ -75,7 +75,6 @@
     }
     
     .slick-dots {
-        border-top: 0.1em solid black;
         position: static;
     }
     
@@ -114,7 +113,7 @@
         }
 
         .slick-dots {
-            border-top: 0.1em solid black;
+
         }
         
         .slick-dots > li > button {
