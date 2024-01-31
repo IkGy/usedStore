@@ -440,7 +440,7 @@ const { Server } = require('socket.io');
 app.use(cors({ origin: '*' }))
 const io = new Server(server, {cors: {origin: '*'}});
 
-app.get('/chat', (req, res) => res.sendFile(`${__dirname}/chat_room.js`));
+app.get('/chat', (req, res) => res.sendFile(`${__dirname}/routes/chat_room.js`));
 const roomInfo = [];
 // Socket.io 설정
 io.on('connection', (socket) => {
