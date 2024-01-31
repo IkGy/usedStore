@@ -170,6 +170,7 @@ app.get("/product/registered", async (요청, 응답) => {
     .collection("product")
     .find({
       seller: 요청.query.id,
+      status: "판매중",
     })
     .toArray();
   응답.send(result);
