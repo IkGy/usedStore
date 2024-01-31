@@ -5,7 +5,7 @@ function Regi_content(props){
           설명
           {props.content ? (
             <i
-              style={{ color: "green", paddingLeft: "0.5vw" }}
+              style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
               class="fa-solid fa-check"
             ></i>
           ) : (

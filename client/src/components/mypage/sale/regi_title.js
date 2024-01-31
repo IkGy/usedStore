@@ -5,7 +5,7 @@ function Regi_title(props) {
         상품명
         {props.title ? (
           <i
-            style={{ color: "green", paddingLeft: "0.5vw" }}
+            style={{ color: "#2748b0", paddingLeft: "0.5vw" }}
             class="fa-solid fa-check"
           ></i>
         ) : (
