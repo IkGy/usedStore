@@ -228,7 +228,7 @@ function Info(props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='KJH_if_right_bottom_section'>
+                            <div style={info.status === "판매중" ? {display:""} : {display:"none"}}className='KJH_if_right_bottom_section'>
                                 <button className='KJH_if_right_bottom_talk' >
                                     <div>실시간톡</div>
                                 </button>
