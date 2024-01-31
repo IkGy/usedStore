@@ -66,12 +66,13 @@ router.get('/detail/:id', async (req, res) => {
   }
 });
 
-router.delete("/delete/:id/:prodid", async (req, res) => {
+router.delete("/delete/:id/:proid", async (req, res) => {
   try {
     // console.log(req.params);
     const db = getDB();
-    await db.collection('like').deleteMany({product_id:req.params.prodid})
-    await db.collection("product").deleteOne({ _id: new ObjectId(req.params.prodid) })
+    await db
+      .collection("product")
+      .deleteOne({ _id: new ObjectId(req.params.proid) })
       .then(() => {
         res.status(201).end();
       })

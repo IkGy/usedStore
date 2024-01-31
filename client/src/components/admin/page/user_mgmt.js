@@ -1,7 +1,8 @@
 import './user.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../config/contansts';
+import { FaArrowUp } from "react-icons/fa";
 
 function UserManagement() {
   const [userData, setUserData] = useState([]);
@@ -80,18 +81,31 @@ function UserManagement() {
   };
 
   const handleEdit = (id) => {
-    // 수정 버튼 클릭 시 해당 행의 수정 상태를 활성화합니다.
     setEditStatus(prevStatus => ({ ...prevStatus, [id]: true }));
   };
 
+  // 위로 스크롤
+  const scrollToTop = () => {
+    const element = document.querySelector('.menu_section');
+    if (element) {
+      element.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="닉네임 또는 이메일 입력"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+    <div className='usermgmt_container'>
+      <FaArrowUp onClick={scrollToTop} />
+      <div className='usermgmt_search_section'>
+        <input
+          type="text"
+          placeholder="검색..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <table className="usermgmt_table">
         {/* 테이블 헤더 */}
         <thead>
@@ -137,7 +151,7 @@ function UserManagement() {
               </td>
               <td>{user.email}</td>
               <td>{user.password}</td>
-              <td>{user.address}</td>
+              <td className='usermgmt_table_td_adress'>{user.address}</td>
               <td>{user.phone_number}</td>
               <td>
                 {editStatus[user._id] ? (

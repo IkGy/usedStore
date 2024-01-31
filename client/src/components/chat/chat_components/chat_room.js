@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './chat_room.css';
 import io from 'socket.io-client';
 import BasicScrollToBottom from 'react-scroll-to-bottom';
@@ -10,8 +10,8 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReactEmoji from 'react-emoji';
 
 let socket;
-const ENDPOINT = 'http://54.180.101.110:5000'
-// const ENDPOINT = 'http://localhost:5000'
+// const ENDPOINT = 'http://15.164.229.9:5000'
+const ENDPOINT = 'http://localhost:5000'
 
 function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   console.log("Chat_room 진입");
@@ -21,7 +21,8 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   const [selectedFiles, setSelectedFiles] = useState([]);
   let chatFormData = new FormData();
 
-
+  console.log('selectedRoom:', selectedRoom);
+  
 
   const isIncludeImage = null;
   const selectFile = (e) => {
@@ -77,18 +78,21 @@ useEffect(() => {
   console.log("ChatRoom에서 selecteduser: ", selectedUser);
   console.log("ChatRoom에서 selectedroom: ", selectedRoom);
   setUser(getCookie('login'));
-  socket = io(ENDPOINT)
+  socket = io(ENDPOINT);
   console.log("socket: ", socket);
   
   if (selectedRoom) {
     getLog(selectedRoom);
     
     socket.emit('join', selectedRoom, (error) => {
-      console.log("채팅방 입장");
       if(error)
         alert('에러코드[', error, ']');
       })  
     }
+    return () => {
+      // 컴포넌트가 언마운트될 때 소켓 연결 해제
+      socket.disconnect();
+    };
   }, [selectedRoom, ENDPOINT]);
 
   useEffect(() => {
@@ -100,7 +104,6 @@ useEffect(() => {
         console.log('New Messages:', newMessages);
         return newMessages;
       });
-      
     });
   }, [socket])
 
@@ -108,11 +111,9 @@ useEffect(() => {
   const sendMessage = (event) => {
     event.preventDefault()
     console.log("전송 클릭");
-
     const writer = user;
     const images = selectedFiles;
-    // console.log("message 정리: ", message.trim());
-    // console.log("message 길이: ", message.trim().length);
+
 
     if(message.trim().length === 0 ) console.log("전송하지 않습니다.");
     else {
@@ -123,7 +124,8 @@ useEffect(() => {
         selectedFiles.forEach((file, i) => {
         chatFormData.append(`img`, file[i]);
       });
-  
+      
+      if(selectedFiles == undefined) setSelectedFiles(null);
       axios.post(`${API_URL}/chat/live_chat`, {
         room_id: selectedRoom,
         writer: user,
@@ -143,7 +145,6 @@ useEffect(() => {
       .catch((error) => {
         console.log("error: ", error);
       })
-      
       }
     }
   }
@@ -173,14 +174,13 @@ useEffect(() => {
   // else isSentByCurrentUser = false;
   // console.log("true/false = ", isSentByCurrentUser);
   
+  
+
+
   const closeRoom = () => {
     setSelectedUser('');
   }
 
-  const getoutRoom = async(req, res) => {    
-    await axios.delete(`${API_URL}/chat/out_room`)
-  } 
- 
 
 
   return (
@@ -193,7 +193,6 @@ useEffect(() => {
           </div>
           <FaTimes className='close_room' onClick={closeRoom}/>
         </div> 
-        <div>
         <BasicScrollToBottom className={selectedFiles.length > 0 ? "messagesOnImages" : "messages" }>
           {messages.map((message, i) => {
             // console.log("messages: ", messages);
@@ -205,13 +204,13 @@ useEffect(() => {
             // console.log("작성자: ", messageWriter);
             // console.log("내용: ", messageContent);
 
-            // const messageWriter = message.split(":")[0].trim();
+            // const messageWriter = message.split(":")[0].trim(); 
             
             // 현재 사용자와 작성자가 동일한 경우 true, 아니면 false
             const isSentByCurrentUser = messageWriter === user;
             // console.log("isSentByCurrentUser: ", isSentByCurrentUser);
             return isSentByCurrentUser ? (
-              <div className='messageContainer justifyEnd' key={i}>
+              <d className='messageContainer justifyEnd' key={i}>
                 <div className='messageBox backgroundBlue'>
                   { 
                     isIncludeImage != null ? (
@@ -231,7 +230,7 @@ useEffect(() => {
                   }
                 <p className='messageText colorWhite'>{messageContent}</p>
                 </div>
-              </div>
+              </d>
               ) : (
               <div className='messageContainer justifyStart' key={i}>
                 <div className='messageBox backgroundLight'>
@@ -259,8 +258,6 @@ useEffect(() => {
           })}
                      
         </BasicScrollToBottom>
-        </div>
-
         {selectedFiles.length > 0 ? (
           <div className="file-previews-container">
           {selectedFiles.map((preview, index) => (

@@ -95,10 +95,6 @@ export default function SignUp() {
       alert("모든 항목을 채워주세요.");
       return;
     }
-    if (nickname.length < 2 || nickname.length > 10) {
-      alert("닉네임은 2글자에서 10글자 사이어야 합니다");
-      return;
-    }
 
     const existingEmailResponse = await axios.get(`${API_URL}/user/check-email?email=${email}`);
     if (existingEmailResponse.data === true) {
