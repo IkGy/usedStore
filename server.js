@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const cors = require("cors");
 
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
@@ -39,12 +38,12 @@ const mypageRouter = require("./routes/mypage");
 const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
 
 app.use(express.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname, "client/build")));
 
+const cors = require("cors");
 const { log } = require("console");
 const { write } = require("fs");
 const { equal } = require("assert");
+app.use(cors());
 
 const url = process.env.DB_URL;
 const port = process.env.PORT;
@@ -71,11 +70,9 @@ app.use("/chat", roomRouter);
 app.use("/mypage", mypageRouter);
 app.use("/admin", adminRouter);
 
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("/", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
-app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
@@ -563,7 +560,7 @@ app.get("/user_nicknames", async (req, res) => {
 
     const nicknames = sortedUsers.map((user) => user.nickname);
     // console.log('nicknames:', nicknames);
-
+      
     res.status(200).json(nicknames);
   } catch (error) {
     console.error("Failed to fetch user nicknames", error);
@@ -571,3 +568,12 @@ app.get("/user_nicknames", async (req, res) => {
   }
 });
 
+
+
+
+
+// ---------------------------------
+
+app.get("*", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});

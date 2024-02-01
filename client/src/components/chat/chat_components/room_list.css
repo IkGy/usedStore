@@ -12,15 +12,15 @@
  
 .room_list_Main::-webkit-scrollbar-thumb {
   background: #2979FF;
-  border-radius: 20px;
+  /* border-radius: 20px; */
+  border-radius: 1.3889vw;
 }
 
 .room_list_Main::-webkit-scrollbar-track {
   background: #ddd;
-  border-radius: 20px;
+  /* border-radius: 20px; */
+  border-radius: 1.3889vw;
 }
-
-
 
 
 .room_list_Top{
