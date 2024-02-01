@@ -10,6 +10,13 @@ require("dotenv").config();
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+// const socketio = require('socket.io');
+// const io = socketio(server)
+app.use(cors({ origin: '*' }))
+
 const s3 = new S3Client({
   region: "ap-northeast-2",
   credentials: {
@@ -433,12 +440,7 @@ app.post("/sellcomplete/:_id", async (req, res) => {
 
 // ---------실시간채팅------------- //
 
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require('socket.io');
-// const socketio = require('socket.io');
-// const io = socketio(server)
-app.use(cors({ origin: '*' }))
+
 const io = new Server(server, {cors: {origin: '*'}});
 
 app.get('/chat', (req, res) => res.sendFile(`${__dirname}/routes/chat_room.js`));
