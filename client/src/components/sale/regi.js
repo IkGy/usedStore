@@ -83,7 +83,7 @@ function Regi() {
       formDataWithImage.append("seller", getCookie("login"));
 
       axios
-        .post(`${API_URL}/prod/product`, formDataWithImage)
+        .post(`${API_URL}/product`, formDataWithImage)
         .then((result) => {
           console.log(result.data);
           navigate("/");
