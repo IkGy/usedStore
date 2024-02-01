@@ -2,6 +2,17 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+const naverRouter = require("./routes/naverlogin");
+const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
+const jwtRouter = require("./routes/jwtRouter");
+const roomRouter = require("./routes/chat_room");
+const mypageRouter = require("./routes/mypage");
+const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
+const reviewRouter = require("./routes/review"); 
+const likeRouter = require("./routes/like"); 
+const reportRouter = require("./routes/report_list"); 
+
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
 const { API_URL } = require("./client/src/components/config/contansts");
@@ -14,6 +25,9 @@ const multerS3 = require("multer-s3");
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+
+const url = process.env.DB_URL;
+const port = process.env.PORT;
 
 const s3 = new S3Client({
   region: "ap-northeast-2",
@@ -34,41 +48,17 @@ const upload = multer({
   }),
 });
 
-const naverRouter = require("./routes/naverlogin");
-const productRouter = require("./routes/product");
-const userRouter = require("./routes/user");
-const jwtRouter = require("./routes/jwtRouter");
-const roomRouter = require("./routes/chat_room");
-const mypageRouter = require("./routes/mypage");
-const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
-const reviewRouter = require("./routes/review"); 
-const likeRouter = require("./routes/like"); 
-const reportRouter = require("./routes/report_list"); 
+app.set('view engine', 'html');
 
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));  
 
 const cors = require("cors");
-const { log } = require("console");
-const { write } = require("fs");
-const { equal } = require("assert");
+
 app.use(cors());
 
-const url = process.env.DB_URL;
-const port = process.env.PORT;
+app.use(express.static(path.join(__dirname, "client/build")));
 
-new MongoClient(url)
-  .connect({ useUnifiedTopology: true })
-  .then((client) => {
-    const db = client.db("popol5");
-    setDB(db);
-    console.log("DB 연결성공");
-    app.listen(process.env.PORT, function () {
-      console.log(`연결포트 : ${process.env.PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 app.use("/naver", naverRouter);
 app.use("/jwt", jwtRouter);
@@ -81,9 +71,12 @@ app.use("/review", reviewRouter);
 app.use("/like", likeRouter);
 app.use("/report", reportRouter);
 
-app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("/", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
+
+app.get("*", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
@@ -334,6 +327,19 @@ app.get("/user_nicknames", async (req, res) => {
 
 // ---------------------------------
 
-app.get("*", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
+
+
+new MongoClient(url)
+  .connect({ useUnifiedTopology: true })
+  .then((client) => {
+    const db = client.db("popol5");
+    setDB(db);
+    console.log("DB 연결성공");
+    app.listen(process.env.PORT, function () {
+      console.log(`연결포트 : ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  
