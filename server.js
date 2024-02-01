@@ -160,7 +160,7 @@ app.post("/upload", upload.single("profileIMG"), (req, res) => {
 
   // 업로드된 파일의 경로를 클라이언트에게 전송
   const fileUrl = `https://popol5.s3.ap-northeast-2.amazonaws.com/${file.filename}`;
-  res.json({ fileUrl });
+  res.send({ fileUrl });//json
 });
 
 // 등록된 상품을 받아옴
@@ -561,16 +561,12 @@ app.get("/user_nicknames", async (req, res) => {
     const nicknames = sortedUsers.map((user) => user.nickname);
     // console.log('nicknames:', nicknames);
 
-    res.status(200).json(nicknames);
+    res.status(200).send(nicknames);//json
   } catch (error) {
     console.error("Failed to fetch user nicknames", error);
     res.status(500).send("Internal Server Error");
   }
 });
-
-
-
-
 
 // ---------------------------------
 
