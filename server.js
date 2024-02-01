@@ -1,6 +1,18 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const cors = require("cors");
+const { log } = require("console");
+const { write } = require("fs");
+const { equal } = require("assert");
+
+const naverRouter = require("./routes/naverlogin");
+const productRouter = require("./routes/product");
+const userRouter = require("./routes/user");
+const jwtRouter = require("./routes/jwtRouter");
+const roomRouter = require("./routes/chat_room");
+const mypageRouter = require("./routes/mypage");
+const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
 
 const { MongoClient, ObjectId } = require("mongodb");
 const { getDB, setDB } = require("./db");
@@ -29,21 +41,21 @@ const upload = multer({
   }),
 });
 
-const naverRouter = require("./routes/naverlogin");
-const productRouter = require("./routes/product");
-const userRouter = require("./routes/user");
-const jwtRouter = require("./routes/jwtRouter");
-const roomRouter = require("./routes/chat_room");
-const mypageRouter = require("./routes/mypage");
-const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
-
 app.use(express.json());
-
-const cors = require("cors");
-const { log } = require("console");
-const { write } = require("fs");
-const { equal } = require("assert");
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.use("/naver", naverRouter);
+app.use("/jwt", jwtRouter);
+app.use("/prod", productRouter);
+app.use("/user", userRouter);
+app.use("/chat", roomRouter);
+app.use("/mypage", mypageRouter);
+app.use("/admin", adminRouter);
+
+app.get("*", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 const url = process.env.DB_URL;
 const port = process.env.PORT;
@@ -62,19 +74,7 @@ new MongoClient(url)
     console.log(err);
   });
 
-app.use("/naver", naverRouter);
-app.use("/jwt", jwtRouter);
-app.use("/prod", productRouter);
-app.use("/user", userRouter);
-app.use("/chat", roomRouter);
-app.use("/mypage", mypageRouter);
-app.use("/admin", adminRouter);
 
-app.use(express.static(path.join(__dirname, "client/build")));
-
-app.get("/", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
 
 app.post("/product", upload.array("img", 3), async (req, res) => {
   const tag = JSON.parse(req.body.tag);
@@ -570,6 +570,3 @@ app.get("/user_nicknames", async (req, res) => {
 
 // ---------------------------------
 
-app.get("*", function (요청, 응답) {
-  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
