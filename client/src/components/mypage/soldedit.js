@@ -37,7 +37,7 @@ function Regi() {
     // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
     const cookie = getCookie('login');
     axios
-      .get(`${API_URL}/productuser/${cookie}`)
+      .get(`${API_URL}/user/productuser/${cookie}`)
       .then((result) => {
         setSelectedAddress(result.data);
       })
@@ -82,7 +82,7 @@ function Regi() {
       formDataWithImage.append("seller", getCookie("login"));
 
       axios
-        .post(`${API_URL}/product`, formDataWithImage)
+        .post(`${API_URL}/prod/product`, formDataWithImage)
         .then((result) => {
           console.log(result.data);
           navigate("/");

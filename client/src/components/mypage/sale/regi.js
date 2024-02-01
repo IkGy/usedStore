@@ -35,7 +35,7 @@ function Regi() {
   useEffect(() => {
     // 여기서 cookie 값을 사용하여 POST 요청을 보냅니다.
     axios
-      .post(`${API_URL}/sellitemedit`, {
+      .post(`${API_URL}/prod/sellitemedit`, {
         _id: id,
       })
       .then((result) => {
@@ -93,7 +93,7 @@ function Regi() {
       formDataWithImage.append("_id", id);
 
       axios
-        .post(`${API_URL}/productedit`, formDataWithImage, {
+        .post(`${API_URL}/prod/productedit`, formDataWithImage, {
           headers: {
             "Content-Type": "application/json",
           },

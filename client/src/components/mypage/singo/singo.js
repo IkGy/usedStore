@@ -37,7 +37,7 @@ function Singo() {
       setSingocontent("");
     } else {
       axios
-        .post(`${API_URL}/singo`, {
+        .post(`${API_URL}/report/singo`, {
           report_type: report_type,
           reported_post: reported_post,
           report_content: report_content,
@@ -58,7 +58,7 @@ function Singo() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/singo/${product_id}/${getCookie("login")}`)
+      .get(`${API_URL}/report/singo/${product_id}/${getCookie("login")}`)
       .then((result) => {
         if (result.data === "이미신고함") {
           alert("이미 신고하신 상품입니다.");

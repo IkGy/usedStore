@@ -16,7 +16,7 @@ function Regi_address(props) {
   }, []);
 
   const nomaladdress = () => {
-    axios.get(`${API_URL}/address/${getCookie("login")}`).then((result) => {
+    axios.get(`${API_URL}/user/address/${getCookie("login")}`).then((result) => {
       props.setSelectedAddress(result.data);
     });
   };

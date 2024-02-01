@@ -197,4 +197,79 @@ router.post('/open/chattingroom/:id', async (req, res) => {
 });
 
 
+router.get("/search/:search", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {
+      $search: {
+        index: "title_index",
+        text: { query: req.params.search, path: ["title", "tags"] },
+      },
+    },
+  ];
+  let result = await db.collection("product").aggregate(검색조건).toArray();
+  res.status(201).send(result);
+});
+
+router.get("/detailsearch/:category", async (req, res) => {
+  const db = getDB();
+  let 검색조건 = [
+    {
+      $search: {
+        index: "category_index",
+        text: { query: req.params.category, path: "category" },
+      },
+    },
+  ];
+  let result = await db.collection("product").aggregate(검색조건).toArray();
+  res.status(201).send(result);
+});
+
+router.get("/product/registered", async (요청, 응답) => {
+  const db = getDB();
+  let result = await db
+    .collection("product")
+    .find({
+      seller: 요청.query.id,
+      status: "판매중",
+    })
+    .toArray();
+  응답.send(result);
+});
+
+router.post("/sellitemedit", async (req, res) => {
+  const db = getDB();
+  console.log("edit: ", req.body);
+  let product = await db.collection("product").findOne({
+    _id: new ObjectId(req.body._id),
+  });
+  console.log("product: ", product);
+  res.status(201).send(product);
+});
+
+router.post("/productedit", async (req, res) => {
+  const db = getDB();
+  const tag = JSON.parse(req.body.tag);
+  const category = JSON.parse(req.body.category);
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.body._id) },
+    {
+      $set: {
+        price: req.body.price,
+        count: req.body.count,
+        tags: tag,
+        title: req.body.title,
+        category: category,
+        comment: req.body.content,
+        product_status: req.body.status,
+        refund: req.body.change,
+        location: req.body.selectedAddress,
+        postprice: req.body.postprice,
+        updated_at: new Date(),
+      },
+    }
+  );
+  res.status(201).send("수정완료");
+});
+
 module.exports = router;

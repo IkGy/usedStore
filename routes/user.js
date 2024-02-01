@@ -20,6 +20,18 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/productuser", async (req, res) => {
+  if (req.body.cookie) {
+    const db = getDB();
+    let result = await db
+      .collection("user")
+      .findOne({ _id: new ObjectId(req.body.cookie) });
+    res.status(201).send(result.address);
+  } else {
+    res.status(404).send("");
+  }
+});
+
 router.post("/register", async (req, res) => {
   try {
     const db = getDB();
@@ -57,24 +69,6 @@ router.post("/register", async (req, res) => {
     res.status(500).send("서버 오류");
   }
 });
-
-// router.post("/edit", async (req, res) => {
-//   const db = getDB();
-//   await db.collection('user').updateOne({_id: new ObjectId(req.body.id)},{
-//     $set:{
-//       nickname:req.body.nickname,
-//       about:req.body.about,
-//       address:req.body.address,
-//       profileIMG:req.body.profileIMG
-//     }})
-//   .then(()=>{
-//     res.status(201).end();
-//   })
-//   .catch((err)=>{
-//     console.log(err);
-//     res.status(500).end();
-//   })
-// })
 
 router.post("/findpw", async (req, res) => {
   try {
@@ -154,6 +148,15 @@ router.get("/mypageview/:id", async (req, res) => {
     console.error(error);
     res.status(500).send('리뷰를 불러오지 못했습니다');
   }
+});
+
+router.get("/address/:cookie", async (req, res) => {
+  const db = getDB();
+
+  let result = await db.collection("user").findOne({
+    _id: new ObjectId(req.params.cookie),
+  });
+  res.status(201).send(result.address);
 });
 
 module.exports = router;

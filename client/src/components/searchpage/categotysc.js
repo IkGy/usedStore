@@ -10,7 +10,7 @@ function Categorysc() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_URL}/detailsearch/${category}`).then((result) => {
+    axios.get(`${API_URL}/prod/detailsearch/${category}`).then((result) => {
       console.log(result.data);
       setData(result.data);
     });

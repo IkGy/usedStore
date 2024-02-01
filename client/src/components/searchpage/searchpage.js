@@ -14,7 +14,7 @@ function Searchpage() {
 
   console.log("scoredata: ", scoredata);
   let highscore = (data) => {
-    axios.get(`${API_URL}/search/${search}`).then((result) => {
+    axios.get(`${API_URL}/prod/search/${search}`).then((result) => {
       setResultdata(result.data);
     });
     setStatus("관련순");
@@ -52,14 +52,14 @@ function Searchpage() {
   };
 
   useEffect(() => {
-    axios.get(`${API_URL}/search/${search}`).then((result) => {
+    axios.get(`${API_URL}/prod/search/${search}`).then((result) => {
       setScoredata(result.data);
       console.log(result.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get(`${API_URL}/search/${search}`).then((result) => {
+    axios.get(`${API_URL}/prod/search/${search}`).then((result) => {
       setData(result.data);
       setResultdata(result.data);
     });

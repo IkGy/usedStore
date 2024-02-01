@@ -11,7 +11,7 @@ function Registeredview(props) {
   const useId = useParams();
 
   useEffect(() => {
-    axios.get(`${API_URL}/product/registered`,{params:{id:useId.id}})
+    axios.get(`${API_URL}/prod/product/registered`,{params:{id:useId.id}})
     .then((res) => {
       setData(res.data);
     })

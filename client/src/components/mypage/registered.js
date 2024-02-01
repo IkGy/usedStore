@@ -11,7 +11,7 @@ function Registered(props) {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/product/registered`, {
+      .get(`${API_URL}/prod/product/registered`, {
         params: { id: getCookie("login") },
       })
       .then((res) => {

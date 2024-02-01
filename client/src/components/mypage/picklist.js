@@ -41,7 +41,7 @@ function Picklist() {
 
   let likedel = (product_id) => {
     axios
-      .delete(`${API_URL}/likedel/${getCookie("login")}/${product_id}`)
+      .delete(`${API_URL}/like/likedel/${getCookie("login")}/${product_id}`)
       .then((result) => {
         console.log(result.data);
         // 삭제 후 데이터 다시 불러오기
