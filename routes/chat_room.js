@@ -103,6 +103,23 @@ router.post('/live_chat', chatImages.array('img', 10), async (req,res)=>{
   })
 })
 
+router.get('/chat_log', async (req, res) => {
+  // console.log("로그에서 req.query: ", req.query);
+  const db = getDB();
+  try {
+  await db.collection('chatting').find({room_id : req.query.room_id}).toArray()
+  .then((result)=>{
+    // console.log("result: ", result);
+    return res.status(201).send(result);
+  })
+  
+}
+catch(error){
+  console.log("채팅 불러오기 실패다 이자식아");
+  res.status(500).send("대체 어떻게 조회한거야?!")
+}
+})
+
 router.post('live_chat_upload_file_to_s3', uploadFiles.array("file"), (req, res, next) => {
   let urlArr = [];
   req.files.forEach(async (v) => {

@@ -154,7 +154,6 @@ useEffect(() => {
     .then((res)=>{
       const logs = res.data;
       setMessages(logs.map((log) => ({ writer: log.writer, message: log.chat || log.message, images: log.images })));
-
     })
     .catch((error)=> {
       console.log("error: ", error);

@@ -16,6 +16,7 @@ function Registered(props) {
       })
       .then((res) => {
         setData(res.data);
+        console.log(data);
       })
       .catch((err) => {
         console.error(err);
@@ -71,7 +72,7 @@ function Registered(props) {
           </div>
         ) : (
           <div className="JSW_conentGridBox">
-            {data.map((data, i) => {
+            {data && data.map((data, i) => {
               return (
                 <div className="JSW_liststart" key={data.id}>
                   <Link to={`/detail/${data._id}`}>

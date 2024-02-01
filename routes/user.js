@@ -135,6 +135,7 @@ router.get("/mypage", async (요청, 응답) => {
   const db = getDB();
   let list = await db.collection('user').findOne({_id:new ObjectId(요청.query.id)});
   응답.send(list);
+  console.log('test');
 })
 
 router.get("/mypageview/:id", async (req, res) => {

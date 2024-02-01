@@ -227,14 +227,20 @@ router.get("/detailsearch/:category", async (req, res) => {
 
 router.get("/product/registered", async (요청, 응답) => {
   const db = getDB();
-  let result = await db
+  
+  await db
     .collection("product")
     .find({
       seller: 요청.query.id,
       status: "판매중",
     })
-    .toArray();
-  응답.send(result);
+    .toArray()
+    .then((result)=>{
+      응답.send(result);
+    })
+    .catch((error)=>{
+      console.error(error);
+    })
 });
 
 router.post("/sellitemedit", async (req, res) => {

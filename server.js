@@ -6,7 +6,8 @@ const naverRouter = require("./routes/naverlogin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 const jwtRouter = require("./routes/jwtRouter");
-const roomRouter = require("./routes/chat_room");
+const chatRouter = require("./routes/chat_room");
+const roomRouter = require("./routes/room_list");
 const mypageRouter = require("./routes/mypage");
 const adminRouter = require("./routes/admin"); // 관리자 페이지용 라우터입니다.
 const reviewRouter = require("./routes/review"); 
@@ -64,13 +65,13 @@ app.use("/naver", naverRouter);
 app.use("/jwt", jwtRouter);
 app.use("/prod", productRouter);
 app.use("/user", userRouter);
-app.use("/chat", roomRouter);
+app.use("/chat", chatRouter);
+app.use("/chat_room", roomRouter);
 app.use("/mypage", mypageRouter);
 app.use("/admin", adminRouter);
 app.use("/review", reviewRouter);
 app.use("/like", likeRouter);
 app.use("/report", reportRouter);
-
 
 app.get("/", function (요청, 응답) {
   응답.sendFile(path.join(__dirname, "/client/build/index.html"));
@@ -198,7 +199,6 @@ app.post("/edit", upload.single("profileIMG"), async (req, res) => {
 app.use(cors({ origin: '*' }))
 const io = new Server(server, {cors: {origin: '*'}});
 
-app.get('/chat', (req, res) => res.sendFile(`${__dirname}/routes/chat_room.js`));
 const roomInfo = [];
 // Socket.io 설정
 io.on('connection', (socket) => {
@@ -213,7 +213,6 @@ io.on('connection', (socket) => {
     socket.join(room);
     roomInfo[socket.id] = room;
     console.log(roomInfo[socket.id]);
-
   });
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
@@ -237,95 +236,6 @@ io.on('connection', (socket) => {
 });
 
 server.listen(5000, () => console.log("채팅서버 연결"));
-
-
-
-// ------------------------------- //
-
-
-// 채팅을 위한 친구들-----------------
-
-
-
-app.get('/room_list', async(req, res) => {
-  const db = getDB();
-  // console.log("req.query: ", req.query);
-  let result = await db.collection('chattingroom').find({
-    user: req.query.id
-  }).toArray()
-  // console.log("roomList의 result: ", result);
-  res.status(201).send(result)
-})
-
-app.get('/chat_room', async(req, res) => {
-  const db = getDB();
-  // console.log("req.query: ", req.query);
-  const user_ID = req.query.id;
-  // console.log("user_ID: ", user_ID);
-  try {
-  let result = await db.collection('chattingroom').find({
-    user: user_ID
-  }).toArray()
-  res.status(201).end();
-}
-catch(error){
-  console.log("채팅 불러오기 실패다 이자식아");
-  res.status(500).send("대체 어떻게 조회한거야?!")
-}
-})
-
-app.get('/chat_log', async (req, res) => {
-  // console.log("로그에서 req.query: ", req.query);
-  const db = getDB();
-  try {
-  await db.collection('chatting').find({room_id : req.query.room_id}).toArray()
-  .then((result)=>{
-    // console.log("result: ", result);
-    return res.status(201).send(result);
-  })
-  
-}
-catch(error){
-  console.log("채팅 불러오기 실패다 이자식아");
-  res.status(500).send("대체 어떻게 조회한거야?!")
-}
-})
-
-// 채팅방에서 닉네임을 가져오기 위한 친구
-app.get("/user_nicknames", async (req, res) => {
-  const db = getDB();
-  let userIds = req.query.userIds;
-
-  // userIds가 문자열 형태의 배열인 경우 파싱하여 배열로 변환
-  if (typeof userIds === 'string') {
-    userIds = JSON.parse(userIds);
-  }
-
-  // console.log('userIds:', userIds);
-  // console.log('userIds type:', typeof userIds);
-
-  try {
-    // userIds를 배열로 변환
-    const userIdsArray = Array.isArray(userIds) ? userIds : [userIds];
-    // console.log('userIdsArray:', userIdsArray);
-
-    const users = await db.collection("user").find({ _id: { $in: userIdsArray.map(id => new ObjectId(id)) } }).toArray();
-    // console.log('users:', users);
-
-    // 클라이언트에서 전송한 userIds 배열의 순서를 기반으로 정렬
-    const sortedUsers = userIdsArray.map(id => users.find(user => user._id.toString() === id));
-
-    const nicknames = sortedUsers.map((user) => user.nickname);
-    // console.log('nicknames:', nicknames);
-      
-    res.status(200).json(nicknames);
-  } catch (error) {
-    console.error("Failed to fetch user nicknames", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// ---------------------------------
 
 
 

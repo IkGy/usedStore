@@ -22,38 +22,42 @@ function Room_list({ onSelectUser, onSelectRoom }) {
   const [user, setUser] = useState([]);
   const [room, setRoom] = useState('');
 
+  const getData = async()=>{
+    await axios.get(`${API_URL}/chat_room/room_list`, {
+      params: { id: getCookie("login") },
+    })
+    .then(async (res) => {
+      console.log("조회성공");
+      console.log(res.data);
+      setMyRoom_List(res.data);
+
+      const updatedUsers = [];
+      for (let i = 0; i < res.data.length; i++) {
+        const filteruser = res.data[i].user.filter(
+          (element) => element !== getCookie("login")
+        );
+        updatedUsers.push(...filteruser);
+      }
+      setUser(updatedUsers);
+      const nicknames = await getNicknames(updatedUsers);
+      setUser(nicknames);
+
+      console.log("updatedUsers: ", updatedUsers);
+      console.log("user: ", nicknames);
+    })
+    .catch((error) => {
+      console.error("Failed to fetch room list", error);
+    });
+  }
 
   useEffect(() => {
-    axios.get(`${API_URL}/room_list`, {
-        params: { id: getCookie("login") },
-      })
-      .then(async (res) => {
-        console.log("조회성공");
-        setMyRoom_List(res.data);
-  
-        const updatedUsers = [];
-        for (let i = 0; i < res.data.length; i++) {
-          const filteruser = res.data[i].user.filter(
-            (element) => element !== getCookie("login")
-          );
-          updatedUsers.push(...filteruser);
-        }
-        setUser(updatedUsers);
-        const nicknames = await getNicknames(updatedUsers);
-        setUser(nicknames);
-  
-        console.log("updatedUsers: ", updatedUsers);
-        console.log("user: ", nicknames);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch room list", error);
-      });
+    getData();
   }, []);
   
 
   const getNicknames = async (userIds) => {
     try {
-      const response = await axios.get(`${API_URL}/user_nicknames`, {
+      const response = await axios.get(`${API_URL}/chat_room/user_nicknames`, {
         params: { userIds: userIds },
       });
       return response.data;
@@ -68,7 +72,7 @@ function Room_list({ onSelectUser, onSelectRoom }) {
     console.log("user.id: ", id);  
     socket = io(ENDPOINT)
 
-    await axios.get(`${API_URL}/chat_log`, {params:{ room_id: id }})
+    await axios.get(`${API_URL}/chat/chat_log`, {params:{ room_id: id }})
     .then((res)=>{
       console.log("res: ", res);
       console.log("res.data: ", res.data);
@@ -99,7 +103,7 @@ function Room_list({ onSelectUser, onSelectRoom }) {
       <h1 className="room_list_name">나의 채팅방</h1>
     </div>
     <div className="bdr"> 
-    {myRoom_list.map((a, i) => {
+    {myRoom_list && myRoom_list.map((a, i) => {
       return <div
         key={a._id}
         onClick={() => {
