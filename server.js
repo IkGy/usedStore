@@ -61,15 +61,6 @@ new MongoClient(url)
   .catch((err) => {
     console.log(err);
   });
-  
-  app.use(express.static(path.join(__dirname, "client/build")));
-  
-  app.get("/", function (요청, 응답) {
-    응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-  });
-  app.get("*", function (요청, 응답) {
-    응답.sendFile(path.join(__dirname, "/client/build/index.html"));
-  });
 
 app.use("/naver", naverRouter);
 app.use("/jwt", jwtRouter);
@@ -79,6 +70,11 @@ app.use("/chat", roomRouter);
 app.use("/mypage", mypageRouter);
 app.use("/admin", adminRouter);
 
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("/", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 app.post("/product", upload.array("img", 3), async (req, res) => {
   const tag = JSON.parse(req.body.tag);
@@ -578,3 +574,6 @@ app.get("/user_nicknames", async (req, res) => {
 
 // ---------------------------------
 
+app.get("*", function (요청, 응답) {
+  응답.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
