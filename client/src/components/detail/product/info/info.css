@@ -14,6 +14,9 @@
 
 .KJH_if_left_section {
     flex-basis: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .KJH_if_right_section {
@@ -163,7 +166,7 @@
 
 .KJH_if_left_bottom_content_section > li:hover {
     list-style: none;
-    background-color: #ffd0d0;
+    background-color: #d3d3ff;
 
     .KJH_if_left_bottom_content_link_section > img {
         border: 0;
