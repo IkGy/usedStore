@@ -1,28 +1,28 @@
 import { getCookie } from "../../useCookies";
-import { API_URL } from '../config/contansts';
-import axios from 'axios';
+import { API_URL } from "../config/contansts";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import no from "./image/6179016.png";
 
 function Registeredview(props) {
   const navigate = useNavigate();
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const useId = useParams();
 
   useEffect(() => {
-    axios.get(`${API_URL}/prod/product/registered`,{params:{id:useId.id}})
-    .then((res) => {
-      setData(res.data);
-    })
-    .catch((err) => {
-      console.error(err);
-      console.log("실패");
-    });
+    axios
+      .get(`${API_URL}/prod/product/registered`, { params: { id: useId.id } })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log("실패");
+      });
   }, []);
 
-  
-  const [end ,setEnd] = useState("");
+  const [end, setEnd] = useState("");
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
@@ -39,8 +39,7 @@ function Registeredview(props) {
     }
   }, [isInitialLoad]);
 
-
-  return(
+  return (
     <div className="JSW_picklist">
       <div className="JSW_picklistname">
         등록된 상품 <span>({data.length})</span>
@@ -59,12 +58,21 @@ function Registeredview(props) {
                 <div className="JSW_liststart" key={data.id}>
                   <Link to={`/detail/${data._id}`}>
                     <div className="JSW_contentGridBox_img">
-                      <img src={data.images[0]} width="100%"></img>
+                      <img
+                        style={
+                          data.status === "판매중"
+                            ? { filter: "brightness(100%)" }
+                            : { filter: "brightness(50%)" }
+                        }
+                        src={data.images[0]}
+                        width="100%"
+                      ></img>
                     </div>
-                    <div className="JSW_AnameBox">
+                    {data.status === "판매중" ? <div className="JSW_AnameBox">
                       <div className="JSW_Aname">{data.title}</div>
                       <div className="JSW_Aname">{data.price}원</div>
-                    </div>
+                    </div> : <div className="JSW_noAnameBox">판매완료</div>}
+                    
                   </Link>
                 </div>
               );
@@ -73,7 +81,7 @@ function Registeredview(props) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Registeredview
+export default Registeredview;

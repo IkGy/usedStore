@@ -61,6 +61,7 @@ function Info(props) {
           <div className="KJH_if_left_info">
             <div>
               <div className="KJH_if_left_top_title">상품 정보</div>
+              <div>
                 <div className="KJH_if_left_content_top">
                   {/* 판매자 상품 정보 설명 내용 데이터 */}
                   {info.comment}
@@ -122,6 +123,7 @@ function Info(props) {
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
             <div className="KJH_if_left_bottom">
               <div className="KJH_if_left_bottom_title_section">

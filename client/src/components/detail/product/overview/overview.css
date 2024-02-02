@@ -18,7 +18,20 @@
     align-items: center;
     justify-self: center;
   }
-  
+  .KJH_item_sell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    background: rgba(103, 103, 103, 0.793);
+    border: 0.2vw solid #2748b0;
+    width: 100%;
+    margin-right: 0.6vw;
+    height: 3.5vw;
+    color: white;
+    font-weight: 900;
+    font-size: 1.2vw;
+  }
   .KJH_item_info {
     display: flex;
     width: 100%;

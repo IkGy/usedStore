@@ -11,6 +11,14 @@
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.456);
 }
+.JSW_noAnameBox{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'SejonghospitalBold';
+  font-size: 1.4vw;
+  padding: 1vw
+}
 
 .fa-xmark {
   cursor: pointer;
@@ -1016,5 +1024,13 @@ justify-content: space-between;
   .JSW_nohoogibox img {
     width: 30vw;
     height: 20vw;
+  }
+  .JSW_noAnameBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'SejonghospitalBold';
+    font-size: 3vw;
+    padding: 2vw
   }
 }
