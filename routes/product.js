@@ -278,4 +278,18 @@ router.post("/productedit", async (req, res) => {
   res.status(201).send("수정완료");
 });
 
+app.post("/sellcomplete/:_id", async (req, res) => {
+  const db = getDB();
+  await db.collection("product").updateOne(
+    { _id: new ObjectId(req.params._id) },
+    {
+      $set: {
+        status: "판매완료",
+      },
+    }
+  );
+
+  res.status(201).send("판매완료!");
+});
+
 module.exports = router;

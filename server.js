@@ -28,7 +28,6 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 
 const url = process.env.DB_URL;
-const port = process.env.PORT;
 
 const s3 = new S3Client({
   region: "ap-northeast-2",
@@ -252,4 +251,3 @@ new MongoClient(url)
   .catch((err) => {
     console.log(err);
   });
-  
