@@ -231,8 +231,7 @@ router.get("/product/registered", async (요청, 응답) => {
   await db
     .collection("product")
     .find({
-      seller: 요청.query.id,
-      status: "판매중",
+      seller: 요청.query.id
     })
     .toArray()
     .then((result)=>{
@@ -280,7 +279,6 @@ router.post("/productedit", async (req, res) => {
 
 router.post("/sellcomplete/:_id", async (req, res) => {
   const db = getDB();
-  
   await db.collection("product").updateOne(
     { _id: new ObjectId(req.params._id) },
     {
