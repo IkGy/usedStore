@@ -278,7 +278,7 @@ router.post("/productedit", async (req, res) => {
   res.status(201).send("수정완료");
 });
 
-app.post("/sellcomplete/:_id", async (req, res) => {
+router.post("/sellcomplete/:_id", async (req, res) => {
   const db = getDB();
   await db.collection("product").updateOne(
     { _id: new ObjectId(req.params._id) },
