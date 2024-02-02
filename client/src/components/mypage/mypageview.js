@@ -126,16 +126,12 @@ function Mypageview() {
                     <div>상세정보</div>
                   </div>
                   <div className="JSW_userlist">별명 : {data.nickname}</div>
-                  <div className="JSW_userlist">
-                    전화번호 : {data.phone_number}
+                  
+                  <div className="JSW_useraboutbox2">
+                  <div>소개글</div>
+                    <div className="JSW_userabout2">{data.about}</div>
                   </div>
-                  <div className="JSW_userlist">이메일 : {data.email}</div>
-                  <div className="JSW_userlist">주소지 : {data.address}</div>
                 </div>
-              </div>
-              <div className="JSW_useraboutbox">
-                <div>소개글 :</div>
-                <div className="JSW_userabout">{data.about}</div>
               </div>
             </div>
 

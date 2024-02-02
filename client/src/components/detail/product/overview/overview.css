@@ -1,91 +1,422 @@
 /*** 전체 설정 ***/
 .KJH_detail_slide_section {
-    display: flex;
-  }
-  
-  .KJH_item_section {
-    display: flex;
-    width: 100%;
-    padding: 2vh 0;
-    transition: all 0.3s;
-  }
-  
-  /*** 상품정보 ***/
-  
-  .KJH_item_info_section {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-self: center;
-  }
+  display: flex;
+}
+
+.KJH_item_section {
+  display: flex;
+  width: 100%;
+  padding: 2vh 0;
+  transition: all 0.3s;
+}
+
+/*** 상품정보 ***/
+
+.KJH_item_info_section {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-self: center;
+}
+
+.KJH_item_info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.KJH_item_info_top {
+  margin: 0 0 0 3vw;
+  height: 100%;
+}
+
+.KJH_item_title_section {
+  padding-bottom: 1vw;
+  border-bottom: 0.1em solid #e6e6e6;
+  width: 100%;
+}
+
+.KJH_item_title_name {
+  font-size: 1.3vw;
+  margin-bottom: 1vh;
+  font-weight: 500;
+}
+
+.KJH_item_title_price_section {
+  display: flex;
+  align-items: flex-end;
+}
+
+.KJH_item_title_price_info {
+  font-size: 2.5vw;
+  font-weight: 700;
+}
+
+.KJH_item_title_price_info > span {
+  padding-left: 5px;
+  font-size: 18px;
+}
+
+.KJH_item_info_detail_info {
+  height: 3vh;
+  margin: 1vh 0;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1vh;
+  border-bottom: 0.1em solid #e6e6e6;
+}
+
+.KJH_item_info_detail_status {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.KJH_item_info_detail_status_icon {
+  display: flex;
+  align-items: center;
+  color: rgb(204, 204, 204);
+  font-size: 1vw;
+  height: 100%;
+}
+
+.KJH_item_info_detail_status_icon > svg {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3vw;
+}
+
+.KJH_item_info_detail_status_num {
+  display: flex;
+  margin: 0 10px 0 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.8vw;
+  font-weight: 600;
+  align-items: center;
+  color: #666666;
+  height: 100%;
+}
+
+.KJH_item_info_detail_info > button {
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  font-synthesis: none;
+  direction: ltr;
+  text-align: left;
+  color: rgb(33, 33, 33);
+  outline: 0;
+  border: 0;
+}
+
+.KJH_item_sell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5vw;
+  background: rgba(103, 103, 103, 0.793);
+  border: 0.2vw solid #2748b0;
+  width: 100%;
+  margin-right: 0.6vw;
+  height: 3.5vw;
+  color: white;
+  font-weight: 900;
+  font-size: 1.2vw;
+}
+
+.KJH_item_info_report,
+.KJH_item_info_report_text {
+  color: #777777;
+  font-size: 1vw;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.KJH_item_info_report svg {
+  margin-right: 3px;
+  width: 1vw;
+  height: 1vw;
+  vertical-align: bottom;
+  border-style: none;
+}
+
+.KJH_item_info_status_section {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  vertical-align: baseline;
+}
+
+.KJH_item_info_status_info_share {
+  position: relative;
+  justify-content: space-between;
+}
+
+.KJH_item_info_status_info,
+.KJH_item_info_status_info_share {
+  display: flex;
+  margin-bottom: 2vh;
+  width: 100%;
+}
+
+.KJH_item_info_status_title_section {
+  display: flex;
+}
+
+.KJH_item_info_item_status_title {
+  position: relative;
+  width: 5vw;
+  padding-left: 1vw;
+  color: #888888;
+  font-size: 0.8vw;
+  margin-right: 0.8vw;
+}
+
+.KJH_item_info_item_status {
+  position: relative;
+  display: flex;
+  direction: ltr;
+  text-align: left;
+  width: 25vw;
+  font-size: 0.8vw;
+  font-weight: 700;
+  color: #333333;
+  outline: 0px;
+}
+
+.KJH_item_info_share_section {
+  text-align: right;
+}
+
+.KJH_item_info_share_section > svg {
+  color: #777777;
+  margin-right: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease;
+  height: 3.5vh;
+  border-radius: 0.2vw;
+  padding: 0.2vw;
+  width: 1.6vw;
+}
+
+.KJH_item_info_share_section > svg:hover {
+  background-color: black;
+  color: white;
+}
+
+.KJH_item_info_shear_link {
+  position: absolute;
+  width: 5.5vw;
+  top: -45px;
+  text-align: center;
+  right: 0;
+  background-color: black;
+  color: white;
+  font-size: 0.7vw;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.5vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.5s linear 0.5s, opacity 0.5s linear;
+}
+
+.KJH_item_info_shear_link.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s linear;
+}
+
+.KJH_item_btn_section {
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.1em solid #e6e6e6;
+  padding-top: 1.2vh;
+  margin-top: 2.5vh;
+}
+
+.KJH_item_btn_section > button {
+  cursor: pointer;
+  outline: none;
+}
+
+.KJH_item_like_section_true,
+.KJH_item_like_section_false {
+  display: flex;
+  align-items: center;
+  margin-right: 0.8vw;
+}
+
+.KJH_item_like_section_true > svg,
+.KJH_item_like_section_false > svg {
+  border-radius: 0.2vw;
+  padding: 0.5vw;
+  width: 3.8vw;
+  height: 7.2vh;
+  transition: all 0.3s ease;
+}
+
+.KJH_item_like_section_false > svg {
+  background-color: #dddddd;
+  border: 0.15em solid #dddddd;
+  color: white;
+}
+
+.KJH_item_like_section_false > svg:hover {
+  color: #ff4c4c;
+  background-color: #fff09b;
+  cursor: pointer;
+  border: 0.15em solid #ff4c4c;
+}
+
+.KJH_item_like_section_true > svg {
+  color: #ff4c4c;
+  background-color: #fff09b;
+  cursor: pointer;
+  border: 0.15em solid #ff4c4c;
+}
+
+.KJH_item_btn_select_section {
+  position: relative;
+  flex: 1 1 0%;
+  font-weight: 600;
+  margin-right: 1vw;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  align-items: center;
+}
+
+.KJH_item_btn_select_section > a {
+  height: 7.5vh;
+  width: 100%;
+}
+
+.KJH_item_btn_select_talk {
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: 1vw;
+  cursor: pointer;
+  border-radius: 0.2vw;
+  transition: all 0.3s;
+}
+
+.KJH_item_btn_select_talk:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.KJH_item_btn_select_talk {
+  background: rgb(255, 164, 37);
+  border: 0.2vw solid rgb(243, 150, 20);
+}
+
+.KJH_item_btn_select_talk > svg {
+  margin-right: 0.6vw;
+  width: 1.8em;
+  height: 1.8em;
+}
+
+@media (max-width: 1024px) {
   .KJH_item_sell {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 0.5vw;
     background: rgba(103, 103, 103, 0.793);
-    border: 0.2vw solid #2748b0;
+    border: 0.3vw solid #2748b0;
     width: 100%;
     margin-right: 0.6vw;
-    height: 3.5vw;
+    height: 5vw;
     color: white;
     font-weight: 900;
-    font-size: 1.2vw;
+    font-size: 2vw;
   }
-  .KJH_item_info {
+
+  .KJH_detail_slide_section {
+    display: block;
+  }
+
+  .KJH_item_section {
+    position: relative;
     display: flex;
+    padding: 2vh 0;
     width: 100%;
+  }
+
+  /*** 상품정보 ***/
+
+  .KJH_item_info_section {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  .KJH_item_info {
+    position: relative;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   .KJH_item_info_top {
-    margin: 0 0 0 3vw;
+    margin-left: 0;
     height: 100%;
   }
-  
+
   .KJH_item_title_section {
-    padding-bottom: 1vw;
+    padding-bottom: 1.4vw;
     border-bottom: 0.1em solid #e6e6e6;
     width: 100%;
   }
-  
+
   .KJH_item_title_name {
-    font-size: 1.3vw;
+    font-size: 2.2vw;
     margin-bottom: 1vh;
-    font-weight: 500;
+    font-weight: 700;
   }
-  
+
   .KJH_item_title_price_section {
     display: flex;
     align-items: flex-end;
   }
-  
+
   .KJH_item_title_price_info {
-    font-size: 2.5vw;
+    font-size: 4.5vw;
     font-weight: 700;
   }
-  
+
   .KJH_item_title_price_info > span {
     padding-left: 5px;
     font-size: 18px;
   }
-  
+
   .KJH_item_info_detail_info {
-    height: 3vh;
-    margin: 1vh 0;
+    height: 5vh;
+    margin: 2vh 0;
     display: flex;
     justify-content: space-between;
     padding-bottom: 1vh;
     border-bottom: 0.1em solid #e6e6e6;
   }
-  
+
   .KJH_item_info_detail_status {
     height: 100%;
     display: flex;
     align-items: center;
   }
-  
+
   .KJH_item_info_detail_status_icon {
     display: flex;
     align-items: center;
@@ -93,25 +424,25 @@
     font-size: 1vw;
     height: 100%;
   }
-  
+
   .KJH_item_info_detail_status_icon > svg {
-    width: 1em;
-    height: 1em;
-    margin-right: 0.3vw;
+    width: 2em;
+    height: 2em;
+    margin-right: 0.8vw;
   }
-  
+
   .KJH_item_info_detail_status_num {
     display: flex;
     margin: 0 10px 0 0;
     padding: 0;
     border: 0;
-    font-size: 0.8vw;
+    font-size: 1.6vw;
     font-weight: 600;
     align-items: center;
     color: #666666;
     height: 100%;
   }
-  
+
   .KJH_item_info_detail_info > button {
     background-color: transparent;
     cursor: pointer;
@@ -124,177 +455,158 @@
     outline: 0;
     border: 0;
   }
-  
-  .KJH_item_sell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5vw;
-    background: rgba(103, 103, 103, 0.793);
-    border: 0.2vw solid #2748b0;
-    width: 100%;
-    margin-right: 0.6vw;
-    height: 3.5vw;
-    color: white;
-    font-weight: 900;
-    font-size: 1.2vw;
-  }
-  
+
   .KJH_item_info_report,
   .KJH_item_info_report_text {
     color: #777777;
-    font-size: 1vw;
+    font-size: 1.5vw;
     font-weight: 700;
     display: flex;
+    -webkit-box-align: center;
     align-items: center;
   }
-  
+
   .KJH_item_info_report svg {
     margin-right: 3px;
-    width: 1vw;
-    height: 1vw;
+    width: 1.6vw;
+    height: 1.6vw;
     vertical-align: bottom;
     border-style: none;
   }
-  
+
   .KJH_item_info_status_section {
     margin: 0px;
     padding: 0px;
     border: 0px;
-    vertical-align: baseline;
-  }
-  
-  .KJH_item_info_status_info_share {
-    position: relative;
+    display: flex;
     justify-content: space-between;
   }
-  
+
+  .KJH_item_info_status_info_share {
+    position: relative;
+  }
+
   .KJH_item_info_status_info,
   .KJH_item_info_status_info_share {
-    display: flex;
-    margin-bottom: 2vh;
+    display: block;
+    margin-bottom: 0;
     width: 100%;
   }
-  
+
   .KJH_item_info_status_title_section {
-    display: flex;
+    display: block;
   }
-  
+
   .KJH_item_info_item_status_title {
     position: relative;
-    width: 5vw;
-    padding-left: 1vw;
+    padding-left: 0;
     color: #888888;
-    font-size: 0.8vw;
-    margin-right: 0.8vw;
+    font-size: 1.6vw;
+    width: 12vw;
+    margin: 0 0.8vw 1vh 0;
   }
-  
+
   .KJH_item_info_item_status {
     position: relative;
     display: flex;
     direction: ltr;
     text-align: left;
-    width: 25vw;
-    font-size: 0.8vw;
+    width: 15vw;
+    font-size: 2vw;
     font-weight: 700;
     color: #333333;
     outline: 0px;
   }
-  
+
   .KJH_item_info_share_section {
     text-align: right;
+    margin-bottom: 2vh;
   }
-  
+
   .KJH_item_info_share_section > svg {
     color: #777777;
     margin-right: 0;
     cursor: pointer;
     position: absolute;
     right: 0;
+    top: 4vw;
     transition: all 0.3s ease;
-    height: 3.5vh;
-    border-radius: 0.2vw;
-    padding: 0.2vw;
-    width: 1.6vw;
+    border-radius: 0.4vw;
+    padding: 5px;
+    border: 0;
+    width: 2.8vw;
   }
-  
+
   .KJH_item_info_share_section > svg:hover {
     background-color: black;
     color: white;
   }
-  
+
   .KJH_item_info_shear_link {
     position: absolute;
-    width: 5.5vw;
-    top: -45px;
+    width: 12vw;
+    top: 0;
     text-align: center;
     right: 0;
-    background-color: black;
+    background-color: #606060;
     color: white;
-    font-size: 0.7vw;
+    font-size: 1.5vw;
     font-weight: 700;
     border-radius: 10px;
     padding: 0.5vw;
     opacity: 0;
     visibility: hidden;
-    transition: visibility 0.5s linear 0.5s, opacity 0.5s linear;
+    transition: all 0.8s;
   }
-  
+
   .KJH_item_info_shear_link.show {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s linear;
   }
-  
+
   .KJH_item_btn_section {
     display: flex;
     justify-content: space-between;
-    border-top: 0.1em solid #e6e6e6;
+    border-top: 0;
     padding-top: 1.2vh;
-    margin-top: 2.5vh;
+    margin-top: 0;
   }
-  
+
   .KJH_item_btn_section > button {
     cursor: pointer;
     outline: none;
   }
-  
+
   .KJH_item_like_section_true,
   .KJH_item_like_section_false {
     display: flex;
     align-items: center;
-    margin-right: 0.8vw;
+    margin-right: 1vw;
   }
-  
+
   .KJH_item_like_section_true > svg,
   .KJH_item_like_section_false > svg {
-    border-radius: 0.2vw;
+    border-radius: 0.8vw;
     padding: 0.5vw;
-    width: 3.8vw;
+    width: 9vw;
     height: 7.2vh;
     transition: all 0.3s ease;
   }
-  
+
   .KJH_item_like_section_false > svg {
     background-color: #dddddd;
     border: 0.15em solid #dddddd;
     color: white;
   }
-  
+
   .KJH_item_like_section_false > svg:hover {
     color: #ff4c4c;
     background-color: #fff09b;
     cursor: pointer;
     border: 0.15em solid #ff4c4c;
   }
-  
-  .KJH_item_like_section_true > svg {
-    color: #ff4c4c;
-    background-color: #fff09b;
-    cursor: pointer;
-    border: 0.15em solid #ff4c4c;
-  }
-  
+
   .KJH_item_btn_select_section {
     position: relative;
     flex: 1 1 0%;
@@ -302,17 +614,18 @@
     margin-right: 1vw;
     display: flex;
     justify-content: center;
+    height: 7.5vh;
     font-size: 18px;
     align-items: center;
   }
-  
-  .KJH_item_btn_select_section > a {
-    height: 7.5vh;
-    width: 100%;
+
+  .KJH_item_btn_select_section:last-child {
+    margin-right: 0;
   }
-  
+
   .KJH_item_btn_select_talk {
     width: 100%;
+    min-height: 25px;
     height: 100%;
     font-weight: 700;
     color: rgb(255, 255, 255);
@@ -320,127 +633,136 @@
     align-items: center;
     justify-content: center;
     text-align: left;
-    font-size: 1vw;
+    font-size: 2.6vw;
     cursor: pointer;
-    border-radius: 0.2vw;
+    border-radius: 0.6vw;
     transition: all 0.3s;
   }
-  
+
   .KJH_item_btn_select_talk:hover {
     background-color: transparent;
     color: black;
   }
-  
+
   .KJH_item_btn_select_talk {
     background: rgb(255, 164, 37);
-    border: 0.2vw solid rgb(243, 150, 20);
+    border: 0.3vw solid rgb(243, 150, 20);
   }
-  
+
   .KJH_item_btn_select_talk > svg {
-    margin-right: 0.6vw;
-    width: 1.8em;
-    height: 1.8em;
+    margin-right: 1vw;
   }
-  
-  @media (max-width: 1024px) {
-    .KJH_detail_slide_section {
-      display: block;
+
+  @media (max-width: 500px) {
+    .KJH_item_sell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0.8vw;
+      background: rgba(103, 103, 103, 0.793);
+      border: 0.6vw solid #2748b0;
+      width: 100%;
+      margin: 0.6vw;
+      height: 8vw;
+      color: white;
+      font-weight: 900;
+      font-size: 3vw;
     }
-  
+
     .KJH_item_section {
       position: relative;
       display: flex;
       padding: 2vh 0;
       width: 100%;
     }
-  
+
     /*** 상품정보 ***/
-  
+
     .KJH_item_info_section {
       position: relative;
       flex-grow: 1;
     }
-  
+
     .KJH_item_info {
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-  
+
     .KJH_item_info_top {
       margin-left: 0;
       height: 100%;
     }
-  
+
     .KJH_item_title_section {
       padding-bottom: 1.4vw;
       border-bottom: 0.1em solid #e6e6e6;
       width: 100%;
     }
-  
+
     .KJH_item_title_name {
-      font-size: 2.2vw;
+      font-size: 4vw;
       margin-bottom: 1vh;
       font-weight: 700;
     }
-  
+
     .KJH_item_title_price_section {
       display: flex;
       align-items: flex-end;
     }
-  
+
     .KJH_item_title_price_info {
-      font-size: 4.5vw;
+      font-size: 9vw;
       font-weight: 700;
     }
-  
+
     .KJH_item_title_price_info > span {
       padding-left: 5px;
       font-size: 18px;
     }
-  
+
     .KJH_item_info_detail_info {
-      height: 5vh;
-      margin: 2vh 0;
+      height: auto;
+      margin: 1.2vh 0;
       display: flex;
       justify-content: space-between;
-      padding-bottom: 1vh;
-      border-bottom: 0.1em solid #e6e6e6;
+      padding-bottom: 0;
+      border-bottom: 0;
     }
-  
+
     .KJH_item_info_detail_status {
       height: 100%;
       display: flex;
       align-items: center;
     }
-  
+
     .KJH_item_info_detail_status_icon {
       display: flex;
       align-items: center;
       color: rgb(204, 204, 204);
-      font-size: 1vw;
+      font-size: 2vw;
       height: 100%;
     }
-  
+
     .KJH_item_info_detail_status_icon > svg {
       width: 2em;
       height: 2em;
       margin-right: 0.8vw;
     }
-  
+
     .KJH_item_info_detail_status_num {
       display: flex;
       margin: 0 10px 0 0;
       padding: 0;
       border: 0;
-      font-size: 1.6vw;
+      font-size: 3.5vw;
       font-weight: 600;
       align-items: center;
       color: #666666;
       height: 100%;
     }
-  
+
     .KJH_item_info_detail_info > button {
       background-color: transparent;
       cursor: pointer;
@@ -453,158 +775,158 @@
       outline: 0;
       border: 0;
     }
-  
+
     .KJH_item_info_report,
     .KJH_item_info_report_text {
       color: #777777;
-      font-size: 1.5vw;
+      font-size: 2.6vw;
       font-weight: 700;
       display: flex;
       -webkit-box-align: center;
       align-items: center;
     }
-  
+
     .KJH_item_info_report svg {
       margin-right: 3px;
-      width: 1.6vw;
-      height: 1.6vw;
+      width: 3vw;
+      height: 3vw;
       vertical-align: bottom;
       border-style: none;
     }
-  
+
     .KJH_item_info_status_section {
       margin: 0px;
-      padding: 0px;
+      padding: 1em 0 0 0;
       border: 0px;
       display: flex;
       justify-content: space-between;
+      border-top: 0.1em solid #e6e6e6;
     }
-  
+
     .KJH_item_info_status_info_share {
       position: relative;
     }
-  
+
     .KJH_item_info_status_info,
     .KJH_item_info_status_info_share {
       display: block;
       margin-bottom: 0;
       width: 100%;
     }
-  
+
     .KJH_item_info_status_title_section {
       display: block;
     }
-  
+
     .KJH_item_info_item_status_title {
       position: relative;
       padding-left: 0;
       color: #888888;
-      font-size: 1.6vw;
-      width: 12vw;
+      font-size: 2.5vw;
+      width: 100%;
       margin: 0 0.8vw 1vh 0;
     }
-  
+
     .KJH_item_info_item_status {
       position: relative;
       display: flex;
       direction: ltr;
       text-align: left;
-      width: 15vw;
-      font-size: 2vw;
+      width: 100%;
+      font-size: 3.5vw;
       font-weight: 700;
       color: #333333;
       outline: 0px;
     }
-  
+
     .KJH_item_info_share_section {
       text-align: right;
       margin-bottom: 2vh;
     }
-  
+
     .KJH_item_info_share_section > svg {
       color: #777777;
-      margin-right: 0;
+      margin-right: 1vw;
       cursor: pointer;
       position: absolute;
       right: 0;
       top: 4vw;
       transition: all 0.3s ease;
-      border-radius: 0.4vw;
-      padding: 5px;
+      height: 3vh;
+      border-radius: 0.8vw;
+      padding: 1vw;
       border: 0;
-      width: 2.8vw;
+      width: 5vw;
     }
-  
+
     .KJH_item_info_share_section > svg:hover {
       background-color: black;
       color: white;
     }
-  
+
     .KJH_item_info_shear_link {
       position: absolute;
-      width: 12vw;
-      top: 0;
+      width: auto;
+      top: -15px;
       text-align: center;
       right: 0;
       background-color: #606060;
       color: white;
-      font-size: 1.5vw;
+      font-size: 3vw;
       font-weight: 700;
       border-radius: 10px;
-      padding: 0.5vw;
+      padding: 1vw;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.8s;
+      transition: all 1s;
     }
-  
+
     .KJH_item_info_shear_link.show {
       opacity: 1;
       visibility: visible;
       transition: opacity 0.5s linear;
     }
-  
+
     .KJH_item_btn_section {
       display: flex;
       justify-content: space-between;
       border-top: 0;
-      padding-top: 1.2vh;
-      margin-top: 0;
+      padding-top: 0;
     }
-  
+
     .KJH_item_btn_section > button {
       cursor: pointer;
       outline: none;
     }
-  
-    .KJH_item_like_section_true,
-    .KJH_item_like_section_false {
+
+    .KJH_item_like_section {
       display: flex;
       align-items: center;
-      margin-right: 1vw;
+      margin-right: 2vw;
+      min-height: 22px;
+      min-width: 22px;
     }
-  
-    .KJH_item_like_section_true > svg,
-    .KJH_item_like_section_false > svg {
-      border-radius: 0.8vw;
-      padding: 0.5vw;
-      width: 9vw;
+
+    .KJH_item_like_section > svg {
+      background-color: #dddddd;
+      border: 0.15em solid #dddddd;
+      border-radius: 1vw;
+      padding: 1vw;
+      color: white;
+      min-width: 10px;
+      min-height: 10px;
+      width: 12vw;
       height: 7.2vh;
       transition: all 0.3s ease;
     }
-  
-    .KJH_item_like_section_false > svg {
-      background-color: #dddddd;
-      border: 0.15em solid #dddddd;
-      color: white;
-    }
-  
-    .KJH_item_like_section_false > svg:hover {
+
+    .KJH_item_like_section > svg:hover {
       color: #ff4c4c;
       background-color: #fff09b;
       cursor: pointer;
       border: 0.15em solid #ff4c4c;
     }
-  
+
     .KJH_item_btn_select_section {
       position: relative;
       flex: 1 1 0%;
@@ -616,12 +938,13 @@
       font-size: 18px;
       align-items: center;
     }
-  
+
     .KJH_item_btn_select_section:last-child {
       margin-right: 0;
     }
-  
-    .KJH_item_btn_select_talk {
+
+    .KJH_item_btn_select_talk,
+    .KJH_item_btn_select_buy {
       width: 100%;
       min-height: 25px;
       height: 100%;
@@ -631,336 +954,30 @@
       align-items: center;
       justify-content: center;
       text-align: left;
-      font-size: 2.6vw;
+      font-size: 4.2vw;
       cursor: pointer;
-      border-radius: 0.6vw;
+      border-radius: 1vw;
       transition: all 0.3s;
     }
-  
-    .KJH_item_btn_select_talk:hover {
+
+    .KJH_item_btn_select_talk:hover,
+    .KJH_item_btn_select_buy:hover {
       background-color: transparent;
       color: black;
     }
-  
+
     .KJH_item_btn_select_talk {
       background: rgb(255, 164, 37);
       border: 0.3vw solid rgb(243, 150, 20);
     }
-  
+
     .KJH_item_btn_select_talk > svg {
       margin-right: 1vw;
     }
-  
-    @media (max-width: 500px) {
-      .KJH_item_section {
-        position: relative;
-        display: flex;
-        padding: 2vh 0;
-        width: 100%;
-      }
-  
-      /*** 상품정보 ***/
-  
-      .KJH_item_info_section {
-        position: relative;
-        flex-grow: 1;
-      }
-  
-      .KJH_item_info {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-  
-      .KJH_item_info_top {
-        margin-left: 0;
-        height: 100%;
-      }
-  
-      .KJH_item_title_section {
-        padding-bottom: 1.4vw;
-        border-bottom: 0.1em solid #e6e6e6;
-        width: 100%;
-      }
-  
-      .KJH_item_title_name {
-        font-size: 4vw;
-        margin-bottom: 1vh;
-        font-weight: 700;
-      }
-  
-      .KJH_item_title_price_section {
-        display: flex;
-        align-items: flex-end;
-      }
-  
-      .KJH_item_title_price_info {
-        font-size: 9vw;
-        font-weight: 700;
-      }
-  
-      .KJH_item_title_price_info > span {
-        padding-left: 5px;
-        font-size: 18px;
-      }
-  
-      .KJH_item_info_detail_info {
-        height: auto;
-        margin: 1.2vh 0;
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: 0;
-        border-bottom: 0;
-      }
-  
-      .KJH_item_info_detail_status {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
-  
-      .KJH_item_info_detail_status_icon {
-        display: flex;
-        align-items: center;
-        color: rgb(204, 204, 204);
-        font-size: 2vw;
-        height: 100%;
-      }
-  
-      .KJH_item_info_detail_status_icon > svg {
-        width: 2em;
-        height: 2em;
-        margin-right: 0.8vw;
-      }
-  
-      .KJH_item_info_detail_status_num {
-        display: flex;
-        margin: 0 10px 0 0;
-        padding: 0;
-        border: 0;
-        font-size: 3.5vw;
-        font-weight: 600;
-        align-items: center;
-        color: #666666;
-        height: 100%;
-      }
-  
-      .KJH_item_info_detail_info > button {
-        background-color: transparent;
-        cursor: pointer;
-        outline: none;
-        appearance: none;
-        font-synthesis: none;
-        direction: ltr;
-        text-align: left;
-        color: rgb(33, 33, 33);
-        outline: 0;
-        border: 0;
-      }
-  
-      .KJH_item_info_report,
-      .KJH_item_info_report_text {
-        color: #777777;
-        font-size: 2.6vw;
-        font-weight: 700;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-      }
-  
-      .KJH_item_info_report svg {
-        margin-right: 3px;
-        width: 3vw;
-        height: 3vw;
-        vertical-align: bottom;
-        border-style: none;
-      }
-  
-      .KJH_item_info_status_section {
-        margin: 0px;
-        padding: 1em 0 0 0;
-        border: 0px;
-        display: flex;
-        justify-content: space-between;
-        border-top: 0.1em solid #e6e6e6;
-      }
-  
-      .KJH_item_info_status_info_share {
-        position: relative;
-      }
-  
-      .KJH_item_info_status_info,
-      .KJH_item_info_status_info_share {
-        display: block;
-        margin-bottom: 0;
-        width: 100%;
-      }
-  
-      .KJH_item_info_status_title_section {
-        display: block;
-      }
-  
-      .KJH_item_info_item_status_title {
-        position: relative;
-        padding-left: 0;
-        color: #888888;
-        font-size: 2.5vw;
-        width: 100%;
-        margin: 0 0.8vw 1vh 0;
-      }
-  
-      .KJH_item_info_item_status {
-        position: relative;
-        display: flex;
-        direction: ltr;
-        text-align: left;
-        width: 100%;
-        font-size: 3.5vw;
-        font-weight: 700;
-        color: #333333;
-        outline: 0px;
-      }
-  
-      .KJH_item_info_share_section {
-        text-align: right;
-        margin-bottom: 2vh;
-      }
-  
-      .KJH_item_info_share_section > svg {
-        color: #777777;
-        margin-right: 1vw;
-        cursor: pointer;
-        position: absolute;
-        right: 0;
-        top: 4vw;
-        transition: all 0.3s ease;
-        height: 3vh;
-        border-radius: 0.8vw;
-        padding: 1vw;
-        border: 0;
-        width: 5vw;
-      }
-  
-      .KJH_item_info_share_section > svg:hover {
-        background-color: black;
-        color: white;
-      }
-  
-      .KJH_item_info_shear_link {
-        position: absolute;
-        width: auto;
-        top: -15px;
-        text-align: center;
-        right: 0;
-        background-color: #606060;
-        color: white;
-        font-size: 3vw;
-        font-weight: 700;
-        border-radius: 10px;
-        padding: 1vw;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 1s;
-      }
-  
-      .KJH_item_info_shear_link.show {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.5s linear;
-      }
-  
-      .KJH_item_btn_section {
-        display: flex;
-        justify-content: space-between;
-        border-top: 0;
-        padding-top: 0;
-      }
-  
-      .KJH_item_btn_section > button {
-        cursor: pointer;
-        outline: none;
-      }
-  
-      .KJH_item_like_section {
-        display: flex;
-        align-items: center;
-        margin-right: 2vw;
-        min-height: 22px;
-        min-width: 22px;
-      }
-  
-      .KJH_item_like_section > svg {
-        background-color: #dddddd;
-        border: 0.15em solid #dddddd;
-        border-radius: 1vw;
-        padding: 1vw;
-        color: white;
-        min-width: 10px;
-        min-height: 10px;
-        width: 12vw;
-        height: 7.2vh;
-        transition: all 0.3s ease;
-      }
-  
-      .KJH_item_like_section > svg:hover {
-        color: #ff4c4c;
-        background-color: #fff09b;
-        cursor: pointer;
-        border: 0.15em solid #ff4c4c;
-      }
-  
-      .KJH_item_btn_select_section {
-        position: relative;
-        flex: 1 1 0%;
-        font-weight: 600;
-        margin-right: 1vw;
-        display: flex;
-        justify-content: center;
-        height: 7.5vh;
-        font-size: 18px;
-        align-items: center;
-      }
-  
-      .KJH_item_btn_select_section:last-child {
-        margin-right: 0;
-      }
-  
-      .KJH_item_btn_select_talk,
-      .KJH_item_btn_select_buy {
-        width: 100%;
-        min-height: 25px;
-        height: 100%;
-        font-weight: 700;
-        color: rgb(255, 255, 255);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: left;
-        font-size: 4.2vw;
-        cursor: pointer;
-        border-radius: 1vw;
-        transition: all 0.3s;
-      }
-  
-      .KJH_item_btn_select_talk:hover,
-      .KJH_item_btn_select_buy:hover {
-        background-color: transparent;
-        color: black;
-      }
-  
-      .KJH_item_btn_select_talk {
-        background: rgb(255, 164, 37);
-        border: 0.3vw solid rgb(243, 150, 20);
-      }
-  
-      .KJH_item_btn_select_talk > svg {
-        margin-right: 1vw;
-      }
-  
-      .KJH_item_btn_select_buy {
-        background: #ff4c4c;
-        border: 0.3vw solid #ff3c3c;
-      }
+
+    .KJH_item_btn_select_buy {
+      background: #ff4c4c;
+      border: 0.3vw solid #ff3c3c;
     }
   }
+}
