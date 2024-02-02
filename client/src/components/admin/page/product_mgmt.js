@@ -88,8 +88,8 @@ function ProductManagement() {
             <th>제품설명</th>
             <th>판매자</th>
             <th>구매자</th>
-            <th>제품상태</th>
             <th>가격</th>
+            <th>제품상태</th>
             <th>관리</th>
           </tr>
         </thead>
@@ -120,24 +120,33 @@ function ProductManagement() {
           <div className="datailModal">
             {selectedProduct && (
               <div>
-                <h2>{selectedProduct.title}</h2>
-                <p>{selectedProduct.comment}</p>
-                <h2>판매자</h2>
-                <p>{selectedProduct.sellerInfo.nickname}</p>
-                <p>{selectedProduct.sellerInfo.email}</p>
-                <h2>구매자</h2>
-                {selectedProduct.buyerInfo ?
-                  <>
-                    <p>{selectedProduct.buyerInfo.nickname}</p>
-                    <p>{selectedProduct.buyerInfo.email}</p>
-                  </>
-                :
-                  <p>아직 판매중인 상품입니다.</p>
-                }
+                <div className="modal_seller_section">
+                  <div className="modal_seller">판매자</div>
+                  <div className="modal_seller_info">
+                    <div>{selectedProduct.sellerInfo.nickname}</div>
+                    <div>( {selectedProduct.sellerInfo.email} )</div>
+                  </div>
+                </div>
+                <div className="modal_prod_title">{selectedProduct.title}</div>
+                <div className="modal_prod_comment">{selectedProduct.comment}</div>
+
+                <div className="modal_buyer_section">
+                  <div className="modal_buyer">구매자</div>
+                  {selectedProduct.buyerInfo ?
+                    <div className="modal_buyer_info">
+                      <div>{selectedProduct.buyerInfo.nickname}</div>
+                      <div>( {selectedProduct.buyerInfo.email} )</div>
+                    </div>
+                  :
+                    <div className="modal_buyer_info">아직 판매중인 상품입니다.</div>
+                  }
+                </div>
               </div>
             )}
-            <button onClick={() => setModalIsOpen(false)}>닫기</button>
-            <button onClick={() => deleteItem(selectedProduct._id)}>삭제</button>
+            <div className="modal_open_delete_section">
+              <div onClick={() => setModalIsOpen(false)} className="modal_prod_close">닫기</div>
+              <div onClick={() => deleteItem(selectedProduct._id)} className="modal_prod_del">삭제</div>
+            </div>
           </div>
         </div>
       )}
