@@ -60,7 +60,7 @@ function Products() {
   }, []);
 
   const handleLoadMore = () => {
-    setDisplayedProducts(displayedProducts + 8);
+    setDisplayedProducts(displayedProducts + 12);
   };
 
   return (
