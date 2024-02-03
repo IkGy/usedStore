@@ -31,36 +31,35 @@ function Hoogi(props) {
 
   // 모달창 열기
   function openModal() {
-    if (getCookie('login')) {
+    const userId = getCookie('login'); // 현재 로그인한 사용자의 ID
+  
+    if (userId) {
+      if (userId === useId.id) {
+        alert('본인 후기는 작성할 수 없습니다');
+        return; // 함수 실행 중지
+      }
+  
+      // 후기 중복 검사
+      const hasReviewed = getReview.some(review => review.write_id === userId);
+      if (hasReviewed) {
+        alert('후기는 중복으로 작성할 수 없습니다');
+        return; // 함수 실행 중지
+      }
+  
       setReviewContent('');
       setModalOpen(true);
     } else {
-      alert('후기등록을 위해 로그인 해주시기 바랍니다')
+      alert('후기등록을 위해 로그인 해주시기 바랍니다');
       navigate('/login');
     }
   }
+  
+  
   // 모달창 닫기
   function closeModal() {
     setModalOpen(false);
     setReviewContent('');
   }
-
-  // console.log("test",useId);
-
-
-
-  // useEffect(() => {
-  //   axios.get(`${API_URL}/product/hoogi`,{params:{id:getCookie('login')}})
-  //   .then((res) => {
-  //     console.log("DB 조회 완료");
-  //     console.log(res.data);
-  //     setData(res.data);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     console.log("실패");
-  //   });
-  // }, []);
 
   useEffect(() => {
     const fetchGetReview = async () => {
