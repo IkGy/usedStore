@@ -117,7 +117,7 @@ app.post("/upload", upload.single("profileIMG"), (req, res) => {
   res.json({ fileUrl });
 });
 
-app.post("/edit", upload.single("profileIMG"), async (req, res) => {
+app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
   const db = getDB();
   let nicknamecheck = await db.collection("user").findOne({
     nickname: req.body.nickname,
