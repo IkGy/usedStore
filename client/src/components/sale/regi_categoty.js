@@ -30,7 +30,7 @@ function Regi_category(props) {
             "도서·티켓·문구",
             "가구·인테리어",
             "반려동물용품",
-            "기타",
+            "해당사항 없음",
           ].map((category, index) => (
             <div
               key={index}

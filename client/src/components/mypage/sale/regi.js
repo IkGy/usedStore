@@ -144,7 +144,7 @@ function Regi() {
       <Regi_count count={count} setCount={setCount}></Regi_count>
 
       <div className="regi_register">
-        <button onClick={productpost}>등록하기</button>
+        <button onClick={productpost}>수정하기</button>
       </div>
     </div>
   );
