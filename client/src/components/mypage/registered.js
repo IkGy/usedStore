@@ -63,7 +63,7 @@ function Registered(props) {
     if (userConfirmed) {
       axios.post(`${API_URL}/prod/sellcomplete/${_id}`).then((result) => {
         axios
-          .get(`${API_URL}/product/registered`, {
+          .get(`${API_URL}/prod/product/registered`, {
             params: { id: getCookie("login") },
           })
           .then((res) => {
@@ -111,7 +111,6 @@ function Registered(props) {
                       <div className="JSW_Aname">{data.price}원</div>
                     </div>
                   </Link>
-
                   {data.status === "판매중" ? (
                     <div className="JSW_list_edit_delete">
                       <div onClick={() => sell(data._id)} className="JSW_sell">

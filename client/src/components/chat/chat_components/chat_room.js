@@ -19,41 +19,12 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [loadIMG, setLoadIMG] = useState([]);
   let chatFormData = new FormData();
-
-  console.log('selectedRoom:', selectedRoom);
-  
-
-  const isIncludeImage = null;
-  const selectFile = (e) => {
-    console.log("파일 선택함");
-  }
-  const selectInputBar = (e) => {
-    console.log("인풋바 선택함");
-  }
-  const imageUpload = (e) => {
-    e.preventDefault();
-    const selectedFiles = e.target.files;
-    console.log("selectedFiles: ", selectedFiles);
-    // selectedFiles.forEach(v => {
-    //   chatFormData.append('file', v)
-    // })
-    // this.uploadFileToS3({fromData: chatFormData, room_id: selectedRoom})
-
-    if (selectedFiles.length > 10) {
-      alert("이미지는 최대 10개까지만 등록 가능합니다.");
-    } else {
-      const filesArray = Array.from(selectedFiles);
-      setSelectedFiles(filesArray);
-      console.log("selectedFiles: ", selectedFiles);
-      console.log("filesArray: ", filesArray);
-    }
-  };
 
   const uploadFile = (e) => {
     e.preventDefault();
-    selectedFiles = e.target.files;
-    
+    const selectedFiles = e.target.files;
     if (selectedFiles.length > 10) {
       alert("파일은 최대 10개까지만 등록 가능합니다.");
     } else {
@@ -61,25 +32,23 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
       setSelectedFiles(filesArray);
       console.log("selectedFiles: ", selectedFiles);
       console.log("filesArray: ", filesArray);
-    }
-
-    selectedFiles.forEach(v => {
-      chatFormData.append('file', v)
-    })
-    this.uploadFileToS3({fromData: chatFormData, room_id: selectedRoom})
 
 
-    
+      chatFormData = new FormData();
+      filesArray.forEach((file) => {
+      chatFormData.append(`images`, file);
+    });
+    }  
   };
 // ----------------------------------------------------- //
 
 
 useEffect(() => {
-  console.log("ChatRoom에서 selecteduser: ", selectedUser);
-  console.log("ChatRoom에서 selectedroom: ", selectedRoom);
+  // console.log("ChatRoom에서 selecteduser: ", selectedUser);
+  // console.log("ChatRoom에서 selectedroom: ", selectedRoom);
   setUser(getCookie('login'));
   socket = io(ENDPOINT);
-  console.log("socket: ", socket);
+  // console.log("socket: ", socket);
   
   if (selectedRoom) {
     getLog(selectedRoom);
@@ -96,90 +65,91 @@ useEffect(() => {
   }, [selectedRoom, ENDPOINT]);
 
   useEffect(() => {
-    socket.on('message', (data) => {
+    socket.on('message', async (data) => {
       const { writer, message, images } = data;
-      // setMessages((messages) => [...messages, { writer, message }]);
-      setMessages(messages => {
+      console.log('Received message:', data);
+      setMessages((messages) => {
         const newMessages = [...messages, { writer, message, images }];
         console.log('New Messages:', newMessages);
         return newMessages;
       });
     });
-  }, [socket])
-
-
-  const sendMessage = (event) => {
-    event.preventDefault()
-    console.log("전송 클릭");
-    const writer = user;
-    const images = selectedFiles;
-
-
-    if(message.trim().length === 0 ) console.log("전송하지 않습니다.");
-    else {
-      if (message || selectedFiles) {
-        console.log(message)
-        console.log("selectedFiles: ", selectedFiles)
+  }, [socket]);
   
-        selectedFiles.forEach((file, i) => {
-        chatFormData.append(`img`, file[i]);
+  
+  
+  const sendMessage = async (event) => {
+  event.preventDefault();
+  console.log("전송 클릭");
+  const writer = user;
+  const images = selectedFiles;
+
+  if (message.trim().length === 0 && selectedFiles.length === 0) console.log("전송하지 않습니다.");
+  else {
+    if (message || images) {
+      console.log(message);
+      console.log("selectedFiles: ", selectedFiles);
+      chatFormData = new FormData();
+      selectedFiles.forEach((file) => {
+        chatFormData.append(`images`, file);
       });
-      
-      if(selectedFiles == undefined) setSelectedFiles(null);
-      axios.post(`${API_URL}/chat/live_chat`, {
-        room_id: selectedRoom,
-        writer: user,
-        chat: message,
-        images: selectedFiles
-      })
-  
-      .then((result) => {
-        console.log("result: ", result);
-        console.log("post 완료");
-        //소켓 연결할 부분
-        // socket.emit('sendMessage', { chatFormData });  
-        socket.emit('sendMessage', { writer, message, images });  
+      if (selectedFiles === undefined) setSelectedFiles(null);
+      try {
+        const response = await axios.post(`${API_URL}/chat/live_chat_upload_file_to_s3`, chatFormData);
+        console.log('response: ', response);
+        const s3Urls = response.data;
+        console.log('s3Urls: ', s3Urls);
+
+        axios.post(`${API_URL}/chat/live_chat`, {
+          room_id: selectedRoom,
+          writer: user,
+          chat: message,
+          images: s3Urls.map((url) => ({ path: url }))
+        })
+          .then((result) => {
+            console.log("result: ", result);
+            console.log("post 완료");
+
+            // 이미지 URL을 사용하여 소켓으로 전송
+            socket.emit('sendMessage', { writer: user, message: message, images: s3Urls });
+          })
+          .catch((error) => {
+            console.log("error: ", error);
+          });
           setMessage('');
           setSelectedFiles([]);
-      })
-      .catch((error) => {
-        console.log("error: ", error);
-      })
+      } catch (error) {
+        console.error("이미지 업로드 및 전송 오류:", error);
       }
     }
   }
+};
 
-  const getLog = async(id) => {
-    await axios.get(`${API_URL}/chat/chat`, {params:{ room_id: id }})
-    .then((res)=>{
-      const logs = res.data;
-      setMessages(logs.map((log) => ({ writer: log.writer, message: log.chat || log.message, images: log.images })));
-    })
-    .catch((error)=> {
-      console.log("error: ", error);
-    })
-  }
+const getLog = async(id) => {
+  await axios.get(`${API_URL}/chat/chat`, {params:{ room_id: id }})
+  .then((res)=>{
+    const logs = res.data;
+    setMessages(logs.map((log) => ({ writer: log.writer, message: log.chat || log.message, images: log.images })));
+  })
+  .catch((error)=> {
+    console.log("error: ", error);
+  })
+}
 
-
-  
   const deleteImage = (index) => {
     const updatedPreviews = [...selectedFiles];
     updatedPreviews.splice(index, 1);
     console.log("updatedPreviews: ", updatedPreviews);
     setSelectedFiles(updatedPreviews);
   };
-
-  // if(writer === user) isSentByCurrentUser = true;
-  // else isSentByCurrentUser = false;
-  // console.log("true/false = ", isSentByCurrentUser);
   
-  
-
-
   const closeRoom = () => {
     setSelectedUser('');
   }
 
+  const openPreviewModal = () => {
+    console.log("이미지를 확대하자");
+  }
 
 
   return (
@@ -192,71 +162,45 @@ useEffect(() => {
           </div>
           <FaTimes className='close_room' onClick={closeRoom}/>
         </div> 
-        <BasicScrollToBottom followButtonClassName=""
-          className={selectedFiles.length > 0 ? "messagesOnImages" : "messages" }>
+        <BasicScrollToBottom
+          className={selectedFiles.length > 0 ? "messagesOnImages" : "messages" }
+        >
           {messages.map((message, i) => {
-            // console.log("messages: ", messages);
-            // 각 메시지의 작성자를 추출
-            // console.log("message: ", message);
-            
             const messageWriter = message.writer;
             const messageContent = message.message;
-            // console.log("작성자: ", messageWriter);
-            // console.log("내용: ", messageContent);
-
-            // const messageWriter = message.split(":")[0].trim(); 
-            
-            // 현재 사용자와 작성자가 동일한 경우 true, 아니면 false
+            const messageImages = message.images;
             const isSentByCurrentUser = messageWriter === user;
-            // console.log("isSentByCurrentUser: ", isSentByCurrentUser);
-            return isSentByCurrentUser ? (
-              <d className='messageContainer justifyEnd' key={i}>
-                <div className='messageBox backgroundBlue'>
-                  { 
-                    isIncludeImage != null ? (
-                      <p className='messageText colorDark'>
-                        {selectedFiles.map((a, i) => {
-                          <img 
-                            className='messageText'
-                            src={URL.createObjectURL(a)}
-                            alt='image'
-                          />
-                          })
-                        }
-                      {/* {selectedFiles} */}
-                      {messageContent}
-                      </p>
-                    ):<></>
-                  }
-                <p className='messageText colorWhite'>{messageContent}</p>
-                </div>
-              </d>
-              ) : (
-              <div className='messageContainer justifyStart' key={i}>
-                <div className='messageBox backgroundLight'>
-                  { 
-                    isIncludeImage != null ? (
-                      <p className='messageText colorDark'>
-                      {selectedFiles.map((a, i) => {
+
+            return (
+              <div key={i} className={isSentByCurrentUser ? 'messageContainer justifyEnd' : 'messageContainer justifyStart'}>
+                <div className={isSentByCurrentUser ? 'messageBox backgroundBlue' : 'messageBox backgroundLight'}>
+
+                  {messageImages && messageImages.length > 0 ? (
+                    <div className='imageContainer'>
+                      {messageImages.map((image, index) => {
+                        console.log("image: ", image);
+                        console.log("Image URL:", image.path);
+                        return (
                         <img 
-                            className='messageText'
-                            src={URL.createObjectURL(a)}
-                            alt='image'
-                          />
-                          })
-                        }
-                      {/* {selectedFiles} */}
-                      {messageContent}
-                      </p>
-                    ):<></>
-                  }
-                <p className='messageText colorDark'>{messageContent}</p>
+                          key={`${index}-${image.path}`} 
+                          className="messageImage" 
+                          src={image.path||image} 
+                          // src={`${image.path}?${Math.random()}`}
+                          // src={image.path ? `${image.path}?${Date.now()}` : ''}  
+                          alt={`Image ${index + 1}`} 
+                          onClick={openPreviewModal}
+                        />
+                        );
+                        })}
+                    </div>
+                  ) : null}
+                  <p className={isSentByCurrentUser ? 'messageText colorWhite' : 'messageText colorDark'}>
+                    {ReactEmoji.emojify(messageContent)}
+                  </p>
                 </div>
               </div>
-              )
-         
+            );
           })}
-                     
         </BasicScrollToBottom>
         {selectedFiles.length > 0 ? (
           <div className="file-previews-container">
@@ -281,14 +225,15 @@ useEffect(() => {
           </div>
           ):<></>}
         <div className='chat_room_input_main'>
-          {/* <label htmlFor="file-upload" className="custom-file-upload" onClick={selectFile}>
+          <label htmlFor="file-upload" className="custom-file-upload">
             <FaRegPlusSquare />
-          </label> */}
+          </label>
 
           <input
             id="file-upload"
             type="file"
-            onChange={imageUpload}
+            onChange={uploadFile}
+            // onChange={imageUpload}
             multiple
           />
 
@@ -296,7 +241,6 @@ useEffect(() => {
             className="input_area"
             type="text"
             placeholder="전송하려는 메시지를 입력하세요."
-            onClick={selectInputBar}
             value={message}
             onChange={({ target: { value } }) => setMessage(value)}
             onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}

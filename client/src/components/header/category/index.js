@@ -301,13 +301,15 @@ function Category() {
   const selectCategory = (item) => {
     // console.log('test1',item);
     setCategory([item]);
+    setSubCategory([]);
   };
   const selectSubCategory = (item) => {
-    console.log("test2", item);
+    // console.log("test2", item);
     setSubCategory([item]);
+    setSSubCategory([]);
   };
   const selectSSubCategory = (item) => {
-    console.log("test2", item);
+    // console.log("test2", item);
     setSSubCategory([item]);
   };
 

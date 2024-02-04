@@ -18,7 +18,7 @@ function SelectBar(props){
         <div className="KJH_cg_dropdown_section">{selectData}</div>
         <div className="KJH_cg_dropdown">
         {data.map((item) => (
-            <Link key={item} to={`/detailsearch/${item}`}onClick={()=>{
+            <Link key={item} to={`/detailsearch/${item}`}onClick={(e)=>{
               props.setSelect(item)
             }}>
               {item}

@@ -6,6 +6,7 @@ const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const { uploadFiles } = require("../modules/chatFile");
+
 const s3 = new S3Client({
   region: "ap-northeast-2",
   credentials: {
@@ -120,7 +121,7 @@ catch(error){
 }
 })
 
-router.post('live_chat_upload_file_to_s3', uploadFiles.array("file"), (req, res, next) => {
+router.post('live_chat_upload_file_to_s3', chatImages.array("file"), (req, res, next) => {
   let urlArr = [];
   req.files.forEach(async (v) => {
     urlArr.push(v.location);
