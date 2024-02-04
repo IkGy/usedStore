@@ -18,7 +18,7 @@ function Category() {
       "도서·티켓·문구",
       "가구·인테리어",
       "반려동물용품",
-      "기타",
+      "분류없음",
     ],
     category2: [],
     category3: [],

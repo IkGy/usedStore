@@ -80,11 +80,11 @@ const FindPW = () => {
       {newPassword && (
         <div>
           <Typography variant="subtitle1" sx={{ mt: 2, mb: 2 }}>
-            새로운 비밀번호: {newPassword}
+            <span>새로운 비밀번호: {newPassword}</span>
           </Typography>
-          <Button variant="outlined" onClick={copyPW}>
+          {/* <Button variant="outlined" onClick={copyPW}>
             비밀번호 복사
-          </Button>
+          </Button> */}
           <Link component={RouterLink} to="/login" underline="none">
             <Button variant="outlined" sx={{ float: "right" }}>
               로그인 하러가기
