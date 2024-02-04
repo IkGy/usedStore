@@ -15,7 +15,6 @@
 .fa-xmark {
   cursor: pointer;
 }
-
 .JSW_modal_selectform {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -55,14 +54,8 @@
 .active {
   color: #2748b0;
 }
-.noactive {
-  color: black;
-}
 
-.active1 {
-  color: #ff0000;
-}
-.noactive1 {
+.noactive {
   color: black;
 }
 
@@ -91,10 +84,16 @@
 .JSW_Main_view {
   max-width: 100%;
   max-height: 100vh;
+
   display: grid;
   grid-template-columns: 1fr 5fr;
+
   padding-bottom: 5%;
 }
+
+/* .JSW_Sec1 {
+  border: 1px solid #000;
+} */
 
 .JSW_menubar {
   height: 100%;
@@ -109,7 +108,8 @@
 
 .JSW_nav1 {
   position: sticky;
-  top: 6.5vw;
+  top: 7vw;
+  
 }
 
 .JSW_nav1 > ul {
@@ -156,6 +156,8 @@
   grid-template-columns: 1.5fr 3fr;
   padding-bottom: 1%;
   box-shadow: 0 1px 0 0;
+
+  /* border-bottom: 1px solid #000; */
 }
 
 .JSW_Sec2-1_left {
@@ -192,6 +194,7 @@
   padding: 1%;
   width: 100%;
   height: 13vw;
+
   overflow-y: scroll;
 }
 
@@ -348,16 +351,19 @@ justify-content: space-between;
   display: flex;
   flex-direction: column;
   margin-top: 1vw;
+  border-bottom: 0.25vw solid rgb(0, 0, 0);
 }
 
 .CHM_myinfobox1 {
   display: grid;
   grid-template-columns: 1fr 2.5fr;
   column-gap: 1vw;
+  padding-bottom: 1vw;
 }
 
 .CHM_myinfoimgbox {
   min-height: 13vw;
+  max-height: 13vw;
   width: 100%;
   height: 100%;
 }
@@ -374,7 +380,10 @@ justify-content: space-between;
   grid-template-columns: 1fr 9fr;
   padding: 1vw 0;
   font-size: 1.2vw;
-  border-bottom: 0.25vw solid rgb(0, 0, 0);
+}
+
+.JSW_useraboutbox2 {
+  font-size: 1.2vw;
 }
 
 .JSW_userabout {
@@ -383,6 +392,16 @@ justify-content: space-between;
   overflow-y: auto;
   padding: 0 0.3vw; /* 스크롤이 필요할 때만 표시되도록 auto로 변경 */
   border-radius: 0.1vw;
+  
+}
+
+.JSW_userabout2 {
+  border: 0.1vw solid rgba(0, 0, 0, 0.258);
+  height:6.5vw;
+  overflow-y: auto;
+  padding: 0 0.3vw; /* 스크롤이 필요할 때만 표시되도록 auto로 변경 */
+  border-radius: 0.1vw;
+  margin-top:0.4vw;
 }
 
 .CHM_hoogiBox {
@@ -626,6 +645,16 @@ justify-content: space-between;
   height: 9vw;
 }
 
+.JSW_noAnameBox{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'SejonghospitalBold';
+  font-size: 1.4vw;
+  padding: 1vw
+}
+
+
 @media (max-width: 1200px) {
   .JSW_nav1 {
     top: 7vw;
@@ -684,6 +713,7 @@ justify-content: space-between;
     position: fixed;
     bottom: -5px;
     width: 100%;
+    z-index: 3;
     border-bottom: 0.15vw solid black;
   }
 
@@ -703,6 +733,7 @@ justify-content: space-between;
     flex-direction: column;
     margin-top: 1vw;
     padding: 2vw;
+    border-bottom: 0.5vw solid rgb(0, 0, 0);
   }
 
   .CHM_myinfobox1 {
@@ -713,7 +744,8 @@ justify-content: space-between;
 
   .CHM_myinfoimgbox {
     width: 100%;
-    height: 32vw;
+    max-height: 32vw;
+    min-height: 32vw;
   }
 
   .CHM_useringoflex {
@@ -1014,5 +1046,28 @@ justify-content: space-between;
   .JSW_nohoogibox img {
     width: 30vw;
     height: 20vw;
+  }
+
+  .JSW_noAnameBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'SejonghospitalBold';
+    font-size: 3vw;
+    padding: 2vw
+  }
+
+  .JSW_useraboutbox2 {
+    font-size: 2.5vw;
+  }
+
+  .JSW_userabout2 {
+    border: 0.1vw solid rgba(0, 0, 0, 0.258);
+    height:17vw;
+    overflow-y: auto;
+    padding: 0 0.3vw; /* 스크롤이 필요할 때만 표시되도록 auto로 변경 */
+    border-radius: 0.1vw;
+    margin-top:0.4vw;
+    font-size: 2.5vw
   }
 }

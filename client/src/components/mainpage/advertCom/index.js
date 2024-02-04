@@ -1,4 +1,4 @@
-import image1 from "./adImage.png";
+import image1 from "./file-qm1Oe6pwaOUWQBd0F191rQyr.jpg";
 import React from "react";
 import './adComponent.css'
 

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
-import image1 from "./image/1087848276_w1197.jpg";
-import image2 from "./image/1091020512_w1197.jpg";
-import image3 from "./image/1091020512_w1197.jpg";
+import image1 from "./image/file-qpAfAcdCC9yzwXnySzb71KUG.jpg";
+import image3 from "./image/file-zKGj6C29aJ0UbSqqhwTilmGJ.jpg";
 
 const imageSlide = () => {
   const responsive = {
@@ -14,7 +13,7 @@ const imageSlide = () => {
 
   const handleDragStart = (e) => e.preventDefault();
 
-  const images = [image1, image2, image3];
+  const images = [image1, image3];
 
   const items = images.map((image) => {
     return (
