@@ -14,7 +14,6 @@
 
 .KJH_if_left_section {
     flex-basis: 70%;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -190,6 +189,7 @@
 }
 
 .KJH_if_left_bottom_content_link_info {
+    text-overflow: ellipsis;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -207,6 +207,7 @@
     font-size: 1vw;
     color: rgb(113, 112, 126);
     margin-bottom: 0.8vh;
+    text-overflow: ellipsis;
 }
 
 .KJH_if_left_bottom_content_link_ad {

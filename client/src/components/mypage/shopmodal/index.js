@@ -40,6 +40,7 @@ function Modal({ show, onClose, updateReviewData, setModalOpen, reviewContent, s
     }, [show, id]);
 
     const submitReview = async (resiverId, writerId, reviewContent, writer_id, writer_profileIMG) => {
+        if (reviewContent.trim().length === 0) return alert("신고 내용과 제목 모두 입력해주세요.");
         try {
             const url = `${API_URL}/mypage/post/shop`;
             

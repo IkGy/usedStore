@@ -362,7 +362,7 @@ justify-content: space-between;
 }
 
 .CHM_myinfoimgbox {
-  min-height: 13vw;
+  min-height: 14vw;
   max-height: 13vw;
   width: 100%;
   height: 100%;
@@ -699,10 +699,13 @@ justify-content: space-between;
 
   .JSW_nav1 > ul {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 0;
   }
 
+  .JSW_nav1 > ul >:last-child {
+    border-left: 1px solid;
+  }
   .CHM_uibt{
     display: grid;
     grid-template-columns: 1fr 1fr !important;

@@ -88,19 +88,11 @@ function Picklist() {
                       <div className="JSW_Aname">{data.price}원</div>
                     </div>
                   </Link>
-                  <div className="JSW_list_edit_delete2">
-                    <div
-                      className="JSW_sell"
-                      style={{ borderRight: "1px solid black" }}
-                    >
-                      <div>채팅</div>
-                    </div>
                     <div
                       className="JSW_listdelete"
                       onClick={() => likedel(data._id)}
                     >
                       찜 해제
-                    </div>
                   </div>
                 </div>
               );
