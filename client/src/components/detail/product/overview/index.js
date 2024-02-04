@@ -99,12 +99,15 @@ function Item(props) {
     }
   };
 
+
   // 채팅방 조회
+  
   const curUser = getCookie('login');
   const selUser = props.seller._id;
   console.log("curUser: ", curUser);
   console.log("selUser: ", selUser);
-	
+
+  
 	const openChatting = async () => {
     if(curUser===selUser){
       alert("자기 자신과는 채팅이 불가능합니다.");
@@ -130,7 +133,7 @@ function Item(props) {
   const handleReportClick = () => {
     if (!getCookie("login")) {
       alert("로그인 후 이용해주세요.");
-      navigate(`/detail/${id}`)
+      navigate(`/detail/${id}`);
     }
   };
 
@@ -151,7 +154,7 @@ function Item(props) {
 
   const Info = props.info;
 
-  // 생성 날짜 형식화`
+  // 생성 날짜 형식화
   const formattedCreatedAt = formatTimeAgo(Info.created_at);
 
   return (
@@ -195,6 +198,11 @@ function Item(props) {
                   <button
                     className="KJH_item_info_report"
                     onClick={handleReportClick}
+                    style={
+                      Info.status === "판매중"
+                        ? { display: "flex" }
+                        : { display: "none" }
+                    }
                   >
                     <MdReport />
                     <Link to={`/singo/${id}`}>
@@ -252,20 +260,28 @@ function Item(props) {
               </div>
               {/* 찜 / 실시간 메세지 버튼 */}
               <div className="KJH_item_btn_section">
-                <div
-                  className={`KJH_item_like_section_${like ? "true" : "false"}`}
-                >
-                  <FaHeart onClick={toggleLike} />
-                </div>
-                <div
-                  className="KJH_item_btn_select_section"
-                  onClick={openChatting}
-                >
-                  <div className="KJH_item_btn_select_talk">
-                    <IoChatboxEllipsesOutline onClick={openChatting}/>
-                    <span>실시간 채팅</span>
-                  </div>
-                </div>
+                {Info.status === "판매중" ? (
+                  <>
+                    <div
+                      className={`KJH_item_like_section_${
+                        like ? "true" : "false"
+                      }`}
+                    >
+                      <FaHeart onClick={toggleLike} />
+                    </div>
+                      <div
+                        className="KJH_item_btn_select_section"
+                        onClick={openChatting}
+                      >
+                      <div className="KJH_item_btn_select_talk">
+                        <IoChatboxEllipsesOutline />
+                        <span>실시간 채팅</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className='KJH_item_sell'>판매완료</div>
+                )}
               </div>
             </div>
           </div>

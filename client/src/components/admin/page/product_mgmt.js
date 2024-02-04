@@ -75,8 +75,7 @@ function ProductManagement() {
       <table className="admin_prod_table">
         <colgroup>
           <col style={{ width: "25%" }}  />
-          <col style={{ width: "25%" }}  />
-          <col />
+          <col style={{ width: "35%" }}  />
           <col />
           <col />
           <col />
@@ -87,7 +86,6 @@ function ProductManagement() {
             <th>제목</th>
             <th>제품설명</th>
             <th>판매자</th>
-            <th>구매자</th>
             <th>가격</th>
             <th>제품상태</th>
             <th>관리</th>
@@ -99,11 +97,6 @@ function ProductManagement() {
               <td><Link to={`/detail/${data._id}`} target="_blank">{data.title}</Link></td>
               <td>{data.comment}</td>
               <td>{data.sellerInfo.nickname}</td>
-              {data.buyerInfo ? 
-                <td>{data.buyerInfo.nickname}</td>
-                :
-                <td>{data.buyer}</td>
-              }
               <td>{data.price}</td>
               <td>{data.status}</td>
               <td>
@@ -131,12 +124,8 @@ function ProductManagement() {
                 <div className="modal_prod_comment">{selectedProduct.comment}</div>
 
                 <div className="modal_buyer_section">
-                  <div className="modal_buyer">구매자</div>
-                  {selectedProduct.buyerInfo ?
-                    <div className="modal_buyer_info">
-                      <div>{selectedProduct.buyerInfo.nickname}</div>
-                      <div>( {selectedProduct.buyerInfo.email} )</div>
-                    </div>
+                  {selectedProduct.status == "판매완료" ?              
+                      <div className="modal_buyer_info">판매 완료 상품입니다.</div>
                   :
                     <div className="modal_buyer_info">아직 판매중인 상품입니다.</div>
                   }
