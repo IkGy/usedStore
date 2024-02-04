@@ -4,9 +4,9 @@ const { getDB } = require('../db');
 const { ObjectId } = require('mongodb'); 
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
+const path = require('path');
 const multerS3 = require("multer-s3");
-const { uploadFiles } = require("../modules/chatFile");
-
+const { url } = require('inspector');
 const s3 = new S3Client({
   region: "ap-northeast-2",
   credentials: {
@@ -77,9 +77,7 @@ router.get('/chat', async (req, res) => {
   }
 })
 
-
-
-router.post('/live_chat', chatImages.array('img', 10), async (req,res)=>{
+router.post('/live_chat', chatImages.array('images', 10), async (req,res)=>{
   const db = getDB();
   // console.log('chatImages: ', chatImages);
   // console.log("req.body: ", req.body);
@@ -87,7 +85,6 @@ router.post('/live_chat', chatImages.array('img', 10), async (req,res)=>{
   // console.log("req.files: ", req.files);
   // const Images = req.files.map((file) => file.location);
   // console.log('Images: ', Images);
-
   await db.collection("chatting").insertOne({
     room_id: req.body.room_id,
     writer: req.body.writer,
@@ -121,14 +118,13 @@ catch(error){
 }
 })
 
-router.post('live_chat_upload_file_to_s3', chatImages.array("file"), (req, res, next) => {
+router.post('/live_chat_upload_file_to_s3', chatImages.array("images"), (req, res) => {
   let urlArr = [];
   req.files.forEach(async (v) => {
     urlArr.push(v.location);
   });
+  console.log('urlArr:', urlArr);
   res.send(urlArr);
 });
-
-
 
 module.exports = router;

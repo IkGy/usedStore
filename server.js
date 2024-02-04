@@ -28,6 +28,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 
 const url = process.env.DB_URL;
+const port = process.env.PORT;
 
 const s3 = new S3Client({
   region: "ap-northeast-2",
@@ -117,7 +118,7 @@ app.post("/upload", upload.single("profileIMG"), (req, res) => {
   res.json({ fileUrl });
 });
 
-app.post("/user/edit", upload.single("profileIMG"), async (req, res) => {
+app.post("/edit", upload.single("profileIMG"), async (req, res) => {
   const db = getDB();
   let nicknamecheck = await db.collection("user").findOne({
     nickname: req.body.nickname,
@@ -216,15 +217,17 @@ io.on('connection', (socket) => {
 
   // 클라이언트로부터의 메시지 이벤트 핸들링
   socket.on('sendMessage', async (data) => {
-    const { writer, message } = data;
+    const { writer, message, images } = data;
     console.log("data: ", data);
     console.log("writer: ", writer);
     console.log('메시지 받음:', message);
+    console.log('받은 이미지: ', images);
     const room = roomInfo[socket.id];
     console.log("room: ", room);
 
     // 같은 방에 있는 모든 클라이언트에게 메시지 전송
-    io.to(room).emit('message', { writer, message });
+    io.to(room).emit('message', { writer, message, images });
+    // io.to(room).emit('message', { writer: writer, message: message, images: images });
   });
 
   // 연결 해제 이벤트 핸들링

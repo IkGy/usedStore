@@ -19,7 +19,8 @@ function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [loadIMG, setLoadIMG] = useState([]);
+  let [modal, setmodal] = useState(false);
+  let [selectimg, setSelectimg] = useState("");
   let chatFormData = new FormData();
 
   const uploadFile = (e) => {
@@ -147,9 +148,21 @@ const getLog = async(id) => {
     setSelectedUser('');
   }
 
-  const openPreviewModal = () => {
+  const openPreviewModal = (img) => {
     console.log("이미지를 확대하자");
+    if (modal === false) {
+      setmodal(true);
+      setSelectimg(img);
+    } else if (modal === true) {
+      setmodal(false);
+      setSelectimg("");
+    }
   }
+
+
+
+
+
 
 
   return (

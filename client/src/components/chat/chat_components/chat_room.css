@@ -137,6 +137,21 @@
   color: #828282;
   letter-spacing: 0.3px;
 }
+.imageContainer{
+  padding: 0.5vw 0 0.5vw 0;
+  max-width: 15vw;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(5vw, auto));
+}
+
+
+.messageImage{
+  width: 5vw;
+  max-width: 7.5vw;
+  height: 5vw;
+  object-fit: cover;
+}
 
 .pl-10 {
   padding-left: 10px;
@@ -156,6 +171,7 @@
 
 .colorWhite {
   color: white;
+  text-align: right;
 }
 
 .colorDark {
@@ -245,7 +261,7 @@ input:focus, textarea:focus, select:focus{
 .custom-file-upload{
   padding-left: 1.2vw;
   /* padding-left: 3%; */
-  font-size: 4vh;
+  font-size: 2vw;
   margin: auto;
 }
 .sendButton {

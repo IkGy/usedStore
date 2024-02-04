@@ -27,8 +27,8 @@ function Room_list({ onSelectUser, onSelectRoom }) {
       params: { id: getCookie("login") },
     })
     .then(async (res) => {
-      console.log("조회성공");
-      console.log(res.data);
+      // console.log("조회성공");
+      // console.log(res.data);
       setMyRoom_List(res.data);
 
       const updatedUsers = [];
@@ -42,11 +42,11 @@ function Room_list({ onSelectUser, onSelectRoom }) {
       const nicknames = await getNicknames(updatedUsers);
       setUser(nicknames);
 
-      console.log("updatedUsers: ", updatedUsers);
-      console.log("user: ", nicknames);
+      // console.log("updatedUsers: ", updatedUsers);
+      // console.log("user: ", nicknames);
     })
     .catch((error) => {
-      console.error("Failed to fetch room list", error);
+      console.error("채팅방 리스트 조회 실패", error);
     });
   }
 
@@ -62,27 +62,27 @@ function Room_list({ onSelectUser, onSelectRoom }) {
       });
       return response.data;
     } catch (error) {
-      console.error("Failed to fetch user nicknames", error);
+      console.error("유저 닉네임 조회 실패", error);
       return [];
     }
   };
   
 
   const clickRoom = async (user, id) => {
-    console.log("user.id: ", id);  
+    // console.log("user.id: ", id);  
     socket = io(ENDPOINT)
 
     await axios.get(`${API_URL}/chat/chat_log`, {params:{ room_id: id }})
     .then((res)=>{
-      console.log("res: ", res);
-      console.log("res.data: ", res.data);
-      if(res.data.length < 1){
-        console.log("로그가 없음!"); 
-      } else {
-        console.log("room_id: ", res.data[0].room_id);
-      }
-      console.log("방id:", id); 
-      console.log("res: ", res.data[0].chat);
+      // console.log("res: ", res);
+      // console.log("res.data: ", res.data);
+      // if(res.data.length < 1){
+        // console.log("로그가 없음!"); 
+      // } else {
+        // console.log("room_id: ", res.data[0].room_id);
+      // }
+      // console.log("방id:", id); 
+      // console.log("res: ", res.data[0].chat);
     })
     .catch((error)=> {
       console.log("error: ", error);
