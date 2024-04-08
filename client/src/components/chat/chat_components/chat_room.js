@@ -10,7 +10,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import ReactEmoji from 'react-emoji';
 
 let socket;
-const ENDPOINT = 'http://54.180.101.110:5000'
+const ENDPOINT = 'http://15.164.213.245:5000'
 // const ENDPOINT = 'http://localhost:5000'
 
 function Chat_room({ selectedUser, selectedRoom, setSelectedUser }){

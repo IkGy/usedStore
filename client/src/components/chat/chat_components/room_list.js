@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 
 let socket;
 // const ENDPOINT = 'http://localhost:5000'
-const ENDPOINT = 'http://54.180.101.110:5000'
+const ENDPOINT = 'http://15.164.213.245:5000'
 
 function Room_list({ onSelectUser, onSelectRoom }) {
   // 각 유저의 id를 가져오고
